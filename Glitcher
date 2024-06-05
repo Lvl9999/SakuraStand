@@ -1,0 +1,28 @@
+local BoredStuffLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/NotifUi/main/Backup"))();
+
+local E_Cooldown = false;
+local Dashing = false;
+
+if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+    BoredStuffLibrary.prompt("Emulator Hub   💻","Successfully Execeuted :3",2);
+    workspace.Living[game.Players.LocalPlayer.Name].CDValues.ChildAdded:Connect(function(x)
+        local X = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+        task.wait(0.5);
+    
+        if x.Name == "E_Cooldown" then
+            E_Cooldown = true;
+        end
+        if x.Name == "Dashing" then
+            Dashing = true;
+        end
+        if E_Cooldown and Dashing then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-637,-33,1021);
+            task.wait(1.75);
+            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = X;
+            E_Cooldown = false;
+            Dashing = false;
+        end
+    end)
+else
+    BoredStuffLibrary.prompt("Emulator Hub   💻", "You don't have the required stuff...");
+end
