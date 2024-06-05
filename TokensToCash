@@ -1,0 +1,106 @@
+local BoredStuffLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/NotifUi/main/Backup"))();
+
+if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.Achievements["The Rich"] then
+    if getgenv().StartTask == true then
+        task.spawn(function()
+            while getgenv().StartTask == true do task.wait(0.5);
+                pcall(function()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-637.7359008789062,-33.393035888671875,1031.9337158203125);
+                end)
+            end
+        end)
+        
+        task.spawn(function()
+            while getgenv().StartTask == true do task.wait(2);
+                pcall(function()
+                    if game:GetService("Players").LocalPlayer.Data.Token.Value > 500 and game:GetService("Players").LocalPlayer.Data.Cash.Value < 500 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Rich" then
+                        for i = 1,getgenv().HowManyTimesT4C do
+                            local args = {[1] = "T4C"};
+                            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("TokenExchange"):FireServer(unpack(args));
+                        end                
+                    end
+                end)
+            end
+        end)
+        
+        task.spawn(function()
+            while getgenv().StartTask == true do task.wait(0.15);
+                pcall(function()
+                    if game:GetService("Players").LocalPlayer.Data.Cash.Value > 250 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value ~= "The Intelligent" then
+                        local args = {[1] = "The Intelligent"};
+                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));
+                    elseif game:GetService("Players").LocalPlayer.Data.Cash.Value < 250 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value ~= "The Rich" then
+                        local args = {[1] = "The Rich"};
+                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));
+                    end
+                end)
+            end
+        end)
+        
+        task.spawn(function()
+            while getgenv().AutoBreakthrough == true do task.wait(0.015);
+                pcall(function()
+                    if game:GetService("Players").LocalPlayer.Data.Exp.Value == 30725 and game:GetService("Players").LocalPlayer.Data.Mastery.Value == 15 then
+                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Breakthrough"):FireServer();
+                    end
+                end)
+            end
+        end)
+        
+        task.spawn(function()
+            while getgenv().AutoUpgradeMastery == true do task.wait(0.015);
+                pcall(function()
+                    if game:GetService("Players").LocalPlayer.Data.Exp.Value == 30725 and game:GetService("Players").LocalPlayer.Data.Mastery.Value ~= 15 then
+                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("UpgradeMas"):FireServer();
+                    end
+                end)
+            end
+        end)
+        
+        task.spawn(function()
+            while getgenv().AutoBuyAndSellRokakaka == true do task.wait(0.0015);
+                pcall(function()
+                    local Selling = {"Arrow","Barrel","Rokakaka","Stop Sign","Mysterious Camera" ,"Haunted Sword","Spin Manual","Hamon Manual","Stone Mask","Bomu Bomu Devil Fruit","Mochi Mochi Devil Fruit","Bari Bari Devil Fruit"}
+            
+                    if game:GetService("Players").LocalPlayer.Data.Cash.Value > 75 then
+                        local args = {[1] = "1"};
+                        game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Rokakaka"):FireServer(unpack(args));
+                        local args = {[1] = "Rokakaka"};
+                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(unpack(args));
+                    end
+            
+                    for i,v in ipairs(Selling) do
+                        local args = {[1] = v};
+                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(unpack(args));
+                    end
+        
+                    local LplayerGui = game:GetService("Players").LocalPlayer.PlayerGui
+        
+                    LplayerGui.PurchaseFailed.Spin1.Visible = false;
+                    LplayerGui.PurchaseFailed.Spin2.Visible = false;
+                    LplayerGui.PurchaseFailed.Spin3.Visible = false;
+                    LplayerGui.PurchaseFailed.Outer.Visible = false;
+                    LplayerGui.PurchaseFailed.ConfirmationText.Visible = false;
+                
+                    LplayerGui.PurchaseSuccess.Spin1.Visible = false;
+                    LplayerGui.PurchaseSuccess.Spin2.Visible = false;
+                    LplayerGui.PurchaseSuccess.Spin3.Visible = false;
+                    LplayerGui.PurchaseSuccess.Outer.Visible = false;
+                    LplayerGui.PurchaseSuccess.ConfirmationText.Visible = false;
+                end)
+            end
+        end)
+    elseif getgenv().StartTask == false then
+        getgenv().AutoBreakthrough = false;
+        getgenv().AutoUpgradeMastery = false;
+        getgenv().AutoBuyAndSellRokakaka = false;
+    end
+else
+    if getgenv().StartTask == true then
+        BoredStuffLibrary.prompt("Emulator Hub   💻", "You don't have the required stuff...");
+        getgenv().StartTask = false;
+        getgenv().AutoBreakthrough = false;
+        getgenv().AutoUpgradeMastery = false;
+        getgenv().AutoBuyAndSellRokakaka = false;
+    end
+end
