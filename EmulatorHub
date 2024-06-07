@@ -767,7 +767,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                         if Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
                             local HUM = Target.Parent:FindFirstChild("Humanoid");
                             if HUM and HUM.Health ~= HUM.MaxHealth then
-                                task.spawn(function()task.wait(0.15);
+                                task.spawn(function()task.wait(1.5);
                                     HUM.Health = 0
                                 end)
                             end
