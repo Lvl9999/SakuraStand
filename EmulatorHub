@@ -18,13 +18,13 @@ end
 
 -- // Anti AFK \\ --
 task.spawn(function()
-    if not getgenv().IiIiIiI == true then
+    if not getgenv().AntiAfk == true then
         while true do task.wait(250);
             pcall(function()
                 game:GetService("VirtualInputManager"):SendKeyEvent(true,"RightBracket",false,game);
             end)
         end
-        getgenv().IiIiIiI = true
+        getgenv().AntiAfk = true
     end
 end)
 
