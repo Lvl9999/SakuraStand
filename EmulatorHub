@@ -767,7 +767,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                         if Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
                             local HUM = Target.Parent:FindFirstChild("Humanoid");
                             if HUM and HUM.Health ~= HUM.MaxHealth then
-                                task.spawn(function()task.wait(1.5);
+                                task.spawn(function()task.wait(0.15);
                                     HUM.Health = 0
                                 end)
                             end
@@ -822,7 +822,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                                     if RespawnNeeded and getgenv().AutoLevelingUp == false then
                                         local args = {[1] = "Exploiter"};
                                         game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));
-                                        task.wait(3.5);
+                                        task.wait(4.5);
                                     end
                                 end
                             end
