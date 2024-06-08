@@ -49,7 +49,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/m
 ## Glitcher Source:
 
 **Requirements:**
-- Standless (Just grab someone with Barrage).
+- Standless (Just grab someone with Barrage or Counter attack).
 ##### Reminder: If you get caught you get banned :3
 ```lua
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/Glitcher"))();
