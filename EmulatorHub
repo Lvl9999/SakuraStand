@@ -769,14 +769,14 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                                     Target.Humanoid.Health = 0
                                 end)
                             end
-
+                    
                             if game:GetService("Players").LocalPlayer.Data.Achievements["Boss Raid"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "Boss Raid" then
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.Position - Target.CFrame.lookVector * getgenv().Distance,Target.Position);getgenv().Attacking();
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position - Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,Target.HumanoidRootPart.Position);getgenv().Attacking();
                             end
                         else
                             task.wait(2.5);
                         end
-                     end)                     
+                    end)                     
                     task.wait(0.015);
                 end
             end)
@@ -953,7 +953,7 @@ else
                 while getgenv().AutoPublicGrinding == true do
                     pcall(function()
                         local Target = nil
-                    
+
                         for i,v in ipairs(getgenv().ListOfNpcs) do
                             if workspace.Living:FindFirstChild(v) and workspace.Living:FindFirstChild(v):FindFirstChild("Head") then
                                 local NPC = workspace.Living:FindFirstChild(v);
