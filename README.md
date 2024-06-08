@@ -4,7 +4,7 @@
 ## Main Hub Source:
 
 **Requirements:** 
-- (For Public Servers):The Black Silence (Using it will enable risky autofarm).
+- (For Public Servers): The Black Silence (Using it will enable risky autofarm).
 - (For Private Servers): Shadow Dio (No skin) / Standless + Boss Raid + The Intelliagent.
 ```lua
 getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
