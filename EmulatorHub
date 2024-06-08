@@ -740,7 +740,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
         if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
-            getgenv().Distance = 6.5;
+            getgenv().Distance = 7;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
             getgenv().Distance = 5;
         end
