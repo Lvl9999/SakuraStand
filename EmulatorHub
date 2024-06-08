@@ -104,7 +104,7 @@ ScriptsTab.newButton("Rejoin   🗒️", "",function()
     end
 end)
 
-ScriptsTab.newButton("Server Hop   🗒️","",function()
+ScriptsTab.newButton("Server Hop   🧾","",function()
     -- Got from https://robloxscripts.com
     local Player = game.Players.LocalPlayer    
     local Http = game:GetService("HttpService")
@@ -131,7 +131,7 @@ ScriptsTab.newButton("Server Hop   🗒️","",function()
     until not Next
 end)
 
-ScriptsTab.newButton("Low Server Hop   🔀","",function()
+ScriptsTab.newButton("Low Server Hop   📋","",function()
     -- Got from https://robloxscripts.com
     local Http = game:GetService("HttpService")
     local TPS = game:GetService("TeleportService")
