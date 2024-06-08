@@ -73,17 +73,17 @@ workspace.Gravity = 196.2;
 
 -----------------------------------[[ Main Ui Libs ]]-----------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
-local BoredStuffLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/NotifUi/main/Backup"))();
+local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/NotifUi/main/Backup"))();
 ----------------------------------------------------------------------------------------------------------------------
 
 ---------------------------------[[ Main Source Code ]]---------------------------------------------------------------
 local MainWindow = DrRayLibrary:Load("Emulator Hub   💻","Default");
 
-BoredStuffLibrary.prompt("Emulator Hub   💻","Successfully Execeuted :3",2);
+BoredLibrary.prompt("Emulator Hub   💻","Successfully Execeuted :3",2);
 
 local ScriptsTab = DrRayLibrary.newTab("Scripts","ImageIdHere");
 
-ScriptsTab.newLabel("Get Latest Version   🔥");
+ScriptsTab.newLabel("Get Latest Version   🎉");
 ScriptsTab.newButton("Restart Emulator Hub   💾","",function()
     getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
@@ -92,8 +92,8 @@ ScriptsTab.newButton("Restart Emulator Hub   💾","",function()
     end)
 end)
 
-ScriptsTab.newLabel("Quick Scripts   ⚡");
-ScriptsTab.newButton("Rejoin   🔁", "",function()
+ScriptsTab.newLabel("Quick Scripts   📝");
+ScriptsTab.newButton("Rejoin   🗒️", "",function()
     local TeleportService = game:GetService("TeleportService");
     local Players = game:GetService("Players");
     if (#Players:GetPlayers() == 1) then
@@ -104,7 +104,7 @@ ScriptsTab.newButton("Rejoin   🔁", "",function()
     end
 end)
 
-ScriptsTab.newButton("Server Hop   🔀","",function()
+ScriptsTab.newButton("Server Hop   🗒️","",function()
     -- Got from https://robloxscripts.com
     local Player = game.Players.LocalPlayer    
     local Http = game:GetService("HttpService")
@@ -172,7 +172,7 @@ end)
 local StorageTab = DrRayLibrary.newTab("Storage","ImageIdHere");
 
 StorageTab.newLabel("Opening Stuff  🔓");
-StorageTab.newButton("Open Stand Storage   🗃️","",function()
+StorageTab.newButton("Open Stand Storage   📦","",function()
     pcall(function()
         game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled
     end)
@@ -184,7 +184,7 @@ StorageTab.newButton("Open Item Storage   🔖","",function()
     end)
 end)
 
-StorageTab.newLabel("Storing Stuff   🎒");
+StorageTab.newLabel("Storing Stuff   👜");
 StorageTab.newToggle("Auto Store Every Item   📥","",false,function(Value)
     getgenv().StoringEveryItem = Value
 
@@ -773,8 +773,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                             end
 
                             if game:GetService("Players").LocalPlayer.Data.Achievements["Boss Raid"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "Boss Raid" then
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.Position - Target.CFrame.lookVector * getgenv().Distance,Target.Position);
-                                getgenv().Attacking();
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.Position - Target.CFrame.lookVector * getgenv().Distance,Target.Position);getgenv().Attacking();
                             end
                         else
                             task.wait(2.5);
@@ -821,8 +820,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         
                                     if RespawnNeeded and getgenv().AutoLevelingUp == false then
                                         local args = {[1] = "Exploiter"};
-                                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));
-                                        task.wait(4.5);
+                                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));task.wait(4.5);
                                     end
                                 end
                             end
@@ -864,9 +862,9 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                             
                             if #Parts > 0 then
                                 local Selected = Parts[math.ceil((1 - math.sqrt(math.random())) * #Parts)];
-                            
+
                                 if Selected then
-                                    Lplayer.Character:MoveTo(Selected.Position);task.wait(0.15);
+                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.15);
                                     for _,Items in ipairs({A1,A2}) do
                                         for _,v in pairs(Items:GetDescendants()) do
                                             if v:IsA("ProximityPrompt") and v.Parent.Name ~= "SoulSpawn" then
@@ -885,8 +883,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
-                        local Emotes = {"/e sadcat","/e sadcat","/e sadcat","/e sadcat","/e hotmilk","/e kyukurarin","/e heyya","/e alreadydead"};
-                        local args = {[1] = Emotes[math.random(#Emotes)]};
+                        local args = {[1] = "/e sadcat"};
                         game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Chatted"):FireServer(unpack(args));
                     end)
                     task.wait(0.35);
@@ -902,7 +899,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
             end)
         else
             if getgenv().AutoPrivateGrinding == true then
-                BoredStuffLibrary.prompt("Emulator Hub   💻", "You don't have the required stuff...");
+                BoredLibrary.prompt("Emulator Hub   💻", "You don't have the required stuff...");
             end
         end
     end)
@@ -1018,7 +1015,7 @@ FarmingTab.newToggle("Auto Sell Everything  💰  (Any Item)","",false,function(
     task.spawn(function()
         while getgenv().AutoSelling == true do task.wait(0.015)
             pcall(function()
-                local Selling = {"Arrow","Barrel","Rokakaka","Stop Sign","Mysterious Camera" ,"Haunted Sword","Spin Manual","Hamon Manual","Stone Mask","Bomu Bomu Devil Fruit","Mochi Mochi Devil Fruit","Bari Bari Devil Fruit"}
+                local Selling = {"Arrow","Barrel","Rokakaka","Stop Sign","Mysterious Camera","Haunted Sword","Spin Manual","Hamon Manual","Stone Mask","Bomu Bomu Devil Fruit","Mochi Mochi Devil Fruit","Bari Bari Devil Fruit"}
                 
                 for i,v in ipairs(Selling) do
                     local args = {[1] = v};
@@ -1033,53 +1030,53 @@ local AreasTab = DrRayLibrary.newTab("Areas","ImageIdHere");
 
 AreasTab.newLabel("Teleports   📌");
 AreasTab.newButton("Shop   🏪","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-375.9766845703125, -31.704181671142578, 1810.9178466796875);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-375.9766845703125,-31.704181671142578,1810.9178466796875);
 end)
 
 AreasTab.newButton("Cafe   ☕","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-237.51318359375, -32.0684814453125, 1452.0396728515625);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-237.51318359375,-32.0684814453125,1452.0396728515625);
 end)
 
 AreasTab.newButton("Guilds   🛡️","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-688.5193481445312, -31.074769973754883, 1662.5528564453125);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-688.5193481445312,-31.074769973754883,1662.5528564453125);
 end)
 
 AreasTab.newButton("Battle Field   ⚔️","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-520.662841796875, -31.358125686645508, 1584.3505859375);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-520.662841796875,-31.358125686645508,1584.3505859375);
 end)
 
 AreasTab.newButton("Side Park   ⛲","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-73.15850830078125, -32.01318359375, 1636.9390869140625);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-73.15850830078125,-32.01318359375,1636.9390869140625);
 end)
 
 AreasTab.newButton("Main Park   🪁","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-537.5374145507812, -32.051334381103516, 1419.20361328125);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-537.5374145507812,-32.051334381103516,1419.20361328125);
 end)
 
 AreasTab.newButton("Library   📚","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-50.88117599487305, -116.3696060180664, 344.53594970703125);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-50.88117599487305,-116.3696060180664,344.53594970703125);
 end)
 
 AreasTab.newButton("Ruined City   🌆","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7150.1806640625, -32.022640228271484, 1294.813720703125);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7150.1806640625,-32.022640228271484,1294.813720703125);
 end)
 
 AreasTab.newButton("Hueco Mundo   🌑","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9330.2342364238, 428.23523576, 1725.2305236759535);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9330.2342364238,428.23523576,1725.2305236759535);
 end)
 
 AreasTab.newButton("Cave   🦇","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2343.34326171875, -393.6280822753906, -5044.39013671875);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2343.34326171875,-393.6280822753906,-5044.39013671875);
 end)
 
 AreasTab.newButton("Holy Grail War   🏆","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3932.30126953125, -234.16961669921875, 4539.80810546875);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3932.30126953125,-234.16961669921875,4539.80810546875);
 end)
 
 AreasTab.newButton("EthrixLame   🔥","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2036.6947021484375, -386.40875244140625, -5355.85888671875);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2036.6947021484375,-386.40875244140625,-5355.85888671875);
 end)
 
 AreasTab.newButton("Highest Peak   🗻","",function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2122.210693359375, -113.98542022705078, -4635.59130859375);
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2122.210693359375,-113.98542022705078,-4635.59130859375);
 end)
