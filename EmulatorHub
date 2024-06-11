@@ -615,11 +615,11 @@ getgenv().Attacking = function()
         local args = {[1] = false};
         game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Barrage"):FireServer(unpack(args));
     elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Gojo Satoru" then
-        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("RevRed"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("Punch"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("LapseBlue"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("Aerial"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("RevRed"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("InfinityBlast"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("Punch"):FireServer();
     elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("TS"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Knife"):FireServer();
@@ -779,8 +779,10 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                         end
                      
                         if Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
-                            if Target:FindFirstChild("Participated") and Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) and Target.Participated[game.Players.LocalPlayer.Name].Value > 40 then
-                                Target.Humanoid.Health = 0
+                            if Target:FindFirstChild("Participated") and Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) and Target.Participated[game.Players.LocalPlayer.Name].Value > 30 then
+                                task.spawn(function()task.wait(1.5);
+                                    Target.Humanoid.Health = 0
+                                end
                             end
 
                             if game:GetService("Players").LocalPlayer.Data.Achievements["Boss Raid"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "Boss Raid" then
