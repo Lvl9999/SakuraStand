@@ -605,13 +605,19 @@ getgenv().Attacking = function()
         game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Punch"):FireServer();
         local args = {[1] = false};
         game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Barrage"):FireServer(unpack(args));
-    else
+    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("TS"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Knife"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Donut"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Eye"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Kick"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Punch"):FireServer();
+    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Gojo Satoru" then
+        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("RevRed"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("LapseBlue"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("Aerial"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("InfinityBlast"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("Punch"):FireServer();
     end
 end
 
@@ -718,14 +724,14 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
     FarmingTab.newToggle("Start Farming [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
-
+        
         if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
             getgenv().Distance = 7;
-        elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+        elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Gojo Satoru" then
             getgenv().Distance = 5;
         end
 
-        if game:GetService("Players").LocalPlayer.Data.Achievements["Boss Raid"] and game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
+        if game:GetService("Players").LocalPlayer.Data.Achievements["Boss Raid"] and game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Gojo Satoru" then
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
@@ -744,12 +750,12 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                         end
                      
                         if Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
-                            if Target:FindFirstChild("Participated") and Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) then
+                            if Target:FindFirstChild("Participated")[game.Players.LocalPlayer.Name].Value > 60 then
                                 task.spawn(function()task.wait(1.5);
                                     Target.Humanoid.Health = 0
                                 end)
                             end
-                    
+
                             if game:GetService("Players").LocalPlayer.Data.Achievements["Boss Raid"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "Boss Raid" then
                                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position - Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,Target.HumanoidRootPart.Position);getgenv().Attacking();
                             end
