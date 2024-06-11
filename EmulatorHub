@@ -885,8 +885,10 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
-                        local args = {[1] = "/e sadcat"};
-                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Chatted"):FireServer(unpack(args));
+                        if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= "Gojo Satoru" then
+                            local args = {[1] = "/e sadcat"};
+                            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Chatted"):FireServer(unpack(args));
+                        end
                     end)
                     task.wait(0.35);
                 end
