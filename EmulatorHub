@@ -1036,7 +1036,7 @@ else
 end
 
 if #game:GetService("Players"):GetPlayers() <= 3 then
-    FarmingTab.newButton("Equip Shadow The World (Needed For Autofarm)","",function()
+    FarmingTab.newButton("Equip Shadow The World [Needed For Autofarm]","",function()
         pcall(function()
             if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= "Shadow The World" then
                 for i = 1,100 do
