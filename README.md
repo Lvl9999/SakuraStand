@@ -6,7 +6,7 @@
 **Requirements:** 
 - (For Public Servers): The Black Silence (Using it will enable risky autofarm prob bannable).
 - (For Private Servers): Shadow Dio or Gojo or Standless + Boss Raid + The Intelliagent (U must have all of these).
-##### Tip: You should use Gojo Satoru because he works the best but Shadow The world is also fine!
+##### Tip: You should use Gojo Satoru because he works the best but Shadow Dio is also fine!
 ```lua
 getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
