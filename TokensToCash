@@ -1,4 +1,4 @@
-local BoredStuffLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/NotifUi/main/Backup"))();
+local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
 
 if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.Achievements["The Rich"] then
     if getgenv().StartTask == true then
@@ -97,7 +97,7 @@ if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] a
     end
 else
     if getgenv().StartTask == true then
-        BoredStuffLibrary.prompt("Emulator Hub   💻", "You don't have the required stuff...");
+        BoredLibrary.prompt("Emulator Hub   💻", "You don't have the required stuff...");
         getgenv().StartTask = false;
         getgenv().AutoBreakthrough = false;
         getgenv().AutoUpgradeMastery = false;
