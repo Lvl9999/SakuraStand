@@ -8,6 +8,7 @@
 - (For Private Servers): Shadow Dio or Gojo or Standless + Boss Raid + The Intelliagent (U must have all of these).
 ##### Tip: You should use Gojo Satoru because he works the best but Shadow Dio is also fine!
 ```lua
+getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
 getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
 pcall(function()
@@ -73,8 +74,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/m
 ## Custom Script Pack:
 ##### This is what I personally use :3
 ```lua
-getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
+getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
 getgenv().StatisticsGUI = "V" -- //  Key Toggle "V" set by default however you can change it.
+getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
 loadstring(game:HttpGet(getgenv().EmulatorHub))();loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();
 ```
