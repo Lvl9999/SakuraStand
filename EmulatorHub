@@ -84,7 +84,7 @@ BoredLibrary.prompt("Emulator Hub   💻","Successfully Execeuted :3",2);
 local ScriptsTab = DrRayLibrary.newTab("Scripts","ImageIdHere");
 
 ScriptsTab.newLabel("Get Latest Version   🎉");
-ScriptsTab.newButton("Restart Emulator Hub   💾","",function()
+ScriptsTab.newButton("Restart Emulator Hub","",function()
     getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
     pcall(function()
@@ -93,7 +93,7 @@ ScriptsTab.newButton("Restart Emulator Hub   💾","",function()
 end)
 
 ScriptsTab.newLabel("Quick Scripts   📝");
-ScriptsTab.newButton("Rejoin   🗒️", "",function()
+ScriptsTab.newButton("Rejoin", "",function()
     local TeleportService = game:GetService("TeleportService");
     local Players = game:GetService("Players");
     if (#Players:GetPlayers() == 1) then
@@ -104,7 +104,7 @@ ScriptsTab.newButton("Rejoin   🗒️", "",function()
     end
 end)
 
-ScriptsTab.newButton("Server Hop   🧾","",function()
+ScriptsTab.newButton("Server Hop","",function()
     -- Got from https://robloxscripts.com
     local Player = game.Players.LocalPlayer    
     local Http = game:GetService("HttpService")
@@ -131,7 +131,7 @@ ScriptsTab.newButton("Server Hop   🧾","",function()
     until not Next
 end)
 
-ScriptsTab.newButton("Low Server Hop   📋","",function()
+ScriptsTab.newButton("Low Server Hop","",function()
     -- Got from https://robloxscripts.com
     local Http = game:GetService("HttpService")
     local TPS = game:GetService("TeleportService")
@@ -153,39 +153,39 @@ ScriptsTab.newButton("Low Server Hop   📋","",function()
     TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
 end)
 
-ScriptsTab.newButton("Teleport GUI   📜","",function()
+ScriptsTab.newButton("Teleport GUI","",function()
     loadstring(game:HttpGet("https://pastebin.com/raw/BJ7uaPJd"))();
 end)
 
-ScriptsTab.newButton("Infinite Yield   ♾️","",function()
+ScriptsTab.newButton("Infinite Yield","",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))();
 end)
 
-ScriptsTab.newButton("Remote Spy   👩🏻‍💻","",function()
+ScriptsTab.newButton("Remote Spy","",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/78n/SimpleSpy/main/SimpleSpySource.lua"))();
 end)
 
-ScriptsTab.newButton("Dark Explorer   👨🏻‍💻","",function()
+ScriptsTab.newButton("Dark Explorer","",function()
     loadstring(game:HttpGet('https://ithinkimandrew.site/scripts/tools/dark-dex.lua'))();
 end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","ImageIdHere");
 
 StorageTab.newLabel("Opening Stuff  🔓");
-StorageTab.newButton("Open Stand Storage   📦","",function()
+StorageTab.newButton("Open Stand Storage","",function()
     pcall(function()
         game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled
     end)
 end)
 
-StorageTab.newButton("Open Item Storage   🔖","",function()
+StorageTab.newButton("Open Item Storage","",function()
     pcall(function()
         game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible = not game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible
     end)
 end)
 
-StorageTab.newLabel("Storing Stuff   👜");
-StorageTab.newToggle("Auto Store Every Item   📥","",false,function(Value)
+StorageTab.newLabel("Storing Stuff   📥");
+StorageTab.newToggle("Auto Store Every Item","",false,function(Value)
     getgenv().StoringEveryItem = Value
 
     local ItemsToStore = {"Nikyu","Sukun","Inverted","Split","Chain","Cortex","Crimson","Cyan","Tech","Arasaka","Kujo","Dio's Bone","Dio's Diary","Hogyoku"};
@@ -213,7 +213,7 @@ StorageTab.newToggle("Auto Store Every Item   📥","",false,function(Value)
     end)
 end)
 
-StorageTab.newToggle("Auto Store Nikyu Nikyu Devil Fruit   🍇","",false,function(Value)
+StorageTab.newToggle("Auto Store Nikyu Nikyu Devil Fruit","",false,function(Value)
     getgenv().StoringNikyu = Value
 
     local ItemToStore = "Nikyu"
@@ -239,7 +239,7 @@ StorageTab.newToggle("Auto Store Nikyu Nikyu Devil Fruit   🍇","",false,functi
     end)
 end)
 
-StorageTab.newToggle("Auto Store Sukuna's Finger   🖕🏻","",false,function(Value)
+StorageTab.newToggle("Auto Store Sukuna's Finger","",false,function(Value)
     getgenv().StoringFinger = Value
 
     local ItemToStore = "Sukun"
@@ -265,7 +265,7 @@ StorageTab.newToggle("Auto Store Sukuna's Finger   🖕🏻","",false,function(V
     end)
 end)
 
-StorageTab.newToggle("Auto Store Inverted Spear Of Heaven   👼🏻","",false,function(Value)
+StorageTab.newToggle("Auto Store Inverted Spear Of Heaven","",false,function(Value)
     getgenv().StoringInverted = Value
 
     local ItemToStore = "Inverted"
@@ -291,7 +291,7 @@ StorageTab.newToggle("Auto Store Inverted Spear Of Heaven   👼🏻","",false,f
     end)
 end)
 
-StorageTab.newToggle("Auto Store Split Soul Katana   🗡️","",false,function(Value)
+StorageTab.newToggle("Auto Store Split Soul Katana","",false,function(Value)
     getgenv().StoringSplit = Value
 
     local ItemToStore = "Split"
@@ -317,7 +317,7 @@ StorageTab.newToggle("Auto Store Split Soul Katana   🗡️","",false,function(
     end)
 end)
 
-StorageTab.newToggle("Auto Store Chain of A Thousand Miles   ⛓️","",false,function(Value)
+StorageTab.newToggle("Auto Store Chain of A Thousand Miles","",false,function(Value)
     getgenv().StoringChain = Value
 
     local ItemToStore = "Chain"
@@ -343,7 +343,7 @@ StorageTab.newToggle("Auto Store Chain of A Thousand Miles   ⛓️","",false,fu
     end)
 end)
 
-StorageTab.newToggle("Auto Store Cortex Support   🔗", "",false,function(Value)
+StorageTab.newToggle("Auto Store Cortex Support", "",false,function(Value)
     getgenv().StoringCortex = Value
 
     local ItemToStore = "Cortex"
@@ -369,7 +369,7 @@ StorageTab.newToggle("Auto Store Cortex Support   🔗", "",false,function(Value
     end)
 end)
 
-StorageTab.newToggle("Auto Store Crimson Cyberdeck   🤖","",false,function(Value)
+StorageTab.newToggle("Auto Store Crimson Cyberdeck","",false,function(Value)
     getgenv().StoringCrimson = Value
 
     local ItemToStore = "Crimson"
@@ -395,7 +395,7 @@ StorageTab.newToggle("Auto Store Crimson Cyberdeck   🤖","",false,function(Val
     end)
 end)
 
-StorageTab.newToggle("Auto Store Cyan Cyberdeck   🖥️","",false,function(Value)
+StorageTab.newToggle("Auto Store Cyan Cyberdeck","",false,function(Value)
     getgenv().StoringCyan = Value
 
     local ItemToStore = "Cyan"
@@ -421,7 +421,7 @@ StorageTab.newToggle("Auto Store Cyan Cyberdeck   🖥️","",false,function(Val
     end)
 end)
 
-StorageTab.newToggle("Auto Store Tech Monitor   🖲️","",false,function(Value)
+StorageTab.newToggle("Auto Store Tech Monitor","",false,function(Value)
     getgenv().StoringTech = Value
 
     local ItemToStore = "Tech"
@@ -447,7 +447,7 @@ StorageTab.newToggle("Auto Store Tech Monitor   🖲️","",false,function(Value
     end)
 end)
 
-StorageTab.newToggle("Auto Store Arasaka Suitcase   💼","",false,function(Value)
+StorageTab.newToggle("Auto Store Arasaka Suitcase","",false,function(Value)
     getgenv().StoringArasaka = Value
 
     local ItemToStore = "Arasaka"
@@ -473,7 +473,7 @@ StorageTab.newToggle("Auto Store Arasaka Suitcase   💼","",false,function(Valu
     end)
 end)
 
-StorageTab.newToggle("Auto Store Kujo's Hat   🎩","",false,function(Value)
+StorageTab.newToggle("Auto Store Kujo's Hat","",false,function(Value)
     getgenv().StoringKujoHat = Value
 
     local ItemToStore = "Kujo"
@@ -499,7 +499,7 @@ StorageTab.newToggle("Auto Store Kujo's Hat   🎩","",false,function(Value)
     end)
 end)
 
-StorageTab.newToggle("Auto Store Dio's Bone   🦴","",false,function(Value)
+StorageTab.newToggle("Auto Store Dio's Bone","",false,function(Value)
     getgenv().StoringDiosBone = Value
 
     local ItemToStore = "Dio's Bone"
@@ -525,7 +525,7 @@ StorageTab.newToggle("Auto Store Dio's Bone   🦴","",false,function(Value)
     end)
 end)
 
-StorageTab.newToggle("Auto Store Dio's Diary   📕","",false,function(Value)
+StorageTab.newToggle("Auto Store Dio's Diary","",false,function(Value)
     getgenv().StoringDiosDiary = Value
 
     local ItemToStore = "Dio's Diary"
@@ -551,7 +551,7 @@ StorageTab.newToggle("Auto Store Dio's Diary   📕","",false,function(Value)
     end)
 end)
 
-StorageTab.newToggle("Auto Store Hogyoku Fragment   🧊","",false,function(Value)
+StorageTab.newToggle("Auto Store Hogyoku Fragment","",false,function(Value)
     getgenv().StoringHogyoku = Value
 
     local ItemToStore = "Hogyoku"
@@ -616,43 +616,43 @@ getgenv().Attacking = function()
 end
 
 ShopTab.newLabel("Shop  🏪");
-ShopTab.newButton("Arrow   ↗️","",function()
+ShopTab.newButton("Arrow","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Arrow"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Rokakaka   🍎","",function()
+ShopTab.newButton("Rokakaka","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Rokakaka"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Stop Sign   ⛔","",function()
+ShopTab.newButton("Stop Sign","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("StopSign"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Hamon Manual   📙","",function()
+ShopTab.newButton("Hamon Manual","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Hamon"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Spin Manual   📗","",function()
+ShopTab.newButton("Spin Manual","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Spin"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Stone Mask   🎭","",function()
+ShopTab.newButton("Stone Mask","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Vampire"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Camera   📸","",function()
+ShopTab.newButton("Camera","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Camera"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
@@ -660,28 +660,8 @@ end)
 
 local FarmingTab = DrRayLibrary.newTab("Farming","ImageIdHere");
 
-if #game:GetService("Players"):GetPlayers() <= 3 then
-    FarmingTab.newLabel("ℹ️   Autofarming Requirements");
-    FarmingTab.newButton("Equip Shadow Dio (Only For Private Servers)","",function()
-        pcall(function()
-            if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= "Shadow The World" then
-                for i = 1,100 do
-                    if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "Shadow The World" then
-                        local args = {"Slot"..i};
-                        if i <= 6 then
-                            game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
-                        else
-                            game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
-                        end
-                    end
-                end
-            end
-        end)
-    end)
-end
-
 FarmingTab.newLabel("Auto Level Farmer  📈");
-FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka   🍎","",false,function(Value)
+FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka","",false,function(Value)
     getgenv().AutoLevelingUp = Value
 
     while getgenv().AutoLevelingUp == true do task.wait(0.0015);
@@ -705,7 +685,7 @@ FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka   🍎","",false,function(Va
     end
 end)
 
-FarmingTab.newToggle("Auto Upgrade Mastery   🎖️","",false,function(Value)
+FarmingTab.newToggle("Auto Upgrade Mastery","",false,function(Value)
     getgenv().AutoRebirth = Value
 
     task.spawn(function()
@@ -719,7 +699,7 @@ FarmingTab.newToggle("Auto Upgrade Mastery   🎖️","",false,function(Value)
     end)
 end)
 
-FarmingTab.newToggle("Auto Breakthrough   🏆","",false,function(Value)
+FarmingTab.newToggle("Auto Breakthrough","",false,function(Value)
     getgenv().AutoBreakthrough = Value
 
     task.spawn(function()
@@ -734,8 +714,27 @@ FarmingTab.newToggle("Auto Breakthrough   🏆","",false,function(Value)
 end)
 
 if #game:GetService("Players"):GetPlayers() <= 3 then
-    FarmingTab.newLabel("❗ Auto Item Farmer + Auto Boss/Mob Farmer + Title Changer");
-    FarmingTab.newToggle("Start Farming  🧑🏿‍🌾  [Private Server Edition]","",false,function(Value)
+    FarmingTab.newButton("❗ Equip Shadow Dio","",function()
+        pcall(function()
+            if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= "Shadow The World" then
+                for i = 1,100 do
+                    if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "Shadow The World" then
+                        local args = {"Slot"..i};
+                        if i <= 6 then
+                            game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
+                        else
+                            game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
+                        end
+                    end
+                end
+            end
+        end)
+    end)
+end
+
+if #game:GetService("Players"):GetPlayers() <= 3 then
+    FarmingTab.newLabel("❗ Auto Item Farmer + Auto Boss/Mob Farmer");
+    FarmingTab.newToggle("Start Farming [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
@@ -902,8 +901,8 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         end
     end)
 else
-    FarmingTab.newLabel("❗ Safer Auto Item Farmer");
-    FarmingTab.newToggle("Start Farming  🧑🏿‍🌾  [Public Server Edition]","",false,function(Value)
+    FarmingTab.newLabel("❗ Auto Item Farmer + Auto Boss/Mob Farmer");
+    FarmingTab.newToggle("Start Farming [Public Server Edition]","",false,function(Value)
         getgenv().AutoPublicGrinding = Value
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
         getgenv().FoundAdjuchas = false;
@@ -1056,7 +1055,7 @@ else
 end
 
 FarmingTab.newLabel("Auto Item Selling  💸");
-FarmingTab.newToggle("Auto Sell Everything  💰  (Any Item)","",false,function(Value)
+FarmingTab.newToggle("Auto Sell Any Item","",false,function(Value)
     getgenv().AutoSelling = Value
 
     task.spawn(function()
@@ -1076,54 +1075,54 @@ end)
 local AreasTab = DrRayLibrary.newTab("Areas","ImageIdHere");
 
 AreasTab.newLabel("Teleports   📌");
-AreasTab.newButton("Shop   🏪","",function()
+AreasTab.newButton("Shop","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-375.9766845703125,-31.704181671142578,1810.9178466796875);
 end)
 
-AreasTab.newButton("Cafe   ☕","",function()
+AreasTab.newButton("Cafe","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-237.51318359375,-32.0684814453125,1452.0396728515625);
 end)
 
-AreasTab.newButton("Guilds   🛡️","",function()
+AreasTab.newButton("Guilds","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-688.5193481445312,-31.074769973754883,1662.5528564453125);
 end)
 
-AreasTab.newButton("Battle Field   ⚔️","",function()
+AreasTab.newButton("Battle Field","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-520.662841796875,-31.358125686645508,1584.3505859375);
 end)
 
-AreasTab.newButton("Side Park   ⛲","",function()
+AreasTab.newButton("Side Park","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-73.15850830078125,-32.01318359375,1636.9390869140625);
 end)
 
-AreasTab.newButton("Main Park   🪁","",function()
+AreasTab.newButton("Main Park","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-537.5374145507812,-32.051334381103516,1419.20361328125);
 end)
 
-AreasTab.newButton("Library   📚","",function()
+AreasTab.newButton("Library","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-50.88117599487305,-116.3696060180664,344.53594970703125);
 end)
 
-AreasTab.newButton("Ruined City   🌆","",function()
+AreasTab.newButton("Ruined City","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7150.1806640625,-32.022640228271484,1294.813720703125);
 end)
 
-AreasTab.newButton("Hueco Mundo   🌑","",function()
+AreasTab.newButton("Hueco Mundo","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9330.2342364238,428.23523576,1725.2305236759535);
 end)
 
-AreasTab.newButton("Cave   🦇","",function()
+AreasTab.newButton("Cave","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2343.34326171875,-393.6280822753906,-5044.39013671875);
 end)
 
-AreasTab.newButton("Holy Grail War   🏆","",function()
+AreasTab.newButton("Holy Grail War","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3932.30126953125,-234.16961669921875,4539.80810546875);
 end)
 
-AreasTab.newButton("EthrixLame   🔥","",function()
+AreasTab.newButton("EthrixLame","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2036.6947021484375,-386.40875244140625,-5355.85888671875);
 end)
 
-AreasTab.newButton("Highest Peak   🗻","",function()
+AreasTab.newButton("Highest Peak","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2122.210693359375,-113.98542022705078,-4635.59130859375);
 end)
