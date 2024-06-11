@@ -782,7 +782,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                             if Target:FindFirstChild("Participated") and Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) and Target.Participated[game.Players.LocalPlayer.Name].Value > 30 then
                                 task.spawn(function()task.wait(1.5);
                                     Target.Humanoid.Health = 0
-                                end
+                                end)
                             end
 
                             if game:GetService("Players").LocalPlayer.Data.Achievements["Boss Raid"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "Boss Raid" then
