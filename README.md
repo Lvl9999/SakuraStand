@@ -82,6 +82,7 @@ loadstring(game:HttpGet(getgenv().EmulatorHub))();loadstring(game:HttpGet("https
 ---
 
 - #### Selling for 750 Robux an even faster autofarm (15 masteries in 4-5 minutes). If interested, then add me on my discord down below!
+- #### Im also selling god mode for 350 Robux, Dm me if interested :>
 
 ## Credits:
 
