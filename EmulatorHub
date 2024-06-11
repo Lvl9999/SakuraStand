@@ -46,6 +46,7 @@ task.spawn(function()
     end)
 end)
 
+
 -- // Refresh Configs \\ --
 getgenv().AutoPrivateGrinding = false;
 getgenv().AutoPublicGrinding = false;
@@ -1241,7 +1242,9 @@ end)
 task.spawn(function()
     game:GetService("UserInputService").InputBegan:Connect(function(v,x)
         if not x and v.KeyCode == Enum.KeyCode[getgenv().getgenv().ToggleUI] then
-            MainWindow:Toggle();
+            pcall(function()
+                MainWindow:Toggle();
+            end)
         end
     end)
 end)
