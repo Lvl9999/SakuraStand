@@ -83,6 +83,7 @@ local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
 ----------------------------------------------------------------------------------------------------------------------
 
+
 ---------------------------------[[ Main Source Code ]]---------------------------------------------------------------
 local MainWindow = DrRayLibrary:Load("Emulator Hub   💻","Default");
 
@@ -1239,11 +1240,11 @@ end)
 
 -- // Toggle UI Visibility \\ --
 task.spawn(function()task.wait(1);
-    pcall(function()
-        game:GetService("UserInputService").InputBegan:Connect(function(v,x)
-            if not x and v.KeyCode == Enum.KeyCode[getgenv().getgenv().ToggleUI] then
-                MainWindow:Toggle();
-            end
-        end)
+    game:GetService("UserInputService").InputBegan:Connect(function(v,x)
+        if not x and v.KeyCode == Enum.KeyCode[getgenv().getgenv().ToggleUI] then
+            pcall(function()
+                game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled
+            end)
+        end
     end)
 end)
