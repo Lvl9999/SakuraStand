@@ -3,6 +3,7 @@
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
 
+    getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
     getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
     pcall(function()
@@ -45,6 +46,18 @@ task.spawn(function()
     end)
 end)
 
+-- // Toggle UI Visibility \\ --
+task.spawn(function()
+    if not getgenv().VisibleUI == true then
+        game:GetService("UserInputService").InputBegan:Connect(function(v,x)
+            if not x and v.KeyCode == Enum.KeyCode[getgenv().getgenv().ToggleUI] then
+                game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled
+            end
+        end)
+        getgenv().VisibleUI = true
+    end
+end)
+
 -- // Refresh Configs \\ --
 getgenv().AutoPrivateGrinding = false;
 getgenv().AutoPublicGrinding = false;
@@ -52,6 +65,12 @@ getgenv().AutoBreakthrough = false;
 getgenv().AutoLevelingUp = false;
 getgenv().AutoRebirth = false;
 getgenv().AutoSelling = false;
+
+getgenv().AutoParryingDamage = false;
+getgenv().AutoBlockingDamage = false;
+getgenv().AutoDealingDamage = false;
+getgenv().AutoTakingDamage = false;
+getgenv().AutoDyingDamage = false;
 
 getgenv().StoringEveryItem = false;
 getgenv().StoringNikyu = false;
@@ -85,6 +104,7 @@ local ScriptsTab = DrRayLibrary.newTab("Scripts","ImageIdHere");
 
 ScriptsTab.newLabel("Get Latest Version   🎉");
 ScriptsTab.newButton("Restart Emulator Hub","",function()
+    getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
     getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
     pcall(function()
@@ -1075,6 +1095,101 @@ FarmingTab.newToggle("Auto Sell Any Item","",false,function(Value)
                     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(unpack(args));
                 end
             end)
+        end
+    end)
+end)
+
+FarmingTab.newLabel("Auto Quests  📋");
+FarmingTab.newToggle("Auto Parry Damage","",false,function(Value)
+    getgenv().AutoParryingDamage = Value
+
+    task.spawn(function()local Blocking = false
+        while getgenv().AutoParryingDamage == true do
+            pcall(function()
+                local AttackingDummy = game.Workspace.Living["Attacking Dummy"];
+                local BlockBar = tonumber(game.Players.LocalPlayer.PlayerGui.Stats.BG.BlockBG.BlockBar.BlockN.Text);
+                local ParryCooldown = game.Workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Parry_Cooldown");
+
+                if BlockBar == 30 and not Blocking and not ParryCooldown then
+                    game.VirtualInputManager:SendKeyEvent(true,"F",false,game);task.wait(0.5);game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(AttackingDummy.HumanoidRootPart.Position - AttackingDummy.HumanoidRootPart.CFrame.LookVector * -5,AttackingDummy.HumanoidRootPart.Position);Blocking = true
+                elseif BlockBar < 30 and Blocking and not ParryCooldown then
+                    game.VirtualInputManager:SendKeyEvent(false,"F",false,game);Blocking = false
+                end
+
+                if ParryCooldown then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2122.210693359375,-113.98542022705078,-4635.59130859375);
+                end
+            end)
+            task.wait(0.015);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Block Damage","",false,function(Value)
+    getgenv().AutoBlockingDamage = Value
+
+    task.spawn(function()local Blocking = false
+        while getgenv().AutoBlockingDamage == true do
+            pcall(function()
+                local AttackingDummy = game.Workspace.Living["Attacking Dummy"];
+                local BlockBar = tonumber(game.Players.LocalPlayer.PlayerGui.Stats.BG.BlockBG.BlockBar.BlockN.Text);
+    
+                if BlockBar == 30 and not Blocking then
+                    game.VirtualInputManager:SendKeyEvent(true,"F",false,game);task.wait(0.5);game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(AttackingDummy.HumanoidRootPart.Position - AttackingDummy.HumanoidRootPart.CFrame.LookVector * -5,AttackingDummy.HumanoidRootPart.Position);Blocking = true
+                elseif BlockBar <= 8 and Blocking then
+                    game.VirtualInputManager:SendKeyEvent(false,"F",false,game);Blocking = false;task.wait(0.15);
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2122.210693359375,-113.98542022705078,-4635.59130859375);
+                end
+            end)
+            task.wait(0.015);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Death Damage","",false,function(Value)
+    getgenv().AutoDyingDamage = Value
+
+    task.spawn(function()
+        while getgenv().AutoDyingDamage == true do
+            pcall(function()
+                local AttackingDummy = game.Workspace.Living["Attacking Dummy"];
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(AttackingDummy.HumanoidRootPart.Position - AttackingDummy.HumanoidRootPart.CFrame.LookVector * -5,AttackingDummy.HumanoidRootPart.Position);task.wait(1.5);
+                local args = {[1] = "kill"};
+                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));task.wait(3.5);
+            end)
+            task.wait(0.015);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Take Damage","",false,function(Value)
+    getgenv().AutoTakingDamage = Value
+
+    task.spawn(function()
+        while getgenv().AutoTakingDamage == true do
+            pcall(function()
+                local CounterDummy = game.Workspace.Living["Counter Dummy"];
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(CounterDummy.HumanoidRootPart.Position - CounterDummy.HumanoidRootPart.CFrame.LookVector * -5,CounterDummy.HumanoidRootPart.Position);
+                game:GetService("VirtualUser"):Button1Down(Vector2.new());
+                game.VirtualInputManager:SendKeyEvent(true,"E",false,game);game.VirtualInputManager:SendKeyEvent(true,"T",false,game);game.VirtualInputManager:SendKeyEvent(true,"R",false,game);game.VirtualInputManager:SendKeyEvent(true,"Y",false,game);
+            end)
+            task.wait(0.015);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Deal Damage","",false,function(Value)
+    getgenv().AutoDealingDamage = Value
+
+    task.spawn(function()
+        while getgenv().AutoDealingDamage == true do
+            pcall(function()
+                local Dummy = game.Workspace.Living["Dummy"];
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Dummy.HumanoidRootPart.Position - Dummy.HumanoidRootPart.CFrame.LookVector * -5,Dummy.HumanoidRootPart.Position);
+                game:GetService("VirtualUser"):Button1Down(Vector2.new());
+                game.VirtualInputManager:SendKeyEvent(true,"E",false,game);game.VirtualInputManager:SendKeyEvent(true,"T",false,game);game.VirtualInputManager:SendKeyEvent(true,"R",false,game);game.VirtualInputManager:SendKeyEvent(true,"Y",false,game);
+            end)
+            task.wait(0.015);
         end
     end)
 end)
