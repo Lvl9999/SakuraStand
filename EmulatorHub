@@ -46,6 +46,7 @@ task.spawn(function()
     end)
 end)
 
+
 -- // Refresh Configs \\ --
 getgenv().AutoPrivateGrinding = false;
 getgenv().AutoPublicGrinding = false;
@@ -81,13 +82,8 @@ workspace.Gravity = 196.2;
 -----------------------------------[[ Main Ui Libs ]]-----------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
-task.spawn(function()
-    game:GetService("UserInputService").InputBegan:Connect(function(v,x)
-        if not x and v.KeyCode == Enum.KeyCode[getgenv().getgenv().ToggleUI] then
-            game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled
-        end
-    end)
-end)
+----------------------------------------------------------------------------------------------------------------------
+
 ---------------------------------[[ Main Source Code ]]---------------------------------------------------------------
 local MainWindow = DrRayLibrary:Load("Emulator Hub   💻","Default");
 
@@ -1240,4 +1236,13 @@ end)
 
 AreasTab.newButton("Highest Peak","",function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2122.210693359375,-113.98542022705078,-4635.59130859375);
+end)
+
+-- // Toggle UI Visibility \\ --
+task.spawn(function()
+    game:GetService("UserInputService").InputBegan:Connect(function(v,x)
+        if not x and v.KeyCode == Enum.KeyCode[getgenv().getgenv().ToggleUI] then
+            MainWindow:Toggle();
+        end
+    end)
 end)
