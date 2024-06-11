@@ -46,15 +46,6 @@ task.spawn(function()
     end)
 end)
 
--- // Toggle UI Visibility \\ --
-task.spawn(function()
-    game:GetService("UserInputService").InputBegan:Connect(function(v,x)
-        if not x and v.KeyCode == Enum.KeyCode[getgenv().getgenv().ToggleUI] then
-            game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled
-        end
-    end)
-end)
-
 -- // Refresh Configs \\ --
 getgenv().AutoPrivateGrinding = false;
 getgenv().AutoPublicGrinding = false;
@@ -90,8 +81,13 @@ workspace.Gravity = 196.2;
 -----------------------------------[[ Main Ui Libs ]]-----------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
-----------------------------------------------------------------------------------------------------------------------
-
+task.spawn(function()
+    game:GetService("UserInputService").InputBegan:Connect(function(v,x)
+        if not x and v.KeyCode == Enum.KeyCode[getgenv().getgenv().ToggleUI] then
+            game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled
+        end
+    end)
+end)
 ---------------------------------[[ Main Source Code ]]---------------------------------------------------------------
 local MainWindow = DrRayLibrary:Load("Emulator Hub   💻","Default");
 
