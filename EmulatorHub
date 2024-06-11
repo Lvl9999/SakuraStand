@@ -46,7 +46,6 @@ task.spawn(function()
     end)
 end)
 
-
 -- // Refresh Configs \\ --
 getgenv().AutoPrivateGrinding = false;
 getgenv().AutoPublicGrinding = false;
