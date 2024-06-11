@@ -83,7 +83,6 @@ local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
 ----------------------------------------------------------------------------------------------------------------------
 
-
 ---------------------------------[[ Main Source Code ]]---------------------------------------------------------------
 local MainWindow = DrRayLibrary:Load("Emulator Hub   💻","Default");
 
