@@ -73,7 +73,7 @@ workspace.Gravity = 196.2;
 
 -----------------------------------[[ Main Ui Libs ]]-----------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
-local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/NotifUi/main/Backup"))();
+local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
 ----------------------------------------------------------------------------------------------------------------------
 
 ---------------------------------[[ Main Source Code ]]---------------------------------------------------------------
