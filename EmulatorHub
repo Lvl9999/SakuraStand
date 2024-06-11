@@ -714,25 +714,6 @@ FarmingTab.newToggle("Auto Breakthrough","",false,function(Value)
 end)
 
 if #game:GetService("Players"):GetPlayers() <= 3 then
-    FarmingTab.newButton("❗ Equip Shadow Dio","",function()
-        pcall(function()
-            if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= "Shadow The World" then
-                for i = 1,100 do
-                    if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "Shadow The World" then
-                        local args = {"Slot"..i};
-                        if i <= 6 then
-                            game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
-                        else
-                            game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
-                        end
-                    end
-                end
-            end
-        end)
-    end)
-end
-
-if #game:GetService("Players"):GetPlayers() <= 3 then
     FarmingTab.newLabel("❗ Auto Item Farmer + Auto Boss/Mob Farmer");
     FarmingTab.newToggle("Start Farming [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
@@ -1049,6 +1030,25 @@ else
                     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Chatted"):FireServer(unpack(args));
                 end)
                 task.wait(0.35);
+            end
+        end)
+    end)
+end
+
+if #game:GetService("Players"):GetPlayers() <= 3 then
+    FarmingTab.newButton("❗ Equip Shadow Dio","",function()
+        pcall(function()
+            if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= "Shadow The World" then
+                for i = 1,100 do
+                    if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "Shadow The World" then
+                        local args = {"Slot"..i};
+                        if i <= 6 then
+                            game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
+                        else
+                            game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
+                        end
+                    end
+                end
             end
         end)
     end)
