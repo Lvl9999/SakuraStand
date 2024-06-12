@@ -17,6 +17,9 @@ if not game:IsLoaded() then
     game.Loaded:Wait();
 end
 
+-- // Destroy Previous Session -- \\
+task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);
+
 -- // Anti AFK \\ --
 task.spawn(function()
     if not getgenv().AntiAfk == true then
@@ -96,8 +99,12 @@ ScriptsTab.newButton("Restart Emulator Hub","",function()
     getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
     pcall(function()
-        game:GetService("CoreGui").DrRay:Destroy();loadstring(game:HttpGet(getgenv().EmulatorHub))();
+        loadstring(game:HttpGet(getgenv().EmulatorHub))();
     end)
+end)
+
+ScriptsTab.newButton("Destroy Emulator Hub","",function()
+    task.wait(0.25);pcall(function()game:GetService("CoreGui").DrRay:Destroy();end)
 end)
 
 ScriptsTab.newLabel("Quick Scripts   📝");
@@ -676,23 +683,23 @@ local FarmingTab = DrRayLibrary.newTab("Farming","ImageIdHere");
 
 if #game:GetService("Players"):GetPlayers() <= 3 then
     FarmingTab.newLabel("❗ Equip Farming Spec");
-        FarmingTab.newDropdown("","",{"Gojo Satoru","Standless","Shadow The World"},function(Value)
-            pcall(function()
-                if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= Value then
-                    for i = 1,100 do
-                        if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == Value then
-                            local args = {"Slot"..i};
-                            if i <= 6 then
-                                game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
-                            else
-                                game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
-                            end
+    FarmingTab.newDropdown("","",{"Gojo Satoru","Standless","Shadow The World"},function(Value)
+        pcall(function()
+            if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= Value then
+                for i = 1,100 do
+                    if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == Value then
+                        local args = {"Slot"..i};
+                        if i <= 6 then
+                            game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
+                        else
+                            game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
                         end
                     end
                 end
-            end)
+            end
         end)
-    end
+    end)
+end
 
 FarmingTab.newLabel("Auto Level Farmer  📈");
 FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka","",false,function(Value)
@@ -778,8 +785,10 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                         end
                      
                         if Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
-                            if Target:FindFirstChild("Participated") and Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) and Target.Participated[game.Players.LocalPlayer.Name].Value > 40 then
-                                Target.Humanoid.Health = 0
+                            if Target:FindFirstChild("Participated") and Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) then
+                                task.spawn(function()task.wait(1.5);
+                                    Target.Humanoid.Health = 0
+                                end)
                             end
 
                             if game:GetService("Players").LocalPlayer.Data.Achievements["Boss Raid"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "Boss Raid" then
@@ -1238,11 +1247,11 @@ AreasTab.newButton("Highest Peak","",function()
 end)
 
 -- // Toggle UI Visibility \\ --
-task.spawn(function()task.wait(1);
+task.spawn(function()task.wait(3.5);
     game:GetService("UserInputService").InputBegan:Connect(function(v,x)
-        if not x and v.KeyCode == Enum.KeyCode[getgenv().getgenv().ToggleUI] then
+        if not x and v.KeyCode == Enum.KeyCode["J" or getgenv().ToggleUI] then
             pcall(function()
-                game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled
+                game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled;
             end)
         end
     end)
