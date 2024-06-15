@@ -12,10 +12,7 @@
 ]]-----------------------------------------------------------------------------------------------------
 
 -- // Auto Loader \\ --
-repeat wait() until game:IsLoaded();
-if not game:IsLoaded() then
-    game.Loaded:Wait();
-end
+repeat task.wait() until game:IsLoaded();
 
 -- // Anti AFK \\ --
 task.spawn(function()
@@ -46,38 +43,41 @@ task.spawn(function()
     end)
 end)
 
--- // Refresh Configs \\ --
-getgenv().AutoPrivateGrinding = false;
-getgenv().AutoPublicGrinding = false;
-getgenv().AutoBreakthrough = false;
-getgenv().AutoLevelingUp = false;
-getgenv().AutoRebirth = false;
-getgenv().AutoSelling = false;
+-- // Reset Configs \\ --
+getgenv().ResetConfigs = function()
+    getgenv().AutoPrivateGrinding = false;
+    getgenv().AutoPublicGrinding = false;
+    getgenv().AutoBreakthrough = false;
+    getgenv().AutoLevelingUp = false;
+    getgenv().AutoRebirth = false;
+    getgenv().AutoSelling = false;
 
-getgenv().AutoParryingDamage = false;
-getgenv().AutoBlockingDamage = false;
-getgenv().AutoDealingDamage = false;
-getgenv().AutoTakingDamage = false;
-getgenv().AutoDyingDamage = false;
+    getgenv().AutoParryingDamage = false;
+    getgenv().AutoBlockingDamage = false;
+    getgenv().AutoDealingDamage = false;
+    getgenv().AutoTakingDamage = false;
+    getgenv().AutoDyingDamage = false;
 
-getgenv().StoringEveryItem = false;
-getgenv().StoringNikyu = false;
-getgenv().StoringFinger = false;
-getgenv().StoringInverted = false;
-getgenv().StoringSplit = false;
-getgenv().StoringChain = false;
-getgenv().StoringCortex = false;
-getgenv().StoringCrimson = false;
-getgenv().StoringCyan = false;
-getgenv().StoringTech = false;
-getgenv().StoringArasaka = false;
-getgenv().StoringKujoHat = false;
-getgenv().StoringDiosBone = false;
-getgenv().StoringDiosDiary = false;
-getgenv().StoringHogyoku = false;
+    getgenv().StoringEveryItem = false;
+    getgenv().StoringNikyu = false;
+    getgenv().StoringFinger = false;
+    getgenv().StoringInverted = false;
+    getgenv().StoringSplit = false;
+    getgenv().StoringChain = false;
+    getgenv().StoringCortex = false;
+    getgenv().StoringCrimson = false;
+    getgenv().StoringCyan = false;
+    getgenv().StoringTech = false;
+    getgenv().StoringArasaka = false;
+    getgenv().StoringKujoHat = false;
+    getgenv().StoringDiosBone = false;
+    getgenv().StoringDiosDiary = false;
+    getgenv().StoringHogyoku = false;
 
-workspace.Gravity = 196.2;
+    workspace.Gravity = 196.2;
+end
 
+getgenv().ResetConfigs();
 -----------------------------------[[ Main Ui Libs ]]-----------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
@@ -92,7 +92,6 @@ local ScriptsTab = DrRayLibrary.newTab("Scripts","ImageIdHere");
 
 ScriptsTab.newLabel("Get Latest Version   🎉");
 ScriptsTab.newButton("Restart Emulator Hub","",function()
-    getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
     getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
     pcall(function()
@@ -101,8 +100,8 @@ ScriptsTab.newButton("Restart Emulator Hub","",function()
 end)
 
 ScriptsTab.newButton("Destroy Emulator Hub","",function()
-    task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);
-    BoredLibrary.prompt("Emulator Hub   💻","Goodbye :)",0.75);
+    task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().ResetConfigs();
+    BoredLibrary.prompt("Emulator Hub   💻","Goodbye :)",0.45);
 end)
 
 ScriptsTab.newLabel("Quick Scripts   📝");
@@ -618,12 +617,13 @@ getgenv().Attacking = function()
         game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Punch"):FireServer();
         local args = {[1] = false};
         game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Barrage"):FireServer(unpack(args));
-    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Gojo Satoru" then
-        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("RevRed"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("LapseBlue"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("Aerial"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("InfinityBlast"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("GojoRemote"):WaitForChild("Punch"):FireServer();
+    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Vampirism" then
+        game:GetService("ReplicatedStorage"):WaitForChild("VampirismRemote"):WaitForChild("Strike"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("VampirismRemote"):WaitForChild("Ripper"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("VampirismRemote"):WaitForChild("IceShock"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("VampirismRemote"):WaitForChild("Stab"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("VampirismRemote"):WaitForChild("BloodSuck"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("VampirismRemote"):WaitForChild("Punch"):FireServer();
     elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("TS"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Knife"):FireServer();
@@ -681,9 +681,10 @@ local FarmingTab = DrRayLibrary.newTab("Farming","ImageIdHere");
 
 if #game:GetService("Players"):GetPlayers() <= 3 then
     FarmingTab.newLabel("❗ Equip Farming Spec");
-    FarmingTab.newDropdown("","",{"Gojo Satoru","Standless","Shadow The World"},function(Value)
+    FarmingTab.newDropdown("","",{"Shadow The World","Vampirism","Standless"},function(Value)
         pcall(function()
             if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= Value then
+                task.spawn(function()BoredLibrary.prompt("Emulator Hub   💻","Changing Spec...",0.45);end);
                 for i = 1,100 do
                     if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == Value then
                         local args = {"Slot"..i};
@@ -694,6 +695,8 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                         end
                     end
                 end
+            else
+                task.spawn(function()BoredLibrary.prompt("Emulator Hub   💻","You are Already "..Value,0.45);end);
             end
         end)
     end)
@@ -756,15 +759,15 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
     FarmingTab.newLabel("❗ Auto Item Farmer + Auto Boss/Mob Farmer");
     FarmingTab.newToggle("Start Farming [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
-        getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+        getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
         
-        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Gojo Satoru" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Vampirism" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
             getgenv().Distance = 5;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
             getgenv().Distance = 7;
         end
 
-        if game:GetService("Players").LocalPlayer.Data.Achievements["Boss Raid"] and game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Gojo Satoru" then
+        if game:GetService("Players").LocalPlayer.Data.Achievements["Boss Raid"] and game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Vampirism" then
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
@@ -900,10 +903,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
-                        if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= "Gojo Satoru" then
-                            local args = {[1] = "/e sadcat"};
-                            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Chatted"):FireServer(unpack(args));
-                        end
+                        workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Animate").idle.Animation1.AnimationId = "rbxassetid://12512421480";
                     end)
                     task.wait(0.35);
                 end
@@ -926,7 +926,7 @@ else
     FarmingTab.newLabel("❗ Auto Item Farmer + Auto Boss/Mob Farmer");
     FarmingTab.newToggle("Start Farming [Public Server Edition]","",false,function(Value)
         getgenv().AutoPublicGrinding = Value
-        getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+        getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
         getgenv().FoundAdjuchas = false;
 
         local FloatPart = Instance.new("Part",game.Workspace);
