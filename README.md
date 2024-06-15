@@ -5,7 +5,7 @@
 
 **Requirements:** 
 - (For Public Servers): The Black Silence (Using it will enable risky autofarm prob bannable).
-- (For Private Servers): Shadow Dio or Vampirism or Standless + Boss Raid + The Intelliagent (U must have all of these).
+- (For Private Servers): Vampirism / Standless / Shadow Dio + Boss Raid + The Intelliagent (U must have all of these).
 ##### Tip: You should use Vampirism because he works the best!
 ```lua
 getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
