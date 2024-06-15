@@ -1248,7 +1248,7 @@ end)
 task.spawn(function()
     if not getgenv().ToggleVisibility == true then
         game:GetService("UserInputService").InputBegan:Connect(function(v,x)
-            if not x and v.KeyCode == Enum.KeyCode["J" or getgenv().ToggleUI] then
+            if not x and v.KeyCode == Enum.KeyCode[getgenv().ToggleUI] then
                 pcall(function()
                     game:GetService("CoreGui").DrRay.TopBar.Visible = not game:GetService("CoreGui").DrRay.TopBar.Visible
                     game:GetService("CoreGui").DrRay.MainBar.Visible = not game:GetService("CoreGui").DrRay.MainBar.Visible
