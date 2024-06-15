@@ -4,7 +4,7 @@
 ## Main Hub Source:
 
 **Requirements:**
-##### Info: When you are in a private server or a low server a better autofarm plays.
+#### Info: When you are in a private server or a low server a better autofarm plays.
 - (For Public Servers): The Black Silence (Using it will enable risky autofarm prob bannable).
 - (For Private Servers): Vampirism / Standless / Shadow Dio + Boss Raid + The Intelliagent (U must have all these).
 ##### Tip: You should use Vampirism because he works the best!
