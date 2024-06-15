@@ -17,9 +17,6 @@ if not game:IsLoaded() then
     game.Loaded:Wait();
 end
 
--- // Destroy Previous Session -- \\
-task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);
-
 -- // Anti AFK \\ --
 task.spawn(function()
     if not getgenv().AntiAfk == true then
@@ -99,12 +96,13 @@ ScriptsTab.newButton("Restart Emulator Hub","",function()
     getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
     pcall(function()
-        loadstring(game:HttpGet(getgenv().EmulatorHub))();
+        game:GetService("CoreGui").DrRay:Destroy();loadstring(game:HttpGet(getgenv().EmulatorHub))();
     end)
 end)
 
 ScriptsTab.newButton("Destroy Emulator Hub","",function()
-    task.wait(0.25);pcall(function()game:GetService("CoreGui").DrRay:Destroy();end)
+    task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);
+    BoredLibrary.prompt("Emulator Hub   💻","Goodbye :)",0.75);
 end)
 
 ScriptsTab.newLabel("Quick Scripts   📝");
@@ -1247,12 +1245,16 @@ AreasTab.newButton("Highest Peak","",function()
 end)
 
 -- // Toggle UI Visibility \\ --
-task.spawn(function()task.wait(3.5);
-    game:GetService("UserInputService").InputBegan:Connect(function(v,x)
-        if not x and v.KeyCode == Enum.KeyCode["J" or getgenv().ToggleUI] then
-            pcall(function()
-                game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled;
-            end)
-        end
-    end)
+task.spawn(function()
+    if not getgenv().ToggleVisibility == true then
+        game:GetService("UserInputService").InputBegan:Connect(function(v,x)
+            if not x and v.KeyCode == Enum.KeyCode["J" or getgenv().ToggleUI] then
+                pcall(function()
+                    game:GetService("CoreGui").DrRay.TopBar.Visible = not game:GetService("CoreGui").DrRay.TopBar.Visible
+                    game:GetService("CoreGui").DrRay.MainBar.Visible = not game:GetService("CoreGui").DrRay.MainBar.Visible
+                end)
+            end
+        end)
+        getgenv().ToggleVisibility = true
+    end
 end)
