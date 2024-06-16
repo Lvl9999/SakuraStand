@@ -92,7 +92,7 @@ BoredLibrary.prompt("Emulator Hub   💻","Successfully Loaded :3",2);
 
 local HomeTab = DrRayLibrary.newTab("Home","ImageIdHere");
 
-HomeTab.newLabel("Local Player Scripts   🍃");
+HomeTab.newLabel("Local Player Scripts   🚀");
 HomeTab.newToggle("Faster WalkSpeed","",false,function(Value)
     getgenv().WalkspeedBypass = Value
 
@@ -104,14 +104,14 @@ HomeTab.newToggle("Faster WalkSpeed","",false,function(Value)
             pcall(function()
                 local chr = player.Character
                 if chr then
-                   local hum = chr:FindFirstChildWhichIsA("Humanoid");
+                   local hum = chr:FindFirstChildWhichIsA("Humanoid")
                     if hum and hum.Parent then
                         local hb = game:GetService("RunService").Heartbeat
                         local delta = hb:Wait()
                         if hum.MoveDirection.Magnitude > 0 then
-                            chr:TranslateBy(hum.MoveDirection * 10 * delta * 10);
+                            chr:TranslateBy(hum.MoveDirection * 10 * delta * 10)
                         else
-                            chr:TranslateBy(hum.MoveDirection * delta * 10);
+                            chr:TranslateBy(hum.MoveDirection * delta * 10)
                         end
                     end
                 end
@@ -138,7 +138,7 @@ HomeTab.newToggle("Higher JumpPower","",false,function(Value)
     end)
 end)
 
-HomeTab.newLabel("Server Hops Scripts   ⚙️");
+HomeTab.newLabel("Server Switch Scripts   ⚙️");
 HomeTab.newButton("Rejoin", "",function()
     local TeleportService = game:GetService("TeleportService");
     local Players = game:GetService("Players");
@@ -150,7 +150,7 @@ HomeTab.newButton("Rejoin", "",function()
     end
 end)
 
-HomeTab.newButton("Server Hop","",function()
+HomeTab.newButton("Hop Server","",function()
     -- Got from https://robloxscripts.com
     local Player = game.Players.LocalPlayer    
     local Http = game:GetService("HttpService")
@@ -177,7 +177,7 @@ HomeTab.newButton("Server Hop","",function()
     until not Next
 end)
 
-HomeTab.newButton("Low Server Hop","",function()
+HomeTab.newButton("Hop Lower Servers","",function()
     -- Got from https://robloxscripts.com
     local Http = game:GetService("HttpService")
     local TPS = game:GetService("TeleportService")
