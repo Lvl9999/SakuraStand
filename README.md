@@ -6,7 +6,7 @@
 **Requirements:**
 #### Info: When you are in a private server or a low server a better autofarm plays.
 - (For Public Servers): The Black Silence (Using it will enable risky autofarm prob bannable).
-- (For Private Servers): Vampirism / Standless / Shadow Dio + Boss Raid + The Intelliagent (U must have all these).
+- (For Private Servers): Vampirism / Standless / Shadow The World + The Intelliagent (U must have the title).
 ##### Tip: You should use Vampirism because he works the best!
 ```lua
 getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
