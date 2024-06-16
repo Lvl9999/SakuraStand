@@ -74,6 +74,9 @@ getgenv().ResetConfigs = function()
     getgenv().StoringDiosDiary = false;
     getgenv().StoringHogyoku = false;
 
+    getgenv().WalkspeedBypass = false;
+    getgenv().JumpPowerBypass = false;
+
     workspace.Gravity = 196.2;
 end
 
@@ -85,27 +88,58 @@ local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 
 ---------------------------------[[ Main Source Code ]]---------------------------------------------------------------
 local MainWindow = DrRayLibrary:Load("Emulator Hub   💻","Default");
+BoredLibrary.prompt("Emulator Hub   💻","Successfully Loaded :3",2);
 
-BoredLibrary.prompt("Emulator Hub   💻","Successfully Execeuted :3",2);
+local HomeTab = DrRayLibrary.newTab("Home","ImageIdHere");
 
-local ScriptsTab = DrRayLibrary.newTab("Scripts","ImageIdHere");
+HomeTab.newLabel("Local Player Scripts   🍃");
+HomeTab.newToggle("Faster WalkSpeed","",false,function(Value)
+    getgenv().WalkspeedBypass = Value
 
-ScriptsTab.newLabel("Get Latest Version   🎉");
-ScriptsTab.newButton("Restart Emulator Hub","",function()
-    getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
+    -- Got From https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source
+    local player = game:GetService("Players").LocalPlayer
 
-    pcall(function()
-        game:GetService("CoreGui").DrRay:Destroy();loadstring(game:HttpGet(getgenv().EmulatorHub))();
+    task.spawn(function()
+        while getgenv().WalkspeedBypass and player do
+            pcall(function()
+                local chr = player.Character
+                if chr then
+                   local hum = chr:FindFirstChildWhichIsA("Humanoid");
+                    if hum and hum.Parent then
+                        local hb = game:GetService("RunService").Heartbeat
+                        local delta = hb:Wait()
+                        if hum.MoveDirection.Magnitude > 0 then
+                            chr:TranslateBy(hum.MoveDirection * 10 * delta * 10);
+                        else
+                            chr:TranslateBy(hum.MoveDirection * delta * 10);
+                        end
+                    end
+                end
+            end)
+            task.wait(0.0015);
+        end
     end)
 end)
 
-ScriptsTab.newButton("Destroy Emulator Hub","",function()
-    task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().ResetConfigs();
-    BoredLibrary.prompt("Emulator Hub   💻","Goodbye :)",0.45);
+HomeTab.newToggle("Higher JumpPower","",false,function(Value)
+    getgenv().JumpPowerBypass = Value
+
+    task.spawn(function()
+        if getgenv().JumpPowerBypass == false then
+            workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("UsedValues").OriginalJumpPower.Value = 50
+        end
+
+        while getgenv().JumpPowerBypass == true do
+            pcall(function()
+                workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("UsedValues").OriginalJumpPower.Value = 150
+            end)
+            task.wait(0.35);
+        end
+    end)
 end)
 
-ScriptsTab.newLabel("Quick Scripts   📝");
-ScriptsTab.newButton("Rejoin", "",function()
+HomeTab.newLabel("Server Hops Scripts   ⚙️");
+HomeTab.newButton("Rejoin", "",function()
     local TeleportService = game:GetService("TeleportService");
     local Players = game:GetService("Players");
     if (#Players:GetPlayers() == 1) then
@@ -116,7 +150,7 @@ ScriptsTab.newButton("Rejoin", "",function()
     end
 end)
 
-ScriptsTab.newButton("Server Hop","",function()
+HomeTab.newButton("Server Hop","",function()
     -- Got from https://robloxscripts.com
     local Player = game.Players.LocalPlayer    
     local Http = game:GetService("HttpService")
@@ -143,7 +177,7 @@ ScriptsTab.newButton("Server Hop","",function()
     until not Next
 end)
 
-ScriptsTab.newButton("Low Server Hop","",function()
+HomeTab.newButton("Low Server Hop","",function()
     -- Got from https://robloxscripts.com
     local Http = game:GetService("HttpService")
     local TPS = game:GetService("TeleportService")
@@ -165,38 +199,53 @@ ScriptsTab.newButton("Low Server Hop","",function()
     TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
 end)
 
-ScriptsTab.newButton("Teleport GUI","",function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/BJ7uaPJd"))();
-end)
-
-ScriptsTab.newButton("Infinite Yield","",function()
+HomeTab.newLabel("Quick Scripts   📜");
+HomeTab.newButton("Infinite Yield","",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))();
 end)
 
-ScriptsTab.newButton("Remote Spy","",function()
+HomeTab.newButton("Teleport GUI","",function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/BJ7uaPJd"))();
+end)
+
+HomeTab.newButton("Remote Spy","",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/78n/SimpleSpy/main/SimpleSpySource.lua"))();
 end)
 
-ScriptsTab.newButton("Dark Explorer","",function()
+HomeTab.newButton("Dark Explorer","",function()
     loadstring(game:HttpGet('https://ithinkimandrew.site/scripts/tools/dark-dex.lua'))();
+end)
+
+HomeTab.newLabel("Emulator Hub Stuff  💻");
+HomeTab.newButton("Refresh Emulator Hub","",function()
+    getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
+
+    pcall(function()
+        game:GetService("CoreGui").DrRay:Destroy();loadstring(game:HttpGet(getgenv().EmulatorHub))();
+    end)
+end)
+
+HomeTab.newButton("Goodbye Emulator Hub","",function()
+    task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().ResetConfigs();
+    BoredLibrary.prompt("Emulator Hub   💻","Goodbye :)",0.45);
 end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","ImageIdHere");
 
-StorageTab.newLabel("Opening Stuff  🔓");
-StorageTab.newButton("Open Stand Storage","",function()
+StorageTab.newLabel("Opening things   📭");
+StorageTab.newButton("Open/Close Stand Storage","",function()
     pcall(function()
         game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled
     end)
 end)
 
-StorageTab.newButton("Open Item Storage","",function()
+StorageTab.newButton("Open/Close Item Storage","",function()
     pcall(function()
         game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible = not game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible
     end)
 end)
 
-StorageTab.newLabel("Storing Stuff   📥");
+StorageTab.newLabel("Storing things   📬");
 StorageTab.newToggle("Auto Store Every Item","",false,function(Value)
     getgenv().StoringEveryItem = Value
 
