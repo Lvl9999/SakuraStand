@@ -138,6 +138,10 @@ HomeTab.newToggle("Higher JumpPower","",false,function(Value)
     end)
 end)
 
+HomeTab.newButton("Reset Player (Get Out Of Combat)", "",function()
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+
 HomeTab.newLabel("Server Switch Scripts   ⚙️");
 HomeTab.newButton("Rejoin", "",function()
     local TeleportService = game:GetService("TeleportService");
