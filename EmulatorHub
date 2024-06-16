@@ -227,7 +227,7 @@ end)
 
 HomeTab.newButton("Goodbye Emulator Hub","",function()
     task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().ResetConfigs();
-    BoredLibrary.prompt("Emulator Hub   💻","Goodbye :)",0.45);
+    BoredLibrary.prompt("Emulator Hub   💻","Goodbye :)",0.5);
 end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","ImageIdHere");
@@ -753,20 +753,27 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
     FarmingTab.newLabel("❗ Equip Farming Spec");
     FarmingTab.newDropdown("","",{"Shadow The World","Vampirism","Standless"},function(Value)
         pcall(function()
-            if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= Value then
-                task.spawn(function()BoredLibrary.prompt("Emulator Hub   💻","Changing Spec...",0.45);end);
-                for i = 1,100 do
-                    if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == Value then
-                        local args = {"Slot"..i};
-                        if i <= 6 then
-                            game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
-                        else
-                            game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
+            if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
+                BoredLibrary.prompt("Emulator Hub   💻","You are Combat Marked...",1.5);task.wait(1);
+                BoredLibrary.prompt("Emulator Hub   💻","Reseting...",0.75);
+                game.Players.LocalPlayer.Character.Humanoid.Health = 0;
+                task.wait(8);BoredLibrary.prompt("Emulator Hub   💻","Try Again Now Oke?",0.75);
+            else
+                if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= Value then
+                    task.spawn(function()BoredLibrary.prompt("Emulator Hub   💻","Changing Spec...",0.5);end);
+                    for i = 1,100 do
+                        if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == Value then
+                            local args = {"Slot"..i};
+                            if i <= 6 then
+                                game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
+                            else
+                                game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
+                            end
                         end
                     end
+                else
+                    task.spawn(function()BoredLibrary.prompt("Emulator Hub   💻","You are Already "..Value,0.5);end);
                 end
-            else
-                task.spawn(function()BoredLibrary.prompt("Emulator Hub   💻","You are Already "..Value,0.45);end);
             end
         end)
     end)
