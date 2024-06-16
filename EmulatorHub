@@ -755,7 +755,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         pcall(function()
             if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
                 BoredLibrary.prompt("Emulator Hub   💻","You are Combat Marked...",1.5);task.wait(1);
-                BoredLibrary.prompt("Emulator Hub   💻","Reseting...",0.75);
+                BoredLibrary.prompt("Emulator Hub   💻","Reseting Character...",0.75);
                 game.Players.LocalPlayer.Character.Humanoid.Health = 0;
                 task.wait(8);BoredLibrary.prompt("Emulator Hub   💻","Try Again Now Oke?",0.75);
             else
