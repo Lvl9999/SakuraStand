@@ -299,7 +299,7 @@ HomeTab.newButton("Refresh Emulator Hub","",function()
     end)
 end)
 
-HomeTab.newButton("Goodbye Emulator Hub","",function()
+HomeTab.newButton("Goodbye Emulator Hub   👋","",function()
     task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().ResetConfigs();
     BoredLibrary.prompt("Emulator Hub   💻","Goodbye :)",0.5);
 end)
@@ -832,7 +832,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         end)
     end)
 end
-FarmingTab.newLabel("Auto Level Farmer  📈");
+FarmingTab.newLabel("Auto Leveling  📈");
 FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka (Use At 2x Weekend)","",false,function(Value)
     getgenv().AutoLevelingUp = Value
 
@@ -919,6 +919,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
     end)
 end
 
+FarmingTab.newLabel("Auto Tasks   📝");
 FarmingTab.newToggle("Auto Upgrade Mastery","",false,function(Value)
     getgenv().AutoRebirth = Value
 
@@ -948,7 +949,7 @@ FarmingTab.newToggle("Auto Breakthrough","",false,function(Value)
 end)
 
 if #game:GetService("Players"):GetPlayers() <= 3 then
-    FarmingTab.newLabel("❗ Auto Item Farmer + Auto Boss/Mob Farmer");
+    FarmingTab.newLabel("❗ Auto Grinding Items + Auto Boss/Mob Farming");
     FarmingTab.newToggle("Start Farming [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
@@ -1115,7 +1116,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         end
     end)
 else
-    FarmingTab.newLabel("❗ Auto Item Farmer + Auto Boss/Mob Farmer");
+    FarmingTab.newLabel("❗ Auto Grinding Items + Auto Boss/Mob Farming");
     FarmingTab.newToggle("Start Farming [Public Server Edition]","",false,function(Value)
         getgenv().AutoPublicGrinding = Value
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
@@ -1266,7 +1267,7 @@ else
     end)
 end
 
-FarmingTab.newLabel("Auto Selling  💸");
+FarmingTab.newLabel("Auto Selling   💵");
 FarmingTab.newToggle("Auto Sell Everything","",false,function(Value)
     getgenv().AutoSelling = Value
 
