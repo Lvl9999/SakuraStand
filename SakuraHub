@@ -167,12 +167,11 @@ HomeTab.newToggle("Auto Dodge (Use In Open Areas)","",false,function(Value)
                     if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
                         if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 18 then
                             if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") then
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,1.25,20);
-
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + Vector3.new(math.random(-45,42),0, math.random(-42,41)));
                                 for _,k in ipairs(workspace.Effects:GetChildren()) do
                                     if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
-                                        if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 40 then
-                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(math.random(-25,21),0,math.random(-4,2) * math.random(25,-21)));
+                                        if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 40 then                    
+                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(math.random(-35,25),0,math.random(-31,41)));
                                         end
                                     end
                                 end
@@ -181,7 +180,7 @@ HomeTab.newToggle("Auto Dodge (Use In Open Areas)","",false,function(Value)
                     end
                 end
             end)
-            task.wait(0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000015);
+            task.wait(0.0000000000000000000000000000015);
         end
     end)
 end)
@@ -226,7 +225,7 @@ HomeTab.newButton("Dark Explorer","",function()
 end)
 
 HomeTab.newLabel("Sakura Hub Stuff   🌸");
-HomeTab.newButton("Refresh Sakura Hub","",function()
+HomeTab.newButton("Reload Sakura Hub","",function()
     getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
     pcall(function()
@@ -239,7 +238,7 @@ HomeTab.newButton("Goodbye Sakura Hub   👋","",function()
     BoredLibrary.prompt("Sakura Hub   🌸","Goodbye :)",0.5);
 end)
 
-HomeTab.newInput("Report Bugs / Feedback", "Type here anything you want me to know :)",function(text)
+HomeTab.newInput("Report Bugs / Feedback","Type here anything you want me to know :)",function(text)
     getgenv().Message = text
     getgenv().WebHook = "https://discord.com/api/webhooks/1139637670851641454/hA_jFyhj0TPK6TRXA4h0_iBsDEP37Pk_s8g2wY2xlJHV8jW68Rd9rpyp9-DVBD5l1ltm";
 
@@ -256,14 +255,14 @@ end)
 local StorageTab = DrRayLibrary.newTab("Storage","ImageIdHere");
 
 StorageTab.newLabel("Opening things   📭");
-StorageTab.newButton("Open / Close Stand Storage","",function()
+StorageTab.newButton("Close / Open Stand Storage","",function()
     pcall(function()
         task.spawn(function()local Return = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame game:GetService("Players").LocalPlayer.CharacterAdded:Wait() repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = Return end)
         game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled
     end)
 end)
 
-StorageTab.newButton("Open / Close Item Storage","",function()
+StorageTab.newButton("Close / Open Item Storage","",function()
     pcall(function()
         game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible = not game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible
     end)
