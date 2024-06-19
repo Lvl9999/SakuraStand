@@ -38,7 +38,7 @@ task.spawn(function()
 
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipButton.AbsolutePosition.X+SkipButton.AbsoluteSize.X/5,SkipButton.AbsolutePosition.Y+50,0,true,SkipButton,5);
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipButton.AbsolutePosition.X+SkipButton.AbsoluteSize.X/5,SkipButton.AbsolutePosition.Y+50,0,false,SkipButton,5);
-            task.wait(1);
+            task.wait(0.25);
         end
     end)
 end)
@@ -215,10 +215,6 @@ end)
 HomeTab.newLabel("Quick Scripts   📜");
 HomeTab.newButton("Infinite Yield","",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))();
-end)
-
-HomeTab.newButton("Teleport GUI","",function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/BJ7uaPJd"))();
 end)
 
 HomeTab.newButton("Remote Spy","",function()
@@ -699,8 +695,9 @@ getgenv().Attacking = function()
         game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Curse Combo"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Head Crusher"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Dismantle"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Curse Combo"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Speed Biltz"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Flame Ballista"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Head Crusher"):FireServer();
     elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("TS"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Knife"):FireServer();
@@ -906,11 +903,9 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
     FarmingTab.newToggle("Start Farming [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
-        
-        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+
+        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
             getgenv().Distance = 5;
-        elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
-            getgenv().Distance = 3;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
             getgenv().Distance = 7;
         end
@@ -921,7 +916,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                     pcall(function()
                         local Target = nil
                         getgenv().FoundAnything = false
-                     
+
                         for i,v in ipairs(getgenv().ListOfNpcs) do
                             if workspace.Living:FindFirstChild(v) and workspace.Living:FindFirstChild(v):FindFirstChild("Head") then
                                 local NPC = workspace.Living:FindFirstChild(v);
@@ -932,7 +927,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                                 end
                             end
                         end
-                     
+
                         if Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
                             if Target:FindFirstChild("Participated") and Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) then
                                 Target.Humanoid.Health = 0
@@ -946,7 +941,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                         else
                             task.wait(2.5);
                         end
-                    end)                     
+                    end)
                     task.wait(0.015);
                 end
             end)
