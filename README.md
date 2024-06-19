@@ -6,8 +6,8 @@
 **Requirements:**
 #### Info: When you are in a private server or a low server a better autofarm plays.
 - (For Public Servers): The Black Silence (Using it will enable risky autofarm prob bannable).
-- (For Private Servers): Vampirism / Standless / Shadow The World + The Intelligent (U must have the title).
-##### Tip: You should use Vampirism because he works the best!
+- (For Private Servers): Ryomen Sukuna / Standless / Shadow The World + The Intelligent (U must have the title).
+##### Tip: You should use Ryomen Sukuna because he works the best!
 ```lua
 getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
 getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
@@ -19,7 +19,7 @@ end)
 
 ---
 
-##  OA Farmer Source:
+##  OneForAll Farmer Source:
 
 **Requirements:**
 - Standless + Mastery 3 + Empty Stand Slots.
@@ -45,17 +45,6 @@ getgenv().AutoUpgradeMastery = true -- // Will upgrade mastery for you.
 getgenv().AutoBuyAndSellRokakaka = true -- // Will buy rokakaka and sell it along with every item.
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/TokensToCash"))();
-```
-
----
-
-## Glitcher Source:
-
-**Requirements:**
-- Standless (Just grab someone with Barrage or Counter attack).
-##### Reminder: If you get caught you get banned :3
-```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/Glitcher"))();
 ```
 
 ---
