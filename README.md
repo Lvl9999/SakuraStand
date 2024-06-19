@@ -19,7 +19,7 @@ end)
 
 ---
 
-##  OneForAll Farmer Source:
+##  One For All Farmer Source:
 
 **Requirements:**
 - Standless + Mastery 3 + Empty Stand Slots.
