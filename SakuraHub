@@ -1,13 +1,13 @@
--- // Emulator Hub 💻 \\ -- | [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
 
     getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
-    getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
+    getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
     pcall(function()
-        loadstring(game:HttpGet(getgenv().EmulatorHub))();
+        loadstring(game:HttpGet(getgenv().SakuraHub))();
     end)
 ]]-----------------------------------------------------------------------------------------------------
 
@@ -92,8 +92,8 @@ local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 ----------------------------------------------------------------------------------------------------------------------
 
 ---------------------------------[[ Main Source Code ]]---------------------------------------------------------------
-local MainWindow = DrRayLibrary:Load("Emulator Hub   💻","Default");
-BoredLibrary.prompt("Emulator Hub   💻","Successfully Loaded :3",2);
+local MainWindow = DrRayLibrary:Load("Sakura Hub 🌸","Default");
+BoredLibrary.prompt("Sakura Hub 🌸","Successfully Loaded :3",2);
 
 local HomeTab = DrRayLibrary.newTab("Home","ImageIdHere");
 
@@ -225,18 +225,18 @@ HomeTab.newButton("Dark Explorer","",function()
     loadstring(game:HttpGet('https://ithinkimandrew.site/scripts/tools/dark-dex.lua'))();
 end)
 
-HomeTab.newLabel("Emulator Hub Stuff  💻");
-HomeTab.newButton("Refresh Emulator Hub","",function()
-    getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
+HomeTab.newLabel("Sakura Hub Stuff  🌸");
+HomeTab.newButton("Refresh Sakura Hub","",function()
+    getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
     pcall(function()
-        game:GetService("CoreGui").DrRay:Destroy();loadstring(game:HttpGet(getgenv().EmulatorHub))();
+        game:GetService("CoreGui").DrRay:Destroy();loadstring(game:HttpGet(getgenv().SakuraHub))();
     end)
 end)
 
-HomeTab.newButton("Goodbye Emulator Hub   👋","",function()
+HomeTab.newButton("Goodbye Sakura Hub   👋","",function()
     task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().ResetConfigs();
-    BoredLibrary.prompt("Emulator Hub   💻","Goodbye :)",0.5);
+    BoredLibrary.prompt("Sakura Hub 🌸","Goodbye :)",0.5);
 end)
 
 HomeTab.newInput("Report Bugs / Feedback", "Type here anything you want me to know :)",function(text)
@@ -248,7 +248,7 @@ HomeTab.newInput("Report Bugs / Feedback", "Type here anything you want me to kn
             local data = {content = "",embeds = {{author = {name = game.Players.LocalPlayer.Name,},title = "Reported:",description = getgenv().Message,type = "rich",color = tonumber(0xff0000),footer = {text = string.format("Reported at %s",os.date("%Y-%m-%d %X"))}}}};
             local request = http_request or request or HttpPost or syn.request
             request({Url = getgenv().WebHook,Body = game:GetService("HttpService"):JSONEncode(data),Method = "POST",Headers = {["content-type"] = "application/json"}});
-            BoredLibrary.prompt("Emulator Hub   💻","Message Sent   ✅",1.5);
+            BoredLibrary.prompt("Sakura Hub 🌸","Message Sent   ✅",1.5);
         end
     end)
 end)
@@ -758,13 +758,13 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
     FarmingTab.newDropdown("","",{"Shadow The World","Ryomen Sukuna","Standless"},function(Value)
         pcall(function()
             if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
-                BoredLibrary.prompt("Emulator Hub   💻","You are Combat Marked...",0.75);task.wait(0.15);BoredLibrary.prompt("Emulator Hub   💻","Reseting Character...",0.75);
+                BoredLibrary.prompt("Sakura Hub 🌸","You are Combat Marked...",0.75);task.wait(0.15);BoredLibrary.prompt("Sakura Hub 🌸","Reseting Character...",0.75);
                 game.Players.LocalPlayer.Character.Humanoid.Health = 0;
             else
                 if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= Value then
                     task.spawn(function()local Return = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame game:GetService("Players").LocalPlayer.CharacterAdded:Wait() repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = Return end)
 
-                    task.spawn(function()BoredLibrary.prompt("Emulator Hub   💻","Changing Spec...",0.5);end);
+                    task.spawn(function()BoredLibrary.prompt("Sakura Hub 🌸","Changing Spec...",0.5);end);
                     for i = 1,100 do
                         if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == Value then
                             local args = {"Slot"..i};
@@ -776,7 +776,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                         end
                     end
                 else
-                    task.spawn(function()BoredLibrary.prompt("Emulator Hub   💻","You are Already "..Value,0.5);end);
+                    task.spawn(function()BoredLibrary.prompt("Sakura Hub 🌸","You are Already "..Value,0.5);end);
                 end
             end
         end)
@@ -818,7 +818,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.Achievements["The Rich"] then
             task.spawn(function()
                 while getgenv().AutoT4C == true do if getgenv().AutoPrivateGrinding == true or getgenv().AutoPublicGrinding == true then
-                        BoredLibrary.prompt("Emulator Hub   💻", "You can't use autofarm with this...",5);
+                        BoredLibrary.prompt("Sakura Hub 🌸", "You can't use autofarm with this...",5);
                         break
                     end
                     task.wait(0.15);
@@ -863,7 +863,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
             end)          
         else
             if getgenv().AutoT4C == true then
-                BoredLibrary.prompt("Emulator Hub   💻", "You don't have the required stuff...");
+                BoredLibrary.prompt("Sakura Hub 🌸", "You don't have the required stuff...");
             end
         end 
     end)
@@ -1061,7 +1061,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
             end)
         else
             if getgenv().AutoPrivateGrinding == true then
-                BoredLibrary.prompt("Emulator Hub   💻", "You don't have the required stuff...");
+                BoredLibrary.prompt("Sakura Hub 🌸", "You don't have the required stuff...");
             end
         end
     end)
