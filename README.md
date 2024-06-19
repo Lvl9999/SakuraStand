@@ -24,7 +24,7 @@ end)
 - Standless + Mastery 3 + Empty Stand Slots.
 ##### Tip: Put in your autoexec and use it in public (Undetected).
 ```lua
-getgenv().OneForAll = true --// Determinds if the script will run or not (false/true).
+getgenv().OneForAll = true -- // Determinds if the script will run or not (false/true).
  
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/OneForAll"))();
 ```
