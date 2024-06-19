@@ -29,7 +29,7 @@ end)
 -- // Auto Skip Loading Menu \\ --
 task.spawn(function()
     pcall(function()
-        for i = 1,1000 do
+        for i = 1,25 do
             local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play.TextLabel
             local SkipButton = game:GetService("Players").LocalPlayer.PlayerGui.Loading.BG.SkipButton
 
@@ -38,7 +38,7 @@ task.spawn(function()
 
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipButton.AbsolutePosition.X+SkipButton.AbsoluteSize.X/5,SkipButton.AbsolutePosition.Y+50,0,true,SkipButton,5);
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipButton.AbsolutePosition.X+SkipButton.AbsoluteSize.X/5,SkipButton.AbsolutePosition.Y+50,0,false,SkipButton,5);
-            task.wait(0.25);
+            task.wait(1);
         end
     end)
 end)
