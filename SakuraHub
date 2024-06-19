@@ -903,8 +903,10 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         getgenv().AutoPrivateGrinding = Value
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
-        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
+        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
             getgenv().Distance = 5;
+        elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
+            getgenv().Distance = 6;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
             getgenv().Distance = 7;
         end
