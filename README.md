@@ -1,4 +1,4 @@
-# Emulator Hub:
+# Sakura Hub 🌸
 ### A script hub exclusive for Sakura Stand! (For now :3).
 
 ## Main Hub Source:
@@ -10,10 +10,10 @@
 ##### Tip: You should use Ryomen Sukuna because he works the best!
 ```lua
 getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
-getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
+getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
 
 pcall(function()
-    loadstring(game:HttpGet(getgenv().EmulatorHub))();
+    loadstring(game:HttpGet(getgenv().SakuraHub))();
 end)
 ```
 
@@ -66,9 +66,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/m
 ```lua
 getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
 getgenv().StatisticsGUI = "V" -- //  Key Toggle "V" set by default however you can change it.
-getgenv().EmulatorHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
+getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
-loadstring(game:HttpGet(getgenv().EmulatorHub))();loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();
+loadstring(game:HttpGet(getgenv().SakuraHub))();loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();
 ```
 
 ---
