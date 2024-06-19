@@ -256,14 +256,14 @@ end)
 local StorageTab = DrRayLibrary.newTab("Storage","ImageIdHere");
 
 StorageTab.newLabel("Opening things   📭");
-StorageTab.newButton("Open/Close Stand Storage","",function()
+StorageTab.newButton("Open / Close Stand Storage","",function()
     pcall(function()
         task.spawn(function()local Return = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame game:GetService("Players").LocalPlayer.CharacterAdded:Wait() repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = Return end)
         game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled
     end)
 end)
 
-StorageTab.newButton("Open/Close Item Storage","",function()
+StorageTab.newButton("Open / Close Item Storage","",function()
     pcall(function()
         game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible = not game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible
     end)
