@@ -97,8 +97,8 @@ BoredLibrary.prompt("Emulator Hub   💻","Successfully Loaded :3",2);
 
 local HomeTab = DrRayLibrary.newTab("Home","ImageIdHere");
 
-HomeTab.newLabel("Player Scripts   ✨");
-HomeTab.newToggle("Run Faster","",false,function(Value)
+HomeTab.newLabel("LocalPlayer Scripts   ✨");
+HomeTab.newToggle("Run A Little Faster","",false,function(Value)
     getgenv().WalkspeedBypass = Value
 
     -- Got From https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source
@@ -124,7 +124,7 @@ HomeTab.newToggle("Run Faster","",false,function(Value)
     end)
 end)
 
-HomeTab.newToggle("Jump Higher","",false,function(Value)
+HomeTab.newToggle("Jump A Little Higher","",false,function(Value)
     getgenv().JumpPowerBypass = Value
 
     task.spawn(function()
@@ -212,67 +212,6 @@ HomeTab.newToggle("Auto Bug Players/Mobs (Requires Grab Moves)","",false,functio
     end)
 end)
 
-HomeTab.newLabel("Server Scripts   ⚙️");
-HomeTab.newButton("Rejoin", "",function()
-    local TeleportService = game:GetService("TeleportService");
-    local Players = game:GetService("Players");
-    if (#Players:GetPlayers() == 1) then
-        game:GetService("Players").LocalPlayer:Kick();
-        TeleportService:Teleport(game.PlaceId);
-    else
-        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players:GetPlayers()[1]);
-    end
-end)
-
-HomeTab.newButton("Hop Server","",function()
-    -- Got from https://robloxscripts.com
-    local Player = game.Players.LocalPlayer    
-    local Http = game:GetService("HttpService")
-    local TPS = game:GetService("TeleportService")
-    local Api = "https://games.roblox.com/v1/games/"
-
-    local _place,_id = game.PlaceId, game.JobId
-    local _servers = Api.._place.."/servers/Public?sortOrder=Desc&limit=100"
-    function ListServers(cursor)
-       local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
-       return Http:JSONDecode(Raw)
-    end
-
-    local Next; repeat
-       local Servers = ListServers(Next)
-       for i,v in next, Servers.data do
-           if v.playing < v.maxPlayers and v.id ~= _id then
-               local s,r = pcall(TPS.TeleportToPlaceInstance,TPS,_place,v.id,Player)
-               if s then break end
-           end
-       end
-
-       Next = Servers.nextPageCursor
-    until not Next
-end)
-
-HomeTab.newButton("Hop Lower Servers","",function()
-    -- Got from https://robloxscripts.com
-    local Http = game:GetService("HttpService")
-    local TPS = game:GetService("TeleportService")
-    local Api = "https://games.roblox.com/v1/games/"
-
-    local _place = game.PlaceId
-    local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
-    function ListServers(cursor)
-       local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
-       return Http:JSONDecode(Raw)
-    end
-
-    local Server, Next; repeat
-       local Servers = ListServers(Next)
-       Server = Servers.data[1]
-       Next = Servers.nextPageCursor
-    until Server
-
-    TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
-end)
-
 HomeTab.newLabel("Quick Scripts   📜");
 HomeTab.newButton("Infinite Yield","",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))();
@@ -302,6 +241,20 @@ end)
 HomeTab.newButton("Goodbye Emulator Hub   👋","",function()
     task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().ResetConfigs();
     BoredLibrary.prompt("Emulator Hub   💻","Goodbye :)",0.5);
+end)
+
+HomeTab.newInput("Report Bugs / Feedback", "Type here anything you want me to know :)",function(text)
+    getgenv().Message = text
+    getgenv().WebHook = "https://discord.com/api/webhooks/1139637670851641454/hA_jFyhj0TPK6TRXA4h0_iBsDEP37Pk_s8g2wY2xlJHV8jW68Rd9rpyp9-DVBD5l1ltm";
+
+    task.spawn(function()
+        if getgenv().Message ~= "" then
+            local data = {content = "",embeds = {{author = {name = game.Players.LocalPlayer.Name,},title = "Reported:",description = getgenv().Message,type = "rich",color = tonumber(0xff0000),footer = {text = string.format("Reported at %s",os.date("%Y-%m-%d %X"))}}}};
+            local request = http_request or request or HttpPost or syn.request
+            request({Url = getgenv().WebHook,Body = game:GetService("HttpService"):JSONEncode(data),Method = "POST",Headers = {["content-type"] = "application/json"}});
+            BoredLibrary.prompt("Emulator Hub   💻","Message Sent   ✅",1.5);
+        end
+    end)
 end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","ImageIdHere");
@@ -957,7 +910,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
             getgenv().Distance = 5;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
-            getgenv().Distance = 4;
+            getgenv().Distance = 3;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
             getgenv().Distance = 7;
         end
@@ -986,7 +939,9 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                             end
 
                             if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Intelligent" then
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position - Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,Target.HumanoidRootPart.Position);getgenv().Attacking();
+                                if not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Dashing") then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position - Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,Target.HumanoidRootPart.Position);getgenv().Attacking();
+                                end
                             end
                         else
                             task.wait(2.5);
