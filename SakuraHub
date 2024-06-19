@@ -697,6 +697,24 @@ getgenv().Attacking = function()
         game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Curse Combo"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Speed Biltz"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Head Crusher"):FireServer();
+    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "The World" then
+        if not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Summoned") then
+            game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Summon"):FireServer();
+        end
+
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("TS"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Sign"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Checkmate"):FireServer()
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("GreatestHigh"):FireServer()
+        local args = {[1] = true};
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Barrage"):FireServer(unpack(args));
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("SignDecap"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("KickBarrage"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Singular"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Impale"):FireServer();
+        local args = {[1] = workspace:WaitForChild("Living"):WaitForChild(Target)};
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("InstantImpale"):FireServer(unpack(args));      
+        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Punch"):FireServer();
     elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("TS"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Knife"):FireServer();
@@ -754,10 +772,10 @@ local FarmingTab = DrRayLibrary.newTab("Farming","ImageIdHere");
 
 if #game:GetService("Players"):GetPlayers() <= 3 then
     FarmingTab.newLabel("❗ Equip Farming Spec");
-    FarmingTab.newDropdown("","",{"Shadow The World","Ryomen Sukuna","Standless"},function(Value)
+    FarmingTab.newDropdown("","",{"Shadow The World","Ryomen Sukuna","The World","Standless"},function(Value)
         pcall(function()
             if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
-                BoredLibrary.prompt("Sakura Hub   🌸","You are Combat Marked...",0.75);task.wait(0.15);BoredLibrary.prompt("Sakura Hub 🌸","Reseting Character...",0.75);
+                BoredLibrary.prompt("Sakura Hub   🌸","You are Combat Marked...",0.75);task.wait(0.15);BoredLibrary.prompt("Sakura Hub   🌸","Reseting Character...",0.75);
                 game.Players.LocalPlayer.Character.Humanoid.Health = 0;
             else
                 if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= Value then
@@ -905,13 +923,13 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
 
         if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
             getgenv().Distance = 5;
-        elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
+        elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "The World" then
             getgenv().Distance = 6;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
             getgenv().Distance = 7;
         end
 
-        if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
+        if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
@@ -935,9 +953,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                             end
 
                             if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Intelligent" then
-                                if not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Dashing") then
-                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position - Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,Target.HumanoidRootPart.Position);getgenv().Attacking();
-                                end
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position - Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,Target.HumanoidRootPart.Position);getgenv().Attacking();
                             end
                         else
                             task.wait(2.5);
