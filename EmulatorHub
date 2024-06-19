@@ -956,7 +956,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
             getgenv().Distance = 5;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
-            getgenv().Distance = 3;
+            getgenv().Distance = 4;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
             getgenv().Distance = 7;
         end
@@ -981,9 +981,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                      
                         if Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
                             if Target:FindFirstChild("Participated") and Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) then
-                                task.spawn(function()task.wait(1.5);
-                                    Target.Humanoid.Health = 0
-                                end)
+                                Target.Humanoid.Health = 0
                             end
 
                             if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Intelligent" then
@@ -1181,9 +1179,7 @@ else
 
                         if Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
                             if Target:FindFirstChild("Participated") and Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) then
-                                task.spawn(function()task.wait(1.5);
-                                    Target.Humanoid.Health = 0
-                                end)
+                                Target.Humanoid.Health = 0
                             end
 
                             if Target.Name == "Adjuchas" then
