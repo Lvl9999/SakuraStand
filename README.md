@@ -1,6 +1,5 @@
 # Sakura Hub 🌸
 ### A script hub exclusive for Sakura Stand!
-![Site-logo](https://github.com/Lvl9999/SakuraStand/assets/123672448/97440fc2-f895-439f-9e47-97ca48bdfa3b)
 
 ## Main Hub Source:
 
@@ -81,3 +80,5 @@ loadstring(game:HttpGet(getgenv().SakuraHub))();loadstring(game:HttpGet("https:/
 #### Script Made by: ThroughTheFireAndFlames#9925
 ##### Notify Ui Library Made by: BoredStuff
 ##### Ui Library Made by: DrRay
+
+![Site-logo](https://github.com/Lvl9999/SakuraStand/assets/123672448/97440fc2-f895-439f-9e47-97ca48bdfa3b)
