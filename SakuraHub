@@ -165,12 +165,12 @@ HomeTab.newToggle("Auto Dodge (Use In Open Areas)","",false,function(Value)
             pcall(function()
                 for _,k in ipairs(workspace.Living:GetChildren()) do
                     if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
-                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 18 then
+                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 20 then
                             if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") then
                                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + Vector3.new(math.random(-45,42),0, math.random(-42,41)));
                                 for _,k in ipairs(workspace.Effects:GetChildren()) do
                                     if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
-                                        if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 40 then                    
+                                        if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 45 then                    
                                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(math.random(-35,25),0,math.random(-31,41)));
                                         end
                                     end
