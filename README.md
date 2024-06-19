@@ -38,7 +38,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/m
 - 500 Tokens + The Rich + The Intelligent.
 ##### Tip: You should use this on 2x Weekends!
 ```lua
-getgenv().AutoT4C = true -- // Determinds if all the tasks will run or not (false/true), You dont have to set everything else to false if u want to stop completely just set this false.
+getgenv().StartTask = true -- // Determinds if all the tasks will run or not (false/true), You dont have to set everything else to false if u want to stop completely just set this false.
 getgenv().HowManyTimesT4C = 2 -- // Determines how many times to convert T2C | 2 = 130,400 Cash (Set number high if your cash capacity is higher).
 getgenv().AutoBreakthrough = true -- // Will breakthrough you.
 getgenv().AutoUpgradeMastery = true -- // Will upgrade mastery for you.
