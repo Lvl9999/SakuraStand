@@ -1,5 +1,6 @@
 # Sakura Hub 🌸
 ### A script hub exclusive for Sakura Stand! (For now :3).
+![Site-logo](https://github.com/Lvl9999/SakuraStand/assets/123672448/97440fc2-f895-439f-9e47-97ca48bdfa3b)
 
 ## Main Hub Source:
 
