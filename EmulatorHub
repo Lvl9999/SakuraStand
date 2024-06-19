@@ -77,6 +77,10 @@ getgenv().ResetConfigs = function()
     getgenv().WalkspeedBypass = false;
     getgenv().JumpPowerBypass = false;
 
+    getgenv().DangerSenseLVL1 = false;
+    getgenv().DangerSenseLVL2 = false;
+    getgenv().DangerSenseLVL3 = Unknown;
+
     workspace.Gravity = 196.2;
 end
 
@@ -92,17 +96,15 @@ BoredLibrary.prompt("Emulator Hub   💻","Successfully Loaded :3",2);
 
 local HomeTab = DrRayLibrary.newTab("Home","ImageIdHere");
 
-HomeTab.newLabel("Local Player Scripts   🚀");
-HomeTab.newToggle("Faster WalkSpeed","",false,function(Value)
+HomeTab.newLabel("Localplayer Scripts   🚀");
+HomeTab.newToggle("Super Speed","",false,function(Value)
     getgenv().WalkspeedBypass = Value
 
     -- Got From https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source
-    local player = game:GetService("Players").LocalPlayer
-
     task.spawn(function()
-        while getgenv().WalkspeedBypass and player do
+        while getgenv().WalkspeedBypass == true and game:GetService("Players").LocalPlayer do
             pcall(function()
-                local chr = player.Character
+                local chr = game:GetService("Players").LocalPlayer.Character
                 if chr then
                    local hum = chr:FindFirstChildWhichIsA("Humanoid");
                     if hum and hum.Parent then
@@ -121,7 +123,7 @@ HomeTab.newToggle("Faster WalkSpeed","",false,function(Value)
     end)
 end)
 
-HomeTab.newToggle("Higher JumpPower","",false,function(Value)
+HomeTab.newToggle("Super Jump","",false,function(Value)
     getgenv().JumpPowerBypass = Value
 
     task.spawn(function()
@@ -133,12 +135,57 @@ HomeTab.newToggle("Higher JumpPower","",false,function(Value)
             pcall(function()
                 workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("UsedValues").OriginalJumpPower.Value = 150
             end)
-            task.wait(0.35);
+            task.wait(1);
         end
     end)
 end)
 
-HomeTab.newLabel("Server Switch Scripts   ⚙️");
+HomeTab.newLabel("Fighting Scripts   ⚔️");
+HomeTab.newToggle("Basic Danger Sense (Use In Open Areas)","",false,function(Value)
+    getgenv().DangerSenseLVL1 = Value
+
+    task.spawn(function()
+        while getgenv().DangerSenseLVL1 == true do
+            pcall(function()
+                if workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Stun") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,1.25,1.25);
+                end
+            end)
+            task.wait(0.00015);
+        end
+    end)
+end)
+
+HomeTab.newToggle("Advanced Danger Sense (Use In Open Areas)","",false,function(Value)
+    getgenv().DangerSenseLVL2 = Value
+
+    task.spawn(function()
+        while getgenv().DangerSenseLVL2 == true do
+            pcall(function()
+                for _,k in ipairs(workspace.Living:GetChildren()) do
+                    if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
+                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 18 then
+                            if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") then
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,1.25,20);
+
+                                for _,k in ipairs(workspace.Effects:GetChildren()) do
+                                    if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
+                                        if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 40 then
+                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(math.random(-25,21),0,math.random(-4,2) * math.random(25,-21)));
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+            task.wait(0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000015);
+        end
+    end)
+end)
+
+HomeTab.newLabel("Server Scripts   ⚙️");
 HomeTab.newButton("Rejoin", "",function()
     local TeleportService = game:GetService("TeleportService");
     local Players = game:GetService("Players");
@@ -1248,7 +1295,9 @@ FarmingTab.newToggle("Auto Take Damage","",false,function(Value)
                 local CounterDummy = game.Workspace.Living["Counter Dummy"];
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(CounterDummy.HumanoidRootPart.Position - CounterDummy.HumanoidRootPart.CFrame.LookVector * -5,CounterDummy.HumanoidRootPart.Position);
                 game:GetService("VirtualUser"):Button1Down(Vector2.new());
-                game.VirtualInputManager:SendKeyEvent(true,"E",false,game);game.VirtualInputManager:SendKeyEvent(true,"T",false,game);game.VirtualInputManager:SendKeyEvent(true,"R",false,game);game.VirtualInputManager:SendKeyEvent(true,"Y",false,game);
+                if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                    game.VirtualInputManager:SendKeyEvent(true,"E",false,game);game.VirtualInputManager:SendKeyEvent(true,"T",false,game);game.VirtualInputManager:SendKeyEvent(true,"R",false,game);game.VirtualInputManager:SendKeyEvent(true,"Y",false,game);
+                end
             end)
             task.wait(0.015);
         end
@@ -1264,7 +1313,9 @@ FarmingTab.newToggle("Auto Deal Damage","",false,function(Value)
                 local Dummy = game.Workspace.Living["Dummy"];
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Dummy.HumanoidRootPart.Position - Dummy.HumanoidRootPart.CFrame.LookVector * -5,Dummy.HumanoidRootPart.Position);
                 game:GetService("VirtualUser"):Button1Down(Vector2.new());
-                game.VirtualInputManager:SendKeyEvent(true,"E",false,game);game.VirtualInputManager:SendKeyEvent(true,"T",false,game);game.VirtualInputManager:SendKeyEvent(true,"R",false,game);game.VirtualInputManager:SendKeyEvent(true,"Y",false,game);
+                if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                    game.VirtualInputManager:SendKeyEvent(true,"E",false,game);game.VirtualInputManager:SendKeyEvent(true,"T",false,game);game.VirtualInputManager:SendKeyEvent(true,"R",false,game);game.VirtualInputManager:SendKeyEvent(true,"Y",false,game);
+                end
             end)
             task.wait(0.015);
         end
