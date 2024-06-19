@@ -3,7 +3,6 @@
 
 ## Main Hub Source:
 
-**Requirements:**
 #### Info: When you are in a private server or a low server a better autofarm plays.
 - (For Public Servers): The Black Silence (Using it will enable risky autofarm prob bannable).
 - (For Private Servers): Ryomen Sukuna / Standless / Shadow The World + The Intelligent (U must have the title).
