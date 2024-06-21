@@ -16,7 +16,6 @@ pcall(function()
 end)
 ```
 
-
 ##  One For All Farmer Loadstring:
 
 **Requirements:**
@@ -27,8 +26,6 @@ getgenv().OneForAll = true -- // Determinds if the script will run or not (false
  
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/OneForAll"))();
 ```
-
----
 
 ## Tokens To Cash Convertor Loadstring:
 
@@ -44,8 +41,6 @@ getgenv().AutoBuyAndSellRokakaka = true -- // Will buy rokakaka and sell it alon
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/TokensToCash"))();
 ```
-
----
 
 - #### Selling for 750 Robux an even faster autofarm (15 masteries in 4-5 minutes). If interested, then DM me on discord down below!
 - #### Also selling god mode for 350 Robux, Dm me if interested :3
