@@ -5,8 +5,8 @@
 
 #### Info: When you are in a private server or a low server a better autofarm plays.
 - (For Public Servers): The Black Silence (Using it will enable risky autofarm prob bannable).
-- (For Private Servers): Sukuna / Standless / Shadow The World + The Intelligent (U must have the title).
-##### Tip: You should use Sukuna because he works the best!
+- (For Private Servers): Shadow The World / Standless / Shinra + The Intelligent (U must have the title).
+##### Tip: You should use Shinra because she works the best!
 ```lua
 getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
 getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
