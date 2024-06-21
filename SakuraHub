@@ -134,7 +134,7 @@ HomeTab.newToggle("Auto Escape Combos (Use In Open Areas)","",false,function(Val
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,1.35);
                 end
             end)
-            task.wait(0.00015);
+            task.wait(0.015);
         end
     end)
 end)
