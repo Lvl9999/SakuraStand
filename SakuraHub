@@ -212,12 +212,14 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
                 for _,k in ipairs(workspace.Living:GetChildren()) do
                     if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
                         if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 25 then
-                            if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") then
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + Vector3.new(math.random(-30,30),0, math.random(-30,30)));
-                                for _,k in ipairs(workspace.Effects:GetChildren()) do
-                                    if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
-                                        if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 65 then
-                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(math.random(-35,25),0,math.random(-31,41)));
+                            if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
+                                if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + Vector3.new(math.random(-30,30),0,math.random(-30,30)));
+                                    for _,k in ipairs(workspace.Effects:GetChildren()) do
+                                        if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
+                                            if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 65 then
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(math.random(-35,35),0,math.random(-35,35)));
+                                            end
                                         end
                                     end
                                 end
@@ -226,7 +228,7 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
                     end
                 end
             end)
-            task.wait(0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000015);
+            task.wait(0.0000000000000000000000000000000000000000000000000000000000000000015);
         end
     end)
 end)
