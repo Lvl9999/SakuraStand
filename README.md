@@ -35,7 +35,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/m
 
 **Requirements:**
 - 500 Tokens + The Rich + The Intelligent.
-##### Tip: You should use this on 2x Weekends!
+##### Tip: You should use this on 2x Weekends.
 ```lua
 getgenv().StartTask = true -- // Determinds if all the tasks will run or not (false/true), You dont have to set everything else to false if u want to stop completely just set this false.
 getgenv().HowManyTimesT4C = 2 -- // Determines how many times to convert T2C | 2 = 130,400 Cash (Set number high if your cash capacity is higher).
@@ -44,30 +44,6 @@ getgenv().AutoUpgradeMastery = true -- // Will upgrade mastery for you.
 getgenv().AutoBuyAndSellRokakaka = true -- // Will buy rokakaka and sell it along with every item.
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/TokensToCash"))();
-```
-
----
-
-## Statistics GUI Source:
-**What does it do???**
-- It displays your summed up gains (Cash,Token,Mastery) in a GUI.
-##### Tip: Divide how many masteries you got by 15 to see how much breakthroughs you gained.
-```lua
-getgenv().StatisticsGUI = "V" -- //  Key Toggle "V" set by default however you can change it.
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();
-```
-
----
-
-## Custom Script Pack:
-##### This is what I personally use :3
-```lua
-getgenv().ToggleUI = "J"-- //  Key Toggle "J" set by default however you can change it.
-getgenv().StatisticsGUI = "V" -- //  Key Toggle "V" set by default however you can change it.
-getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
-
-loadstring(game:HttpGet(getgenv().SakuraHub))();loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();
 ```
 
 ---
