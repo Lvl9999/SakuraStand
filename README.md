@@ -16,7 +16,6 @@ pcall(function()
 end)
 ```
 
----
 
 ##  One For All Farmer Loadstring:
 
