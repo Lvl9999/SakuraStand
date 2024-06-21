@@ -27,7 +27,7 @@ getgenv().OneForAll = true -- // Determinds if the script will run or not (false
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/OneForAll"))();
 ```
 
-## Tokens To Cash Convertor Loadstring:
+## Tokens To Cash Loadstring:
 
 **Requirements:**
 - (500 Tokens + The Rich + The Intelligent).
