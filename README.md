@@ -3,7 +3,7 @@
 
 ## Main Hub Source:
 
-#### Info: When you are in a private server or a low server a better autofarm plays.
+#### Info: When you are in a private server or a public server a diffrent autofarm plays.
 - (For Public Servers): The Black Silence (Using it will enable risky autofarm prob bannable).
 - (For Private Servers): Shadow The World / Standless / Shinra + The Intelligent (U must have the title).
 ##### Tip: You should use Shinra because she works the best!
