@@ -21,7 +21,7 @@ end)
 ##  One For All Farmer Loadstring:
 
 **Requirements:**
-- Standless + Mastery 3 + Empty Stand Slots.
+- (Standless + Mastery 3 + Empty Stand Slots).
 ##### Tip: Put in your autoexec and use it in public (Undetected).
 ```lua
 getgenv().OneForAll = true -- // Determinds if the script will run or not (false/true).
@@ -34,7 +34,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/m
 ## Tokens To Cash Convertor Loadstring:
 
 **Requirements:**
-- 500 Tokens + The Rich + The Intelligent.
+- (500 Tokens + The Rich + The Intelligent).
 ##### Tip: You should use this on 2x Weekends.
 ```lua
 getgenv().StartTask = true -- // Determinds if all the tasks will run or not (false/true), You dont have to set everything else to false if u want to stop completely just set this false.
