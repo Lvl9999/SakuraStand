@@ -1,7 +1,7 @@
 # Sakura Hub 🌸
-- A script hub exclusive for Sakura Stand!
+### A script hub exclusive for Sakura Stand!
 
-## Main Hub Source:
+## Sakura Hub's Loadstring:
 
 #### Info: When you are in a private server or a public server a diffrent autofarm plays.
 - (For Public Servers): The Black Silence (Using it will enable risky autofarm prob bannable).
@@ -18,7 +18,7 @@ end)
 
 ---
 
-##  One For All Farmer Source:
+##  One For All Farmer Loadstring:
 
 **Requirements:**
 - Standless + Mastery 3 + Empty Stand Slots.
@@ -31,7 +31,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/m
 
 ---
 
-## Tokens To Cash Convertor Source:
+## Tokens To Cash Convertor Loadstring:
 
 **Requirements:**
 - 500 Tokens + The Rich + The Intelligent.
