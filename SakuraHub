@@ -51,7 +51,6 @@ getgenv().ResetConfigs = function()
     getgenv().AutoLevelingUp = false;
     getgenv().AutoRebirth = false;
     getgenv().AutoSelling = false;
-    getgenv().AutoT4C = false;
 
     getgenv().AutoParryingDamage = false;
     getgenv().AutoBlockingDamage = false;
@@ -76,7 +75,6 @@ getgenv().ResetConfigs = function()
     getgenv().StoringHogyoku = false;
 
     getgenv().WalkspeedBypass = false;
-    getgenv().JumpPowerBypass = false;
 
     getgenv().AutoGlitching = false;
     getgenv().AutoEscaping = false;
@@ -97,8 +95,8 @@ BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",2);
 
 local HomeTab = DrRayLibrary.newTab("Home","ImageIdHere");
 
-HomeTab.newLabel("LocalPlayer Scripts   ✨");
-HomeTab.newToggle("Run A Little Faster","",false,function(Value)
+HomeTab.newLabel("Local Player Scripts   ✨");
+HomeTab.newToggle("Auto Run Faster","",false,function(Value)
     getgenv().WalkspeedBypass = Value
 
     -- Got From https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source
@@ -112,7 +110,7 @@ HomeTab.newToggle("Run A Little Faster","",false,function(Value)
                         local hb = game:GetService("RunService").Heartbeat
                         local delta = hb:Wait()
                         if hum.MoveDirection.Magnitude > 0 then
-                            chr:TranslateBy(hum.MoveDirection * 4 * delta * 10);
+                            chr:TranslateBy(hum.MoveDirection * 10 * delta * 10);
                         else
                             chr:TranslateBy(hum.MoveDirection * delta * 10);
                         end
@@ -120,23 +118,6 @@ HomeTab.newToggle("Run A Little Faster","",false,function(Value)
                 end
             end)
             task.wait(0.0015);
-        end
-    end)
-end)
-
-HomeTab.newToggle("Jump A Little Higher","",false,function(Value)
-    getgenv().JumpPowerBypass = Value
-
-    task.spawn(function()
-        if getgenv().JumpPowerBypass == false then
-            workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("UsedValues").OriginalJumpPower.Value = 50
-        end
-
-        while getgenv().JumpPowerBypass == true do
-            pcall(function()
-                workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("UsedValues").OriginalJumpPower.Value = 120
-            end)
-            task.wait(1);
         end
     end)
 end)
@@ -165,12 +146,12 @@ HomeTab.newToggle("Auto Dodge (Use In Open Areas)","",false,function(Value)
             pcall(function()
                 for _,k in ipairs(workspace.Living:GetChildren()) do
                     if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
-                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 20 then
+                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 25 then
                             if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") then
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + Vector3.new(math.random(-45,42),0, math.random(-42,41)));
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + Vector3.new(math.random(-30,30),0, math.random(-30,30)));
                                 for _,k in ipairs(workspace.Effects:GetChildren()) do
                                     if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
-                                        if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 45 then                    
+                                        if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 65 then
                                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(math.random(-35,25),0,math.random(-31,41)));
                                         end
                                     end
@@ -254,7 +235,7 @@ end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","ImageIdHere");
 
-StorageTab.newLabel("Opening things   📭");
+StorageTab.newLabel("Storage Stuff   📤");
 StorageTab.newButton("Close / Open Stand Storage","",function()
     pcall(function()
         task.spawn(function()local Return = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame game:GetService("Players").LocalPlayer.CharacterAdded:Wait() repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = Return end)
@@ -268,7 +249,7 @@ StorageTab.newButton("Close / Open Item Storage","",function()
     end)
 end)
 
-StorageTab.newLabel("Storing things   📬");
+StorageTab.newLabel("Storing Stuff   📥");
 StorageTab.newToggle("Auto Store Every Item","",false,function(Value)
     getgenv().StoringEveryItem = Value
 
@@ -687,34 +668,15 @@ getgenv().Attacking = function()
         game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Punch"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Heavy"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Punch"):FireServer();
-        local args = {[1] = false};
-        game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Barrage"):FireServer(unpack(args));
-    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
-        game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Head Crusher"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Curse Combo"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Head Crusher"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Dismantle"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Curse Combo"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Speed Biltz"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("SukunaRemote"):WaitForChild("Head Crusher"):FireServer();
-    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "The World" then
-        if not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Summoned") then
-            game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Summon"):FireServer();
-        end
-
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("TS"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Sign"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Checkmate"):FireServer()
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("GreatestHigh"):FireServer()
-        local args = {[1] = true};
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Barrage"):FireServer(unpack(args));
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("SignDecap"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("KickBarrage"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Singular"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Impale"):FireServer();
-        local args = {[1] = workspace:WaitForChild("Living"):WaitForChild(Target)};
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("InstantImpale"):FireServer(unpack(args));      
-        game:GetService("ReplicatedStorage"):WaitForChild("TheWorldRemote"):WaitForChild("Punch"):FireServer();
+        local args = {[1] = false};game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Barrage"):FireServer(unpack(args));
+    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
+        game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Ignition"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Punch"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Devil"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Whirling"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Fierce"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Punch"):FireServer();
+        game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Corna"):FireServer();
     elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("TS"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Knife"):FireServer();
@@ -725,54 +687,53 @@ getgenv().Attacking = function()
     end
 end
 
-ShopTab.newLabel("Shop  🏪");
-ShopTab.newButton("Arrow","",function()
+ShopTab.newLabel("Quick Shop  🏪");
+ShopTab.newButton("Buy Arrow","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Arrow"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Rokakaka","",function()
+ShopTab.newButton("Buy Rokakaka","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Rokakaka"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Stop Sign","",function()
+ShopTab.newButton("Buy Stop Sign","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("StopSign"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Hamon Manual","",function()
+ShopTab.newButton("Buy Hamon Manual","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Hamon"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Spin Manual","",function()
+ShopTab.newButton("Buy Spin Manual","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Spin"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Stone Mask","",function()
+ShopTab.newButton("Buy Stone Mask","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Vampire"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
-ShopTab.newButton("Camera","",function()
+ShopTab.newButton("Buy Camera","",function()
     local args = {[1] = "1"};
     game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Camera"):FireServer(unpack(args));
     getgenv().HidePurchasePrompt();
 end)
 
 local FarmingTab = DrRayLibrary.newTab("Farming","ImageIdHere");
-
 if #game:GetService("Players"):GetPlayers() <= 3 then
-    FarmingTab.newLabel("❗ Equip Farming Spec");
-    FarmingTab.newDropdown("","",{"Shadow The World","Ryomen Sukuna","The World","Standless"},function(Value)
+    FarmingTab.newLabel("Equip Farming Spec   📌");
+    FarmingTab.newDropdown("","",{"Shadow The World","Shinra Kusakabe","Standless"},function(Value)
         pcall(function()
             if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
                 BoredLibrary.prompt("Sakura Hub   🌸","You are Combat Marked...",0.75);task.wait(0.15);BoredLibrary.prompt("Sakura Hub   🌸","Reseting Character...",0.75);
@@ -828,64 +789,6 @@ FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka (Use At 2x Weekend)","",fals
     end)
 end)
 
-if #game:GetService("Players"):GetPlayers() <= 3 then
-    FarmingTab.newToggle("Auto Tokens To Cash (Use At 2x Weekend)","",false,function(Value)
-        getgenv().AutoT4C = Value
-    
-        if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.Achievements["The Rich"] then
-            task.spawn(function()
-                while getgenv().AutoT4C == true do if getgenv().AutoPrivateGrinding == true or getgenv().AutoPublicGrinding == true then
-                        BoredLibrary.prompt("Sakura Hub   🌸", "You can't use autofarm with this...",5);
-                        break
-                    end
-                    task.wait(0.15);
-                end
-            end)
-            
-            task.spawn(function()
-                while getgenv().AutoT4C == true and getgenv().AutoPrivateGrinding == false and getgenv().AutoPublicGrinding == false do task.wait(2);
-                    pcall(function()
-                        if game:GetService("Players").LocalPlayer.Data.Token.Value > 500 and game:GetService("Players").LocalPlayer.Data.Cash.Value < 500 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Rich" and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
-                            for i = 1,2 do
-                                local args = {[1] = "T4C"};
-                                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("TokenExchange"):FireServer(unpack(args));
-                            end                
-                        end
-                    end)
-                end
-            end)
-    
-            task.spawn(function()
-                while getgenv().AutoT4C == true and getgenv().AutoPrivateGrinding == false and getgenv().AutoPublicGrinding == false do task.wait(0.35);
-                    pcall(function()
-                        if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
-                            game.Players.LocalPlayer.Character.Humanoid.Health = 0
-                        end
-                    end)
-                end
-            end)
-    
-            task.spawn(function()
-                while getgenv().AutoT4C == true and getgenv().AutoPrivateGrinding == false and getgenv().AutoPublicGrinding == false do task.wait(0.15);
-                    pcall(function()
-                        if game:GetService("Players").LocalPlayer.Data.Cash.Value > 250 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value ~= "The Intelligent" and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
-                            local args = {[1] = "The Intelligent"};
-                            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));
-                        elseif game:GetService("Players").LocalPlayer.Data.Cash.Value < 250 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value ~= "The Rich" and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
-                            local args = {[1] = "The Rich"};
-                            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));
-                        end
-                    end)
-                end
-            end)          
-        else
-            if getgenv().AutoT4C == true then
-                BoredLibrary.prompt("Sakura Hub   🌸", "You don't have the required stuff...");
-            end
-        end 
-    end)
-end
-
 FarmingTab.newLabel("Auto Tasks   📝");
 FarmingTab.newToggle("Auto Upgrade Mastery","",false,function(Value)
     getgenv().AutoRebirth = Value
@@ -916,20 +819,18 @@ FarmingTab.newToggle("Auto Breakthrough","",false,function(Value)
 end)
 
 if #game:GetService("Players"):GetPlayers() <= 3 then
-    FarmingTab.newLabel("❗ Auto Grinding Items + Auto Boss/Mob Farming");
-    FarmingTab.newToggle("Start Farming [Private Server Edition]","",false,function(Value)
+    FarmingTab.newLabel("Auto Grinding Items + Auto Boss / Mob Farming   📦");
+    FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
-        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
             getgenv().Distance = 5;
-        elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "The World" then
-            getgenv().Distance = 6;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
             getgenv().Distance = 7;
         end
 
-        if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Ryomen Sukuna" then
+        if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
@@ -1083,8 +984,8 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         end
     end)
 else
-    FarmingTab.newLabel("❗ Auto Grinding Items + Auto Boss/Mob Farming");
-    FarmingTab.newToggle("Start Farming [Public Server Edition]","",false,function(Value)
+    FarmingTab.newLabel("Auto Grinding Items + Auto Boss / Mob Farming   📦");
+    FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(Value)
         getgenv().AutoPublicGrinding = Value
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
         getgenv().FoundAdjuchas = false;
