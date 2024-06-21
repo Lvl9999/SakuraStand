@@ -76,6 +76,7 @@ getgenv().ResetConfigs = function()
 
     getgenv().WalkspeedBypass = false;
 
+    getgenv().AutoTeleportPunching = false;
     getgenv().AutoGlitching = false;
     getgenv().AutoEscaping = false;
     getgenv().AutoDodging = false;
@@ -138,7 +139,71 @@ HomeTab.newToggle("Auto Escape Combos (Use In Open Areas)","",false,function(Val
     end)
 end)
 
-HomeTab.newToggle("Auto Dodge (Use In Open Areas)","",false,function(Value)
+HomeTab.newToggle("Auto Ctrl Click Punch (Use In Open Areas)","",false,function(Value)
+    getgenv().AutoTeleportPunching = Value
+    getgenv().DetectionDistance = 45
+    getgenv().TeleportDistance = -5
+
+    local LPlayer = game.Players.LocalPlayer
+    local CRoot
+
+    local function UpdateCRoot()
+        local LChar = LPlayer.Character
+        if LChar then
+            CRoot = LChar:FindFirstChild("HumanoidRootPart");
+            if not CRoot then
+                LChar.ChildAdded:Wait()
+                CRoot = LChar:WaitForChild("HumanoidRootPart");
+            end
+        end
+    end
+
+    local function FindNearest()
+        local Dist = getgenv().DetectionDistance
+        local NearestPlr = nil
+
+        for _,v in pairs(game.Workspace.Living:GetChildren()) do
+            local Humanoid = v:FindFirstChildOfClass("Humanoid");
+            local HumanoidRoot = v:FindFirstChild("HumanoidRootPart");
+
+            if Humanoid and HumanoidRoot and v ~= LPlayer.Character then
+                if Humanoid.Health > 0 then
+                    local Mag = (CRoot.Position - HumanoidRoot.Position).magnitude
+                    if Mag < Dist then
+                        Dist = Mag
+                        NearestPlr = HumanoidRoot
+                    end
+                end
+            end
+        end
+
+        return NearestPlr
+    end
+
+    game:GetService("UserInputService").InputBegan:Connect(function(t, j)
+        if not j and t.UserInputType == Enum.UserInputType.MouseButton1 then
+            if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.LeftControl) then
+                if getgenv().AutoTeleportPunching == true then
+                    pcall(function()UpdateCRoot();
+                        if CRoot then
+                            local Found = FindNearest();
+                            if Found then
+                                local Target = Found.Position + -Found.CFrame.LookVector * getgenv().TeleportDistance
+                                LPlayer.Character:SetPrimaryPartCFrame(CFrame.new(Target,Target + (Found.Position - Target).unit));
+                            end
+                        end
+                    end)
+                end
+            end
+        end
+    end)
+
+    LPlayer.CharacterAdded:Connect(function()
+        task.wait(1);UpdateCRoot();
+    end)
+end)
+
+HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,function(Value)
     getgenv().AutoDodging = Value
 
     task.spawn(function()
@@ -161,7 +226,7 @@ HomeTab.newToggle("Auto Dodge (Use In Open Areas)","",false,function(Value)
                     end
                 end
             end)
-            task.wait(0.0000000000000000000000000000015);
+            task.wait(0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000015);
         end
     end)
 end)
@@ -189,6 +254,12 @@ HomeTab.newToggle("Auto Bug Players / Mobs (Requires Grab Moves)","",false,funct
             end)
             task.wait(0.35);
         end
+    end)
+end)
+
+HomeTab.newButton("Destroy Animations (Become Unpredictable)", "",function()
+    pcall(function()
+        workspace.Living[game.Players.LocalPlayer.Name].Humanoid:FindFirstChild("Animator"):Destroy();
     end)
 end)
 
