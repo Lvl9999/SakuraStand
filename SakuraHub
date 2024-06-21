@@ -767,7 +767,7 @@ FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka (Use At 2x Weekend)","",fals
     task.spawn(function()
         while getgenv().AutoLevelingUp == true do task.wait(0.0015);
             pcall(function()
-                if game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
+                if game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
                     local Selling = {"Arrow","Barrel","Rokakaka","Stop Sign","Mysterious Camera" ,"Haunted Sword","Spin Manual","Hamon Manual","Stone Mask","Bomu Bomu Devil Fruit","Mochi Mochi Devil Fruit","Bari Bari Devil Fruit"}
     
                       if game:GetService("Players").LocalPlayer.Data.Cash.Value > 75 then
