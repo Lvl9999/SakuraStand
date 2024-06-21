@@ -1,5 +1,5 @@
 # Sakura Hub 🌸
-### A script hub exclusive for Sakura Stand!
+### Script hub exclusively for Sakura Stand!
 
 ## Sakura Hub's Loadstring:
 
