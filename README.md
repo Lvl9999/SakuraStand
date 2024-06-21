@@ -9,7 +9,7 @@
 ##### Tip: You should use Shinra because she works the best!
 ```lua
 getgenv().ToggleUI = "J" -- //  Key Toggle "J" set by default however you can change it.
-getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/EmulatorHub";
+getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
 pcall(function()
     loadstring(game:HttpGet(getgenv().SakuraHub))();
