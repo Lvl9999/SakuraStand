@@ -180,7 +180,7 @@ HomeTab.newToggle("Auto Bug Players/Mobs (Requires Grab Moves)","",false,functio
                 
                 if OnCooldown and Dashing and not Teleported then
                     X = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9000,-100,9000);
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9000,-150,9000);
                     Teleported = true;
                 elseif not OnCooldown and not Dashing and Teleported then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = X;
