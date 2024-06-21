@@ -166,7 +166,7 @@ HomeTab.newToggle("Auto Dodge (Use In Open Areas)","",false,function(Value)
     end)
 end)
 
-HomeTab.newToggle("Auto Bug Players/Mobs (Requires Grab Moves)","",false,function(Value)
+HomeTab.newToggle("Auto Bug Players / Mobs (Requires Grab Moves)","",false,function(Value)
     getgenv().AutoGlitching = Value
 
     task.spawn(function()
