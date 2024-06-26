@@ -102,7 +102,7 @@ BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",2);
 local HomeTab = DrRayLibrary.newTab("Home","ImageIdHere");
 
 HomeTab.newLabel("Local Player Scripts   ✨");
-HomeTab.newToggle("Super Speed","",false,function(Value)
+HomeTab.newToggle("Walkspeed","",false,function(Value)
     getgenv().WalkspeedBypass = Value
 
     -- Got From https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source
@@ -116,7 +116,7 @@ HomeTab.newToggle("Super Speed","",false,function(Value)
                         local hb = game:GetService("RunService").Heartbeat
                         local delta = hb:Wait()
                         if hum.MoveDirection.Magnitude > 0 then
-                            chr:TranslateBy(hum.MoveDirection * 7 * delta * 10);
+                            chr:TranslateBy(hum.MoveDirection * 10 * delta * 10);
                         else
                             chr:TranslateBy(hum.MoveDirection * delta * 10);
                         end
@@ -161,7 +161,7 @@ HomeTab.newLabel("Fighting Scripts   ⚔️");
 HomeTab.newToggle("Auto Ctrl Click Players / Mobs (Overpowered)","",false,function(Value)
     getgenv().AutoTeleportPunching = Value
     getgenv().DetectionDistance = 55
-    getgenv().TeleportDistance = -5
+    getgenv().TeleportDistance = 5
 
     local LPlayer = game.Players.LocalPlayer
     local CRoot
@@ -405,13 +405,15 @@ HomeTab.newToggle("Auto Bug Players / Mobs (Requires Grab Moves)","",false,funct
     end)
 end)
 
-HomeTab.newButton("Destroy Animations (Become Unpredictable)", "",function()
-    pcall(function()
-        workspace.Living[game.Players.LocalPlayer.Name].Humanoid:FindFirstChild("Animator"):Destroy();
-    end)
+HomeTab.newLabel("Quick Scripts   📜");
+HomeTab.newButton("Animation Grabber","",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/AnimationGrabber/main/Universal"))();
 end)
 
-HomeTab.newLabel("Quick Scripts   📜");
+HomeTab.newButton("Teleport Maker","",function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/GSgUCJmq"))();
+end)
+
 HomeTab.newButton("Infinite Yield","",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))();
 end)
@@ -421,7 +423,7 @@ HomeTab.newButton("Remote Spy","",function()
 end)
 
 HomeTab.newButton("Dark Explorer","",function()
-    loadstring(game:HttpGet('https://ithinkimandrew.site/scripts/tools/dark-dex.lua'))();
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/peyton2465/Dex/master/out.lua'))();
 end)
 
 HomeTab.newLabel("Sakura Hub Stuff   🌸");
