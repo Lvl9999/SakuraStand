@@ -74,9 +74,12 @@ getgenv().ResetConfigs = function()
     getgenv().StoringDiosDiary = false;
     getgenv().StoringHogyoku = false;
 
+    getgenv().HealthAndDisplayEsp = false;
     getgenv().WalkspeedBypass = false;
 
+    getgenv().AutoDodgingProjectiles = false;
     getgenv().AutoTeleportPunching = false;
+    getgenv().AutoBlockWarning = false;
     getgenv().AutoGlitching = false;
     getgenv().AutoEscaping = false;
     getgenv().AutoDashing = false;
@@ -99,7 +102,7 @@ BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",2);
 local HomeTab = DrRayLibrary.newTab("Home","ImageIdHere");
 
 HomeTab.newLabel("Local Player Scripts   ✨");
-HomeTab.newToggle("Auto Run Faster","",false,function(Value)
+HomeTab.newToggle("Super Speed","",false,function(Value)
     getgenv().WalkspeedBypass = Value
 
     -- Got From https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source
@@ -125,79 +128,39 @@ HomeTab.newToggle("Auto Run Faster","",false,function(Value)
     end)
 end)
 
+HomeTab.newToggle("Esp Senses","",false,function(Value)
+    -- Credits to Xiba
+    getgenv().HealthAndDisplayEsp = Value
+
+    local function ApplyESP(v)
+        if v.Character and v.Character:FindFirstChildOfClass("Humanoid") then
+            v.Character.Humanoid.NameDisplayDistance = getgenv().HealthAndDisplayEsp and 9e9 or 70
+            v.Character.Humanoid.NameOcclusion = getgenv().HealthAndDisplayEsp and "NoOcclusion" or "OccludeAll"
+            v.Character.Humanoid.HealthDisplayDistance = getgenv().HealthAndDisplayEsp and 9e9 or 70
+            v.Character.Humanoid.HealthDisplayType = getgenv().HealthAndDisplayEsp and "AlwaysOn" or "Never"
+            v.Character.Humanoid.Health = v.Character.Humanoid.Health
+        end
+    end
+
+    for i,v in pairs(game.Players:GetPlayers()) do
+        ApplyESP(v);
+    end
+
+    game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
+        task.wait(3);ApplyESP(game.Players.LocalPlayer)
+    end)
+
+    game.Players.PlayerAdded:Connect(function(v)ApplyESP(v);
+        v.CharacterAdded:Connect(function()
+            task.wait(3);ApplyESP(v);
+        end)
+    end)
+end)
+
 HomeTab.newLabel("Fighting Scripts   ⚔️");
-HomeTab.newToggle("Auto Escape Combos (Use In Open Areas)","",false,function(Value)
-    getgenv().AutoEscaping = Value
-
-    task.spawn(function()
-        while getgenv().AutoEscaping == true do
-            pcall(function()
-                if workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Stun") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") then
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,1.35);
-                end
-            end)
-            task.wait(0.00015);
-        end
-    end)
-end)
-
-HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,function(Value)
-    getgenv().AutoDodging = Value
-
-    task.spawn(function()
-        while getgenv().AutoDodging == true do
-            pcall(function()
-                for _,k in ipairs(workspace.Living:GetChildren()) do
-                    if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
-                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 25 then
-                            if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
-                                if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
-                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + Vector3.new(math.random(-35,35),0,math.random(-35,35)));
-                                    for _,k in ipairs(workspace.Effects:GetChildren()) do
-                                        if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
-                                            if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 65 then
-                                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(math.random(-35,35),0,math.random(-35,35)));
-                                            end
-                                        end
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end
-            end)
-            task.wait(0.00000000000000000000000000000000000000000000000015);
-        end
-    end)
-end)
-
-HomeTab.newToggle("Auto Avoid Players / Mobs (Overpowered)","",false,function(Value)
-    getgenv().AutoDashing = Value
-
-    task.spawn(function()
-        while getgenv().AutoDashing == true do
-            pcall(function()
-                for _,k in ipairs(workspace.Living:GetChildren()) do
-                    if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
-                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 15 then
-                            if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
-                                if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
-                                    local args = {[1] = "D",[2] = Vector3.new(0,0,0)};
-                                    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Dash"):FireServer(unpack(args));                          
-                                end
-                            end
-                        end
-                    end
-                end
-            end)
-            task.wait(0.00000000000000000000000000000000000000000000000015);
-        end
-    end)
-end)
-
 HomeTab.newToggle("Auto Ctrl Click Players / Mobs (Overpowered)","",false,function(Value)
     getgenv().AutoTeleportPunching = Value
-    getgenv().DetectionDistance = 45
+    getgenv().DetectionDistance = 55
     getgenv().TeleportDistance = -5
 
     local LPlayer = game.Players.LocalPlayer
@@ -255,11 +218,110 @@ HomeTab.newToggle("Auto Ctrl Click Players / Mobs (Overpowered)","",false,functi
     end)
 
     LPlayer.CharacterAdded:Connect(function()
-        task.wait(1);UpdateCRoot();
+        task.wait(3);UpdateCRoot();
     end)
 end)
 
-HomeTab.newToggle("Auto Parry Players / Mobs (Legit)","",false,function(Value)
+HomeTab.newToggle("Auto Escape Combos (Use In Open Areas)","",false,function(Value)
+    getgenv().AutoEscaping = Value
+
+    task.spawn(function()
+        while getgenv().AutoEscaping == true do
+            pcall(function()
+                if workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Stun") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,2);
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+HomeTab.newToggle("Auto Dodge Projectiles (Use In Open Areas)","",false,function(Value)
+    getgenv().AutoDodgingProjectiles = Value
+
+    task.spawn(function()
+        while getgenv().AutoDodgingProjectiles == true do
+            pcall(function()
+                for _,k in ipairs(workspace.Living:GetChildren()) do
+                    if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
+                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 150 then
+                            if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
+                                if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then  
+                                    for _,k in ipairs(workspace.Effects:GetChildren()) do
+                                        if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
+                                            if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 150 and (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude >= 35 then
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(0,60,0));
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+            task.wait(0.00000000000000000000000000000000000000000000000015);
+        end
+    end)
+end)
+
+HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,function(Value)
+    getgenv().AutoDodging = Value
+
+    task.spawn(function()
+        while getgenv().AutoDodging == true do
+            pcall(function()
+                for _,k in ipairs(workspace.Living:GetChildren()) do
+                    if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
+                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 25 then
+                            if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
+                                if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,15,12);
+                                    local DodgeAnimation = Instance.new("Animation");DodgeAnimation.AnimationId = "rbxassetid://12146757350" local k = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(DodgeAnimation);k:Play();k:AdjustSpeed(5);
+                                    for _,k in ipairs(workspace.Effects:GetChildren()) do
+                                        if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
+                                            if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 45 then
+                                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(0,35,0));
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+            task.wait(0.00000000000000000000000000000000000000000000000015);
+        end
+    end)
+end)
+
+HomeTab.newToggle("Auto Avoid Players / Mobs (Overpowered)","",false,function(Value)
+    getgenv().AutoDashing = Value
+
+    task.spawn(function()
+        while getgenv().AutoDashing == true do
+            pcall(function()
+                for _,k in ipairs(workspace.Living:GetChildren()) do
+                    if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
+                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 15 then
+                            if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
+                                if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
+                                    local args = {[1] = "D",[2] = Vector3.new(0,0,0)};
+                                    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Dash"):FireServer(unpack(args));                          
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+            task.wait(0.00000000000000000000000000000000000000000000000015);
+        end
+    end)
+end)
+
+HomeTab.newToggle("Auto Parry Players / Mobs (Overpowered)","",false,function(Value)
     getgenv().AutoParrying = Value
 
     task.spawn(function()
@@ -267,7 +329,7 @@ HomeTab.newToggle("Auto Parry Players / Mobs (Legit)","",false,function(Value)
             pcall(function()
                 for _,k in ipairs(workspace.Living:GetChildren()) do
                     if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
-                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 7 then
+                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 12 then
                             if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
                                 if not game.Workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Parry_Cooldown") and k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
                                     for _,k in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
@@ -288,6 +350,31 @@ HomeTab.newToggle("Auto Parry Players / Mobs (Legit)","",false,function(Value)
                 end
             end)
             task.wait(0.00000000000000000000000000000000000000000000000015);
+        end
+    end)
+end)
+
+HomeTab.newToggle("Auto Block Warnings (Overpowered)","",false,function(Value)
+    getgenv().AutoBlockWarning = Value
+
+    task.spawn(function()
+        while getgenv().AutoBlockWarning == true do
+            pcall(function()
+                if workspace.Living:FindFirstChild(game.Players.LocalPlayer.Name).Head:FindFirstChild("WarningIndi") then
+                    for _,k in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+                        if k:IsA("Folder") and k.Name:match("Remote$") and k:FindFirstChild("Block") then
+                            k.Block:FireServer(true);
+                        end
+                    end
+                else
+                    for _,k in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+                        if k:IsA("Folder") and k.Name:match("Remote$") and k:FindFirstChild("Block") then
+                            k.Block:FireServer(false);
+                        end
+                    end
+                end
+            end)
+            task.wait(0.25);
         end
     end)
 end)
