@@ -1201,9 +1201,10 @@ FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka (Use At 2x Weekend)","",fals
                         game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(unpack(args));
                     end
     
-                    for i,v in ipairs({"Arrow","Barrel","Rokakaka","Stop Sign","Mysterious Camera","Haunted Sword","Spin Manual","Hamon Manual","Stone Mask","Bomu Bomu Devil Fruit","Mochi Mochi Devil Fruit","Bari Bari Devil Fruit"}) do
-                        local args = {[1] = v};
-                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(unpack(args));
+                    for i,v in ipairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+                        if table.find({"Arrow","Barrel","Rokakaka","Stop Sign","Mysterious Camera","Haunted Sword","Spin Manual","Hamon Manual","Stone Mask","Bomu Bomu Devil Fruit","Mochi Mochi Devil Fruit","Bari Bari Devil Fruit"},v.Name) then
+                            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(v.Name)
+                        end
                     end
     
                     getgenv().HidePurchasePrompt();
@@ -1515,9 +1516,12 @@ FarmingTab.newToggle("Auto Sell Everything","",false,function(Value)
     task.spawn(function()
         while getgenv().AutoSelling == true do
             pcall(function()                
-                for i,v in ipairs({"Arrow","Barrel","Rokakaka","Stop Sign","Mysterious Camera","Haunted Sword","Spin Manual","Hamon Manual","Stone Mask","Bomu Bomu Devil Fruit","Mochi Mochi Devil Fruit","Bari Bari Devil Fruit"}) do
-                    local args = {[1] = v};
-                    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(unpack(args));
+                local Items = {"Arrow","Barrel","Rokakaka","Stop Sign","Mysterious Camera","Haunted Sword","Spin Manual","Hamon Manual","Stone Mask","Bomu Bomu Devil Fruit","Mochi Mochi Devil Fruit","Bari Bari Devil Fruit"};
+                
+                for i,v in ipairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+                    if table.find(Items,v.Name) then
+                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(v.Name)
+                    end
                 end
             end)
             task.wait(0.15);
