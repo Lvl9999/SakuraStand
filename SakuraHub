@@ -1185,6 +1185,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
         end)
     end)
 end
+
 FarmingTab.newLabel("Auto Leveling  📈");
 FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka (Use At 2x Weekend)","",false,function(Value)
     getgenv().AutoLevelingUp = Value
