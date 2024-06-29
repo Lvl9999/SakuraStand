@@ -232,7 +232,7 @@ HomeTab.newToggle("Esp Players","",false,function(Value)
     end
 
     Folder.ChildAdded:Connect(function(v)
-        task.wait(1.5);XAdded(v);
+        task.wait(0.5);XAdded(v);
     end)
 end)
 
@@ -338,7 +338,7 @@ HomeTab.newToggle("Esp Entities","",false,function(Value)
     end
 
     Folder.ChildAdded:Connect(function(v)
-        task.wait(1.5);XAdded(v);
+        task.wait(0.5);XAdded(v);
     end)
 end)
 
@@ -432,7 +432,7 @@ HomeTab.newToggle("Esp Items","",false,function(Value)
     
         X.ChildAdded:Connect(function(v)
             if v:IsA("BasePart") and not ShouldIgnore(v) then
-                task.wait(1.5);XAdded(v);
+                task.wait(0.5);XAdded(v);
             end
         end)
     end
