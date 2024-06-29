@@ -144,7 +144,7 @@ HomeTab.newToggle("Super JumpPower","",false,function(Value)
     end)
 end)
 
-HomeTab.newLabel("Visuals Scripts   👁️");
+HomeTab.newLabel("Visual Scripts   👁️");
 HomeTab.newToggle("Esp Players","",false,function(Value)
     getgenv().EspPlayers = Value
 
