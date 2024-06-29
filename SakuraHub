@@ -74,7 +74,8 @@ getgenv().ResetConfigs = function()
     getgenv().StoringDiosDiary = false;
     getgenv().StoringHogyoku = false;
 
-    getgenv().HealthAndDisplayEsp = false;
+    getgenv().EspPlayers = false;
+    getgenv().EspMobs = false;
     getgenv().WalkspeedBypass = false;
 
     getgenv().AutoDodgingProjectiles = false;
@@ -128,32 +129,200 @@ HomeTab.newToggle("Walkspeed","",false,function(Value)
     end)
 end)
 
-HomeTab.newToggle("Esp Senses","",false,function(Value)
-    -- Credits to Xiba
-    getgenv().HealthAndDisplayEsp = Value
+HomeTab.newToggle("Esp Players","",false,function(Value)
+    getgenv().EspPlayers = Value
 
-    local function ApplyESP(v)
-        if v.Character and v.Character:FindFirstChildOfClass("Humanoid") then
-            v.Character.Humanoid.NameDisplayDistance = getgenv().HealthAndDisplayEsp and 9e9 or 70
-            v.Character.Humanoid.NameOcclusion = getgenv().HealthAndDisplayEsp and "NoOcclusion" or "OccludeAll"
-            v.Character.Humanoid.HealthDisplayDistance = getgenv().HealthAndDisplayEsp and 9e9 or 70
-            v.Character.Humanoid.HealthDisplayType = getgenv().HealthAndDisplayEsp and "AlwaysOn" or "Never"
-            v.Character.Humanoid.Health = v.Character.Humanoid.Health
+    local Folder = workspace.Living
+
+    local function CreateBilboard(X)
+        local Head = X:FindFirstChild("Head");
+        if not Head then return end
+
+        local BillboardGui = Instance.new("BillboardGui");
+        local TextLabel = Instance.new("TextLabel");
+
+        BillboardGui.Parent = Head
+        BillboardGui.AlwaysOnTop = true
+        BillboardGui.Size = UDim2.new(0,100,0,50);
+        BillboardGui.StudsOffset = Vector3.new(0, 2, 0);
+
+        TextLabel.Parent = BillboardGui
+        TextLabel.BackgroundColor3 = Color3.new(1,1,1);
+        TextLabel.BackgroundTransparency = 1
+        TextLabel.Size = UDim2.new(1,0,1,0);
+        TextLabel.Text = X.Name
+        TextLabel.TextColor3 = Color3.fromRGB(255,255,0);
+        TextLabel.TextScaled = true
+        TextLabel.Font = Enum.Font.GothamBold
+        TextLabel.TextStrokeTransparency = 0
+        TextLabel.TextStrokeColor3 = Color3.fromRGB(0,0,0);
+        TextLabel.Visible = false
+
+        return BillboardGui, TextLabel
+    end
+
+    local function UseESP(X)
+        local Head = X:FindFirstChild("Head");
+        if not Head then return end
+
+        local BillboardGui, TextLabel = CreateBilboard(X)
+        local RenderSteppedCon
+
+        local function DisconnectCons()
+            if BillboardGui then
+                BillboardGui:Destroy();
+            end
+            if RenderSteppedCon then
+                RenderSteppedCon:Disconnect();
+                RenderSteppedCon = nil
+            end
+        end
+
+        RenderSteppedCon = game:GetService("RunService").RenderStepped:Connect(function()
+            local HeadPosition, HeadOnScreen = workspace.CurrentCamera:WorldToViewportPoint(Head.Position);
+            if HeadOnScreen then
+                TextLabel.Visible = getgenv().EspPlayers
+            else
+                TextLabel.Visible = false
+            end
+        end)
+
+        X.AncestryChanged:Connect(function(_,b)
+            if not b then
+                DisconnectCons();
+            end
+        end)
+    end
+
+    local function isPlayer(X)
+        return game.Players:GetPlayerFromCharacter(X) ~= nil
+    end
+
+    local function XAdded(X)
+        if isPlayer(X) and X:IsA("Model") and X:FindFirstChild("Head") then
+            UseESP(X);
+        end
+        X.ChildAdded:Connect(function(v)
+            if isPlayer(v) and v:IsA("Model") and v:FindFirstChild("Head") then
+                UseESP(v);
+            end
+        end)
+    end
+
+    for _,X in ipairs(Folder:GetChildren()) do
+        if isPlayer(X) and X:IsA("Model") and X:FindFirstChild("Head") then
+            XAdded(X);
         end
     end
 
-    for i,v in pairs(game.Players:GetPlayers()) do
-        ApplyESP(v);
+    Folder.ChildAdded:Connect(function(v)
+        task.wait(1.5);XAdded(v);
+    end)
+end)
+
+HomeTab.newToggle("Esp Mobs","",false,function(Value)
+    getgenv().EspMobs = Value
+
+    local Folder = workspace.Living
+    local Dummies = {"Attacking Dummy","Dummy","Counter Dummy","Blocking Dummy","Tough Dummy"};
+
+    local function CreateBilboard(X)
+        local Head = X:FindFirstChild("Head");
+        if not Head then return end
+
+        local BillboardGui = Instance.new("BillboardGui");
+        local TextLabel = Instance.new("TextLabel");
+
+        BillboardGui.Parent = Head
+        BillboardGui.AlwaysOnTop = true
+        BillboardGui.Size = UDim2.new(0,100,0,50);
+        BillboardGui.StudsOffset = Vector3.new(0, 2, 0);
+
+        TextLabel.Parent = BillboardGui
+        TextLabel.BackgroundColor3 = Color3.new(1,1,1);
+        TextLabel.BackgroundTransparency = 1
+        TextLabel.Size = UDim2.new(1,0,1,0);
+        TextLabel.Text = X.Name
+        TextLabel.TextColor3 = Color3.fromRGB(255,0,0);
+        TextLabel.TextScaled = true
+        TextLabel.Font = Enum.Font.GothamBold
+        TextLabel.TextStrokeTransparency = 0
+        TextLabel.TextStrokeColor3 = Color3.fromRGB(0,0,0);
+        TextLabel.Visible = false
+
+        return BillboardGui, TextLabel
     end
 
-    game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
-        task.wait(3);ApplyESP(game.Players.LocalPlayer)
-    end)
+    local function UseESP(X)
+        local Head = X:FindFirstChild("Head");
+        if not Head then return end
 
-    game.Players.PlayerAdded:Connect(function(v)ApplyESP(v);
-        v.CharacterAdded:Connect(function()
-            task.wait(3);ApplyESP(v);
+        local BillboardGui, TextLabel = CreateBilboard(X)
+        local RenderSteppedCon
+
+        local function DisconnectCons()
+            if BillboardGui then
+                BillboardGui:Destroy();
+            end
+            if RenderSteppedCon then
+                RenderSteppedCon:Disconnect();
+                RenderSteppedCon = nil
+            end
+        end
+
+        RenderSteppedCon = game:GetService("RunService").RenderStepped:Connect(function()
+            local HeadPosition, HeadOnScreen = workspace.CurrentCamera:WorldToViewportPoint(Head.Position);
+            if HeadOnScreen then
+                TextLabel.Visible = getgenv().EspMobs
+            else
+                TextLabel.Visible = false
+            end
         end)
+
+        X.AncestryChanged:Connect(function(_,b)
+            if not b then
+                DisconnectCons();
+            end
+        end)
+    end
+
+    local function isPlayer(X)
+        for _,k in pairs(game.Players:GetPlayers()) do
+            if X.Name == k.Name then
+                return true
+            end
+        end
+        return false
+    end
+
+    local function isDummy(X)
+        for _,m in pairs(Dummies) do
+            if X.Name == m then
+                return true
+            end
+        end
+        return false
+    end
+
+    local function XAdded(X)
+        if not isPlayer(X) and not isDummy(X) and X:IsA("Model") and X:FindFirstChild("Head") then
+            UseESP(X);
+        end
+        X.ChildAdded:Connect(function(v)
+            if not isPlayer(v) and not isDummy(v) and v:IsA("Model") and v:FindFirstChild("Head") then
+                UseESP(v);
+            end
+        end)
+    end
+
+    for _,X in ipairs(Folder:GetChildren()) do
+        if not isPlayer(X) and not isDummy(X) and X:IsA("Model") and X:FindFirstChild("Head") then
+            XAdded(X);
+        end
+    end
+
+    Folder.ChildAdded:Connect(function(v)
+        task.wait(1.5);XAdded(v);
     end)
 end)
 
@@ -410,10 +579,6 @@ HomeTab.newButton("Animation Grabber","",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/AnimationGrabber/main/Universal"))();
 end)
 
-HomeTab.newButton("Teleport Maker","",function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/GSgUCJmq"))();
-end)
-
 HomeTab.newButton("Infinite Yield","",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))();
 end)
@@ -424,6 +589,10 @@ end)
 
 HomeTab.newButton("Dark Explorer","",function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/peyton2465/Dex/master/out.lua'))();
+end)
+
+HomeTab.newButton("Teleport Maker","",function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/GSgUCJmq"))();
 end)
 
 HomeTab.newLabel("Sakura Hub Stuff   🌸");
