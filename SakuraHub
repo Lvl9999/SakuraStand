@@ -1367,17 +1367,11 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                             end
                             
                             if #Parts > 0 then
-                                local Selected = Parts[math.ceil((1 - math.sqrt(math.random())) * #Parts)]
+                                local Selected = Parts[math.ceil((1 - math.sqrt(math.random())) * #Parts)];
+                                local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                             
-                                if Selected then
-                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.15);
-                                    for _,k in ipairs(Folder) do
-                                        for _,v in pairs(k:GetDescendants()) do
-                                            if v:IsA("ProximityPrompt") then
-                                                fireproximityprompt(v,0);
-                                            end
-                                        end
-                                    end
+                                if Selected and Prompt then
+                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.15);Prompt.HoldDuration = 0;Prompt:InputHoldBegin();
                                 end
                             end
                         end
@@ -1480,16 +1474,10 @@ else
                     
                     if #Parts > 0 then
                         local Selected = Parts[math.ceil((1 - math.sqrt(math.random())) * #Parts)];
+                        local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                     
-                        if Selected then
-                            Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,10,0)));task.wait(0.25);
-                            for _,k in ipairs({Folder}) do
-                                for _,v in pairs(k:GetDescendants()) do
-                                    if v:IsA("ProximityPrompt") then
-                                        fireproximityprompt(v,0);
-                                    end
-                                end
-                            end
+                        if Selected and Prompt then
+                            Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,10,0)));task.wait(0.25);Prompt.HoldDuration = 0;Prompt:InputHoldBegin();
                         end
                     end
                 end)
