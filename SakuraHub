@@ -1315,11 +1315,11 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                     task.wait(2.5);
                 end
             end)
-        
+
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                         pcall(function()
-                            if getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
+                            if getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
                                 if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Intelligent" then
                                     local RespawnNeeded = false
         
@@ -1344,7 +1344,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
-                        if getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
+                        if getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
                             local Lplayer = game:GetService("Players").LocalPlayer
                             local Folder = {workspace.Item,workspace.Item2};
                             
@@ -1453,7 +1453,7 @@ else
         end)
 
         task.spawn(function()
-            while getgenv().AutoPublicGrinding == true do
+            while getgenv().AutoPublicGrinding == true and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 do
                 pcall(function()
                     local Lplayer = game:GetService("Players").LocalPlayer
                     local Folder = {workspace.Item,workspace.Item2};
