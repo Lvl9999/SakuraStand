@@ -1225,7 +1225,7 @@ FarmingTab.newToggle("Auto Upgrade Mastery","",false,function(Value)
                     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("UpgradeMas"):FireServer();
                 end
             end)
-            task.wait(0.35);
+            task.wait(0.45);
         end
     end)
 end)
@@ -1240,7 +1240,7 @@ FarmingTab.newToggle("Auto Breakthrough","",false,function(Value)
                     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Breakthrough"):FireServer();
                 end
             end)
-            task.wait(0.35);
+            task.wait(0.45);
         end
     end)
 end)
