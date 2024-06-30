@@ -1375,7 +1375,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                             if #Parts > 0 then local Selected = Parts[math.random(1,#Parts)].x;
                                 local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                                 if Selected and Prompt then
-                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.25);Prompt.HoldDuration = 0;Prompt:InputHoldBegin();
+                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.35);Prompt.HoldDuration = 0;Prompt:InputHoldBegin();
                                 end
                             end
                         end
@@ -1485,7 +1485,7 @@ else
                     if #Parts > 0 then local Selected = Parts[math.random(1,#Parts)].x;
                         local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                         if Selected and Prompt then
-                            Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,10,0)));task.wait(0.25);Prompt.HoldDuration = 0;Prompt:InputHoldBegin();
+                            Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,10,0)));task.wait(0.35);Prompt.HoldDuration = 0;Prompt:InputHoldBegin();
                         end
                     end
                 end)
