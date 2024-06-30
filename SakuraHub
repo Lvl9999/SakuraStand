@@ -1520,7 +1520,7 @@ FarmingTab.newToggle("Auto Sell Everything","",false,function(Value)
                     end
                 end
             end)
-            task.wait(0.45);
+            task.wait(1);
         end
     end)
 end)
