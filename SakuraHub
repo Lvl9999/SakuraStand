@@ -1408,7 +1408,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
     
             task.spawn(function()
                 if getgenv().AutoPrivateGrinding == true then
-                    workspace.Gravity = 9e9;
+                    workspace.Gravity = 35;
                 elseif getgenv().AutoPrivateGrinding == false then
                     workspace.Gravity = 196.2;
                 end
