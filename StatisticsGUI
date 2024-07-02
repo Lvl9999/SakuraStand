@@ -4,7 +4,9 @@ local LPlayer = game:GetService("Players").LocalPlayer;
 task.spawn(function()
     if not getgenv().ExecutedStatisticsGUI == true then
         local ScreenGui = Instance.new("ScreenGui");
-        ScreenGui.Name = "StatisticsGUI"
+        ScreenGui.Name = "StatisticsGUI";
+        ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
+
         local Frame = Instance.new("Frame");
         local CashValue = Instance.new("TextLabel");
         local StatsLabel = Instance.new("TextLabel");
