@@ -664,11 +664,6 @@ HomeTab.newButton("Goodbye Sakura Hub   👋","",function()
     BoredLibrary.prompt("Sakura Hub   🌸","Goodbye :)",0.5);
 end)
 
-HomeTab.newButton("Shut Down Your Game","",function()
-    task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().ResetConfigs();
-    BoredLibrary.prompt("Sakura Hub   🌸","Bye game :3",0.5);game:Shutdown();
-end)
-
 HomeTab.newInput("Report Bugs / Feedback","Type here anything you want me to know :)",function(text)
     getgenv().Message = text
     getgenv().WebHook = "https://discord.com/api/webhooks/1139637670851641454/hA_jFyhj0TPK6TRXA4h0_iBsDEP37Pk_s8g2wY2xlJHV8jW68Rd9rpyp9-DVBD5l1ltm";
@@ -1755,6 +1750,6 @@ task.spawn(function()
                 end)
             end
         end)
-        getgenv().ToggleVisibility = true
+        getgenv().ToggleVisibility = true;
     end
 end)
