@@ -44,56 +44,52 @@ end)
 
 --// Settings Manager \\--
 getgenv().Configurations = function()
-    -- [Grinding Scripts]
-    getgenv().AutoPrivateGrinding = false;
-    getgenv().AutoPublicGrinding = false;
-    getgenv().AutoBreakthrough = false;
-    getgenv().AutoLevelingUp = false;
-    getgenv().AutoRebirth = false;
-    getgenv().AutoSelling = false;
-
-    -- [Quest Scripts]
-    getgenv().AutoParryingDamage = false;
-    getgenv().AutoBlockingDamage = false;
-    getgenv().AutoDealingDamage = false;
-    getgenv().AutoTakingDamage = false;
-    getgenv().AutoDyingDamage = false;
-
-    -- [Storage Scripts]
-    getgenv().StoringEveryItem = false;
-    getgenv().StoringNikyuNikyu = false;
-    getgenv().StoringHogyoku = false;
-    getgenv().StoringDiosBone = false;
-    getgenv().StoringDiosDiary = false;
-    getgenv().StoringFinger = false;
-    getgenv().StoringInverted = false;
-    getgenv().StoringSplit = false;
-    getgenv().StoringChain = false;
-    getgenv().StoringCortex = false;
-    getgenv().StoringCrimson = false;
-    getgenv().StoringCyan = false;
-    getgenv().StoringTech = false;
-    getgenv().StoringArasaka = false;
-    getgenv().StoringKujoHat = false;
+    pcall(function()
+        -- [Grinding Scripts]
+        getgenv().AutoPrivateGrinding = false;
+        getgenv().AutoPublicGrinding = false;
+        getgenv().AutoBreakthrough = false;
+        getgenv().AutoLevelingUp = false;
+        getgenv().AutoRebirth = false;
+        getgenv().AutoSelling = false;
     
-    -- [Movement Scripts]
-    getgenv().WalkspeedBypass = false;
-    getgenv().JumpPowerBypass = false;
+        -- [Quest Scripts]
+        getgenv().AutoParryingDamage = false;
+        getgenv().AutoBlockingDamage = false;
+        getgenv().AutoDealingDamage = false;
+        getgenv().AutoTakingDamage = false;
+        getgenv().AutoDyingDamage = false;
+    
+        -- [Storage Scripts]
+        getgenv().StoringEveryItem = false;
+        getgenv().StoringNikyuNikyu = false;
+        getgenv().StoringHogyoku = false;
+        getgenv().StoringDiosBone = false;
+        getgenv().StoringDiosDiary = false;
+        getgenv().StoringFinger = false;
+        getgenv().StoringInverted = false;
+        getgenv().StoringSplit = false;
+        getgenv().StoringChain = false;
+        getgenv().StoringCortex = false;
+        getgenv().StoringCrimson = false;
+        getgenv().StoringCyan = false;
+        getgenv().StoringTech = false;
+        getgenv().StoringArasaka = false;
+        getgenv().StoringKujoHat = false;
+    
+        -- [Movement Scripts]
+        getgenv().WalkspeedBypass = false;
+        getgenv().JumpPowerBypass = false;
 
-    -- [Esp Scripts]
-    getgenv().EspPlayers = false;
-    getgenv().EspEntities = false;
-    getgenv().EspItems = false;
+        -- [Esp Scripts]
+        getgenv().EspPlayers = false;
+        getgenv().EspEntities = false;
+    
+        getgenv().EspItems = false;
 
-    -- [Combat Scripts]
-    getgenv().AutoTeleportPunching = false;
-    getgenv().AutoBlockWarning = false;
-    getgenv().AutoGlitching = false;
-    getgenv().AutoDodging = false;
-    getgenv().AutoDashing = false;
-
-    -- [Statistics GUI]
-    game:GetService("CoreGui").StatisticsGUI.Enabled = false;
+        -- [Statistics GUI]
+        game:GetService("CoreGui").StatisticsGUI.Enabled = false;    
+    end)
 end
 
 getgenv().Configurations();
