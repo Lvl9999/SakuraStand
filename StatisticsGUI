@@ -1,110 +1,112 @@
 repeat wait() until game:IsLoaded();
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local CashValue = Instance.new("TextLabel")
-local StatsLabel = Instance.new("TextLabel")
-local TokenValue = Instance.new("TextLabel")
-local MasteryValue = Instance.new("TextLabel")
-local Line = Instance.new("TextLabel")
-
-ScreenGui.Parent = game:GetService("CoreGui")
-
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(38, 53, 83)
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.5866, 0, 0.5188, 0)
-Frame.Size = UDim2.new(0, 444, 0, 229)
-
-StatsLabel.Name = "StatsLabel"
-StatsLabel.Parent = Frame
-StatsLabel.BackgroundTransparency = 1.000
-StatsLabel.Position = UDim2.new(0.253, 0, 0.031, 0)
-StatsLabel.Size = UDim2.new(0, 202, 0, 44)
-StatsLabel.Font = Enum.Font.Bangers
-StatsLabel.Text = "Stats"
-StatsLabel.TextColor3 = Color3.fromRGB(221, 221, 221)
-StatsLabel.TextSize = 35.000
-
-CashValue.Name = "CashValue"
-CashValue.Parent = Frame
-CashValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-CashValue.BackgroundTransparency = 1.000
-CashValue.BorderSizePixel = 0
-CashValue.Position = UDim2.new(0.319, 0, 0.712, 0)
-CashValue.Size = UDim2.new(0, 145, 0, 42)
-CashValue.Font = Enum.Font.Bangers
-CashValue.Text = "Cash Gained: 0"
-CashValue.TextColor3 = Color3.fromRGB(195, 195, 195)
-CashValue.TextSize = 29.000
-
-TokenValue.Name = "TokenValue"
-TokenValue.Parent = Frame
-TokenValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TokenValue.BackgroundTransparency = 1.000
-TokenValue.BorderSizePixel = 0
-TokenValue.Position = UDim2.new(0.319, 0, 0.472, 0)
-TokenValue.Size = UDim2.new(0, 145, 0, 42)
-TokenValue.Font = Enum.Font.Bangers
-TokenValue.Text = "Token Gained: 0"
-TokenValue.TextColor3 = Color3.fromRGB(195, 195, 195)
-TokenValue.TextSize = 29.000
-
-MasteryValue.Name = "MasteryValue"
-MasteryValue.Parent = Frame
-MasteryValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-MasteryValue.BackgroundTransparency = 1.000
-MasteryValue.BorderSizePixel = 0
-MasteryValue.Position = UDim2.new(0.319, 0, 0.253, 0)
-MasteryValue.Size = UDim2.new(0, 145, 0, 42)
-MasteryValue.Font = Enum.Font.Bangers
-MasteryValue.Text = "Mastery Gained: 0"
-MasteryValue.TextColor3 = Color3.fromRGB(195, 195, 195)
-MasteryValue.TextSize = 29.000
-
-Line.Name = "Line"
-Line.Text = ""
-Line.Parent = Frame
-Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Line.BorderSizePixel = 0
-Line.Position = UDim2.new(0.077, 0, 0.223, 0)
-Line.Size = UDim2.new(0, 376, 0, 2)
-
-getgenv().InitialCash = game:GetService("Players").LocalPlayer:WaitForChild("Data").Cash.Value
-getgenv().InitialToken = game:GetService("Players").LocalPlayer:WaitForChild("Data").Token.Value
-getgenv().InitialMastery = game:GetService("Players").LocalPlayer:WaitForChild("Data").Mastery.Value
-
-getgenv().TotalCashGained = 0
-getgenv().TotalTokenGained = 0
-getgenv().TotalMasteryGained = 0
-
-local function UpdateLabel(Label,TotalGained,LabelText)
-    Label.Text = LabelText .. tostring(TotalGained);
-end
-
-local function ValueChange(Label,Data,TotalGainedVar,LabelText)
-    local PreviousVal = Data.Value
-    Data:GetPropertyChangedSignal("Value"):Connect(function()
-        local CurrentVal = Data.Value
-        if CurrentVal > PreviousVal then
-            getgenv()[TotalGainedVar] = getgenv()[TotalGainedVar] +  CurrentVal - PreviousVal
-            UpdateLabel(Label,getgenv()[TotalGainedVar],LabelText);
-        end
-        PreviousVal = CurrentVal
-    end)
-end
-
-ValueChange(CashValue,game:GetService("Players").LocalPlayer:WaitForChild("Data").Cash,"TotalCashGained","Cash Gained: ");
-ValueChange(TokenValue,game:GetService("Players").LocalPlayer:WaitForChild("Data").Token,"TotalTokenGained","Token Gained: ");
-ValueChange(MasteryValue,game:GetService("Players").LocalPlayer:WaitForChild("Data").Mastery,"TotalMasteryGained","Mastery Gained: ");
-
-UpdateLabel(CashValue,getgenv().TotalCashGained,"Cash Gained: ");
-UpdateLabel(TokenValue,getgenv().TotalTokenGained,"Token Gained: ");
-UpdateLabel(MasteryValue,getgenv().TotalMasteryGained,"Mastery Gained: ");
+local LPlayer = game:GetService("Players").LocalPlayer;
 
 task.spawn(function()
-    game:GetService("UserInputService").InputBegan:Connect(function(b,z)
-        if not z and b.KeyCode == Enum.KeyCode[getgenv().StatisticsGUI] then
-            game:GetService("CoreGui").ScreenGui.Frame.Visible = not game:GetService("CoreGui").ScreenGui.Frame.Visible
+    if not getgenv().ExecutedStatisticsGUI == true then
+        local ScreenGui = Instance.new("ScreenGui");
+        ScreenGui.Name = "StatisticsGUI"
+        local Frame = Instance.new("Frame");
+        local CashValue = Instance.new("TextLabel");
+        local StatsLabel = Instance.new("TextLabel");
+        local TokenValue = Instance.new("TextLabel");
+        local MasteryValue = Instance.new("TextLabel");
+        local Line = Instance.new("TextLabel");
+        
+        ScreenGui.Parent = game:GetService("CoreGui");
+        Frame.Parent = ScreenGui
+        Frame.BackgroundColor3 = Color3.fromRGB(0,0,0);
+        Frame.BackgroundTransparency = 0.05;
+        Frame.BorderSizePixel = 0
+        Frame.Position = UDim2.new(0.5,0,0.5,0)
+        Frame.AnchorPoint = Vector2.new(0.5,0.5);
+        Frame.Size = UDim2.new(0,444,0,229);
+        
+        StatsLabel.Name = "StatsLabel";
+        StatsLabel.Parent = Frame;
+        StatsLabel.BackgroundTransparency = 1.000;
+        StatsLabel.Position = UDim2.new(0.253,0,0.031,0);
+        StatsLabel.Size = UDim2.new(0,202,0,44);
+        StatsLabel.Font = Enum.Font.Bangers
+        StatsLabel.Text = "Stats"
+        StatsLabel.TextColor3 = Color3.fromRGB(221,221,221);
+        StatsLabel.TextSize = 35.000
+        
+        CashValue.Name = "CashValue"
+        CashValue.Parent = Frame
+        CashValue.BackgroundColor3 = Color3.fromRGB(255,255,255);
+        CashValue.BackgroundTransparency = 1.000
+        CashValue.BorderSizePixel = 0
+        CashValue.Position = UDim2.new(0.319,0,0.712,0);
+        CashValue.Size = UDim2.new(0,145,0,42)
+        CashValue.Font = Enum.Font.Bangers
+        CashValue.Text = "Cash Gained: 0"
+        CashValue.TextColor3 = Color3.fromRGB(195,195,195);
+        CashValue.TextSize = 29.000
+        
+        TokenValue.Name = "TokenValue";
+        TokenValue.Parent = Frame;
+        TokenValue.BackgroundColor3 = Color3.fromRGB(255,255,255);
+        TokenValue.BackgroundTransparency = 1.000;
+        TokenValue.BorderSizePixel = 0;
+        TokenValue.Position = UDim2.new(0.319,0,0.472,0);
+        TokenValue.Size = UDim2.new(0,145,0,42);
+        TokenValue.Font = Enum.Font.Bangers;
+        TokenValue.Text = "Token Gained: 0";
+        TokenValue.TextColor3 = Color3.fromRGB(195,195,195);
+        TokenValue.TextSize = 29.000;
+        
+        MasteryValue.Name = "MasteryValue";
+        MasteryValue.Parent = Frame;
+        MasteryValue.BackgroundColor3 = Color3.fromRGB(255,255,255);
+        MasteryValue.BackgroundTransparency = 1.000;
+        MasteryValue.BorderSizePixel = 0;
+        MasteryValue.Position = UDim2.new(0.319,0,0.253,0);
+        MasteryValue.Size = UDim2.new(0,145,0,42);
+        MasteryValue.Font = Enum.Font.Bangers;
+        MasteryValue.Text = "Mastery Gained: 0";
+        MasteryValue.TextColor3 = Color3.fromRGB(195,195,195);
+        MasteryValue.TextSize = 29.000;
+        
+        Line.Name = "Line";
+        Line.Text = "";
+        Line.Parent = Frame;
+        Line.BackgroundColor3 = Color3.fromRGB(255,255,255);
+        Line.BorderSizePixel = 0;
+        Line.Position = UDim2.new(0.077,0,0.223,0);
+        Line.Size = UDim2.new(0,376,0,2);
+        
+        getgenv().InitialCash = LPlayer:WaitForChild("Data").Cash.Value;
+        getgenv().InitialToken = LPlayer:WaitForChild("Data").Token.Value;
+        getgenv().InitialMastery = LPlayer:WaitForChild("Data").Mastery.Value;
+        
+        getgenv().TotalCashGained = 0;
+        getgenv().TotalTokenGained = 0;
+        getgenv().TotalMasteryGained = 0;
+        
+        local function UpdateLabel(Label,TotalGained,LabelText)
+            Label.Text = LabelText ..tostring(TotalGained);
         end
-    end)
+        
+        local function ValueChange(Label,Data,TotalGainedVar,LabelText)
+            local PreviousVal = Data.Value
+            Data:GetPropertyChangedSignal("Value"):Connect(function()
+                local CurrentVal = Data.Value
+                if CurrentVal > PreviousVal then
+                    getgenv()[TotalGainedVar] = getgenv()[TotalGainedVar] + (CurrentVal - PreviousVal);
+                    UpdateLabel(Label,getgenv()[TotalGainedVar],LabelText);
+                end
+                PreviousVal = CurrentVal
+            end)
+        end
+        
+        ValueChange(CashValue,LPlayer:WaitForChild("Data").Cash,"TotalCashGained","Cash Gained: ");
+        ValueChange(TokenValue,LPlayer:WaitForChild("Data").Token,"TotalTokenGained","Token Gained: ");
+        ValueChange(MasteryValue,LPlayer:WaitForChild("Data").Mastery,"TotalMasteryGained","Mastery Gained: ");
+        
+        UpdateLabel(CashValue, getgenv().TotalCashGained, "Cash Gained: ");
+        UpdateLabel(TokenValue, getgenv().TotalTokenGained, "Token Gained: ");
+        UpdateLabel(MasteryValue, getgenv().TotalMasteryGained, "Mastery Gained: ");
+        game:GetService("CoreGui").StatisticsGUI.Enabled = false;
+        getgenv().ExecutedStatisticsGUI = true;
+    end
 end)
