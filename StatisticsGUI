@@ -30,7 +30,7 @@ task.spawn(function()
         StatsLabel.Position = UDim2.new(0.253,0,0.031,0);
         StatsLabel.Size = UDim2.new(0,202,0,44);
         StatsLabel.Font = Enum.Font.Bangers
-        StatsLabel.Text = "Stats"
+        StatsLabel.Text = "Stats   🌸"
         StatsLabel.TextColor3 = Color3.fromRGB(221,221,221);
         StatsLabel.TextSize = 35.000
         
