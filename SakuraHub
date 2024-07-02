@@ -93,7 +93,7 @@ getgenv().Configurations = function()
     getgenv().AutoDashing = false;
 
     -- [Statistics GUI]
-    --game:GetService("CoreGui").StatisticsGUI.Enabled = false;
+    game:GetService("CoreGui").StatisticsGUI.Enabled = false;
 end
 
 getgenv().Configurations();
