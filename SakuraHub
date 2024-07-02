@@ -13,6 +13,7 @@
 
 --// Auto Loader \\--
 repeat task.wait() until game:IsLoaded();
+task.spawn(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();end)
 
 --// Auto Skip Loading Menu \\--
 task.spawn(function()
@@ -29,9 +30,6 @@ task.spawn(function()
         end
     end)
 end)
-
---// Load Statistics GUI \\--
-task.spawn(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();end)task.wait(0.5);
 
 --// Anti Kick Idle \\--
 task.spawn(function()
