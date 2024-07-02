@@ -14,33 +14,6 @@ pcall(function()
     loadstring(game:HttpGet(getgenv().SakuraHub))();
 end)
 ```
-
-##  One For All Farmer Loadstring:
-
-**Requirements:**
-- (Standless + Mastery 3 + Empty Stand Slots).
-##### Tip: Put in your autoexec and use it in public (Undetected).
-```lua
-getgenv().OneForAll = true -- // Determinds if the script will run or not (false/true).
- 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/OneForAll"))();
-```
-
-## Tokens To Cash Loadstring:
-
-**Requirements:**
-- (500 Tokens + The Rich + The Intelligent).
-##### Tip: You should use this on 2x Weekends.
-```lua
-getgenv().StartTask = true -- // Determinds if all the tasks will run or not (false/true), You dont have to set everything else to false if u want to stop completely just set this false.
-getgenv().HowManyTimesT4C = 2 -- // Determines how many times to convert T2C | 2 = 130,400 Cash (Set number high if your cash capacity is higher).
-getgenv().AutoBreakthrough = true -- // Will breakthrough you.
-getgenv().AutoUpgradeMastery = true -- // Will upgrade mastery for you.
-getgenv().AutoBuyAndSellRokakaka = true -- // Will buy rokakaka and sell it along with every item.
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/TokensToCash"))();
-```
-
 - #### Selling for 750 Robux an even faster autofarm (15 masteries in 4-5 minutes). If interested, then DM me on discord down below!
 - #### Also selling god mode for 350 Robux, Dm me if interested :3
 
