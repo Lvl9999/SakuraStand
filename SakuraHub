@@ -91,6 +91,9 @@ getgenv().Configurations = function()
     getgenv().AutoGlitching = false;
     getgenv().AutoDodging = false;
     getgenv().AutoDashing = false;
+
+    -- [Statistics GUI]
+    game:GetService("CoreGui").StatisticsGUI.Enabled = false;
 end
 
 getgenv().Configurations();
@@ -99,12 +102,13 @@ local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
 -----------------------------------------------------------------------------------------------------------------------
 
+local StatisticsGUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();
 local MainWindow = DrRayLibrary:Load("Sakura Hub   🌸","Default");
 local HomeTab = DrRayLibrary.newTab("Home","http://www.roblox.com/asset/?id=9405923687");
 
---// Apply Custom UI Colors \\--
-game:GetService("CoreGui").DrRay.MainBar.BackgroundColor3 = Color3.new(0,0,0);
+--// Apply Custom UI Color \\--
 game:GetService("CoreGui").DrRay.TopBar.BackgroundColor3 = Color3.new(0,0,0);
+game:GetService("CoreGui").DrRay.MainBar.BackgroundColor3 = Color3.new(0,0,0);
 game:GetService("CoreGui").DrRay.TopBar.TopBar.BackgroundColor3 = Color3.new(0,0,0);
 game:GetService("CoreGui").DrRay.TopBar.ProfileMenu.Clock.BackgroundTransparency = 0.75;
 game:GetService("CoreGui").DrRay.TopBar.ProfileMenu.PlayerProfile.BackgroundTransparency = 0.75;
@@ -660,7 +664,7 @@ HomeTab.newButton("Reload Sakura Hub","",function()
 end)
 
 HomeTab.newButton("Goodbye Sakura Hub   👋","",function()
-    task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().ResetConfigs();
+    task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().Configurations();
     BoredLibrary.prompt("Sakura Hub   🌸","Goodbye :)",0.5);
 end)
 
@@ -1115,7 +1119,7 @@ getgenv().Attacking = function()
         game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Punch"):FireServer();
         local args = {[1] = false};game:GetService("ReplicatedStorage"):WaitForChild("StandlessRemote"):WaitForChild("Barrage"):FireServer(unpack(args));
     elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
-        if not workspace.Living:FindFirstChild("Adjuchas") and not workspace.Living:FindFirstChild("Adjuchas"):FindFirstChild("Head") then
+        if not workspace.Living:FindFirstChild("Adjuchas") then
             game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Ignition"):FireServer();
         end
         game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Punch"):FireServer();
@@ -1204,6 +1208,12 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
         end)
     end)
 end
+
+FarmingTab.newLabel("Statistics   📊");
+FarmingTab.newToggle("Show / Hide Statistics GUI","",false,function(Value)
+    getgenv().ToggleStatisticsGUI = Value
+    game:GetService("CoreGui").StatisticsGUI.Enabled = getgenv().ToggleStatisticsGUI;
+end)
 
 FarmingTab.newLabel("Auto Leveling  📈");
 FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka (Use At 2x Weekend)","",false,function(Value)
