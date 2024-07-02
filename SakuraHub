@@ -84,7 +84,6 @@ getgenv().Configurations = function()
         -- [Esp Scripts]
         getgenv().EspPlayers = false;
         getgenv().EspEntities = false;
-    
         getgenv().EspItems = false;
 
         -- [Statistics GUI]
