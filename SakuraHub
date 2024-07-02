@@ -31,7 +31,7 @@ task.spawn(function()
 end)
 
 --// Load Statistics GUI \\--
-task.spawn(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();end)
+task.spawn(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();end)task.wait(0.5);
 
 --// Anti Kick Idle \\--
 task.spawn(function()
