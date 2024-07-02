@@ -13,7 +13,6 @@
 
 --// Auto Loader \\--
 repeat task.wait() until game:IsLoaded();
-task.spawn(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();end)
 
 --// Auto Skip Loading Menu \\--
 task.spawn(function()
@@ -94,7 +93,7 @@ getgenv().Configurations = function()
     getgenv().AutoDashing = false;
 
     -- [Statistics GUI]
-    game:GetService("CoreGui").StatisticsGUI.Enabled = false;
+    --game:GetService("CoreGui").StatisticsGUI.Enabled = false;
 end
 
 getgenv().Configurations();
@@ -1762,6 +1761,6 @@ task.spawn(function()
                 end)
             end
         end)
-        getgenv().ToggleVisibility = true
+        getgenv().ToggleVisibility = true;
     end
-end)
+end)task.spawn(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();end)
