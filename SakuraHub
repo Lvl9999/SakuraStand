@@ -102,7 +102,9 @@ local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
 -----------------------------------------------------------------------------------------------------------------------
 
-local StatisticsGUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();
+--// Load Statistics GUI \\--
+task.spawn(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();end)
+
 local MainWindow = DrRayLibrary:Load("Sakura Hub   🌸","Default");
 local HomeTab = DrRayLibrary.newTab("Home","http://www.roblox.com/asset/?id=9405923687");
 
