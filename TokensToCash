@@ -97,7 +97,7 @@ if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] a
     end
 else
     if getgenv().StartTask == true then
-        BoredLibrary.prompt("Emulator Hub   💻", "You don't have the required stuff...");
+        BoredLibrary.prompt("Sakura Hub   🌸", "You don't have the required stuff...");
         getgenv().StartTask = false;
         getgenv().AutoBreakthrough = false;
         getgenv().AutoUpgradeMastery = false;
