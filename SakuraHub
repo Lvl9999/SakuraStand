@@ -11,40 +11,40 @@
     end)
 ]]-----------------------------------------------------------------------------------------------------
 
--- // Auto Loader \\ --
+--// Auto Loader \\--
 repeat task.wait() until game:IsLoaded();
 
--- // Anti AFK \\ --
-task.spawn(function()
-    if not getgenv().AntiAfk == true then
-        while true do task.wait(250);
-            pcall(function()
-                game:GetService("VirtualInputManager"):SendKeyEvent(true,"RightBracket",false,game);
-            end)
-        end
-        getgenv().AntiAfk = true
-    end
-end)
-
--- // Auto Skip Loading Menu \\ --
+--// Auto Skip Loading Menu \\--
 task.spawn(function()
     pcall(function()
-        for i = 1,25 do
-            local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play.TextLabel
-            local SkipButton = game:GetService("Players").LocalPlayer.PlayerGui.Loading.BG.SkipButton
+        for i = 1,25 do task.wait(1);
+            local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play.TextLabel;
+            local SkipButton = game:GetService("Players").LocalPlayer.PlayerGui.Loading.BG.SkipButton;
 
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X+PlayButton.AbsoluteSize.X/5,PlayButton.AbsolutePosition.Y+50,0,true,PlayButton,5);
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X+PlayButton.AbsoluteSize.X/5,PlayButton.AbsolutePosition.Y+50,0,false,PlayButton,5);
 
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipButton.AbsolutePosition.X+SkipButton.AbsoluteSize.X/5,SkipButton.AbsolutePosition.Y+50,0,true,SkipButton,5);
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipButton.AbsolutePosition.X+SkipButton.AbsoluteSize.X/5,SkipButton.AbsolutePosition.Y+50,0,false,SkipButton,5);
-            task.wait(1);
         end
     end)
 end)
 
--- // Reset Configs \\ --
-getgenv().ResetConfigs = function()
+--// Anti Kick Idle \\--
+task.spawn(function()
+    if not getgenv().AntiAfk == true then
+        while true do task.wait(1100);
+            pcall(function()
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"RightBracket",false,game);
+            end)
+        end
+        getgenv().AntiAfk = true;
+    end
+end)
+
+--// Settings Manager \\--
+getgenv().Configurations = function()
+    -- [Grinding Scripts]
     getgenv().AutoPrivateGrinding = false;
     getgenv().AutoPublicGrinding = false;
     getgenv().AutoBreakthrough = false;
@@ -52,14 +52,19 @@ getgenv().ResetConfigs = function()
     getgenv().AutoRebirth = false;
     getgenv().AutoSelling = false;
 
+    -- [Quest Scripts]
     getgenv().AutoParryingDamage = false;
     getgenv().AutoBlockingDamage = false;
     getgenv().AutoDealingDamage = false;
     getgenv().AutoTakingDamage = false;
     getgenv().AutoDyingDamage = false;
 
+    -- [Storage Scripts]
     getgenv().StoringEveryItem = false;
-    getgenv().StoringNikyu = false;
+    getgenv().StoringNikyuNikyu = false;
+    getgenv().StoringHogyoku = false;
+    getgenv().StoringDiosBone = false;
+    getgenv().StoringDiosDiary = false;
     getgenv().StoringFinger = false;
     getgenv().StoringInverted = false;
     getgenv().StoringSplit = false;
@@ -70,37 +75,35 @@ getgenv().ResetConfigs = function()
     getgenv().StoringTech = false;
     getgenv().StoringArasaka = false;
     getgenv().StoringKujoHat = false;
-    getgenv().StoringDiosBone = false;
-    getgenv().StoringDiosDiary = false;
-    getgenv().StoringHogyoku = false;
-
+    
+    -- [Movement Scripts]
     getgenv().WalkspeedBypass = false;
     getgenv().JumpPowerBypass = false;
 
+    -- [Esp Scripts]
     getgenv().EspPlayers = false;
     getgenv().EspEntities = false;
     getgenv().EspItems = false;
 
+    -- [Combat Scripts]
     getgenv().AutoTeleportPunching = false;
     getgenv().AutoBlockWarning = false;
     getgenv().AutoGlitching = false;
-    getgenv().AutoDashing = false;
     getgenv().AutoDodging = false;
-
-    workspace.Gravity = 196.2;
+    getgenv().AutoDashing = false;
 end
 
-getgenv().ResetConfigs();
------------------------------------[[ Main Ui Libs ]]-----------------------------------------------------------------
+getgenv().Configurations();
+-----------------------------------[[ Main Ui Libs ]]------------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 
----------------------------------[[ Main Source Code ]]---------------------------------------------------------------
+---------------------------------[[ Main Source Code 💞 ]]------------------------------------------------------------
 local MainWindow = DrRayLibrary:Load("Sakura Hub   🌸","Default");
-BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",2);
-
 local HomeTab = DrRayLibrary.newTab("Home","ImageIdHere");
+
+BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",3);
 
 HomeTab.newLabel("Local Player Scripts   📢");
 HomeTab.newToggle("Super Walkspeed","",false,function(Value)
@@ -142,6 +145,12 @@ HomeTab.newToggle("Super JumpPower","",false,function(Value)
             task.wait(0.0015);
         end
     end)
+end)
+
+HomeTab.newButton("Reset Your Own Character (Gets rid of Combat Mark)","",function()
+    task.spawn(function()local ReturnAfterDeath = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame game:GetService("Players").LocalPlayer.CharacterAdded:Wait() repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = ReturnAfterDeath end)
+    local args = {[1] = "kill"};
+    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
 end)
 
 HomeTab.newLabel("Visual Scripts   👁️");
@@ -704,13 +713,13 @@ StorageTab.newToggle("Auto Store Every Item","",false,function(Value)
 end)
 
 StorageTab.newToggle("Auto Store Nikyu Nikyu Devil Fruit","",false,function(Value)
-    getgenv().StoringNikyu = Value
+    getgenv().StoringNikyuNikyu = Value
 
     local ItemToStore = "Nikyu"
     local ItemSlots = {"Slot1","Slot2","Slot3","Slot4","Slot5","Slot6",};
 
     task.spawn(function()
-        while getgenv().StoringNikyu == true do
+        while getgenv().StoringNikyuNikyu == true do
             pcall(function()
                 for i,v in ipairs(ItemSlots) do
                     if game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Inner.Inner[v].Text.Text == "None" then
@@ -1097,10 +1106,7 @@ getgenv().Attacking = function()
     elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
         game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Ignition"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Punch"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Devil"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Whirling"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Fierce"):FireServer();
-        game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Punch"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("ShinraRemote"):WaitForChild("Corna"):FireServer();
     elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("TS"):FireServer();
@@ -1191,16 +1197,14 @@ FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka (Use At 2x Weekend)","",fals
     getgenv().AutoLevelingUp = Value
 
     task.spawn(function()
-        while getgenv().AutoLevelingUp == true do task.wait(0.015);
+        while getgenv().AutoLevelingUp == true do task.wait(1.5);
             pcall(function()
                 if game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
                     if game:GetService("Players").LocalPlayer.Data.Cash.Value > 75 then
-                        local args = {[1] = "1"};
+                        local args = {[1] = "99"};
                         game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Rokakaka"):FireServer(unpack(args));
-                        local args = {[1] = "Rokakaka"};
-                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(unpack(args));
                     end
-    
+
                     for i,v in ipairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
                         if table.find({"Arrow","Barrel","Rokakaka","Stop Sign","Mysterious Camera","Haunted Sword","Spin Manual","Hamon Manual","Stone Mask","Bomu Bomu Devil Fruit","Mochi Mochi Devil Fruit","Bari Bari Devil Fruit"},v.Name) then
                             game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(v.Name);
@@ -1252,7 +1256,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
         if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
-            getgenv().Distance = -5;
+            getgenv().Distance = -5.5;
         elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
             getgenv().Distance = -7;
         end
@@ -1284,16 +1288,14 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                                 getgenv().Target.Humanoid.Health = 0;
                             end
 
-                            if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Intelligent" then
-                                if not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Dashing") then
-                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position - getgenv().Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,getgenv().Target.HumanoidRootPart.Position);getgenv().Attacking();
-                                end
+                            if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Intelligent" and not getgenv().Target.CDValues:FindFirstChild("OnCooldown") then
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position - getgenv().Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,getgenv().Target.HumanoidRootPart.Position);getgenv().Attacking();
                             end
                         else
                             task.wait(2.5);
                         end
                     end)
-                    task.wait(0.15);
+                    task.wait(0.015);
                 end
             end)
         
@@ -1314,7 +1316,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                             game.Players.LocalPlayer.Character.Humanoid.Health = 0;
                         end            
                     end)
-                    task.wait(2.5);
+                    task.wait(3.5);
                 end
             end)
 
@@ -1374,7 +1376,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                                 end
                             end
                             
-                            if math.random() <= 0.45 and #UniqueParts > 0 then
+                            if math.random() <= 0.65 and #UniqueParts > 0 then
                                 local Selected = UniqueParts[math.random(1,#UniqueParts)];
                                 local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                             
@@ -1403,14 +1405,6 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                         workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Animate").idle.Animation1.AnimationId = "rbxassetid://12512421480";
                     end)
                     task.wait(0.35);
-                end
-            end)
-    
-            task.spawn(function()
-                if getgenv().AutoPrivateGrinding == true then
-                    workspace.Gravity = 35;
-                elseif getgenv().AutoPrivateGrinding == false then
-                    workspace.Gravity = 196.2;
                 end
             end)
         else 
@@ -1494,8 +1488,8 @@ else
                             end
                         end
                     end
-                    
-                    if math.random() <= 0.45 and #UniqueParts > 0 then
+
+                    if math.random() <= 0.65 and #UniqueParts > 0 then
                         local Selected = UniqueParts[math.random(1,#UniqueParts)];
                         local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                     
@@ -1544,7 +1538,7 @@ FarmingTab.newToggle("Auto Sell Everything","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.5);
+            task.wait(3.5);
         end
     end)
 end)
@@ -1653,7 +1647,7 @@ local AreasTab = DrRayLibrary.newTab("Areas","ImageIdHere");
 getgenv().PlaySound = function()
     local Playlist = {"http://www.roblox.com/asset/?id=289556450","http://www.roblox.com/asset/?id=2642969814","http://www.roblox.com/asset/?id=6408655200"};
 
-    local Sound = Instance.new("Sound");Sound.Name = "Sound"Sound.SoundId = Playlist[math.random(1,#Playlist)];
+    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = Playlist[math.random(1,#Playlist)];
     Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
 end
 
@@ -1724,8 +1718,7 @@ task.spawn(function()
         game:GetService("UserInputService").InputBegan:Connect(function(v,x)
             if not x and v.KeyCode == Enum.KeyCode[getgenv().ToggleUI] then
                 pcall(function()
-                    game:GetService("CoreGui").DrRay.TopBar.Visible = not game:GetService("CoreGui").DrRay.TopBar.Visible
-                    game:GetService("CoreGui").DrRay.MainBar.Visible = not game:GetService("CoreGui").DrRay.MainBar.Visible
+                    game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled;
                 end)
             end
         end)
