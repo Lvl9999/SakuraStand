@@ -105,9 +105,9 @@ task.spawn(function()
         ValueChange(TokenValue,LPlayer:WaitForChild("Data").Token,"TotalTokenGained","Token Gained: ");
         ValueChange(MasteryValue,LPlayer:WaitForChild("Data").Mastery,"TotalMasteryGained","Mastery Gained: ");
         
-        UpdateLabel(CashValue, getgenv().TotalCashGained, "Cash Gained: ");
-        UpdateLabel(TokenValue, getgenv().TotalTokenGained, "Token Gained: ");
-        UpdateLabel(MasteryValue, getgenv().TotalMasteryGained, "Mastery Gained: ");
+        UpdateLabel(CashValue, getgenv().TotalCashGained,"Cash Gained: ");
+        UpdateLabel(TokenValue, getgenv().TotalTokenGained,"Token Gained: ");
+        UpdateLabel(MasteryValue, getgenv().TotalMasteryGained,"Mastery Gained: ");
         game:GetService("CoreGui").StatisticsGUI.Enabled = false;
         getgenv().ExecutedStatisticsGUI = true;
     end
