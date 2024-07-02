@@ -6,6 +6,7 @@ task.spawn(function()
         local ScreenGui = Instance.new("ScreenGui");
         ScreenGui.Name = "StatisticsGUI";
         ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
+        ScreenGui.DisplayOrder = 9999;
 
         local Frame = Instance.new("Frame");
         local CashValue = Instance.new("TextLabel");
