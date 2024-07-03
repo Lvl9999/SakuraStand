@@ -17,6 +17,8 @@ end)
 - #### Selling for 750 Robux an even faster autofarm (15 masteries in 4-5 minutes). If interested, then DM me on discord down below!
 - #### Also selling god mode for 350 Robux, Dm me if interested :3
 
+- #### I also made a script for The Strongest Battlegrounds. I recommend you to check it out! [Here](https://github.com/Lvl9999/TheStrongestBattlegrounds)
+
 ## Credits:
 
 #### Script Made by: ThroughTheFireAndFlames#9925
