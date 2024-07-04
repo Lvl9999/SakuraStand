@@ -1615,8 +1615,11 @@ FarmingTab.newToggle("Auto Death Damage","",false,function(Value)
             pcall(function()
                 local AttackingDummy = game.Workspace.Living["Attacking Dummy"];
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(AttackingDummy.HumanoidRootPart.Position - AttackingDummy.HumanoidRootPart.CFrame.LookVector * -5,AttackingDummy.HumanoidRootPart.Position);task.wait(1.5);
-                local args = {[1] = "kill"};
-                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));task.wait(3.5);
+
+                if workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid").MaxHealth ~= workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid").Health then
+                    local args = {[1] = "kill"};
+                    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
+                end
             end)
             task.wait(0.25);
         end
