@@ -987,18 +987,18 @@ StorageTab.newToggle("Auto Store Every Item","",false,function(Value)
     getgenv().StoringKujoHat = Value;
     
     local ItemSlots = {"Slot1","Slot2","Slot3","Slot4","Slot5","Slot6"};
-    local ItemsToStore = {NikyuNikyu = "Nikyu",Hogyoku = "Hogyoku",DiosBone = "Dio's Bone",DiosDiary = "Dio's Diary",Sukuna = "Sukun",Inverted = "Inverted",Split = "Split",Chain = "Chain",Cortex = "Cortex",Crimson = "Crimson",Cyan = "Cyan",Tech = "Tech",Arasaka = "Arasaka",KujoHat = "Kujo"};
+    local ItemsToStore = {NikyuNikyu = "Nikyu",Hogyoku = "Hogyoku",DiosBone = "Dio's Bone",DiosDiary = "Dio's Diary",Finger = "Sukuna",Inverted = "Inverted",Split = "Split",Chain = "Chain",Cortex = "Cortex",Crimson = "Crimson",Cyan = "Cyan",Tech = "Tech",Arasaka = "Arasaka",KujoHat = "Kujo"};
     
     task.spawn(function()
         while getgenv().StoringEveryItem == true do
             pcall(function()
-                for i,v in pairs(ItemsToStore) do
+                for i,k in pairs(ItemsToStore) do
                     if getgenv()["Storing"..i] then
                         for i,v in ipairs(ItemSlots) do
                             if game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Inner.Inner[v].Text.Text == "None" then
                                 for _,x in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-                                    if x.Name:lower():find(v:lower()) then
-                                        game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(x);
+                                    if x.Name:lower():find(k:lower()) then
+                                        game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(x);task.wait(1.15);
                                         local args = {tonumber(v:sub(5))};
                                         game:GetService("ReplicatedStorage"):WaitForChild("ItemStorageRemote"):WaitForChild("UseItemStorage"):FireServer(unpack(args));
                                     end
