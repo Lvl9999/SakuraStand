@@ -165,7 +165,7 @@ HomeTab.newToggle("Super JumpPower","",false,function(Value)
     end)
 end)
 
-HomeTab.newButton("Reset Your Character (Gets rid of Combat Mark)","",function()
+HomeTab.newButton("Reset Character (Gets rid of Combat Mark)","",function()
     task.spawn(function()local ReturnAfterDeath = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame game:GetService("Players").LocalPlayer.CharacterAdded:Wait() repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = ReturnAfterDeath end)
     local args = {[1] = "kill"};
     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
