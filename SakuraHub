@@ -104,7 +104,6 @@ getgenv().Configurations();
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
 -----------------------------------------------------------------------------------------------------------------------
-
 local MainWindow = DrRayLibrary:Load("Sakura Hub   🌸","Default");
 local HomeTab = DrRayLibrary.newTab("Home","http://www.roblox.com/asset/?id=9405923687");
 
@@ -120,7 +119,6 @@ game:GetService("CoreGui").DrRay.TopBar.TopBarClose.idk.Visible = false;
 
 --// Loaded Notification \\--
 BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",3);
-
 ---------------------------------[[ Main Source Code 💞 ]]------------------------------------------------------------
 HomeTab.newLabel("Local Player Scripts   📢");
 HomeTab.newToggle("Super Walkspeed","",false,function(Value)
