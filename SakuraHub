@@ -1602,7 +1602,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                             task.wait(2.5);
                         end
                     end)
-                    task.wait(0.015);
+                    task.wait(0.15);
                 end
             end)
         
