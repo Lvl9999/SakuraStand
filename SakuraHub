@@ -30,15 +30,14 @@ task.spawn(function()
     end)
 end)
 
---// Anti Kick Idle \\--
+--// Anti AFK \\--
 task.spawn(function()
-    if not getgenv().AntiAfk == true then
+    if not getgenv().AntiAfk == true then getgenv().AntiAfk = true;
         while true do task.wait(1100);
             pcall(function()
                 game:GetService("VirtualInputManager"):SendKeyEvent(true,"RightBracket",false,game);
             end)
         end
-        getgenv().AntiAfk = true;
     end
 end)
 
