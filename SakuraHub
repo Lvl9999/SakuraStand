@@ -1724,24 +1724,33 @@ else
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
         local FloatPart = Instance.new("Part",game.Workspace);
-        
+
         FloatPart.Name = "FloatPart"
         FloatPart.Size = Vector3.new(6,0.1,6);
         FloatPart.Anchored = true
         FloatPart.Transparency = 1
-
+        
+        task.spawn(function()
+            if getgenv().AutoPublicGrinding == false then
+                game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,20,0);
+            end
+        end)
+        
+        task.spawn(function()
+            while getgenv().AutoPublicGrinding == false do
+                pcall(function()
+                    game.Workspace.FloatPart:Destroy();
+                end)
+                task.wait(0.25);
+            end
+        end)
+        
         task.spawn(function()
             while getgenv().AutoPublicGrinding == true do
                 pcall(function()
                     FloatPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,-3.05,0);
                 end)
                 task.wait(0.01);
-            end
-        end)
-
-        task.spawn(function()
-            if getgenv().AutoPublicGrinding == false then
-                game.Players.LocalPlayer.Character.Humanoid.Health = 0;
             end
         end)
 
