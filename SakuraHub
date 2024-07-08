@@ -615,7 +615,7 @@ HomeTab.newToggle("Auto Bully Nearest Player (Overpowered)","",false,function(Va
     
     task.spawn(function()
         if getgenv().AutoBullying == false then
-            game.Players.LocalPlayer.Character.Humanoid.Health = 0;
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,20,-20);
         end
     end)
 
