@@ -695,6 +695,18 @@ HomeTab.newToggle("Auto Bully Nearest Player (Overpowered)","",false,function(Va
     end)
 end)
 
+HomeTab.newButton("Drago Idle (Animation)","",function()
+    pcall(function()
+        workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Animate").idle.Animation1.AnimationId = "rbxassetid://12512421480";
+    end)
+end)
+
+HomeTab.newButton("Possesed Idle (Animation)","",function()
+    pcall(function()
+        workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Animate").idle.Animation1.AnimationId = "rbxassetid://17639626616";
+    end)
+end)
+
 HomeTab.newLabel("Fighting Scripts   ⚔️");
 HomeTab.newToggle("Auto Ctrl + Click Combo Players / Mobs (Overpowered)","",false,function(Value)
     getgenv().AutoTeleportPunching = Value
@@ -795,7 +807,8 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
                         if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 25 then
                             if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
                                 if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
-                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,15,12);
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + k.Head.CFrame.lookVector * -20,k.Head.Position);
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,35,0); 
                                     local DodgeAnimation = Instance.new("Animation");DodgeAnimation.AnimationId = "rbxassetid://12146757350" local k = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(DodgeAnimation);k:Play();k:AdjustSpeed(5);
                                     for _,k in ipairs(workspace.Effects:GetChildren()) do
                                         if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
@@ -815,7 +828,7 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
     end)
 end)
 
-HomeTab.newToggle("Auto Block !!! (Overpowered)","",false,function(Value)
+HomeTab.newToggle("Auto Block Warning Attacks (Overpowered)","",false,function(Value)
     getgenv().AutoBlockWarning = Value
 
     task.spawn(function()
@@ -1523,7 +1536,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
     FarmingTab.newLabel("Auto Grinding Items + Auto Boss / Mob Farming   📦");
     FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
-        getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+        getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Menos","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
         if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
             getgenv().Distance = -5.5;
@@ -1684,10 +1697,9 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
         end
     end)
 else
-    FarmingTab.newLabel("Auto Grinding Items + Auto Boss / Mob Farming   📦");
+    FarmingTab.newLabel("Auto Grinding Items   📦");
     FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(Value)
         getgenv().AutoPublicGrinding = Value
-        getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
         local FloatPart = Instance.new("Part",game.Workspace);
 
@@ -1927,71 +1939,123 @@ end)
 local AreasTab = DrRayLibrary.newTab("Areas","http://www.roblox.com/asset/?id=6723742952");
 
 getgenv().PlaySound = function()
-    local Playlist = {"http://www.roblox.com/asset/?id=289556450","http://www.roblox.com/asset/?id=2642969814","http://www.roblox.com/asset/?id=6408655200"};
+    local Playlist = {"http://www.roblox.com/asset/?id=289556450","http://www.roblox.com/asset/?id=2642969814","http://www.roblox.com/asset/?id=4745377484"};
 
     local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = Playlist[math.random(1,#Playlist)];
-    Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+    Sound.Volume = 5;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
 end
 
 AreasTab.newLabel("Teleports   📌");
 AreasTab.newButton("Shop","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-375.9766845703125,-31.704181671142578,1810.9178466796875);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-375.9766845703125,-31.704181671142578,1810.9178466796875);
+    end)
 end)
 
 AreasTab.newButton("Cafe","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-237.51318359375,-32.0684814453125,1452.0396728515625);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-237.51318359375,-32.0684814453125,1452.0396728515625);
+    end)
 end)
 
 AreasTab.newButton("Alley","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-596.9303588867188,-33.014976501464844,1894.4188232421875);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-596.9303588867188,-33.014976501464844,1894.4188232421875);
+    end)
+end)
+
+AreasTab.newButton("Bird","",function()
+    pcall(function()
+        if game:GetService("Workspace").Effects:FindFirstChild("Bird") then
+            getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Effects:FindFirstChild("Bird").PrimaryPart.CFrame;
+        else
+            BoredLibrary.prompt("Sakura Hub   🌸","The bird is not here :(",1);
+        end
+    end)
+end)
+
+AreasTab.newButton("Sakura Office","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-637.9895629882812,4.135000228881836,-325.9488830566406);
+    end)
+end)
+
+AreasTab.newButton("Sakura Tree","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-515.90966796875,-32.15133285522461,1426.1767578125);
+    end)
 end)
 
 AreasTab.newButton("The Forest","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-531.663330078125,-32.643638610839844,1175.7890625);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-531.663330078125,-32.643638610839844,1175.7890625);
+    end)
 end)
 
 AreasTab.newButton("Hueco Mundo","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9330.2342364238,428.23523576,1725.2305236759535);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9330.2342364238,428.23523576,1725.2305236759535);
+    end)
 end)
 
 AreasTab.newButton("Battle Field","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-520.662841796875,-31.358125686645508,1584.3505859375);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-520.662841796875,-31.358125686645508,1584.3505859375);
+    end)
 end)
 
 AreasTab.newButton("Side Park","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-73.15850830078125,-32.01318359375,1636.9390869140625);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-73.15850830078125,-32.01318359375,1636.9390869140625);
+    end)
 end)
 
 AreasTab.newButton("Main Park","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-537.5374145507812,-32.051334381103516,1419.20361328125);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-537.5374145507812,-32.051334381103516,1419.20361328125);
+    end)
 end)
 
 AreasTab.newButton("Library","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-50.88117599487305,-116.3696060180664,344.53594970703125);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-50.88117599487305,-116.3696060180664,344.53594970703125);
+    end)
 end)
 
 AreasTab.newButton("Ruined City","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7150.1806640625,-32.022640228271484,1294.813720703125);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7150.1806640625,-32.022640228271484,1294.813720703125);
+    end)
 end)
 
 AreasTab.newButton("Depths","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(7444.07763671875,-427.5655212402344,-4017.9833984375);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(7444.07763671875,-427.5655212402344,-4017.9833984375);
+    end)
 end)
 
 AreasTab.newButton("Cave","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2343.34326171875,-393.6280822753906,-5044.39013671875);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2343.34326171875,-393.6280822753906,-5044.39013671875);
+    end)
 end)
 
 AreasTab.newButton("Holy Grail War","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3932.30126953125,-234.16961669921875,4539.80810546875);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3932.30126953125,-234.16961669921875,4539.80810546875);
+    end)
 end)
 
 AreasTab.newButton("EthrixLame","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2036.6947021484375,-386.40875244140625,-5355.85888671875);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2036.6947021484375,-386.40875244140625,-5355.85888671875);
+    end)
 end)
 
 AreasTab.newButton("Highest Peak","",function()
-    getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2122.210693359375,-113.98542022705078,-4635.59130859375);
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2122.210693359375,-113.98542022705078,-4635.59130859375);
+    end)
 end)
 
 --// Apply Custom Tab Colors \\--
