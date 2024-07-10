@@ -1536,7 +1536,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
     FarmingTab.newLabel("Auto Grinding Items + Auto Boss / Mob Farming   📦");
     FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
-        getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Menos","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+        getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
         if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
             getgenv().Distance = -5.5;
