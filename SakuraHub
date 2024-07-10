@@ -78,6 +78,8 @@ getgenv().Configurations = function()
 
         -- [Fighting Scripts]
         getgenv().AutoTeleportPunching = false;
+        getgenv().AutoFuckingSyrentia = false;
+        getgenv().AutoFuckingAuddy = false;
         getgenv().AutoBlockWarning = false;
         getgenv().AutoAimlocking = false;
         getgenv().AutoGlitching = false;
@@ -698,6 +700,90 @@ HomeTab.newToggle("Auto Bully Nearest Player (Overpowered)","",false,function(Va
     
     LPlayer.CharacterAdded:Connect(function()
         task.wait(3);UpdateCRoot();
+    end)
+end)
+
+HomeTab.newToggle("Auto Frick Auddy's Gyatt (Sus)","",false,function(Value)
+    getgenv().AutoFuckingAuddy = Value
+
+    task.spawn(function()
+        if getgenv().AutoFuckingAuddy == true then
+            local FuckAnimation = Instance.new("Animation");FuckAnimation.AnimationId = "rbxassetid://148840371" local k = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(FuckAnimation);k:Play();k:AdjustSpeed(6);
+        else
+            for i,v in ipairs((game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid") or game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("AnimationController")):GetPlayingAnimationTracks()) do
+                v:Stop();
+            end
+        end
+    end)
+
+    task.spawn(function()
+        if getgenv().AutoFuckingAuddy == true then
+            local GahDamn = "http://www.roblox.com/asset/?id=8448213216"
+            local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = GahDamn
+            Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+
+            local Claps = "http://www.roblox.com/asset/?id=9114758204"
+            local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = Claps
+            Sound.Volume = 10;Sound.Looped = true;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+        else
+            for i,v in ipairs(workspace:children()) do
+                if v:isA("Sound") then
+                    v:Destroy();
+                end
+            end
+        end
+    end)
+
+    task.spawn(function()
+        while getgenv().AutoFuckingAuddy == true do
+            pcall(function()
+                local Auddy = game.Workspace.Map.NPCs["Auddy"];
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Auddy.HumanoidRootPart.Position - Auddy.HumanoidRootPart.CFrame.LookVector * 1,Auddy.HumanoidRootPart.Position);
+            end)
+            task.wait(0.25);
+        end
+    end)
+end)
+
+HomeTab.newToggle("Auto Frick Syrentia's Mouth (Sus)","",false,function(Value)
+    getgenv().AutoFuckingSyrentia = Value
+
+    task.spawn(function()
+        if getgenv().AutoFuckingSyrentia == true then
+            local FuckAnimation = Instance.new("Animation");FuckAnimation.AnimationId = "rbxassetid://148840371" local k = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(FuckAnimation);k:Play();k:AdjustSpeed(5);
+        else
+            for i,v in ipairs((game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid") or game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("AnimationController")):GetPlayingAnimationTracks()) do
+                v:Stop();
+            end
+        end
+    end)
+
+    task.spawn(function()
+        if getgenv().AutoFuckingSyrentia == true then
+            local GahDamn = "http://www.roblox.com/asset/?id=8448213216"
+            local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = GahDamn
+            Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+
+            local Slurps = "http://www.roblox.com/asset/?id=7132999597"
+            local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = Slurps
+            Sound.Volume = 10;Sound.Looped = true;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+        else
+            for i,v in ipairs(workspace:children()) do
+                if v:isA("Sound") then
+                    v:Destroy();
+                end
+            end
+        end
+    end)
+
+    task.spawn(function()
+        while getgenv().AutoFuckingSyrentia == true do
+            pcall(function()
+                local Syrentia = game.Workspace.Map.NPCs["Syrentia"];
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Syrentia.Head.Position - Syrentia.Head.CFrame.LookVector * -1 + Vector3.new(0,-0.5,0),Syrentia.Head.Position);
+            end)
+            task.wait(0.25);
+        end
     end)
 end)
 
