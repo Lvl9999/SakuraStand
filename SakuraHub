@@ -79,6 +79,7 @@ getgenv().Configurations = function()
         -- [Fighting Scripts]
         getgenv().AutoTeleportPunching = false;
         getgenv().AutoBlockWarning = false;
+        getgenv().AutoAimlocking = false;
         getgenv().AutoGlitching = false;
         getgenv().AutoRoasting = false;
         getgenv().AutoBullying = false;
@@ -463,6 +464,11 @@ HomeTab.newToggle("Esp Items","",false,function(Value)
 end)
 
 HomeTab.newLabel("Miscellaneous Scripts   📌");
+HomeTab.newToggle("Auto Aimlock Nearest Player (Overpowered)","",false,function(Value)
+    getgenv().AutoAimlocking = Value
+    game:GetService("RunService").RenderStepped:Connect(function() if not getgenv().AutoAimlocking == true then return end local x,b for _,v in ipairs(game:GetService("Players"):GetPlayers()) do if v.Character and v ~= game:GetService("Players").LocalPlayer then if not x or (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude < b then x = v b = (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude end end end if x and b <= 35 then game:GetService("Workspace").CurrentCamera.CFrame = CFrame.new(game:GetService("Workspace").CurrentCamera.CFrame.p, x.Character.HumanoidRootPart.Position) end end);
+end)
+
 HomeTab.newToggle("Auto Roast Dead Players (Funny)","",false,function(Value)
     getgenv().AutoRoasting = Value
 
@@ -776,23 +782,27 @@ HomeTab.newToggle("Auto Dash Players / Mobs (Overpowered)","",false,function(Val
     getgenv().AutoDashing = Value
 
     task.spawn(function()
-        while getgenv().AutoDashing == true do
-            pcall(function()
-                for _,k in ipairs(workspace.Living:GetChildren()) do
-                    if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
-                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 15 then
-                            if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
-                                if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
-                                    local args = {[1] = "D",[2] = Vector3.new(0,0,0)};
-                                    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Dash"):FireServer(unpack(args));                          
+        local connection
+        connection = game:GetService("RunService").RenderStepped:Connect(function()
+            if getgenv().AutoDashing == true then
+                pcall(function()
+                    for _,k in ipairs(workspace.Living:GetChildren()) do
+                        if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
+                            if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 15 then
+                                if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
+                                    if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
+                                        local args = {[1] = "D",[2] = Vector3.new(0,0,0)};
+                                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Dash"):FireServer(unpack(args));                          
+                                    end
                                 end
                             end
                         end
                     end
-                end
-            end)
-            task.wait(0.00000000000000000000000000000000000000000000000015);
-        end
+                end)
+            else
+                connection:Disconnect();
+            end
+        end)
     end)
 end)
 
@@ -800,20 +810,23 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
     getgenv().AutoDodging = Value
 
     task.spawn(function()
-        while getgenv().AutoDodging == true do
-            pcall(function()
-                for _,k in ipairs(workspace.Living:GetChildren()) do
-                    if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
-                        if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 25 then
-                            if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
-                                if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
-                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + k.Head.CFrame.lookVector * -20,k.Head.Position);
-                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,35,0); 
-                                    local DodgeAnimation = Instance.new("Animation");DodgeAnimation.AnimationId = "rbxassetid://12146757350" local k = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(DodgeAnimation);k:Play();k:AdjustSpeed(5);
-                                    for _,k in ipairs(workspace.Effects:GetChildren()) do
-                                        if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
-                                            if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 45 then
-                                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(0,35,0));
+        local connection
+        connection = game:GetService("RunService").RenderStepped:Connect(function()
+            if getgenv().AutoDodging == true then
+                pcall(function()
+                    for _,k in ipairs(workspace.Living:GetChildren()) do
+                        if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
+                            if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 25 then
+                                if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
+                                    if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
+                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + k.Head.CFrame.lookVector * -20,k.Head.Position);
+                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,45,0); 
+                                        local DodgeAnimation = Instance.new("Animation");DodgeAnimation.AnimationId = "rbxassetid://12146757350" local k = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(DodgeAnimation);k:Play();k:AdjustSpeed(5);
+                                        for _,k in ipairs(workspace.Effects:GetChildren()) do
+                                            if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
+                                                if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 45 then
+                                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(0,45,0));
+                                                end
                                             end
                                         end
                                     end
@@ -821,10 +834,11 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
                             end
                         end
                     end
-                end
-            end)
-            task.wait(0.00000000000000000000000000000000000000000000000015);
-        end
+                end)
+            else
+                connection:Disconnect();
+            end
+        end)
     end)
 end)
 
