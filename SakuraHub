@@ -902,7 +902,7 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
                 pcall(function()
                     for _,k in ipairs(workspace.Living:GetChildren()) do
                         if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
-                            if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 25 then
+                            if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 35 then
                                 if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
                                     if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
                                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + k.Head.CFrame.lookVector * -20,k.Head.Position);
