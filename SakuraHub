@@ -911,7 +911,7 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
                                         for _,k in ipairs(workspace.Effects:GetChildren()) do
                                             if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
                                                 if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 45 then
-                                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(0,45,25));
+                                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(0,45,20));
                                                 end
                                             end
                                         end
