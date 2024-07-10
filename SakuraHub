@@ -471,6 +471,92 @@ HomeTab.newToggle("Auto Aimlock Nearest Player (Overpowered)","",false,function(
     game:GetService("RunService").RenderStepped:Connect(function() if not getgenv().AutoAimlocking == true then return end local x,b for _,v in ipairs(game:GetService("Players"):GetPlayers()) do if v.Character and v ~= game:GetService("Players").LocalPlayer then if not x or (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude < b then x = v b = (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude end end end if x and b <= 35 then game:GetService("Workspace").CurrentCamera.CFrame = CFrame.new(game:GetService("Workspace").CurrentCamera.CFrame.p, x.Character.HumanoidRootPart.Position) end end);
 end)
 
+HomeTab.newToggle("Auto Bully Nearest Player (Overpowered)","",false,function(Value)
+    getgenv().AutoBullying = Value
+    getgenv().TeleportDistance = 6
+    
+    task.spawn(function()
+        if getgenv().AutoBullying == false then
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,20,-20);
+        end
+    end)
+
+    local LPlayer = game.Players.LocalPlayer
+    local CRoot
+    
+    local function UpdateCRoot()
+        local LChar = LPlayer.Character
+        if LChar then
+            CRoot = LChar:FindFirstChild("HumanoidRootPart");
+            if not CRoot then
+                LChar.ChildAdded:Wait();
+                CRoot = LChar:WaitForChild("HumanoidRootPart");
+            end
+        end
+    end
+    
+    local function isPlayer(X)
+        return game.Players:GetPlayerFromCharacter(X) ~= nil
+    end
+    
+    local function FindNearest()
+        local Dist = math.huge
+        local NearestPlr = nil
+    
+        for _,v in pairs(game.Workspace.Living:GetChildren()) do
+            if isPlayer(v) then
+                local Humanoid = v:FindFirstChildOfClass("Humanoid");
+                local HumanoidRoot = v:FindFirstChild("HumanoidRootPart");
+    
+                if Humanoid and HumanoidRoot and v ~= LPlayer.Character then
+                    local Mag = (CRoot.Position - HumanoidRoot.Position).magnitude
+                    if Mag < Dist then
+                        Dist = Mag;NearestPlr = HumanoidRoot;
+                    end
+                end
+            end
+        end
+    
+        return NearestPlr
+    end
+    
+    task.spawn(function()
+        while getgenv().AutoBullying == true do
+            pcall(function()
+                for _,j in pairs(game:GetService("Players"):GetPlayers()) do
+                    local Char = j.Character
+                    if Char then
+                        for _,n in pairs(Char:GetDescendants()) do
+                            if n:IsA("BasePart") then
+                                n.CanCollide = false
+                            end
+                        end
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+    
+    task.spawn(function()
+        while getgenv().AutoBullying == true  do
+            pcall(function()UpdateCRoot();
+                if CRoot then
+                    local Found = FindNearest();
+                    if Found then
+                        LPlayer.Character:SetPrimaryPartCFrame(CFrame.new(Found.Position - Vector3.new(0,Found.Size.Y/2,0) - Found.CFrame.LookVector * getgenv().TeleportDistance + Vector3.new(0,-6,0),Found.Position - Vector3.new(0,Found.Size.Y/2,0)));
+                    end
+                end
+            end)
+            task.wait(0.015);
+        end
+    end)
+    
+    LPlayer.CharacterAdded:Connect(function()
+        task.wait(3);UpdateCRoot();
+    end)
+end)
+
 HomeTab.newToggle("Auto Roast Dead Players (Funny)","",false,function(Value)
     getgenv().AutoRoasting = Value
 
@@ -609,92 +695,6 @@ HomeTab.newToggle("Auto Roast Dead Players (Funny)","",false,function(Value)
                 end
             end)
             task.wait(3);
-        end
-    end)
-    
-    LPlayer.CharacterAdded:Connect(function()
-        task.wait(3);UpdateCRoot();
-    end)
-end)
-
-HomeTab.newToggle("Auto Bully Nearest Player (Overpowered)","",false,function(Value)
-    getgenv().AutoBullying = Value
-    getgenv().TeleportDistance = 6
-    
-    task.spawn(function()
-        if getgenv().AutoBullying == false then
-            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,20,-20);
-        end
-    end)
-
-    local LPlayer = game.Players.LocalPlayer
-    local CRoot
-    
-    local function UpdateCRoot()
-        local LChar = LPlayer.Character
-        if LChar then
-            CRoot = LChar:FindFirstChild("HumanoidRootPart");
-            if not CRoot then
-                LChar.ChildAdded:Wait();
-                CRoot = LChar:WaitForChild("HumanoidRootPart");
-            end
-        end
-    end
-    
-    local function isPlayer(X)
-        return game.Players:GetPlayerFromCharacter(X) ~= nil
-    end
-    
-    local function FindNearest()
-        local Dist = math.huge
-        local NearestPlr = nil
-    
-        for _,v in pairs(game.Workspace.Living:GetChildren()) do
-            if isPlayer(v) then
-                local Humanoid = v:FindFirstChildOfClass("Humanoid");
-                local HumanoidRoot = v:FindFirstChild("HumanoidRootPart");
-    
-                if Humanoid and HumanoidRoot and v ~= LPlayer.Character then
-                    local Mag = (CRoot.Position - HumanoidRoot.Position).magnitude
-                    if Mag < Dist then
-                        Dist = Mag;NearestPlr = HumanoidRoot;
-                    end
-                end
-            end
-        end
-    
-        return NearestPlr
-    end
-    
-    task.spawn(function()
-        while getgenv().AutoBullying == true do
-            pcall(function()
-                for _,j in pairs(game:GetService("Players"):GetPlayers()) do
-                    local Char = j.Character
-                    if Char then
-                        for _,n in pairs(Char:GetDescendants()) do
-                            if n:IsA("BasePart") then
-                                n.CanCollide = false
-                            end
-                        end
-                    end
-                end
-            end)
-            task.wait(0.15);
-        end
-    end)
-    
-    task.spawn(function()
-        while getgenv().AutoBullying == true  do
-            pcall(function()UpdateCRoot();
-                if CRoot then
-                    local Found = FindNearest();
-                    if Found then
-                        LPlayer.Character:SetPrimaryPartCFrame(CFrame.new(Found.Position - Vector3.new(0,Found.Size.Y/2,0) - Found.CFrame.LookVector * getgenv().TeleportDistance + Vector3.new(0,-6,0),Found.Position - Vector3.new(0,Found.Size.Y/2,0)));
-                    end
-                end
-            end)
-            task.wait(0.015);
         end
     end)
     
