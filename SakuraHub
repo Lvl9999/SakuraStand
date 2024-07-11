@@ -1005,7 +1005,7 @@ HomeTab.newButton("Reload Sakura Hub","",function()
     getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
     pcall(function()
-        game:GetService("CoreGui").DrRay:Destroy();loadstring(game:HttpGet(getgenv().SakuraHub))();
+        game:GetService("CoreGui").DrRay:Destroy();getgenv().Configurations();loadstring(game:HttpGet(getgenv().SakuraHub))();
     end)
 end)
 
