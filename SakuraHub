@@ -17,7 +17,7 @@ repeat task.wait() until game:IsLoaded();
 --// Auto Skip Loading Menu \\--
 task.spawn(function()
     pcall(function()
-        for i = 1,25 do task.wait(1);
+        for i = 1,25 do task.wait(2.5);
             local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
             local SkipButton = game:GetService("Players").LocalPlayer.PlayerGui.Loading.BG.SkipButton;
 
