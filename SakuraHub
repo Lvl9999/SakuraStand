@@ -17,17 +17,27 @@ repeat task.wait() until game:IsLoaded();
 --// Auto Skip Loading Menu \\--
 task.spawn(function()
     pcall(function()
-        for i = 1,15 do task.wait(2.5);
-            local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
-            local SkipButton = game:GetService("Players").LocalPlayer.PlayerGui.Loading.BG.SkipButton;
-
-            game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X+PlayButton.AbsoluteSize.X/5,PlayButton.AbsolutePosition.Y+50,0,true,PlayButton,5);
-            game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X+PlayButton.AbsoluteSize.X/5,PlayButton.AbsolutePosition.Y+50,0,false,PlayButton,5);
-
-            game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipButton.AbsolutePosition.X+SkipButton.AbsoluteSize.X/5,SkipButton.AbsolutePosition.Y+50,0,true,SkipButton,5);
-            game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipButton.AbsolutePosition.X+SkipButton.AbsoluteSize.X/5,SkipButton.AbsolutePosition.Y+50,0,false,SkipButton,5);
+        game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
+        game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.Text = "Made by ThroughTheFireAndFlames#9925 :)";
+        game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.TextColor3 = Color3.fromRGB(170,0,0);
+        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();
+        for i = 1,45 do task.wait(0.35);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,true,PlayButton,1);
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,false,PlayButton,1);
         end
     end)
+end)
+
+--// Auto Fix Camera \\--
+task.spawn(function()
+    if not getgenv().FixedCamera == true then getgenv().FixedCamera = true;
+        repeat task.wait() until game.Players.LocalPlayer.Character and game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled == false;
+        workspace.CurrentCamera:remove();task.wait(0.35);
+        workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid");
+        workspace.CurrentCamera.CameraType = "Custom";game:GetService("Players").LocalPlayer.PlayerGui.MainMenu:Destroy();
+        game.Players.LocalPlayer.CameraMinZoomDistance = 0.5;game.Players.LocalPlayer.CameraMaxZoomDistance = 400;
+        game.Players.LocalPlayer.CameraMode = "Classic";game.Players.LocalPlayer.Character.Head.Anchored = false;
+    end
 end)
 
 --// Anti AFK \\--
@@ -51,6 +61,7 @@ getgenv().Configurations = function()
         getgenv().AutoBreakthrough = false;
         getgenv().AutoPickingItems = false;
         getgenv().AutoStealingOfa = false;
+
         getgenv().AutoLevelingUp = false;
         getgenv().AutoSafeZone = false;
         getgenv().AutoRebirth = false;
