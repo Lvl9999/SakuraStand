@@ -50,6 +50,7 @@ getgenv().Configurations = function()
         getgenv().AutoStealingItems = false;
         getgenv().AutoBreakthrough = false;
         getgenv().AutoPickingItems = false;
+        getgenv().AutoStealingOfa = false;
         getgenv().AutoLevelingUp = false;
         getgenv().AutoSafeZone = false;
         getgenv().AutoRebirth = false;
@@ -1937,15 +1938,38 @@ FarmingTab.newToggle("Auto Sell Everything","",false,function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Auto Stealing Rare Items   🧤");
-FarmingTab.newToggle("Auto Safe Zone (Goes with Item Stealer)","",false,function(Value)
-    getgenv().AutoSafeZone = Value
+FarmingTab.newLabel("Auto Stealing Stuff   🧤");
+FarmingTab.newToggle("Auto Steal One For All (Requires Standless)","",false,function(Value)
+    getgenv().AutoStealingOfa = Value
+    local Prompt = false;
 
     task.spawn(function()
-        if getgenv().AutoSafeZone == true then
-            getgenv().PlaySound();
+        while getgenv().AutoStealingOfa == true do
+            pcall(function()
+                if workspace.Map.NPCs:FindFirstChild("Kuzma") and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+                    for i,v in pairs(game:GetService("Workspace").Map.NPCs.Kuzma:GetChildren()) do
+                        if v:IsA("ClickDetector") then fireclickdetector(v);
+                            for i = 1,15 do task.wait(0.15);
+                                local SkipDialogue = game:GetService("Players").LocalPlayer.PlayerGui.Dialogue.Outer.Inner.TextLabel;
+                            
+                                game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipDialogue.AbsolutePosition.X+SkipDialogue.AbsoluteSize.X/5,SkipDialogue.AbsolutePosition.Y+50,0,true,SkipDialogue,5);
+                                game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipDialogue.AbsolutePosition.X+SkipDialogue.AbsoluteSize.X/5,SkipDialogue.AbsolutePosition.Y+50,0,false,SkipDialogue,5);
+                            end
+                        end
+                    end
+                else
+                    if not Prompt then
+                        BoredLibrary.prompt("Sakura Hub 🌸","Waiting for Kuzma To Spawn",1.5);Prompt = true;
+                    end
+                end
+            end)
+            task.wait(0.35);
         end
     end)
+end)
+
+FarmingTab.newToggle("Auto Safe Zone (Goes with Item Stealer)","",false,function(Value)
+    getgenv().AutoSafeZone = Value
 
     task.spawn(function()
         while getgenv().AutoSafeZone == true do
