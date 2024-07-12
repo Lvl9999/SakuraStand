@@ -32,7 +32,7 @@ end)
 task.spawn(function()
     if not getgenv().FixedCamera == true then getgenv().FixedCamera = true;
         repeat task.wait() until game.Players.LocalPlayer.Character and game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled == false;
-        workspace.CurrentCamera:remove();task.wait(0.35);
+        workspace.CurrentCamera:remove();task.wait(0.15);
         workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid");
         workspace.CurrentCamera.CameraType = "Custom";game:GetService("Players").LocalPlayer.PlayerGui.MainMenu:Destroy();
         game.Players.LocalPlayer.CameraMinZoomDistance = 0.5;game.Players.LocalPlayer.CameraMaxZoomDistance = 400;
