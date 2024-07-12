@@ -47,8 +47,11 @@ getgenv().Configurations = function()
         -- [Grinding Scripts]
         getgenv().AutoPrivateGrinding = false;
         getgenv().AutoPublicGrinding = false;
+        getgenv().AutoStealingItems = false;
         getgenv().AutoBreakthrough = false;
+        getgenv().AutoPickingItems = false;
         getgenv().AutoLevelingUp = false;
+        getgenv().AutoSafeZone = false;
         getgenv().AutoRebirth = false;
         getgenv().AutoSelling = false;
 
@@ -1930,6 +1933,131 @@ FarmingTab.newToggle("Auto Sell Everything","",false,function(Value)
                 end
             end)
             task.wait(3.5);
+        end
+    end)
+end)
+
+FarmingTab.newLabel("Auto Stealing Rare Items   🧤");
+FarmingTab.newToggle("Auto Safe Zone (Goes with Item Stealer)","",false,function(Value)
+    getgenv().AutoSafeZone = Value
+
+    task.spawn(function()
+        if getgenv().AutoSafeZone == true then
+            getgenv().PlaySound();
+        end
+    end)
+
+    task.spawn(function()
+        while getgenv().AutoSafeZone == true do
+            pcall(function()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-637.7359008789062,-33.393035888671875,1031.9337158203125);
+            end)
+            task.wait(1.35);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Steal Any Item (Rares Only)","",false,function(Value)
+    getgenv().AutoStealingItems = Value
+
+    local FloatPart = Instance.new("Part",game.Workspace);
+
+    FloatPart.Name = "FloatPart"
+    FloatPart.Size = Vector3.new(6,0.1,6);
+    FloatPart.Anchored = true
+    FloatPart.Transparency = 1
+    
+    task.spawn(function()
+        if getgenv().AutoStealingItems == false then task.wait(0.25);
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,-20,0);
+            task.wait(1);game.Players.LocalPlayer.Character.Humanoid.Health = 0;
+        end
+    end)
+    
+    task.spawn(function()
+        while getgenv().AutoStealingItems == false do
+            pcall(function()
+                game.Workspace.FloatPart:Destroy();
+            end)
+            task.wait(0.25);
+        end
+    end)
+
+    task.spawn(function()
+        while getgenv().AutoStealingItems == true do
+            pcall(function()
+                for _,j in pairs(game:GetService("Players"):GetPlayers()) do
+                    local Char = j.Character
+                    if Char then
+                        for _,n in pairs(Char:GetDescendants()) do
+                            if n:IsA("BasePart") then
+                                n.CanCollide = false
+                            end
+                        end
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+
+    task.spawn(function()
+        while getgenv().AutoStealingItems == true do
+            pcall(function()
+                local Lplayer = game:GetService("Players").LocalPlayer
+                local Folder = {workspace.Item,workspace.Item2};
+
+                local UniqueParts = {}
+                
+                for _,k in ipairs(Folder) do
+                    for _,k in ipairs(k:GetChildren()) do
+                        if k:IsA("BasePart") and k.Name ~= "SoulSpawn" and k.Name ~= "PerceptionMask" and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125) then
+                            if ((k.Name:sub(1,2) == "Bo" or k.Name:sub(1,3) == "Sec") and k:FindFirstChild("Outline")) or ((k.Name:sub(1,2) ~= "Bo" and k.Name:sub(1,3) ~= "Sec") and not k:FindFirstChild("Outline")) then
+                                if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "SukunaFinger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "HogyokuFragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
+                                    if (k.Name ~= "Box" and k.Name ~= "Barrel" and k.Name ~= "Chest") then
+                                        table.insert(UniqueParts,k);
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+                
+                local function TeleportTo(Parts)
+                    if #Parts > 0 then
+                        local Selected = Parts[math.random(1,#Parts)];
+                
+                        if Selected then FloatPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,-3.05,0);
+                            Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,7,0)));
+                        end
+                    end
+                end
+                
+                if #UniqueParts > 0 then
+                    TeleportTo(UniqueParts);
+                end
+            end)
+            task.wait(0.01);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Pick Aura Any Item","",false,function(Value)
+    getgenv().AutoPickingItems = Value
+
+    task.spawn(function()
+        while getgenv().AutoPickingItems == true do
+            pcall(function()
+                local Folders = {workspace.Item,workspace.Item2};
+                for i,v in pairs(Folders) do
+                    for i,v in pairs(v:GetDescendants()) do
+                        if v:IsA("ProximityPrompt") then
+                            fireproximityprompt(v,0);
+                        end
+                    end
+                end
+            end)
+            task.wait(0.01);
         end
     end)
 end)
