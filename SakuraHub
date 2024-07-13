@@ -21,7 +21,7 @@ task.spawn(function()
         game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.Text = "Made by ThroughTheFireAndFlames#9925 :)";
         game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.TextColor3 = Color3.fromRGB(170,0,0);
         game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();
-        for i = 1,45 do task.wait(0.35);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
+        for i = 1,45 do task.wait(0.15);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,true,PlayButton,1);
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,false,PlayButton,1);
         end
