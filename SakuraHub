@@ -61,7 +61,6 @@ getgenv().Configurations = function()
         getgenv().AutoBreakthrough = false;
         getgenv().AutoPickingItems = false;
         getgenv().AutoStealingOfa = false;
-
         getgenv().AutoLevelingUp = false;
         getgenv().AutoSafeZone = false;
         getgenv().AutoRebirth = false;
