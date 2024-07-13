@@ -1659,7 +1659,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
             getgenv().Distance = -7;
         end
 
-        if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
+        if game:GetService("Players").LocalPlayer.Data.Achievements:FindFirstChild("The Intelligent") and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
@@ -1686,7 +1686,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                                 getgenv().Target.Humanoid.Health = 0;
                             end
 
-                            if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Intelligent" and not getgenv().Target.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Dashing") then
+                            if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Intelligent" and not getgenv().Target.CDValues:FindFirstChild("OnCooldown") and not getgenv().Target.CDValues:FindFirstChild("Grabbed") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Dashing") then
                                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position - getgenv().Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,getgenv().Target.HumanoidRootPart.Position);getgenv().Attacking();
                             end
                         else
@@ -1701,12 +1701,12 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
                         if getgenv().FoundAnything == true and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
-                            if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value ~= "The Intelligent" then
+                            if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value ~= "The Intelligent" then
                                 local args = {[1] = "The Intelligent"};
                                 game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));
                             end
                         elseif getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
-                            if game:GetService("Players").LocalPlayer.Data.Achievements["The Intelligent"] and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value ~= "The Intelligent" then
+                            if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value ~= "The Intelligent" then
                                 local args = {[1] = "The Intelligent"};
                                 game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));
                             end
