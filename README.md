@@ -6,7 +6,7 @@
 #### When you are in a private server or a public server a diffrent autofarm plays.
 - (For Private Servers): Shadow The World / Standless / Shinra Kusakabe (U must have the spec).
 - (For Public Servers): Nothing, It wont autofarm Mobs in public (For your Safety).
-##### Tip: You should use Shinra Kusakabe because he works the best!
+##### Tip: You should use Shinra Kusakabe because he works the best with the autofarm!
 ```lua
 getgenv().ToggleUI = "J" -- //  Key Toggle "J" set by default however you can change it.
 getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
