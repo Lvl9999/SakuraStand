@@ -15,7 +15,7 @@ pcall(function()
 end)
 ```
 - #### Selling for 750 Robux an even faster autofarm (15 masteries in 4-5 minutes).
-- #### Also selling god mode for 350 Robux, Dm meh discord if interested :3
+  Also selling god mode for 350 Robux, Dm meh discord if interested :3
 
 - #### I also made a script for The Strongest Battlegrounds. I recommend you to check it out! [Here](https://github.com/Lvl9999/TheStrongestBattlegrounds)
 
