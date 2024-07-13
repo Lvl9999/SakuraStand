@@ -1555,7 +1555,7 @@ end)
 
 local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?id=12334656615");
 if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirstChild("PerceptionMask") then
-    FarmingTab.newLabel("Equip Farming Spec   📌");
+    FarmingTab.newLabel("Equip Farming Spec + Title   📌");
     FarmingTab.newDropdown("","",{"Shadow The World","Shinra Kusakabe","Standless"},function(Value)
         pcall(function()
             if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
@@ -1659,7 +1659,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
             getgenv().Distance = -7;
         end
 
-        if game:GetService("Players").LocalPlayer.Data.Achievements:FindFirstChild("The Intelligent") and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
+        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
@@ -1686,31 +1686,23 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                                 getgenv().Target.Humanoid.Health = 0;
                             end
 
-                            if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Intelligent" and not getgenv().Target.CDValues:FindFirstChild("OnCooldown") and not getgenv().Target.CDValues:FindFirstChild("Grabbed") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Dashing") then
-                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position - getgenv().Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,getgenv().Target.HumanoidRootPart.Position);getgenv().Attacking();
+                            if not getgenv().Target.CDValues:FindFirstChild("OnCooldown") and not getgenv().Target.CDValues:FindFirstChild("Grabbed") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Dashing") then
+                                task.spawn(function()
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position - getgenv().Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,getgenv().Target.HumanoidRootPart.Position);task.wait(0.45);
+                                end)getgenv().Attacking();
                             end
                         else
                             task.wait(2.5);
                         end
                     end)
-                    task.wait(0.15);
+                    task.wait(0.35);
                 end
             end)
         
             task.spawn(function()
                 while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
-                        if getgenv().FoundAnything == true and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
-                            if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value ~= "The Intelligent" then
-                                local args = {[1] = "The Intelligent"};
-                                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));
-                            end
-                        elseif getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
-                            if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value ~= "The Intelligent" then
-                                local args = {[1] = "The Intelligent"};
-                                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));
-                            end
-                        elseif getgenv().FoundAnything == false and game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
+                        if getgenv().FoundAnything == false and game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
                             game.Players.LocalPlayer.Character.Humanoid.Health = 0;
                         end            
                     end)
@@ -1722,20 +1714,18 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
                 while getgenv().AutoPrivateGrinding == true do
                         pcall(function()
                             if getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
-                                if game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == "The Intelligent" then
-                                    local RespawnNeeded = false
-        
-                                    for _,k in pairs(game.Workspace.Item:GetChildren()) do
-                                        if ((k.Name == "Box" and k:FindFirstChild("Outline")) and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125)) or k.Name == "Barrel" or k.Name == "Chest" and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chest Key") then
-                                            RespawnNeeded = true
-                                            break
-                                        end
+                                local RespawnNeeded = false
+    
+                                for _,k in pairs(game.Workspace.Item:GetChildren()) do
+                                    if ((k.Name == "Box" and k:FindFirstChild("Outline")) and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125)) or k.Name == "Barrel" or k.Name == "Chest" and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chest Key") then
+                                        RespawnNeeded = true
+                                        break
                                     end
-        
-                                    if RespawnNeeded and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and getgenv().AutoLevelingUp == false then
-                                        local args = {[1] = "Exploiter"};
-                                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));task.wait(4.5);
-                                    end
+                                end
+    
+                                if RespawnNeeded and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and getgenv().AutoLevelingUp == false then
+                                    local args = {[1] = "Exploiter"};
+                                    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));task.wait(4.5);
                                 end
                             end
                         end)
@@ -1957,20 +1947,26 @@ FarmingTab.newToggle("Auto Steal One For All (Requires Standless)","",false,func
     task.spawn(function()
         while getgenv().AutoStealingOfa == true do
             pcall(function()
-                if workspace.Map.NPCs:FindFirstChild("Kuzma") and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
-                    for i,v in pairs(game:GetService("Workspace").Map.NPCs.Kuzma:GetChildren()) do
-                        if v:IsA("ClickDetector") then fireclickdetector(v);
-                            for i = 1,15 do task.wait(0.15);
-                                local SkipDialogue = game:GetService("Players").LocalPlayer.PlayerGui.Dialogue.Outer.Inner.TextLabel;
-                            
-                                game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipDialogue.AbsolutePosition.X+SkipDialogue.AbsoluteSize.X/5,SkipDialogue.AbsolutePosition.Y+50,0,true,SkipDialogue,5);
-                                game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipDialogue.AbsolutePosition.X+SkipDialogue.AbsoluteSize.X/5,SkipDialogue.AbsolutePosition.Y+50,0,false,SkipDialogue,5);
+                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" and game:GetService("Players").LocalPlayer.Data.Mastery.Value >= 3 then
+                    if workspace.Map.NPCs:FindFirstChild("Kuzma") then
+                        for i,v in pairs(game:GetService("Workspace").Map.NPCs.Kuzma:GetChildren()) do
+                            if v:IsA("ClickDetector") then fireclickdetector(v);
+                                for i = 1,15 do task.wait(0.15);
+                                    local SkipDialogue = game:GetService("Players").LocalPlayer.PlayerGui.Dialogue.Outer.Inner.TextLabel;
+
+                                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipDialogue.AbsolutePosition.X+SkipDialogue.AbsoluteSize.X/5,SkipDialogue.AbsolutePosition.Y+50,0,true,SkipDialogue,5);
+                                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipDialogue.AbsolutePosition.X+SkipDialogue.AbsoluteSize.X/5,SkipDialogue.AbsolutePosition.Y+50,0,false,SkipDialogue,5);
+                                end
                             end
                         end
+                    else
+                        if not Prompt then
+                            BoredLibrary.prompt("Sakura Hub 🌸","Waiting for Kuzma To Spawn",1.5);Prompt = true;
+                        end  
                     end
                 else
                     if not Prompt then
-                        BoredLibrary.prompt("Sakura Hub 🌸","Waiting for Kuzma To Spawn",1.5);Prompt = true;
+                        BoredLibrary.prompt("Sakura Hub 🌸","Mastery is not Enough",1.5);Prompt = true;
                     end
                 end
             end)
