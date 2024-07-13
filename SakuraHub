@@ -486,13 +486,13 @@ HomeTab.newToggle("Auto Aimlock Nearest Player (Overpowered)","",false,function(
     game:GetService("RunService").RenderStepped:Connect(function() if not getgenv().AutoAimlocking == true then return end local x,b for _,v in ipairs(game:GetService("Players"):GetPlayers()) do if v.Character and v ~= game:GetService("Players").LocalPlayer then if not x or (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude < b then x = v b = (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude end end end if x and b <= 35 then game:GetService("Workspace").CurrentCamera.CFrame = CFrame.new(game:GetService("Workspace").CurrentCamera.CFrame.p, x.Character.HumanoidRootPart.Position) end end);
 end)
 
-HomeTab.newToggle("Auto Bully Nearest Player (Overpowered)","",false,function(Value)
+HomeTab.newToggle("Auto Bully Nearest Player (Dont Use Grab Moves)","",false,function(Value)
     getgenv().AutoBullying = Value
     getgenv().TeleportDistance = 6
     
     task.spawn(function()
         if getgenv().AutoBullying == false then
-            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,20,-20);
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,50,-50);
         end
     end)
 
@@ -572,7 +572,7 @@ HomeTab.newToggle("Auto Bully Nearest Player (Overpowered)","",false,function(Va
     end)
 end)
 
-HomeTab.newToggle("Auto Roast Dead Players (Funny)","",false,function(Value)
+HomeTab.newToggle("Auto Roast Dead Players (Rage Bait)","",false,function(Value)
     getgenv().AutoRoasting = Value
 
     -- // Thanks to ChatGPT the goat
@@ -799,18 +799,6 @@ HomeTab.newToggle("Auto Frick Syrentia's Mouth (Sus)","",false,function(Value)
             end)
             task.wait(0.25);
         end
-    end)
-end)
-
-HomeTab.newButton("Drago Idle (Animation)","",function()
-    pcall(function()
-        workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Animate").idle.Animation1.AnimationId = "rbxassetid://12512421480";
-    end)
-end)
-
-HomeTab.newButton("Possesed Idle (Animation)","",function()
-    pcall(function()
-        workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Animate").idle.Animation1.AnimationId = "rbxassetid://17639626616";
     end)
 end)
 
@@ -1554,8 +1542,8 @@ ShopTab.newButton("Buy Camera","",function()
 end)
 
 local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?id=12334656615");
-if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirstChild("PerceptionMask") then
-    FarmingTab.newLabel("Equip Farming Spec + Title   📌");
+if #game:GetService("Players"):GetPlayers() <= 3 then
+    FarmingTab.newLabel("Fast Equip Farming Spec   📌");
     FarmingTab.newDropdown("","",{"Shadow The World","Shinra Kusakabe","Standless"},function(Value)
         pcall(function()
             if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
@@ -1647,8 +1635,8 @@ FarmingTab.newToggle("Auto Breakthrough","",false,function(Value)
     end)
 end)
 
-if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirstChild("PerceptionMask") then
-    FarmingTab.newLabel("Auto Grinding Items + Auto Boss / Mob Farming   📦");
+if #game:GetService("Players"):GetPlayers() <= 3 then
+    FarmingTab.newLabel("Auto Farming Items + Auto Farming Bosses / Mobs   💫");
     FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
         getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
@@ -1688,14 +1676,14 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
 
                             if not getgenv().Target.CDValues:FindFirstChild("OnCooldown") and not getgenv().Target.CDValues:FindFirstChild("Grabbed") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Dashing") then
                                 task.spawn(function()
-                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position - getgenv().Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,getgenv().Target.HumanoidRootPart.Position);task.wait(0.45);
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position - getgenv().Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,getgenv().Target.HumanoidRootPart.Position);task.wait(0.35);
                                 end)getgenv().Attacking();
                             end
                         else
                             task.wait(2.5);
                         end
                     end)
-                    task.wait(0.35);
+                    task.wait(0.15);
                 end
             end)
         
@@ -1802,7 +1790,7 @@ if #game:GetService("Players"):GetPlayers() <= 3 and not workspace.Item:FindFirs
         end
     end)
 else
-    FarmingTab.newLabel("Auto Grinding Items   📦");
+    FarmingTab.newLabel("Auto Farming Items   💫");
     FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(Value)
         getgenv().AutoPublicGrinding = Value
 
@@ -1947,43 +1935,36 @@ FarmingTab.newToggle("Auto Steal One For All (Requires Standless)","",false,func
     task.spawn(function()
         while getgenv().AutoStealingOfa == true do
             pcall(function()
-                if game:GetService("Players").LocalPlayer.Data.Mastery.Value > 2 then
-                    if workspace.Map.NPCs:FindFirstChild("Kuzma") and game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
-                        for i,v in pairs(game:GetService("Workspace").Map.NPCs.Kuzma:GetChildren()) do
-                            if v:IsA("ClickDetector") then fireclickdetector(v);
-                                for i = 1,15 do task.wait(0.15);
-                                    local SkipDialogue = game:GetService("Players").LocalPlayer.PlayerGui.Dialogue.Outer.Inner.TextLabel;
-
-                                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipDialogue.AbsolutePosition.X+SkipDialogue.AbsoluteSize.X/5,SkipDialogue.AbsolutePosition.Y+50,0,true,SkipDialogue,5);
-                                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipDialogue.AbsolutePosition.X+SkipDialogue.AbsoluteSize.X/5,SkipDialogue.AbsolutePosition.Y+50,0,false,SkipDialogue,5);
+                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+                    if game:GetService("Players").LocalPlayer.Data.Mastery.Value > 2 then
+                        if workspace.Map.NPCs:FindFirstChild("Kuzma") then
+                            for i,v in pairs(game:GetService("Workspace").Map.NPCs.Kuzma:GetChildren()) do
+                                if v:IsA("ClickDetector") then fireclickdetector(v);
+                                    for i = 1,15 do task.wait(0.15);
+                                        local SkipDialogue = game:GetService("Players").LocalPlayer.PlayerGui.Dialogue.Outer.Inner.TextLabel;
+    
+                                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipDialogue.AbsolutePosition.X+SkipDialogue.AbsoluteSize.X/5,SkipDialogue.AbsolutePosition.Y+50,0,true,SkipDialogue,5);
+                                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(SkipDialogue.AbsolutePosition.X+SkipDialogue.AbsoluteSize.X/5,SkipDialogue.AbsolutePosition.Y+50,0,false,SkipDialogue,5);
+                                    end
                                 end
                             end
+                        else
+                            if not Prompt then
+                                BoredLibrary.prompt("Sakura Hub 🌸","Waiting for Kuzma To Spawn",1.5);Prompt = true;
+                            end  
                         end
                     else
                         if not Prompt then
-                            BoredLibrary.prompt("Sakura Hub 🌸","Waiting for Kuzma To Spawn",1.5);Prompt = true;
-                        end  
+                            BoredLibrary.prompt("Sakura Hub 🌸","Mastery is not Enough",1.5);Prompt = true;
+                        end
                     end
                 else
                     if not Prompt then
-                        BoredLibrary.prompt("Sakura Hub 🌸","Mastery is not Enough",1.5);Prompt = true;
+                        BoredLibrary.prompt("Sakura Hub 🌸","You are not Standless",1.5);Prompt = true;
                     end
                 end
             end)
-            task.wait(0.35);
-        end
-    end)
-end)
-
-FarmingTab.newToggle("Auto Safe Zone (Goes with Item Stealer)","",false,function(Value)
-    getgenv().AutoSafeZone = Value
-
-    task.spawn(function()
-        while getgenv().AutoSafeZone == true do
-            pcall(function()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-637.7359008789062,-33.393035888671875,1031.9337158203125);
-            end)
-            task.wait(1.35);
+            task.wait(0.45);
         end
     end)
 end)
@@ -1999,9 +1980,9 @@ FarmingTab.newToggle("Auto Steal Any Item (Rares Only)","",false,function(Value)
     FloatPart.Transparency = 1
     
     task.spawn(function()
-        if getgenv().AutoStealingItems == false then task.wait(0.25);
-            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,-20,0);
-            task.wait(1);game.Players.LocalPlayer.Character.Humanoid.Health = 0;
+        if getgenv().AutoStealingItems == false then
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,-70,0);
+            game.Players.LocalPlayer.Character.Humanoid.Health = 0;
         end
     end)
     
@@ -2011,6 +1992,17 @@ FarmingTab.newToggle("Auto Steal Any Item (Rares Only)","",false,function(Value)
                 game.Workspace.FloatPart:Destroy();
             end)
             task.wait(0.25);
+        end
+    end)
+
+    task.spawn(function()
+        while getgenv().AutoStealingItems == true do
+            pcall(function()
+                if getgenv().FoundAnyItem == true then
+                    FloatPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,-3.05,0);
+                end
+            end)
+            task.wait(0.01);
         end
     end)
 
@@ -2037,16 +2029,18 @@ FarmingTab.newToggle("Auto Steal Any Item (Rares Only)","",false,function(Value)
             pcall(function()
                 local Lplayer = game:GetService("Players").LocalPlayer
                 local Folder = {workspace.Item,workspace.Item2};
-
-                local UniqueParts = {}
                 
+                local UniqueParts = {}
+                getgenv().FoundAnyItem = false;
+
                 for _,k in ipairs(Folder) do
                     for _,k in ipairs(k:GetChildren()) do
                         if k:IsA("BasePart") and k.Name ~= "SoulSpawn" and k.Name ~= "PerceptionMask" and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125) then
                             if ((k.Name:sub(1,2) == "Bo" or k.Name:sub(1,3) == "Sec") and k:FindFirstChild("Outline")) or ((k.Name:sub(1,2) ~= "Bo" and k.Name:sub(1,3) ~= "Sec") and not k:FindFirstChild("Outline")) then
                                 if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "SukunaFinger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "HogyokuFragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
                                     if (k.Name ~= "Box" and k.Name ~= "Barrel" and k.Name ~= "Chest") then
-                                        table.insert(UniqueParts,k);
+                                        table.insert(UniqueParts,k);getgenv().FoundAnyItem = true;
+                                        break
                                     end
                                 end
                             end
@@ -2058,7 +2052,7 @@ FarmingTab.newToggle("Auto Steal Any Item (Rares Only)","",false,function(Value)
                     if #Parts > 0 then
                         local Selected = Parts[math.random(1,#Parts)];
                 
-                        if Selected then FloatPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,-3.05,0);
+                        if Selected then
                             Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,7,0)));
                         end
                     end
@@ -2068,12 +2062,12 @@ FarmingTab.newToggle("Auto Steal Any Item (Rares Only)","",false,function(Value)
                     TeleportTo(UniqueParts);
                 end
             end)
-            task.wait(0.01);
+            task.wait(0.25);
         end
     end)
 end)
 
-FarmingTab.newToggle("Auto Pick Aura Any Item","",false,function(Value)
+FarmingTab.newToggle("Auto Pick Aura (Any Item)","",false,function(Value)
     getgenv().AutoPickingItems = Value
 
     task.spawn(function()
@@ -2088,7 +2082,20 @@ FarmingTab.newToggle("Auto Pick Aura Any Item","",false,function(Value)
                     end
                 end
             end)
-            task.wait(0.01);
+            task.wait(0.25);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Safe Zone (Optional)","",false,function(Value)
+    getgenv().AutoSafeZone = Value
+
+    task.spawn(function()
+        while getgenv().AutoSafeZone == true do
+            pcall(function()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-637.7359008789062,-33.393035888671875,1031.9337158203125);
+            end)
+            task.wait(2.35);
         end
     end)
 end)
