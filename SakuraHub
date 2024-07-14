@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2983) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2984) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -18,7 +18,6 @@ repeat task.wait() until game:IsLoaded();
 task.spawn(function()
     pcall(function()if not getgenv().SkippedMenu == true then getgenv().SkippedMenu = true;
             game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
-            game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.Text = "Made by ThroughTheFireAndFlames#9925 :)";
             game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.TextColor3 = Color3.fromRGB(170,0,0);
             game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();
             for i = 1,45 do task.wait(0.15);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
@@ -912,19 +911,12 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
                 pcall(function()
                     for _,k in ipairs(workspace.Living:GetChildren()) do
                         if k:IsA("Model") and k:FindFirstChild("Head") and k.Head:IsA("Part") and k.Head.Name == "Head" and k.Head ~= game.Players.LocalPlayer.Character.Head then
-                            if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 35 then
+                            if (k.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude <= 55 then
                                 if k:FindFirstChildOfClass("Humanoid") and k:FindFirstChildOfClass("Humanoid").Health > 0 then
                                     if k.CDValues:FindFirstChild("OnCooldown") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and not k.CDValues:FindFirstChild("Posing") and not k.CDValues:FindFirstChild("Blocking") then
-                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + k.Head.CFrame.lookVector * -20,k.Head.Position);
+                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Head.Position + k.Head.CFrame.lookVector *-20,k.Head.Position);
                                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,45,0); 
                                         local DodgeAnimation = Instance.new("Animation");DodgeAnimation.AnimationId = "rbxassetid://12146757350" local k = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(DodgeAnimation);k:Play();k:AdjustSpeed(5);
-                                        for _,k in ipairs(workspace.Effects:GetChildren()) do
-                                            if k.Name == "HitboxDisplayPart" and k:IsA("BasePart") then
-                                                if (k.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 45 then
-                                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(k.Position + Vector3.new(0,45,20));
-                                                end
-                                            end
-                                        end
                                     end
                                 end
                             end
