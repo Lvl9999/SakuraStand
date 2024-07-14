@@ -18,7 +18,6 @@ repeat task.wait() until game:IsLoaded();
 task.spawn(function()
     pcall(function()if not getgenv().SkippedMenu == true then getgenv().SkippedMenu = true;
             game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
-            game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.TextColor3 = Color3.fromRGB(170,0,0);
             game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();
             for i = 1,45 do task.wait(0.15);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
                 game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,true,PlayButton,1);
