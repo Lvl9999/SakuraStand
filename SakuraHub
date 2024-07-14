@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2982) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2983) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -16,28 +16,30 @@ repeat task.wait() until game:IsLoaded();
 
 --// Auto Skip Loading Menu \\--
 task.spawn(function()
-    pcall(function()
-        game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
-        game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.Text = "Made by ThroughTheFireAndFlames#9925 :)";
-        game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.TextColor3 = Color3.fromRGB(170,0,0);
-        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();
-        for i = 1,45 do task.wait(0.15);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
-            game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,true,PlayButton,1);
-            game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,false,PlayButton,1);
+    pcall(function()if not getgenv().SkippedMenu == true then getgenv().SkippedMenu = true;
+            game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
+            game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.Text = "Made by ThroughTheFireAndFlames#9925 :)";
+            game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Version.TextLabel.TextColor3 = Color3.fromRGB(170,0,0);
+            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();
+            for i = 1,45 do task.wait(0.15);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,true,PlayButton,1);
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,false,PlayButton,1);
+            end
         end
     end)
 end)
 
 --// Auto Fix Camera \\--
 task.spawn(function()
-    if not getgenv().FixedCamera == true then getgenv().FixedCamera = true;
-        repeat task.wait() until game.Players.LocalPlayer.Character and game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled == false;
-        workspace.CurrentCamera:remove();task.wait(0.15);
-        workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid");
-        workspace.CurrentCamera.CameraType = "Custom";game:GetService("Players").LocalPlayer.PlayerGui.MainMenu:Destroy();
-        game.Players.LocalPlayer.CameraMinZoomDistance = 0.5;game.Players.LocalPlayer.CameraMaxZoomDistance = 400;
-        game.Players.LocalPlayer.CameraMode = "Classic";game.Players.LocalPlayer.Character.Head.Anchored = false;
-    end
+    pcall(function()if not getgenv().FixedCamera == true then getgenv().FixedCamera = true;
+            repeat task.wait() until game.Players.LocalPlayer.Character and game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled == false;
+            workspace.CurrentCamera:remove();task.wait(0.15);
+            workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid");
+            workspace.CurrentCamera.CameraType = "Custom";game:GetService("Players").LocalPlayer.PlayerGui.MainMenu:Destroy();
+            game.Players.LocalPlayer.CameraMinZoomDistance = 0.5;game.Players.LocalPlayer.CameraMaxZoomDistance = 400;
+            game.Players.LocalPlayer.CameraMode = "Classic";game.Players.LocalPlayer.Character.Head.Anchored = false;
+        end
+    end)
 end)
 
 --// Anti AFK \\--
@@ -55,12 +57,18 @@ end)
 getgenv().Configurations = function()
     pcall(function()
         -- [Grinding Scripts]
+        getgenv().AutoOneShottingBypass = false;
         getgenv().AutoPrivateGrinding = false;
         getgenv().AutoPublicGrinding = false;
+        getgenv().AutoKillingJotaro = false;
         getgenv().AutoStealingItems = false;
+        getgenv().AutoKillingRoland = false;
         getgenv().AutoBreakthrough = false;
         getgenv().AutoPickingItems = false;
+        getgenv().AutoKillingDeku = false;
+        getgenv().AutoKillingToji = false;
         getgenv().AutoStealingOfa = false;
+        getgenv().AutoKillingDio = false;
         getgenv().AutoLevelingUp = false;
         getgenv().AutoSafeZone = false;
         getgenv().AutoRebirth = false;
@@ -76,19 +84,19 @@ getgenv().Configurations = function()
         -- [Storage Scripts]
         getgenv().StoringEveryItem = false;
         getgenv().StoringNikyuNikyu = false;
-        getgenv().StoringHogyoku = false;
-        getgenv().StoringDiosBone = false;
         getgenv().StoringDiosDiary = false;
-        getgenv().StoringFinger = false;
         getgenv().StoringInverted = false;
-        getgenv().StoringSplit = false;
-        getgenv().StoringChain = false;
-        getgenv().StoringCortex = false;
-        getgenv().StoringCrimson = false;
-        getgenv().StoringCyan = false;
-        getgenv().StoringTech = false;
+        getgenv().StoringDiosBone = false;
         getgenv().StoringArasaka = false;
         getgenv().StoringKujoHat = false;
+        getgenv().StoringHogyoku = false;
+        getgenv().StoringCrimson = false;
+        getgenv().StoringCortex = false;
+        getgenv().StoringFinger = false;
+        getgenv().StoringSplit = false;
+        getgenv().StoringChain = false;
+        getgenv().StoringCyan = false;
+        getgenv().StoringTech = false;
 
         -- [Fighting Scripts]
         getgenv().AutoTeleportPunching = false;
@@ -107,8 +115,8 @@ getgenv().Configurations = function()
         getgenv().JumpPowerBypass = false;
 
         -- [Esp Scripts]
-        getgenv().EspPlayers = false;
         getgenv().EspEntities = false;
+        getgenv().EspPlayers = false;
         getgenv().EspItems = false;
 
         -- [Statistics GUI]
@@ -959,7 +967,7 @@ HomeTab.newToggle("Auto Bug Players / Mobs (Requires Grab Moves)","",false,funct
     getgenv().AutoGlitching = Value
 
     task.spawn(function()
-        local X = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        local X = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
         local Teleported = false;
 
         while getgenv().AutoGlitching == true do
@@ -995,7 +1003,7 @@ HomeTab.newButton("Remote Spy","",function()
 end)
 
 HomeTab.newButton("Dark Explorer","",function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/peyton2465/Dex/master/out.lua'))();
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))();
 end)
 
 HomeTab.newButton("Teleport Maker","",function()
@@ -1007,12 +1015,12 @@ HomeTab.newButton("Reload Sakura Hub","",function()
     getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
     pcall(function()
-        game:GetService("CoreGui").DrRay:Destroy();getgenv().Configurations();loadstring(game:HttpGet(getgenv().SakuraHub))();
+        getgenv().Configurations();game:GetService("CoreGui").DrRay:Destroy();loadstring(game:HttpGet(getgenv().SakuraHub))();
     end)
 end)
 
 HomeTab.newButton("Goodbye Sakura Hub   👋","",function()
-    task.spawn(function()pcall(function()game:GetService("CoreGui").DrRay:Destroy();end);end);getgenv().Configurations();
+    task.spawn(function()pcall(function()getgenv().Configurations();game:GetService("CoreGui").DrRay:Destroy();end);end);
     BoredLibrary.prompt("Sakura Hub   🌸","Goodbye :)",0.5);
 end)
 
@@ -1023,7 +1031,7 @@ HomeTab.newInput("Report Bugs / Feedback","Type here anything you want me to kno
     task.spawn(function()
         if getgenv().Message ~= "" then
             local data = {content = "",embeds = {{author = {name = game.Players.LocalPlayer.Name,},title = "Reported:",description = getgenv().Message,type = "rich",color = tonumber(0xff0000),footer = {text = string.format("Reported at %s",os.date("%Y-%m-%d %X"))}}}};
-            local request = http_request or request or HttpPost or syn.request
+            local request = http_request or request or HttpPost or syn.request;
             request({Url = getgenv().WebHook,Body = game:GetService("HttpService"):JSONEncode(data),Method = "POST",Headers = {["content-type"] = "application/json"}});
             BoredLibrary.prompt("Sakura Hub   🌸","Message Sent   ✅",1.5);
         end
@@ -1035,14 +1043,13 @@ local StorageTab = DrRayLibrary.newTab("Storage","http://www.roblox.com/asset/?i
 StorageTab.newLabel("Storage Stuff   ➕");
 StorageTab.newButton("Close / Open Stand Storage","",function()
     pcall(function()
-        task.spawn(function()local Return = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame game:GetService("Players").LocalPlayer.CharacterAdded:Wait() repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = Return end)
-        game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled
+        game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled;
     end)
 end)
 
 StorageTab.newButton("Close / Open Item Storage","",function()
     pcall(function()
-        game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible = not game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible
+        game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible = not game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Visible;
     end)
 end)
 
@@ -1494,6 +1501,9 @@ getgenv().Attacking = function()
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Eye"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Kick"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Punch"):FireServer();
+    else game:GetService("VirtualUser"):Button1Down(Vector2.new());
+        game.VirtualInputManager:SendKeyEvent(true,"E",false,game);game.VirtualInputManager:SendKeyEvent(true,"G",false,game);game.VirtualInputManager:SendKeyEvent(true,"T",false,game);game.VirtualInputManager:SendKeyEvent(true,"R",false,game);game.VirtualInputManager:SendKeyEvent(false,"Y",false,game);
+        game.VirtualInputManager:SendKeyEvent(false,"E",false,game);game.VirtualInputManager:SendKeyEvent(false,"G",false,game);game.VirtualInputManager:SendKeyEvent(false,"T",false,game);game.VirtualInputManager:SendKeyEvent(false,"R",false,game);game.VirtualInputManager:SendKeyEvent(false,"Y",false,game);
     end
 end
 
@@ -1634,7 +1644,7 @@ FarmingTab.newToggle("Auto Breakthrough","",false,function(Value)
     end)
 end)
 
-if #game:GetService("Players"):GetPlayers() <= 3 then
+if #game:GetService("Players"):GetPlayers() <= 3 then 
     FarmingTab.newLabel("Auto Farming Items + Auto Farming Bosses / Mobs   💫");
     FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function(Value)
         getgenv().AutoPrivateGrinding = Value
@@ -1701,11 +1711,11 @@ if #game:GetService("Players"):GetPlayers() <= 3 then
                 while getgenv().AutoPrivateGrinding == true do
                         pcall(function()
                             if getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
-                                local RespawnNeeded = false
+                                local RespawnNeeded = false;
     
                                 for _,k in pairs(game.Workspace.Item:GetChildren()) do
                                     if ((k.Name == "Box" and k:FindFirstChild("Outline")) and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125)) or k.Name == "Barrel" or k.Name == "Chest" and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chest Key") then
-                                        RespawnNeeded = true
+                                        RespawnNeeded = true;
                                         break
                                     end
                                 end
@@ -2099,11 +2109,138 @@ FarmingTab.newToggle("Auto Safe Zone (Optional)","",false,function(Value)
     end)
 end)
 
+FarmingTab.newLabel("Auto Boss Killer   🔪");
+FarmingTab.newToggle("Auto set bosses Health To 0 (Use Grab Moves)","",false,function(Value)
+    getgenv().AutoOneShotting = Value
+    getgenv().ListOfBosses = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas"}
+
+    task.spawn(function()
+        while getgenv().AutoOneShotting == true do
+            pcall(function()
+                for _,v in ipairs(getgenv().ListOfBosses) do
+                    local Boss = game:GetService("Workspace"):FindFirstChild("Living"):FindFirstChild(v)
+                    if Boss and Boss:FindFirstChild("Humanoid") then
+                        if Boss.Humanoid and Boss.Humanoid.Health ~= Boss.Humanoid.MaxHealth then
+                            Boss.Humanoid.Health = 0;
+                        end
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)    
+end)
+
+FarmingTab.newToggle("Auto kill Toji Fushiguro","",false,function(Value)
+    getgenv().AutoKillingToji = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingToji == true do
+            pcall(function()
+                local TojiBoss = game:GetService("Workspace").Living:FindFirstChild("Toji"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Toji") and workspace.Living:FindFirstChild("Toji"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TojiBoss.Position - TojiBoss.CFrame.lookVector * 7,TojiBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto kill Dio Brando","",false,function(Value)
+    getgenv().AutoKillingDio = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingDio == true do
+            pcall(function()
+                local DioBoss = game:GetService("Workspace").Living:FindFirstChild("Dio"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Dio") and workspace.Living:FindFirstChild("Dio"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(DioBoss.Position - DioBoss.CFrame.lookVector * 7,DioBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto kill Roland","",false,function(Value)
+    getgenv().AutoKillingRoland = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingRoland == true do
+            pcall(function()
+                local RolandBoss = game:GetService("Workspace").Living:FindFirstChild("Roland"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Roland") and workspace.Living:FindFirstChild("Roland"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(RolandBoss.Position - RolandBoss.CFrame.lookVector * 7,RolandBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto kill Jotaro Kujo","",false,function(Value)
+    getgenv().AutoKillingJotaro = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingJotaro == true do
+            pcall(function()
+                local JotaroBoss = game:GetService("Workspace").Living:FindFirstChild("Jotaro Kujo"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Jotaro Kujo") and workspace.Living:FindFirstChild("Jotaro Kujo"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(JotaroBoss.Position - JotaroBoss.CFrame.lookVector * 7,JotaroBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto kill Izuku Midoriya","",false,function(Value)
+    getgenv().AutoKillingDeku = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingDeku == true do
+            pcall(function()
+                local DekuBoss = game:GetService("Workspace").Living:FindFirstChild("Deku"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Deku") and workspace.Living:FindFirstChild("Deku"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(DekuBoss.Position - DekuBoss.CFrame.lookVector * 7,DekuBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
 FarmingTab.newLabel("Auto Quests  📋");
 FarmingTab.newToggle("Auto Parry Damage","",false,function(Value)
     getgenv().AutoParryingDamage = Value
 
-    task.spawn(function()local Blocking = false
+    task.spawn(function()local Blocking = false;
         while getgenv().AutoParryingDamage == true do
             pcall(function()
                 local AttackingDummy = game.Workspace.Living["Attacking Dummy"];
@@ -2128,7 +2265,7 @@ end)
 FarmingTab.newToggle("Auto Block Damage","",false,function(Value)
     getgenv().AutoBlockingDamage = Value
 
-    task.spawn(function()local Blocking = false
+    task.spawn(function()local Blocking = false;
         while getgenv().AutoBlockingDamage == true do
             pcall(function()
                 local AttackingDummy = game.Workspace.Living["Attacking Dummy"];
@@ -2173,9 +2310,10 @@ FarmingTab.newToggle("Auto Take Damage","",false,function(Value)
             pcall(function()
                 local CounterDummy = game.Workspace.Living["Counter Dummy"];
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(CounterDummy.HumanoidRootPart.Position - CounterDummy.HumanoidRootPart.CFrame.LookVector * -5,CounterDummy.HumanoidRootPart.Position);
-                game:GetService("VirtualUser"):Button1Down(Vector2.new());
                 if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
-                    game.VirtualInputManager:SendKeyEvent(true,"E",false,game);game.VirtualInputManager:SendKeyEvent(true,"T",false,game);game.VirtualInputManager:SendKeyEvent(true,"R",false,game);game.VirtualInputManager:SendKeyEvent(true,"Y",false,game);
+                    getgenv().Attacking();
+                else
+                    task.wait(2.5);
                 end
             end)
             task.wait(0.15);
@@ -2191,9 +2329,10 @@ FarmingTab.newToggle("Auto Deal Damage","",false,function(Value)
             pcall(function()
                 local Dummy = game.Workspace.Living["Dummy"];
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Dummy.HumanoidRootPart.Position - Dummy.HumanoidRootPart.CFrame.LookVector * -5,Dummy.HumanoidRootPart.Position);
-                game:GetService("VirtualUser"):Button1Down(Vector2.new());
                 if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
-                    game.VirtualInputManager:SendKeyEvent(true,"E",false,game);game.VirtualInputManager:SendKeyEvent(true,"T",false,game);game.VirtualInputManager:SendKeyEvent(true,"R",false,game);game.VirtualInputManager:SendKeyEvent(true,"Y",false,game);
+                    getgenv().Attacking();
+                else
+                    task.wait(2.5);
                 end
             end)
             task.wait(0.15);
