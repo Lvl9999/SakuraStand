@@ -15,6 +15,8 @@ pcall(function()
     loadstring(game:HttpGet(getgenv().SakuraHub))();
 end)
 ```
+##### Warning: Some features might get you banned from being reported by players.
+
 - #### Selling for 750 Robux an even faster autofarm (15 masteries in 4-5 minutes).
 - #### Also selling god mode for 350 Robux, Dm meh discord if interested :3
 
