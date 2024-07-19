@@ -170,6 +170,11 @@ game:GetService("CoreGui").DrRay.TopBar.TopBarClose.idk.Visible = false;
 --// Loaded Notification \\--
 BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",3);
 ---------------------------------[[ Main Source Code 💞 ]]------------------------------------------------------------
+HomeTab.newLabel("Credits   ✨");
+HomeTab.newButton("Made by Flames#9925","",function()
+    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Mommy Flames <3",1.5);
+end)
+
 HomeTab.newLabel("Local Player Scripts   📢");
 HomeTab.newToggle("Super Walkspeed","",false,function(Value)
     getgenv().WalkspeedBypass = Value
@@ -1069,6 +1074,11 @@ HomeTab.newButton("Teleport Maker","",function()
 end)
 
 HomeTab.newLabel("Sakura Hub Stuff   🌸");
+HomeTab.newButton("Our Discord Server (Clipboard)","",function()
+    setclipboard("https://discord.gg/xeU7t8mK");
+    BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
+end)
+
 HomeTab.newButton("Reload Sakura Hub","",function()
     getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
