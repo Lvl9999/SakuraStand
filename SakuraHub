@@ -191,7 +191,7 @@ HomeTab.newButton("Notify Library Made by Bored","",function()
     local DiscordCall = "http://www.roblox.com/asset/?id=4814018992"
     local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = DiscordCall
     Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
-    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Daddy Chillz <3",3);
+    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Daddy Bored <3",3);
 end)
 
 HomeTab.newLabel("Local Player Scripts   📢");
