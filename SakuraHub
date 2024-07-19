@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2989) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2990) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -11,10 +11,10 @@
     end)
 ]]-----------------------------------------------------------------------------------------------------
 
---// Auto Loader \\--
+-- // Auto Loader \\--
 repeat task.wait(0.1) until game:IsLoaded();
 
---// Auto Skip Loading Menu \\--
+-- // Auto Skip Loading Menu \\ --
 task.spawn(function()
     pcall(function()if not getgenv().SkippedMenu == true then getgenv().SkippedMenu = true;
             game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
@@ -27,7 +27,7 @@ task.spawn(function()
     end)
 end)
 
---// Auto Fix Camera \\--
+-- // Auto Fix Camera \\ --
 task.spawn(function()
     pcall(function()if not getgenv().FixedCamera == true then getgenv().FixedCamera = true;
             repeat task.wait() until game.Players.LocalPlayer.Character and game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled == false;
@@ -40,21 +40,12 @@ task.spawn(function()
     end)
 end)
 
---// Anti Fling Fixer \\--
-task.spawn(function()
-    pcall(function()
-        if not getgenv().FixedAntiFling == true then getgenv().FixedAntiFling = true;
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Throwables/main/AntiFling"))();
-        end
-    end)
-end)
-
---// Anti Fall Fixer \\--
+-- // Anti Fall Fixer \\ --
 task.spawn(function()
     pcall(function()if not getgenv().AntiFallLoaded == true then getgenv().AntiFallLoaded = true;
         local Base1 = Instance.new("Part");
         Base1.Size = Vector3.new(9999999999,150,9999999999);
-        Base1.Position = Vector3.new(-521.1619262695312,-270.18596839904785,1644.64208984375);
+        Base1.Position = Vector3.new(-521.1619262695312,-290.18596839904785,1644.64208984375);
         Base1.Anchored = true;Base1.Transparency = 0.5;Base1.Name = "AntiFall1";Base1.Parent = workspace;
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Throwables/main/AntiFling"))();
         local Base2 = Instance.new("Part");
@@ -65,7 +56,7 @@ task.spawn(function()
     end)
 end)
 
---// Anti AFK \\--
+-- // Anti AFK \\ --
 task.spawn(function()
     if not getgenv().AntiAfk == true then getgenv().AntiAfk = true;
         while true do task.wait(1100);
@@ -76,7 +67,7 @@ task.spawn(function()
     end
 end)
 
---// Settings Manager \\--
+-- // Settings Manager \\ --
 getgenv().Configurations = function()
     pcall(function()
         -- [Grinding Scripts]
@@ -168,7 +159,7 @@ local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 local MainWindow = DrRayLibrary:Load("Sakura Hub   🌸","Default");
 local HomeTab = DrRayLibrary.newTab("Home","http://www.roblox.com/asset/?id=9405923687");
 
---// Apply Custom UI Color \\--
+-- // Apply Custom UI Color \\ --
 game:GetService("CoreGui").DrRay.TopBar.BackgroundColor3 = Color3.new(0,0,0);
 game:GetService("CoreGui").DrRay.MainBar.BackgroundColor3 = Color3.new(0,0,0);
 game:GetService("CoreGui").DrRay.TopBar.TopBar.BackgroundColor3 = Color3.new(0,0,0);
@@ -178,7 +169,7 @@ game:GetService("CoreGui").DrRay.TopBar.ProfileMenu.Title.BackgroundTransparency
 game:GetService("CoreGui").DrRay.TopBar.TopBarClose.BackgroundTransparency = 0.55;
 game:GetService("CoreGui").DrRay.TopBar.TopBarClose.idk.Visible = false;
 
---// Loaded Notification \\--
+-- // Loaded Notification \\ --
 BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",3);
 ---------------------------------[[ Main Source Code 💞 ]]------------------------------------------------------------
 HomeTab.newLabel("Credits   ✨");
@@ -599,25 +590,7 @@ HomeTab.newToggle("Auto Bully Nearest Player (Dont Use Grab Moves)","",false,fun
     
         return NearestPlr
     end
-    
-    task.spawn(function()
-        while getgenv().AutoBullying == true do
-            pcall(function()
-                for _,j in pairs(game:GetService("Players"):GetPlayers()) do
-                    local Char = j.Character
-                    if Char then
-                        for _,n in pairs(Char:GetDescendants()) do
-                            if n:IsA("BasePart") then
-                                n.CanCollide = false
-                            end
-                        end
-                    end
-                end
-            end)
-            task.wait(0.15);
-        end
-    end)
-    
+     
     task.spawn(function()
         while getgenv().AutoBullying == true  do
             pcall(function()UpdateCRoot();
@@ -991,6 +964,42 @@ end)
 HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,function(Value)
     getgenv().AutoDodging = Value
 
+    -- // Taken from private script of mine
+    local Aura = function()
+        local function v0(v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12)local v13=Instance.new("ParticleEmitter");v13.Parent=v6;v13.Texture=v2;v13.Drag=0;v13.LockedToPart=true;v13.Rate=v12;v13.Lifetime=NumberRange.new(v11,v11);v13.LightEmission=v4;v13.LightInfluence=v5;v13.Speed=NumberRange.new(v9,v9);v13.Rotation=NumberRange.new(v10,v10);v13.Color=ColorSequence.new(v3);local v25={NumberSequenceKeypoint.new(0,v7),NumberSequenceKeypoint.new(1,0)};v13.Size=NumberSequence.new(v25);v13.SpreadAngle=Vector2.new(v8,v8);end local function v1(v28)for v29,v30 in pairs(v28:GetDescendants()) do if (v30:IsA("BasePart") and (v30.Name~="HumanoidRootPart")) then v0("rbxassetid://1336283955",Color3.fromRGB(60,60,60),1,0,v30,1,90,0,60,0.5,50);v0("rbxassetid://1368485188",Color3.fromRGB(255,255,255),1,0,v30,0.5,30,0.5, -10,2,1);end end end v1(game.Players.LocalPlayer.Character);
+    end
+
+    local Unaura = function()
+        local function v0(v1)if v1:IsA("ParticleEmitter") then v1:Destroy();end for v4,v5 in ipairs(v1:GetChildren()) do v0(v5);end end for v2,v3 in ipairs(game.Players.LocalPlayer.Character:GetDescendants()) do if v3:IsA("BasePart") then v0(v3);end end
+    end
+    
+    local SoundON = function()
+        local v0=Instance.new("Sound");v0.Name="Sound";v0.SoundId="http://www.roblox.com/asset/?id=1677094219";v0.Volume=5;v0.Looped=true;v0.archivable=false;v0.Parent=game.Workspace;if (game.Players.LocalPlayer.Character.Humanoid.Health>10) then v0:Play();end
+    end
+    
+    local SoundOFF = function()
+        for v0,v1 in pairs(workspace:children()) do if v1:isA("Sound") then v1:Destroy();end end
+    end
+
+    if getgenv().AutoDodging == true then
+        local EntranceTheme = "http://www.roblox.com/asset/?id=1216343787";
+        local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = EntranceTheme
+        Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+        Aura();SoundON();
+    else
+        Unaura();SoundOFF();
+    end
+
+    local Connec
+    Connec = game.Players.LocalPlayer.CharacterAdded:Connect(function()task.wait(3);
+        if getgenv().AutoDodging == true then
+            Aura();
+        else
+            Unaura();
+            Con:Disconnect();
+        end
+    end)
+    
     task.spawn(function()
         local connection
         connection = game:GetService("RunService").RenderStepped:Connect(function()
@@ -1995,7 +2004,7 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
                 task.wait(0.01);
             end
         end)
-    
+ 
         task.spawn(function()
             while getgenv().AutoPublicGrinding == true do
                 pcall(function()
@@ -2109,6 +2118,21 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
                         end
                     end)
                     task.wait(3.5);
+                end
+            end)
+
+            task.spawn(function()
+                while getgenv().AutoPrivateGrinding == true do
+                    pcall(function()
+                        local SakuraMap = Vector3.new(-537.9830932617188,-31.18596839904785,1648.037109375);
+                        local HuecoMap = Vector3.new(-9311.4697265625,409.4530334472656,1565.1409912109375);
+                        local PlrPos = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
+                        if (PlrPos - SakuraMap).Magnitude > 1000 and (PlrPos - HuecoMap).Magnitude > 500 then
+                            local args = {[1] = "kill"};
+                            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
+                        end
+                    end)
+                    task.wait(1.35);
                 end
             end)
     
@@ -2805,7 +2829,7 @@ AreasTab.newButton("Interact With Npc","",function()
     end)
 end)
 
---// Apply Custom Tab Colors \\--
+-- // Apply Custom Tab Colors \\ --
 local Tabs = {
     game:GetService("CoreGui").DrRay.MainBar.Home;
     game:GetService("CoreGui").DrRay.MainBar.Storage;
@@ -2822,7 +2846,7 @@ for _,k in ipairs(Tabs) do
     end
 end
 
---// Toggle UI Visibility \\--
+-- // Toggle UI Visibility \\--
 task.spawn(function()
     if not getgenv().ToggleVisibility == true then
         game:GetService("UserInputService").InputBegan:Connect(function(v,x)
