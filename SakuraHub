@@ -637,7 +637,7 @@ HomeTab.newToggle("Auto Bully Nearest Player (Dont Use Grab Moves)","",false,fun
     end)
 end)
 
-HomeTab.newToggle("Auto Roast Dead Players (Rage Bait)","",false,function(Value)
+HomeTab.newToggle("Auto Roast Dead Players (Be Near Them)","",false,function(Value)
     getgenv().AutoRoasting = Value
 
     -- // Thanks to ChatGPT the goat
