@@ -45,12 +45,11 @@ task.spawn(function()
     pcall(function()if not getgenv().AntiFallLoaded == true then getgenv().AntiFallLoaded = true;
         local Base1 = Instance.new("Part");
         Base1.Size = Vector3.new(9999999999,150,9999999999);
-        Base1.Position = Vector3.new(-521.1619262695312,-290.18596839904785,1644.64208984375);
+        Base1.Position = Vector3.new(-521.1619262695312,-390.18596839904785,1644.64208984375);
         Base1.Anchored = true;Base1.Transparency = 0.5;Base1.Name = "AntiFall1";Base1.Parent = workspace;
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Throwables/main/AntiFling"))();
         local Base2 = Instance.new("Part");
         Base2.Size = Vector3.new(9999999999,150,9999999999);
-        Base2.Position = Vector3.new(-9307.4345703125,90.1080627441406,1495.1046142578125);
+        Base2.Position = Vector3.new(-9307.4345703125,110.1080627441406,1495.1046142578125);
         Base2.Anchored = true;Base2.Transparency = 0.5;Base2.Name = "AntiFall2";Base2.Parent = workspace;
         end
     end)
@@ -108,7 +107,6 @@ getgenv().Configurations = function()
         getgenv().AutoDyingDamage = false;
 
         -- [Storage Scripts]
-        getgenv().StoringEveryItem = false;
         getgenv().StoringNikyuNikyu = false;
         getgenv().StoringDiosDiary = false;
         getgenv().StoringInverted = false;
@@ -119,7 +117,9 @@ getgenv().Configurations = function()
         getgenv().StoringCrimson = false;
         getgenv().StoringCortex = false;
         getgenv().StoringFinger = false;
+        getgenv().StoringGloves = false;
         getgenv().StoringSplit = false;
+        getgenv().StoringGrace = false;
         getgenv().StoringChain = false;
         getgenv().StoringCyan = false;
         getgenv().StoringTech = false;
@@ -172,26 +172,26 @@ game:GetService("CoreGui").DrRay.TopBar.TopBarClose.idk.Visible = false;
 -- // Loaded Notification \\ --
 BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",3);
 ---------------------------------[[ Main Source Code 💞 ]]------------------------------------------------------------
-HomeTab.newLabel("Credits   ✨");
+HomeTab.newLabel("Script Hub Credits   ✨");
 HomeTab.newButton("Script Made by ThroughTheFireAndFlames#9925","",function()
-    local xQcClaps = "http://www.roblox.com/asset/?id=5986522845"
-    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = xQcClaps
-    Sound.Volume = 1;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
-    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Mommy Flames <3",3);
+    local Cheers = "http://www.roblox.com/asset/?id=1617624223"
+    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = Cheers
+    Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Mommy Flames <3",3.5);
 end)
 
 HomeTab.newButton("Gui Library Made by Chillz","",function()
     local LoudFarts = "http://www.roblox.com/asset/?id=6811876591"
     local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = LoudFarts
-    Sound.Volume = 1;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
-    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Daddy Chillz <3",3);
+    Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Daddy Chillz <3",0.5);
 end)
 
 HomeTab.newButton("Notify Library Made by Bored","",function()
-    local DiscordCall = "http://www.roblox.com/asset/?id=4814018992"
-    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = DiscordCall
+    local LoudFarts = "http://www.roblox.com/asset/?id=6811876591"
+    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = LoudFarts
     Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
-    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Daddy Bored <3",3);
+    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Daddy Bored <3",0.5);
 end)
 
 HomeTab.newLabel("Local Player Scripts   📢");
@@ -258,7 +258,7 @@ HomeTab.newToggle("Esp Players","",false,function(Value)
         BillboardGui.Parent = Head
         BillboardGui.AlwaysOnTop = true
         BillboardGui.Size = UDim2.new(0,100,0,50);
-        BillboardGui.StudsOffset = Vector3.new(0, 2, 0);
+        BillboardGui.StudsOffset = Vector3.new(0,2,0);
 
         TextLabel.Parent = BillboardGui
         TextLabel.BackgroundColor3 = Color3.new(1,1,1);
@@ -272,14 +272,14 @@ HomeTab.newToggle("Esp Players","",false,function(Value)
         TextLabel.TextStrokeColor3 = Color3.fromRGB(0,0,0);
         TextLabel.Visible = false
 
-        return BillboardGui, TextLabel
+        return BillboardGui,TextLabel
     end
 
     local function UseESP(X)
         local Head = X:FindFirstChild("Head");
         if not Head then return end
 
-        local BillboardGui, TextLabel = CreateBilboard(X)
+        local BillboardGui,TextLabel = CreateBilboard(X)
         local RenderSteppedCon
 
         local function DisconnectCons()
@@ -293,7 +293,7 @@ HomeTab.newToggle("Esp Players","",false,function(Value)
         end
 
         RenderSteppedCon = game:GetService("RunService").RenderStepped:Connect(function()
-            local HeadPosition, HeadOnScreen = workspace.CurrentCamera:WorldToViewportPoint(Head.Position);
+            local HeadPosition,HeadOnScreen = workspace.CurrentCamera:WorldToViewportPoint(Head.Position);
             if HeadOnScreen then
                 TextLabel.Visible = getgenv().EspPlayers
             else
@@ -350,7 +350,7 @@ HomeTab.newToggle("Esp Entities","",false,function(Value)
         BillboardGui.Parent = Head
         BillboardGui.AlwaysOnTop = true
         BillboardGui.Size = UDim2.new(0,100,0,50);
-        BillboardGui.StudsOffset = Vector3.new(0, 2, 0);
+        BillboardGui.StudsOffset = Vector3.new(0,2,0);
 
         TextLabel.Parent = BillboardGui
         TextLabel.BackgroundColor3 = Color3.new(1,1,1);
@@ -364,14 +364,14 @@ HomeTab.newToggle("Esp Entities","",false,function(Value)
         TextLabel.TextStrokeColor3 = Color3.fromRGB(0,0,0);
         TextLabel.Visible = false
 
-        return BillboardGui, TextLabel
+        return BillboardGui,TextLabel
     end
 
     local function UseESP(X)
         local Head = X:FindFirstChild("Head");
         if not Head then return end
 
-        local BillboardGui, TextLabel = CreateBilboard(X)
+        local BillboardGui,TextLabel = CreateBilboard(X)
         local RenderSteppedCon
 
         local function DisconnectCons()
@@ -385,7 +385,7 @@ HomeTab.newToggle("Esp Entities","",false,function(Value)
         end
 
         RenderSteppedCon = game:GetService("RunService").RenderStepped:Connect(function()
-            local HeadPosition, HeadOnScreen = workspace.CurrentCamera:WorldToViewportPoint(Head.Position);
+            local HeadPosition,HeadOnScreen = workspace.CurrentCamera:WorldToViewportPoint(Head.Position);
             if HeadOnScreen then
                 TextLabel.Visible = getgenv().EspEntities
             else
@@ -466,7 +466,7 @@ HomeTab.newToggle("Esp Items","",false,function(Value)
         TextLabel.TextStrokeColor3 = Color3.fromRGB(0,0,0);
         TextLabel.Visible = false
     
-        return BillboardGui, TextLabel
+        return BillboardGui,TextLabel
     end
     
     local function ShouldIgnore(X)
@@ -479,7 +479,7 @@ HomeTab.newToggle("Esp Items","",false,function(Value)
         end
     
         local Color = table.find(Casual,X.Name) and Color3.fromRGB(255,255,255) or Color3.fromRGB(0,255,0);
-        local BillboardGui, TextLabel = CreateBillboard(X,Color);
+        local BillboardGui,TextLabel = CreateBillboard(X,Color);
         local RenderSteppedCon
     
         local function DisconnectCons()
@@ -493,7 +493,7 @@ HomeTab.newToggle("Esp Items","",false,function(Value)
         end
     
         RenderSteppedCon = game:GetService("RunService").RenderStepped:Connect(function()
-            local HeadPosition, HeadOnScreen = workspace.CurrentCamera:WorldToViewportPoint(X.Position);
+            local HeadPosition,HeadOnScreen = workspace.CurrentCamera:WorldToViewportPoint(X.Position);
             if HeadOnScreen then
                 TextLabel.Visible = getgenv().EspItems
             else
@@ -539,7 +539,7 @@ end)
 HomeTab.newLabel("Miscellaneous Scripts   📌");
 HomeTab.newToggle("Auto Aimlock Nearest Player (Overpowered)","",false,function(Value)
     getgenv().AutoAimlocking = Value
-    game:GetService("RunService").RenderStepped:Connect(function() if not getgenv().AutoAimlocking == true then return end local x,b for _,v in ipairs(game:GetService("Players"):GetPlayers()) do if v.Character and v ~= game:GetService("Players").LocalPlayer then if not x or (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude < b then x = v b = (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude end end end if x and b <= 35 then game:GetService("Workspace").CurrentCamera.CFrame = CFrame.new(game:GetService("Workspace").CurrentCamera.CFrame.p, x.Character.HumanoidRootPart.Position) end end);
+    game:GetService("RunService").RenderStepped:Connect(function() if not getgenv().AutoAimlocking == true then return end local x,b for _,v in ipairs(game:GetService("Players"):GetPlayers()) do if v.Character and v ~= game:GetService("Players").LocalPlayer then if not x or (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude < b then x = v b = (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude end end end if x and b <= 35 then game:GetService("Workspace").CurrentCamera.CFrame = CFrame.new(game:GetService("Workspace").CurrentCamera.CFrame.p,x.Character.HumanoidRootPart.Position) end end);
 end)
 
 HomeTab.newToggle("Auto Bully Nearest Player (Dont Use Grab Moves)","",false,function(Value)
@@ -882,7 +882,7 @@ HomeTab.newToggle("Auto Ctrl + Click Combo Players / Mobs (Overpowered)","",fals
         return NearestPlr
     end
 
-    game:GetService("UserInputService").InputBegan:Connect(function(t, j)
+    game:GetService("UserInputService").InputBegan:Connect(function(t,j)
         if not j and t.UserInputType == Enum.UserInputType.MouseButton1 then
             if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.LeftControl) then
                 if getgenv().AutoTeleportPunching == true then
@@ -966,7 +966,7 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
 
     -- // Taken from private script of mine
     local Aura = function()
-        local function v0(v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12)local v13=Instance.new("ParticleEmitter");v13.Parent=v6;v13.Texture=v2;v13.Drag=0;v13.LockedToPart=true;v13.Rate=v12;v13.Lifetime=NumberRange.new(v11,v11);v13.LightEmission=v4;v13.LightInfluence=v5;v13.Speed=NumberRange.new(v9,v9);v13.Rotation=NumberRange.new(v10,v10);v13.Color=ColorSequence.new(v3);local v25={NumberSequenceKeypoint.new(0,v7),NumberSequenceKeypoint.new(1,0)};v13.Size=NumberSequence.new(v25);v13.SpreadAngle=Vector2.new(v8,v8);end local function v1(v28)for v29,v30 in pairs(v28:GetDescendants()) do if (v30:IsA("BasePart") and (v30.Name~="HumanoidRootPart")) then v0("rbxassetid://1336283955",Color3.fromRGB(60,60,60),1,0,v30,1,90,0,60,0.5,50);v0("rbxassetid://1368485188",Color3.fromRGB(255,255,255),1,0,v30,0.5,30,0.5, -10,2,1);end end end v1(game.Players.LocalPlayer.Character);
+        local function v0(v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12)local v13=Instance.new("ParticleEmitter");v13.Parent=v6;v13.Texture=v2;v13.Drag=0;v13.LockedToPart=true;v13.Rate=v12;v13.Lifetime=NumberRange.new(v11,v11);v13.LightEmission=v4;v13.LightInfluence=v5;v13.Speed=NumberRange.new(v9,v9);v13.Rotation=NumberRange.new(v10,v10);v13.Color=ColorSequence.new(v3);local v25={NumberSequenceKeypoint.new(0,v7),NumberSequenceKeypoint.new(1,0)};v13.Size=NumberSequence.new(v25);v13.SpreadAngle=Vector2.new(v8,v8);end local function v1(v28)for v29,v30 in pairs(v28:GetDescendants()) do if (v30:IsA("BasePart") and (v30.Name~="HumanoidRootPart")) then v0("rbxassetid://1336283955",Color3.fromRGB(60,60,60),1,0,v30,1,90,0,60,0.5,50);v0("rbxassetid://1368485188",Color3.fromRGB(255,255,255),1,0,v30,0.5,30,0.5,-10,2,1);end end end v1(game.Players.LocalPlayer.Character);
     end
 
     local Unaura = function()
@@ -1077,11 +1077,19 @@ HomeTab.newToggle("Auto Bug Players / Mobs (Requires Grab Moves)","",false,funct
 end)
 
 HomeTab.newLabel("Available Working Codes");
+HomeTab.newButton('Use Code: "ArrivalOfTheSkaFilmShirt1"','',function()
+    BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
+end)
+
 HomeTab.newButton('Use Code: "SuddenShutdown"','',function()
     BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
 end)
 
 HomeTab.newButton('Use Code: "theSTARRK"','',function()
+    BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
+end)
+
+HomeTab.newButton('Use Code: "batheski"','',function()
     BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
 end)
 
@@ -1164,50 +1172,6 @@ StorageTab.newButton("Close / Open Item Storage","",function()
 end)
 
 StorageTab.newLabel("Storing Stuff   ➖");
-StorageTab.newToggle("Auto Store Every Item","",false,function(Value)
-    getgenv().StoringEveryItem = Value;
-    getgenv().StoringNikyuNikyu = Value;
-    getgenv().StoringHogyoku = Value;
-    getgenv().StoringDiosBone = Value;
-    getgenv().StoringDiosDiary = Value;
-    getgenv().StoringFinger = Value;
-    getgenv().StoringInverted = Value;
-    getgenv().StoringSplit = Value;
-    getgenv().StoringChain = Value;
-    getgenv().StoringCortex = Value;
-    getgenv().StoringCrimson = Value;
-    getgenv().StoringCyan = Value;
-    getgenv().StoringTech = Value;
-    getgenv().StoringArasaka = Value;
-    getgenv().StoringKujoHat = Value;
-    
-    local ItemSlots = {"Slot1","Slot2","Slot3","Slot4","Slot5","Slot6"};
-    local ItemsToStore = {NikyuNikyu = "Nikyu",Hogyoku = "Hogyoku",DiosBone = "Dio's Bone",DiosDiary = "Dio's Diary",Finger = "Sukuna",Inverted = "Inverted",Split = "Split",Chain = "Chain",Cortex = "Cortex",Crimson = "Crimson",Cyan = "Cyan",Tech = "Tech",Arasaka = "Arasaka",KujoHat = "Kujo"};
-    
-    task.spawn(function()
-        while getgenv().StoringEveryItem == true do
-            pcall(function()
-                for i,k in pairs(ItemsToStore) do
-                    if getgenv()["Storing"..i] then
-                        for i,v in ipairs(ItemSlots) do
-                            if game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Inner.Inner[v].Text.Text == "None" then
-                                for _,x in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-                                    if x.Name:lower():find(k:lower()) then
-                                        game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(x);task.wait(1.75);
-                                        local args = {tonumber(v:sub(5))};
-                                        game:GetService("ReplicatedStorage"):WaitForChild("ItemStorageRemote"):WaitForChild("UseItemStorage"):FireServer(unpack(args));
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end
-            end)
-            task.wait(1.35);
-        end
-    end)
-end)
-
 StorageTab.newToggle("Auto Store Nikyu Nikyu Devil Fruit","",false,function(Value)
     getgenv().StoringNikyuNikyu = Value
 
@@ -1338,7 +1302,7 @@ StorageTab.newToggle("Auto Store Chain of A Thousand Miles","",false,function(Va
     end)
 end)
 
-StorageTab.newToggle("Auto Store Cortex Support", "",false,function(Value)
+StorageTab.newToggle("Auto Store Cortex Support","",false,function(Value)
     getgenv().StoringCortex = Value
 
     local ItemToStore = "Cortex";
@@ -1554,6 +1518,58 @@ StorageTab.newToggle("Auto Store Hogyoku Fragment","",false,function(Value)
 
     task.spawn(function()
         while getgenv().StoringHogyoku == true do
+            pcall(function()
+                for i,v in ipairs(ItemSlots) do
+                    if game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Inner.Inner[v].Text.Text == "None" then
+                        for _,x in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+                            if x.Name:lower():find(ItemToStore:lower()) then
+                                game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(x);
+                                local args = {tonumber(v:sub(5))};
+                                game:GetService("ReplicatedStorage"):WaitForChild("ItemStorageRemote"):WaitForChild("UseItemStorage"):FireServer(unpack(args));
+                            end
+                        end
+                    end
+                end
+            end)
+            task.wait(1.35);
+        end
+    end)
+end)
+
+StorageTab.newToggle("Auto Store Roland Gloves","",false,function(Value)
+    getgenv().StoringGloves = Value
+
+    local ItemToStore = "Gloves";
+    local ItemSlots = {"Slot1","Slot2","Slot3","Slot4","Slot5","Slot6"};
+
+    task.spawn(function()
+        while getgenv().StoringGloves == true do
+            pcall(function()
+                for i,v in ipairs(ItemSlots) do
+                    if game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Inner.Inner[v].Text.Text == "None" then
+                        for _,x in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+                            if x.Name:lower():find(ItemToStore:lower()) then
+                                game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(x);
+                                local args = {tonumber(v:sub(5))};
+                                game:GetService("ReplicatedStorage"):WaitForChild("ItemStorageRemote"):WaitForChild("UseItemStorage"):FireServer(unpack(args));
+                            end
+                        end
+                    end
+                end
+            end)
+            task.wait(1.35);
+        end
+    end)
+end)
+
+StorageTab.newToggle("Auto Store Ofa Grace","",false,function(Value)
+    getgenv().StoringGrace = Value
+
+    local ItemToStore = "OA's";
+    local ItemSlots = {"Slot1","Slot2","Slot3","Slot4","Slot5","Slot6"};
+
+    task.spawn(function()
+        while getgenv().StoringGrace == true do
             pcall(function()
                 for i,v in ipairs(ItemSlots) do
                     if game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Inner.Inner[v].Text.Text == "None" then
@@ -2029,8 +2045,8 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
                     local Lplayer = game:GetService("Players").LocalPlayer
                     local Folder = {workspace.Item,workspace.Item2};
                     
-                    local NormalParts = {}
-                    local UniqueParts = {}
+                    local NormalPartz = {}
+                    local UniquePartz = {}
                     
                     for _,k in ipairs(Folder) do
                         for _,k in ipairs(k:GetChildren()) do
@@ -2038,14 +2054,14 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
                                 if ((k.Name:sub(1,2) == "Bo" or k.Name:sub(1,3) == "Sec") and k:FindFirstChild("Outline")) or ((k.Name:sub(1,2) ~= "Bo" and k.Name:sub(1,3) ~= "Sec") and not k:FindFirstChild("Outline")) then
                                     if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "SukunaFinger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "HogyokuFragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
                                         if (k.Name ~= "Box" and k.Name ~= "Barrel" and k.Name ~= "Chest") then
-                                            table.insert(UniqueParts,k);
+                                            table.insert(UniquePartz,k);
                                         end
                                         if Lplayer.Backpack:FindFirstChild("Chest Key") and workspace.Item:FindFirstChild("Chest") and k.Name == "Chest" then
-                                            table.insert(NormalParts,k);
+                                            table.insert(NormalPartz,k);
                                         elseif not Lplayer.Backpack:FindFirstChild("Chest Key") and workspace.Item:FindFirstChild("Chest") and k.Name ~= "Chest" then
-                                            table.insert(NormalParts,k);
+                                            table.insert(NormalPartz,k);
                                         elseif not workspace.Item:FindFirstChild("Chest") then
-                                            table.insert(NormalParts,k);
+                                            table.insert(NormalPartz,k);
                                         end
                                     end
                                 end
@@ -2059,19 +2075,19 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
                             local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                     
                             if Selected and Prompt then
-                                Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,7,0)));task.wait(0.25);
+                                Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,7,0)));task.wait(0.15);
                                 Prompt.HoldDuration = 0;Prompt:InputHoldBegin();Prompt:InputHoldEnd();
                             end
                         end
                     end
                     
-                    if math.random() <= 0.85 and #UniqueParts > 0 then
-                        TeleportTo(UniqueParts);
-                    elseif #NormalParts > 0 then
-                        TeleportTo(NormalParts);
+                    if math.random() <= 0.85 and #UniquePartz > 0 then
+                        TeleportTo(UniquePartz);
+                    elseif #NormalPartz > 0 then
+                        TeleportTo(NormalPartz);
                     end
                 end)
-                task.wait(0.15);
+                task.wait(0.25);
             end
         end)
     
@@ -2086,7 +2102,7 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
         end)
     else
         if getgenv().AutoPublicGrinding == true then
-            BoredLibrary.prompt("Sakura Hub   🌸", "You didn't select title yet...");
+            BoredLibrary.prompt("Sakura Hub   🌸","You didn't select title yet...");
         end 
     end
 end)
@@ -2132,7 +2148,7 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
                             game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
                         end
                     end)
-                    task.wait(1.35);
+                    task.wait(1.45);
                 end
             end)
     
@@ -2188,7 +2204,7 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
                                 end
                             end
                         end)
-                    task.wait(0.35);
+                    task.wait(0.45);
                 end
             end)
     
@@ -2229,7 +2245,7 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
                                     local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                             
                                     if Selected and Prompt then
-                                        Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.25);
+                                        Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.15);
                                         Prompt.HoldDuration = 0;Prompt:InputHoldBegin();Prompt:InputHoldEnd();
                                     end
                                 end
@@ -2242,7 +2258,7 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
                             end
                         end
                     end)
-                    task.wait(0.15);
+                    task.wait(0.25);
                 end
             end)
     
@@ -2256,12 +2272,12 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
             end)
         else
             if getgenv().AutoPrivateGrinding == true then
-                BoredLibrary.prompt("Sakura Hub   🌸", "You don't have the required spec...");
+                BoredLibrary.prompt("Sakura Hub   🌸","You don't have the required spec...");
             end 
         end
     else
         if getgenv().AutoPrivateGrinding == true then
-            BoredLibrary.prompt("Sakura Hub   🌸", "You didn't select title yet...");
+            BoredLibrary.prompt("Sakura Hub   🌸","You didn't select title yet...");
         end 
     end
 end)
