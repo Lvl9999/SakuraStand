@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2988) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2989) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -40,16 +40,27 @@ task.spawn(function()
     end)
 end)
 
+--// Anti Fling Fixer \\--
+task.spawn(function()
+    pcall(function()
+        if not getgenv().FixedAntiFling == true then getgenv().FixedAntiFling = true;
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Throwables/main/AntiFling"))();
+        end
+    end)
+end)
+
 --// Anti Fall Fixer \\--
 task.spawn(function()
     pcall(function()if not getgenv().AntiFallLoaded == true then getgenv().AntiFallLoaded = true;
-            local Base1 = Instance.new("Part");local Base2 = Instance.new("Part");
-            Base1.Size = Vector3.new(9999999999,20,9999999999);
-            Base1.Position = Vector3.new(-521.1619262695312,-270.18596839904785,1644.64208984375);
-            Base1.Anchored = true;Base1.Transparency = 1;Base1.Name = "AntiFall1";Base1.Parent = workspace;
-            Base2.Size = Vector3.new(9999999999,20,9999999999);
-            Base2.Position = Vector3.new(-9307.4345703125,410.1080627441406,1495.1046142578125);
-            Base2.Anchored = true;Base2.Transparency = 1;Base2.Name = "AntiFall2";Base2.Parent = workspace;
+        local Base1 = Instance.new("Part");
+        Base1.Size = Vector3.new(9999999999,150,9999999999);
+        Base1.Position = Vector3.new(-521.1619262695312,-270.18596839904785,1644.64208984375);
+        Base1.Anchored = true;Base1.Transparency = 0.5;Base1.Name = "AntiFall1";Base1.Parent = workspace;
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Throwables/main/AntiFling"))();
+        local Base2 = Instance.new("Part");
+        Base2.Size = Vector3.new(9999999999,150,9999999999);
+        Base2.Position = Vector3.new(-9307.4345703125,90.1080627441406,1495.1046142578125);
+        Base2.Anchored = true;Base2.Transparency = 0.5;Base2.Name = "AntiFall2";Base2.Parent = workspace;
         end
     end)
 end)
@@ -171,8 +182,25 @@ game:GetService("CoreGui").DrRay.TopBar.TopBarClose.idk.Visible = false;
 BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",3);
 ---------------------------------[[ Main Source Code 💞 ]]------------------------------------------------------------
 HomeTab.newLabel("Credits   ✨");
-HomeTab.newButton("Made by Flames#9925","",function()
-    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Mommy Flames <3",1.5);
+HomeTab.newButton("Script Made by ThroughTheFireAndFlames#9925","",function()
+    local xQcClaps = "http://www.roblox.com/asset/?id=5986522845"
+    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = xQcClaps
+    Sound.Volume = 1;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Mommy Flames <3",3);
+end)
+
+HomeTab.newButton("Gui Library Made by Chillz","",function()
+    local LoudFarts = "http://www.roblox.com/asset/?id=6811876591"
+    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = LoudFarts
+    Sound.Volume = 1;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Daddy Chillz <3",3);
+end)
+
+HomeTab.newButton("Notify Library Made by Bored","",function()
+    local DiscordCall = "http://www.roblox.com/asset/?id=4814018992"
+    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = DiscordCall
+    Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Daddy Chillz <3",3);
 end)
 
 HomeTab.newLabel("Local Player Scripts   📢");
@@ -1040,15 +1068,15 @@ HomeTab.newToggle("Auto Bug Players / Mobs (Requires Grab Moves)","",false,funct
 end)
 
 HomeTab.newLabel("Available Working Codes");
-HomeTab.newButton('Claim Code: "SuddenShutdown"','',function()
+HomeTab.newButton('Use Code: "SuddenShutdown"','',function()
     BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
 end)
 
-HomeTab.newButton('Claim Code: "theSTARRK"','',function()
+HomeTab.newButton('Use Code: "theSTARRK"','',function()
     BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
 end)
 
-HomeTab.newButton('Claim Code: "2monthsdelay"','',function()
+HomeTab.newButton('Use Code: "2monthsdelay"','',function()
     BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
 end)
 
@@ -1922,15 +1950,6 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
     end)
     
     task.spawn(function()
-        while getgenv().AutoPublicGrinding == false do
-            pcall(function()
-                game.Workspace.FloatPart:Destroy();
-            end)
-            task.wait(0.25);
-        end
-    end)
-    
-    task.spawn(function()
         while getgenv().AutoPublicGrinding == true do
             pcall(function()
                 FloatPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,-3.05,0);
@@ -2236,7 +2255,7 @@ FarmingTab.newToggle("Auto Steal One For All (Requires Standless)","",false,func
     end)
 end)
 
-FarmingTab.newToggle("Auto Steal Any Item (Rares Only)","",false,function(Value)
+FarmingTab.newToggle("Auto Steal Any Item (Doesnt go with Autofarm)","",false,function(Value)
     getgenv().AutoStealingItems = Value
 
     local FloatPart = Instance.new("Part",game.Workspace);
@@ -2253,15 +2272,6 @@ FarmingTab.newToggle("Auto Steal Any Item (Rares Only)","",false,function(Value)
         end
     end)
     
-    task.spawn(function()
-        while getgenv().AutoStealingItems == false do
-            pcall(function()
-                game.Workspace.FloatPart:Destroy();
-            end)
-            task.wait(0.25);
-        end
-    end)
-
     task.spawn(function()
         while getgenv().AutoStealingItems == true do
             pcall(function()
@@ -2367,7 +2377,7 @@ FarmingTab.newToggle("Auto Safe Zone (Optional)","",false,function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Auto Boss Killer   🔪");
+FarmingTab.newLabel("Auto Boss Killer   🔪 (Doesnt go with Autofarm)");
 FarmingTab.newToggle("Auto set bosses Health To 0 (Use Grab Moves)","",false,function(Value)
     getgenv().AutoOneShotting = Value
     getgenv().ListOfBosses = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas"}
