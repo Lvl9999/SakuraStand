@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2987) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2988) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -2363,6 +2363,133 @@ FarmingTab.newToggle("Auto Safe Zone (Optional)","",false,function(Value)
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-637.7359008789062,-33.393035888671875,1031.9337158203125);
             end)
             task.wait(2.35);
+        end
+    end)
+end)
+
+FarmingTab.newLabel("Auto Boss Killer   🔪");
+FarmingTab.newToggle("Auto set bosses Health To 0 (Use Grab Moves)","",false,function(Value)
+    getgenv().AutoOneShotting = Value
+    getgenv().ListOfBosses = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas"}
+
+    task.spawn(function()
+        while getgenv().AutoOneShotting == true do
+            pcall(function()
+                for _,v in ipairs(getgenv().ListOfBosses) do
+                    local Boss = game:GetService("Workspace"):FindFirstChild("Living"):FindFirstChild(v);
+                    if Boss and Boss:FindFirstChild("Humanoid") then
+                        if Boss.Humanoid and Boss.Humanoid.Health ~= Boss.Humanoid.MaxHealth then
+                            Boss.Humanoid.Health = 0;
+                        end
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)    
+end)
+
+FarmingTab.newToggle("Auto kill Toji Fushiguro","",false,function(Value)
+    getgenv().AutoKillingToji = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingToji == true do
+            pcall(function()
+                local TojiBoss = game:GetService("Workspace").Living:FindFirstChild("Toji"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Toji") and workspace.Living:FindFirstChild("Toji"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TojiBoss.Position - TojiBoss.CFrame.lookVector * 7,TojiBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto kill Dio Brando","",false,function(Value)
+    getgenv().AutoKillingDio = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingDio == true do
+            pcall(function()
+                local DioBoss = game:GetService("Workspace").Living:FindFirstChild("Dio"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Dio") and workspace.Living:FindFirstChild("Dio"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(DioBoss.Position - DioBoss.CFrame.lookVector * 7,DioBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto kill Roland","",false,function(Value)
+    getgenv().AutoKillingRoland = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingRoland == true do
+            pcall(function()
+                local RolandBoss = game:GetService("Workspace").Living:FindFirstChild("Roland"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Roland") and workspace.Living:FindFirstChild("Roland"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(RolandBoss.Position - RolandBoss.CFrame.lookVector * 7,RolandBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto kill Jotaro Kujo","",false,function(Value)
+    getgenv().AutoKillingJotaro = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingJotaro == true do
+            pcall(function()
+                local JotaroBoss = game:GetService("Workspace").Living:FindFirstChild("Jotaro Kujo"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Jotaro Kujo") and workspace.Living:FindFirstChild("Jotaro Kujo"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(JotaroBoss.Position - JotaroBoss.CFrame.lookVector * 7,JotaroBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto kill Izuku Midoriya","",false,function(Value)
+    getgenv().AutoKillingDeku = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingDeku == true do
+            pcall(function()
+                local DekuBoss = game:GetService("Workspace").Living:FindFirstChild("Deku"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Deku") and workspace.Living:FindFirstChild("Deku"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(DekuBoss.Position - DekuBoss.CFrame.lookVector * 7,DekuBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
         end
     end)
 end)
