@@ -2583,7 +2583,7 @@ AreasTab.newButton("Highest Peak","",function()
     end)
 end)
 
-AreasTab.newLabel("Teleports + Quests   📌");
+AreasTab.newLabel("Teleports + Interactions   📌");
 local SelectedNpc = nil
 
 local Table = {}
