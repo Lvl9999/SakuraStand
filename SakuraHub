@@ -1074,7 +1074,7 @@ HomeTab.newButton("Teleport Maker","",function()
 end)
 
 HomeTab.newLabel("Sakura Hub Stuff   🌸");
-HomeTab.newButton("Our Discord Server (Clipboard)","",function()
+HomeTab.newButton("Official Discord Server (Clipboard)","",function()
     setclipboard("https://discord.gg/xeU7t8mK");
     BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
 end)
