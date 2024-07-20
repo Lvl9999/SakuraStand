@@ -1867,7 +1867,7 @@ end)
 local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?id=12334656615");
 
 FarmingTab.newLabel("Equip Farming Spec   📌");
-FarmingTab.newDropdown("","",{"Shinra Kusakabe","Standless"},function(Value)
+FarmingTab.newDropdown("","",{"Shinra Kusakabe"},function(Value)
     pcall(function()
         if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
             BoredLibrary.prompt("Sakura Hub   🌸","You are Combat Marked...",0.75);task.wait(0.15);BoredLibrary.prompt("Sakura Hub   🌸","Reseting Character...",0.75);
@@ -2321,14 +2321,14 @@ FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
             print("This script allows u to get masteries / fingers / masks really fast.");
             print("You can help legit players level up really fast too.");
             print("It basically teleports u to library and resets you once you get hit.");
-            print("Why? because when u reset it counts as a kill and it gives the player who hit u exp");
-            print("And the more alts u make them use this the better the exp rate");
+            print("Why? because when u reset it counts as a kill and it gives the player who hit u exp.");
+            print("And the more alts u make them use this the better the exp rate.");
             print("To get this to work you will need executor like wave because it can execute on multi acc.");
             print("Or you can use Emulator Multiplayer, Another copy of your emulator and join in with a diffrent acc.");
             warn("--------------[Best Settings]--------------");
-            print("The best spec to use (For the one who gets the exp) is Shadow The World, Why? because his m1 cooldowns are really short.");
+            print("The best spec to use (For the one who gets the exp) is Shadow The World, Why? because his m1 cooldown is short.");
             print("The best title to use (For the one who gets the exp) is The Intelligent (Obtained by buying from laptop).");
-            print("I recommend you to use Auto Pick Aura from Stealing Stuff section");
+            print("I recommend you to use Auto Pick Aura from Stealing Stuff section.");
         end
     end)
 end)
