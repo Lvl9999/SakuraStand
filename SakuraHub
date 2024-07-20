@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2991) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2992) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -66,6 +66,18 @@ task.spawn(function()
     end
 end)
 
+--[[
+task.spawn(function()
+    if not getgenv().CheckedForSakuraHubUser == true then getgenv().CheckedForSakuraHubUser = true
+        pcall(function()
+            local Identify = Instance.new("BoolValue");
+            Identify.Name = "Sakura Hub User";
+            Identify.Parent = game.Players.LocalPlayer;
+        end)
+    end
+end)
+--]]
+
 -- // Settings Manager \\ --
 getgenv().Configurations = function()
     pcall(function()
@@ -93,11 +105,21 @@ getgenv().Configurations = function()
         getgenv().AutoSellingSign = false;
         getgenv().AutoStealingOfa = false;
         getgenv().AutoSellingBari = false;
+        getgenv().AutoRolandTheme = false;
+        getgenv().AutoSukunaTheme = false;
+        getgenv().AutoMainFarming = false;
+        getgenv().AutoBinahTheme = false;
         getgenv().AutoKillingDio = false;
+        getgenv().AutoAltFarming = false;
         getgenv().AutoLevelingUp = false;
+        getgenv().AutoDekuTheme = false;
+        getgenv().AutoMonotone = false;
+        getgenv().AutoCidTheme = false;
         getgenv().AutoSafeZone = false;
         getgenv().AutoRebirth = false;
         getgenv().AutoSelling = false;
+        getgenv().AutoRaining = false;
+        getgenv().AutoCloudy = false;
 
         -- [Quest Scripts]
         getgenv().AutoParryingDamage = false;
@@ -133,7 +155,6 @@ getgenv().Configurations = function()
         getgenv().AutoGlitching = false;
         getgenv().AutoDefending = false;
         getgenv().AutoRoasting = false;
-        getgenv().AutoBullying = false;
         getgenv().AutoDashing = false;
         getgenv().AutoDodging = false;
 
@@ -536,78 +557,138 @@ HomeTab.newToggle("Esp Items","",false,function(Value)
     end
 end)
 
+HomeTab.newLabel("Weather Scripts   ☁️");
+HomeTab.newToggle("Monotone","",false,function(Value)
+    getgenv().AutoMonotone = Value
+
+    task.spawn(function()
+        if getgenv().AutoMonotone == true then
+            workspace.Monotone.Value = true;
+        else
+            workspace.Monotone.Value = false;
+        end
+    end)
+end)
+
+HomeTab.newToggle("Raining","",false,function(Value)
+    getgenv().AutoRaining = Value
+
+    task.spawn(function()
+        if getgenv().AutoRaining == true then
+            workspace.Raining.Value = true;
+        else
+            workspace.Raining.Value = false;
+        end
+    end)
+end)
+
+HomeTab.newToggle("Cloudy","",false,function(Value)
+    getgenv().AutoCloudy = Value
+
+    task.spawn(function()
+        if getgenv().AutoCloudy == true then
+            workspace.Cloudy.Value = true;
+        else
+            workspace.Cloudy.Value = false;
+        end
+    end)
+end)
+
+HomeTab.newLabel("Sound Scripts   🔊");
+HomeTab.newToggle("Deku's Theme  🔥","",false,function(Value)
+    getgenv().AutoDekuTheme = Value
+
+    task.spawn(function()
+        if getgenv().AutoDekuTheme == true then
+            local DekuTheme = "http://www.roblox.com/asset/?id=13006939528"
+            local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = DekuTheme
+            Sound.Volume = 10;Sound.Looped = true;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+        else
+            for i,v in ipairs(workspace:children()) do
+                if v:isA("Sound") then
+                    v:Destroy();
+                end
+            end
+        end
+    end)
+end)
+
+HomeTab.newToggle("Sukuna's Theme","",false,function(Value)
+    getgenv().AutoSukunaTheme = Value
+
+    task.spawn(function()
+        if getgenv().AutoSukunaTheme == true then
+            local SukunaTheme = "http://www.roblox.com/asset/?id=15536911657"
+            local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = SukunaTheme
+            Sound.Volume = 5;Sound.Looped = true;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+        else
+            for i,v in ipairs(workspace:children()) do
+                if v:isA("Sound") then
+                    v:Destroy();
+                end
+            end
+        end
+    end)
+end)
+
+HomeTab.newToggle("Binah's Theme","",false,function(Value)
+    getgenv().AutoBinahTheme = Value
+
+    task.spawn(function()
+        if getgenv().AutoBinahTheme == true then
+            local BinahTheme = "http://www.roblox.com/asset/?id=18248621175"
+            local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = BinahTheme
+            Sound.Volume = 5;Sound.Looped = true;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+        else
+            for i,v in ipairs(workspace:children()) do
+                if v:isA("Sound") then
+                    v:Destroy();
+                end
+            end
+        end
+    end)
+end)
+
+HomeTab.newToggle("Roland's Theme","",false,function(Value)
+    getgenv().AutoRolandTheme = Value
+
+    task.spawn(function()
+        if getgenv().AutoRolandTheme == true then
+            local RolandTheme = "http://www.roblox.com/asset/?id=17105939177"
+            local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = RolandTheme
+            Sound.Volume = 10;Sound.Looped = true;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+        else
+            for i,v in ipairs(workspace:children()) do
+                if v:isA("Sound") then
+                    v:Destroy();
+                end
+            end
+        end
+    end)
+end)
+
+HomeTab.newToggle("Cids's Theme","",false,function(Value)
+    getgenv().AutoCidTheme = Value
+
+    task.spawn(function()
+        if getgenv().AutoCidTheme == true then
+            local CidTheme = "http://www.roblox.com/asset/?id=15262782046"
+            local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = CidTheme
+            Sound.Volume = 5;Sound.Looped = true;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+        else
+            for i,v in ipairs(workspace:children()) do
+                if v:isA("Sound") then
+                    v:Destroy();
+                end
+            end
+        end
+    end)
+end)
+
 HomeTab.newLabel("Miscellaneous Scripts   📌");
 HomeTab.newToggle("Auto Aimlock Nearest Player (Overpowered)","",false,function(Value)
     getgenv().AutoAimlocking = Value
     game:GetService("RunService").RenderStepped:Connect(function() if not getgenv().AutoAimlocking == true then return end local x,b for _,v in ipairs(game:GetService("Players"):GetPlayers()) do if v.Character and v ~= game:GetService("Players").LocalPlayer then if not x or (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude < b then x = v b = (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position).Magnitude end end end if x and b <= 35 then game:GetService("Workspace").CurrentCamera.CFrame = CFrame.new(game:GetService("Workspace").CurrentCamera.CFrame.p,x.Character.HumanoidRootPart.Position) end end);
-end)
-
-HomeTab.newToggle("Auto Bully Nearest Player (Dont Use Grab Moves)","",false,function(Value)
-    getgenv().AutoBullying = Value
-    getgenv().TeleportDistance = 6
-    
-    task.spawn(function()
-        if getgenv().AutoBullying == false then
-            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,50,-50);
-        end
-    end)
-
-    local LPlayer = game.Players.LocalPlayer
-    local CRoot
-    
-    local function UpdateCRoot()
-        local LChar = LPlayer.Character
-        if LChar then
-            CRoot = LChar:FindFirstChild("HumanoidRootPart");
-            if not CRoot then
-                LChar.ChildAdded:Wait();
-                CRoot = LChar:WaitForChild("HumanoidRootPart");
-            end
-        end
-    end
-    
-    local function isPlayer(X)
-        return game.Players:GetPlayerFromCharacter(X) ~= nil
-    end
-    
-    local function FindNearest()
-        local Dist = math.huge
-        local NearestPlr = nil
-    
-        for _,v in pairs(game.Workspace.Living:GetChildren()) do
-            if isPlayer(v) then
-                local Humanoid = v:FindFirstChildOfClass("Humanoid");
-                local HumanoidRoot = v:FindFirstChild("HumanoidRootPart");
-    
-                if Humanoid and HumanoidRoot and v ~= LPlayer.Character then
-                    local Mag = (CRoot.Position - HumanoidRoot.Position).magnitude
-                    if Mag < Dist then
-                        Dist = Mag;NearestPlr = HumanoidRoot;
-                    end
-                end
-            end
-        end
-    
-        return NearestPlr
-    end
-     
-    task.spawn(function()
-        while getgenv().AutoBullying == true  do
-            pcall(function()UpdateCRoot();
-                if CRoot then
-                    local Found = FindNearest();
-                    if Found then
-                        LPlayer.Character:SetPrimaryPartCFrame(CFrame.new(Found.Position - Vector3.new(0,Found.Size.Y/2,0) - Found.CFrame.LookVector * getgenv().TeleportDistance + Vector3.new(0,-6,0),Found.Position - Vector3.new(0,Found.Size.Y/2,0)));
-                    end
-                end
-            end)
-            task.wait(0.015);
-        end
-    end)
-    
-    LPlayer.CharacterAdded:Connect(function()
-        task.wait(3);UpdateCRoot();
-    end)
 end)
 
 HomeTab.newToggle("Auto Roast Dead Players (Be Near Them)","",false,function(Value)
@@ -905,7 +986,7 @@ HomeTab.newToggle("Auto Ctrl + Click Combo Players / Mobs (Overpowered)","",fals
     end)
 end)
 
-HomeTab.newToggle("Auto Counter Attack Players / Mobs (Use Shadow Dio)","",false,function(Value)
+HomeTab.newToggle("Auto Counter Attack Players / Mobs (Use Sdio or Gojo)","",false,function(Value)
     getgenv().AutoDefending = Value
 
     task.spawn(function()
@@ -974,7 +1055,7 @@ HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,funct
     end
     
     local SoundON = function()
-        local v0=Instance.new("Sound");v0.Name="Sound";v0.SoundId="http://www.roblox.com/asset/?id=1677094219";v0.Volume=5;v0.Looped=true;v0.archivable=false;v0.Parent=game.Workspace;if (game.Players.LocalPlayer.Character.Humanoid.Health>10) then v0:Play();end
+        local v0=Instance.new("Sound");v0.Name="Sound";v0.SoundId="http://www.roblox.com/asset/?id=1677094219";v0.Volume=7;v0.Looped=true;v0.archivable=false;v0.Parent=game.Workspace;if (game.Players.LocalPlayer.Character.Humanoid.Health>10) then v0:Play();end
     end
     
     local SoundOFF = function()
@@ -1123,6 +1204,20 @@ HomeTab.newButton("Official Discord Server (Clipboard)","",function()
     setclipboard("https://discord.gg/xeU7t8mK");
     BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
 end)
+
+--[[
+HomeTab.newButton("Check for Sakura Hub Users (In Game)","",function()
+    pcall(function()BoredLibrary.prompt("Sakura Hub   🌸","Checking for users...",3);task.wait(3);
+        for _,v in ipairs(game.Players:GetPlayers()) do
+            if v:FindFirstChild("Sakura Hub User"):IsA("BoolValue") and v ~= game.Players.LocalPlayer then
+                BoredLibrary.prompt("Sakura Hub   🌸",v.Name.." Is using Sakura Hub.",3.5);
+            else
+                BoredLibrary.prompt("Sakura Hub   🌸","Couldn't find users...",1.5);
+            end
+        end
+    end)
+end)
+--]]
 
 HomeTab.newButton("Reload Sakura Hub","",function()
     getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
@@ -2766,7 +2861,7 @@ getgenv().PlaySound = function()
     Sound.Volume = 5;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
 end
 
-AreasTab.newLabel("Teleports   📌");
+AreasTab.newLabel("Teleports   📌  (You can Teleport people with you, Just grab them)");
 AreasTab.newButton("Shop","",function()
     pcall(function()
         getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-375.9766845703125,-31.704181671142578,1810.9178466796875);
@@ -2849,9 +2944,57 @@ AreasTab.newButton("Ruined City","",function()
     end)
 end)
 
-AreasTab.newButton("White Torture Room","",function()
+AreasTab.newButton("White Room","",function()
     pcall(function()
         getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30.787561416625977,-2.1192715167999268,1510.0244140625);
+    end)
+end)
+
+AreasTab.newButton("Midknight Arena","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(8901.267578125,-371.0782165527344,-7650.62939453125);
+    end)
+end)
+
+AreasTab.newButton("PvP Arena","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(855.4273071289062,-395.0755920410156,-749.8252563476562);
+    end)
+end)
+
+AreasTab.newButton("Anubis Dimension","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3505.6298828125,-399.08502197265625,1144.2833251953125);
+    end)
+end)
+
+AreasTab.newButton("Testing Place","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2383.890625,-429.52105712890625,3179.1923828125);
+    end)
+end)
+
+AreasTab.newButton("Espada Place","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(612.9273681640625,-6.123868465423584,1690.8900146484375);
+    end)
+end)
+
+AreasTab.newButton("Sanity Room","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3487.05322265625,-374.0752868652344,484.3776550292969);
+    end)
+end)
+
+AreasTab.newButton("Sukuna Domain","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(7186.9072265625,-140,3946.327880859375);
+    end)
+end)
+
+AreasTab.newButton("Hoh Domain","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(15664.208984375,-373.0132751464844,25287.08203125);
     end)
 end)
 
