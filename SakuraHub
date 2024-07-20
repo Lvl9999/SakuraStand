@@ -2405,7 +2405,7 @@ FarmingTab.newToggle("Auto Steal One For All (Requires Standless)","",false,func
     end)
 end)
 
-FarmingTab.newToggle("Auto Steal Any Item (Doesnt go with Autofarm)","",false,function(Value)
+FarmingTab.newToggle("Auto Steal Any Item  (Doesnt go with Autofarm)","",false,function(Value)
     getgenv().AutoStealingItems = Value
 
     local FloatPart = Instance.new("Part",game.Workspace);
@@ -2526,7 +2526,7 @@ FarmingTab.newToggle("Auto Safe Zone (Optional)","",false,function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Auto Boss Killer   🔪 (Doesnt go with Autofarm)");
+FarmingTab.newLabel("Auto Boss Killer   🔪  (Doesnt go with Autofarm)");
 FarmingTab.newToggle("Auto set bosses Health To 0 (Use Grab Moves)","",false,function(Value)
     getgenv().AutoOneShotting = Value
     getgenv().ListOfBosses = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas"}
