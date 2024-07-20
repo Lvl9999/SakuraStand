@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2991) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2990) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -1158,7 +1158,7 @@ end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","http://www.roblox.com/asset/?id=6870729295");
 
-StorageTab.newLabel("Storage Stuff   ➕");
+StorageTab.newLabel("Storage Stuff   📌");
 StorageTab.newButton("Close / Open Stand Storage","",function()
     pcall(function()
         game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled;
@@ -1171,7 +1171,7 @@ StorageTab.newButton("Close / Open Item Storage","",function()
     end)
 end)
 
-StorageTab.newLabel("Storing Stuff   ➖");
+StorageTab.newLabel("Storing Stuff   📌");
 StorageTab.newToggle("Auto Store Nikyu Nikyu Devil Fruit","",false,function(Value)
     getgenv().StoringNikyuNikyu = Value
 
@@ -1193,7 +1193,7 @@ StorageTab.newToggle("Auto Store Nikyu Nikyu Devil Fruit","",false,function(Valu
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1219,7 +1219,7 @@ StorageTab.newToggle("Auto Store Sukuna's Finger","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1245,7 +1245,7 @@ StorageTab.newToggle("Auto Store Inverted Spear Of Heaven","",false,function(Val
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1271,7 +1271,7 @@ StorageTab.newToggle("Auto Store Split Soul Katana","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1297,7 +1297,7 @@ StorageTab.newToggle("Auto Store Chain of A Thousand Miles","",false,function(Va
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1323,7 +1323,7 @@ StorageTab.newToggle("Auto Store Cortex Support","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1349,7 +1349,7 @@ StorageTab.newToggle("Auto Store Crimson Cyberdeck","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1375,7 +1375,7 @@ StorageTab.newToggle("Auto Store Cyan Cyberdeck","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1401,7 +1401,7 @@ StorageTab.newToggle("Auto Store Tech Monitor","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1427,7 +1427,7 @@ StorageTab.newToggle("Auto Store Arasaka Suitcase","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1453,7 +1453,7 @@ StorageTab.newToggle("Auto Store Kujo's Hat","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1479,7 +1479,7 @@ StorageTab.newToggle("Auto Store Dio's Bone","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1505,7 +1505,7 @@ StorageTab.newToggle("Auto Store Dio's Diary","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1531,12 +1531,12 @@ StorageTab.newToggle("Auto Store Hogyoku Fragment","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
 
-StorageTab.newToggle("Auto Store Roland Gloves","",false,function(Value)
+StorageTab.newToggle("Auto Store Roland Glove","",false,function(Value)
     getgenv().StoringGloves = Value
 
     local ItemToStore = "Gloves";
@@ -1557,7 +1557,7 @@ StorageTab.newToggle("Auto Store Roland Gloves","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1583,7 +1583,7 @@ StorageTab.newToggle("Auto Store Ofa Grace","",false,function(Value)
                     end
                 end
             end)
-            task.wait(1.35);
+            task.wait(1.75);
         end
     end)
 end)
@@ -1867,7 +1867,7 @@ end)
 local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?id=12334656615");
 
 FarmingTab.newLabel("Equip Farming Spec   📌");
-FarmingTab.newDropdown("","",{"Shadow The World","Shinra Kusakabe","Standless"},function(Value)
+FarmingTab.newDropdown("","",{"Shinra Kusakabe","Standless"},function(Value)
     pcall(function()
         if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
             BoredLibrary.prompt("Sakura Hub   🌸","You are Combat Marked...",0.75);task.wait(0.15);BoredLibrary.prompt("Sakura Hub   🌸","Reseting Character...",0.75);
@@ -2042,7 +2042,7 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
         task.spawn(function()
             while getgenv().AutoPublicGrinding == true do
                 pcall(function()
-                    if not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
+                    if getgenv().AutoSelectTitle == true and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
                         local Lplayer = game:GetService("Players").LocalPlayer
                         local Folder = {workspace.Item,workspace.Item2};
                         
@@ -2104,7 +2104,11 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
         end)
     else
         if getgenv().AutoPublicGrinding == true then
-            BoredLibrary.prompt("Sakura Hub   🌸","You didn't select title yet...");
+            if not getgenv().SelectedTitle then
+                BoredLibrary.prompt("Sakura Hub   🌸","You didn't select any title yet...",1.5);
+            else
+                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip title yet...",1.5);
+            end
         end 
     end
 end)
@@ -2145,7 +2149,7 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
                         local SakuraMap = Vector3.new(-537.9830932617188,-31.18596839904785,1648.037109375);
                         local HuecoMap = Vector3.new(-9311.4697265625,409.4530334472656,1565.1409912109375);
                         local PlrPos = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
-                        if (PlrPos - SakuraMap).Magnitude > 1000 and (PlrPos - HuecoMap).Magnitude > 500 then
+                        if (PlrPos - SakuraMap).Magnitude > 1020 and (PlrPos - HuecoMap).Magnitude > 520 then
                             local args = {[1] = "kill"};
                             game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
                         end
@@ -2274,12 +2278,16 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
             end)
         else
             if getgenv().AutoPrivateGrinding == true then
-                BoredLibrary.prompt("Sakura Hub   🌸","You don't have the required spec...");
+                BoredLibrary.prompt("Sakura Hub   🌸","You don't have the required spec...",1.5);
             end 
         end
     else
-        if getgenv().AutoPrivateGrinding == true then
-            BoredLibrary.prompt("Sakura Hub   🌸","You didn't select title yet...");
+        if getgenv().AutoPublicGrinding == true then
+            if not getgenv().SelectedTitle then
+                BoredLibrary.prompt("Sakura Hub   🌸","You didn't select any title yet...",1.5);
+            else
+                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip title yet...",1.5);
+            end
         end 
     end
 end)
@@ -2787,6 +2795,12 @@ end)
 AreasTab.newButton("Ruined City","",function()
     pcall(function()
         getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7150.1806640625,-32.022640228271484,1294.813720703125);
+    end)
+end)
+
+AreasTab.newButton("White Torture Room","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30.787561416625977,-2.1192715167999268,1510.0244140625);
     end)
 end)
 
