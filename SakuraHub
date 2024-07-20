@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2990) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2991) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -2308,6 +2308,57 @@ FarmingTab.newToggle("Auto Sell Everything","",false,function(Value)
                 end
             end)
             task.wait(3.5);
+        end
+    end)
+end)
+
+FarmingTab.newLabel("Auto Alt Farming   🔥");
+FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
+    pcall(function()
+        if not getgenv().AutoAltFarmingExplanation == true then getgenv().AutoAltFarmingExplanation = true
+            BoredLibrary.prompt("Sakura Hub 🌸","Open F9 Console",1.5);
+            warn("---------------[Alt Farming]---------------");
+            print("This script allows u to get masteries / fingers / masks really fast.");
+            print("You can help legit players level up really fast too.");
+            print("It basically teleports u to library and resets you once you get hit.");
+            print("Why? because when u reset it counts as a kill and it gives the player who hit u exp");
+            print("And the more alts u make them use this the better the exp rate");
+            print("To get this to work you will need executor like wave because it can execute on multi acc.");
+            print("Or you can use Emulator Multiplayer, Another copy of your emulator and join in with a diffrent acc.");
+            warn("--------------[Best Settings]--------------");
+            print("The best spec to use (For the one who gets the exp) is Shadow The World, Why? because his m1 cooldowns are really short.");
+            print("The best title to use (For the one who gets the exp) is The Intelligent (Obtained by buying from laptop).");
+            print("I recommend you to use Auto Pick Aura from Stealing Stuff section");
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Start Farming (Alt Account)","",false,function(Value)
+    getgenv().AutoAltFarming = Value
+
+    task.spawn(function()
+        while getgenv().AutoAltFarming == true do
+            pcall(function()                
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-85.82078552246094,-116.3696060180664,314.07122802734375);
+                if workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid").MaxHealth ~= workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Humanoid").Health then
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 0;
+                end
+            end)
+            task.wait(0.015);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Start Farming (Main Account)","",false,function(Value)
+    getgenv().AutoMainFarming = Value
+
+    task.spawn(function()
+        while getgenv().AutoMainFarming == true do
+            pcall(function()           
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-87.23579406738281,-116.3696060180664,318.3973693847656);
+                game:GetService("VirtualUser"):Button1Down(Vector2.new());
+            end)
+            task.wait(0.015);
         end
     end)
 end)
