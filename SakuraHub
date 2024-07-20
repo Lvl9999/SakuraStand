@@ -2149,12 +2149,12 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
                         local SakuraMap = Vector3.new(-537.9830932617188,-31.18596839904785,1648.037109375);
                         local HuecoMap = Vector3.new(-9311.4697265625,409.4530334472656,1565.1409912109375);
                         local PlrPos = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
-                        if (PlrPos - SakuraMap).Magnitude > 1020 and (PlrPos - HuecoMap).Magnitude > 520 then
+                        if (PlrPos - SakuraMap).Magnitude > 1000 and (PlrPos - HuecoMap).Magnitude > 500 then
                             local args = {[1] = "kill"};
                             game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
                         end
                     end)
-                    task.wait(1.45);
+                    task.wait(0.35);
                 end
             end)
     
