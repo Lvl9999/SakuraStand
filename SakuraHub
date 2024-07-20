@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2990) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2991) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -11,7 +11,7 @@
     end)
 ]]-----------------------------------------------------------------------------------------------------
 
--- // Auto Loader \\--
+-- // Auto Loader \\ --
 repeat task.wait(0.1) until game:IsLoaded();
 
 -- // Auto Skip Loading Menu \\ --
@@ -2040,51 +2040,53 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
         end)
     
         task.spawn(function()
-            while getgenv().AutoPublicGrinding == true and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0  and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle do
+            while getgenv().AutoPublicGrinding == true do
                 pcall(function()
-                    local Lplayer = game:GetService("Players").LocalPlayer
-                    local Folder = {workspace.Item,workspace.Item2};
-                    
-                    local NormalPartz = {}
-                    local UniquePartz = {}
-                    
-                    for _,k in ipairs(Folder) do
-                        for _,k in ipairs(k:GetChildren()) do
-                            if k:IsA("BasePart") and k.Name ~= "SoulSpawn" and k.Name ~= "PerceptionMask" and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125) then
-                                if ((k.Name:sub(1,2) == "Bo" or k.Name:sub(1,3) == "Sec") and k:FindFirstChild("Outline")) or ((k.Name:sub(1,2) ~= "Bo" and k.Name:sub(1,3) ~= "Sec") and not k:FindFirstChild("Outline")) then
-                                    if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "SukunaFinger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "HogyokuFragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
-                                        if (k.Name ~= "Box" and k.Name ~= "Barrel" and k.Name ~= "Chest") then
-                                            table.insert(UniquePartz,k);
-                                        end
-                                        if Lplayer.Backpack:FindFirstChild("Chest Key") and workspace.Item:FindFirstChild("Chest") and k.Name == "Chest" then
-                                            table.insert(NormalPartz,k);
-                                        elseif not Lplayer.Backpack:FindFirstChild("Chest Key") and workspace.Item:FindFirstChild("Chest") and k.Name ~= "Chest" then
-                                            table.insert(NormalPartz,k);
-                                        elseif not workspace.Item:FindFirstChild("Chest") then
-                                            table.insert(NormalPartz,k);
+                    if not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
+                        local Lplayer = game:GetService("Players").LocalPlayer
+                        local Folder = {workspace.Item,workspace.Item2};
+                        
+                        local NormalPartz = {}
+                        local UniquePartz = {}
+                        
+                        for _,k in ipairs(Folder) do
+                            for _,k in ipairs(k:GetChildren()) do
+                                if k:IsA("BasePart") and k.Name ~= "SoulSpawn" and k.Name ~= "PerceptionMask" and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125) then
+                                    if ((k.Name:sub(1,2) == "Bo" or k.Name:sub(1,3) == "Sec") and k:FindFirstChild("Outline")) or ((k.Name:sub(1,2) ~= "Bo" and k.Name:sub(1,3) ~= "Sec") and not k:FindFirstChild("Outline")) then
+                                        if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "SukunaFinger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "HogyokuFragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
+                                            if (k.Name ~= "Box" and k.Name ~= "Barrel" and k.Name ~= "Chest") then
+                                                table.insert(UniquePartz,k);
+                                            end
+                                            if Lplayer.Backpack:FindFirstChild("Chest Key") and workspace.Item:FindFirstChild("Chest") and k.Name == "Chest" then
+                                                table.insert(NormalPartz,k);
+                                            elseif not Lplayer.Backpack:FindFirstChild("Chest Key") and workspace.Item:FindFirstChild("Chest") and k.Name ~= "Chest" then
+                                                table.insert(NormalPartz,k);
+                                            elseif not workspace.Item:FindFirstChild("Chest") then
+                                                table.insert(NormalPartz,k);
+                                            end
                                         end
                                     end
                                 end
                             end
                         end
-                    end
-                    
-                    local function TeleportTo(Parts)
-                        if #Parts > 0 then
-                            local Selected = Parts[math.random(1,#Parts)];
-                            local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
-                    
-                            if Selected and Prompt then
-                                Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,7,0)));task.wait(0.15);
-                                Prompt.HoldDuration = 0;Prompt:InputHoldBegin();Prompt:InputHoldEnd();
+                        
+                        local function TeleportTo(Parts)
+                            if #Parts > 0 then
+                                local Selected = Parts[math.random(1,#Parts)];
+                                local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
+                        
+                                if Selected and Prompt then
+                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,7,0)));task.wait(0.15);
+                                    Prompt.HoldDuration = 0;Prompt:InputHoldBegin();Prompt:InputHoldEnd();
+                                end
                             end
                         end
-                    end
-                    
-                    if math.random() <= 0.85 and #UniquePartz > 0 then
-                        TeleportTo(UniquePartz);
-                    elseif #NormalPartz > 0 then
-                        TeleportTo(NormalPartz);
+                        
+                        if math.random() <= 0.75 and #UniquePartz > 0 then
+                            TeleportTo(UniquePartz);
+                        elseif #NormalPartz > 0 then
+                            TeleportTo(NormalPartz);
+                        end
                     end
                 end)
                 task.wait(0.25);
@@ -2406,7 +2408,6 @@ FarmingTab.newToggle("Auto Steal Any Item (Doesnt go with Autofarm)","",false,fu
                                 if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "SukunaFinger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "HogyokuFragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
                                     if (k.Name ~= "Box" and k.Name ~= "Barrel" and k.Name ~= "Chest") then
                                         table.insert(UniquePartss,k);getgenv().FoundAnyItem = true;
-                                        break
                                     end
                                 end
                             end
@@ -2443,7 +2444,7 @@ FarmingTab.newToggle("Auto Pick Aura (Any Item)","",false,function(Value)
                 for i,v in pairs(Folders) do
                     for i,v in pairs(v:GetDescendants()) do
                         if v:IsA("ProximityPrompt") then
-                            fireproximityprompt(v,0);
+                            v.HoldDuration = 0;v:InputHoldBegin();v:InputHoldEnd();
                         end
                     end
                 end
