@@ -169,6 +169,7 @@ getgenv().Configurations = function()
 
         -- [Statistics GUI]
         game:GetService("CoreGui").StatisticsGUI.Enabled = false;
+        getgenv().Unaura();getgenv().SoundOFF();
     end)
 end
 
@@ -2090,6 +2091,24 @@ FarmingTab.newToggle("Auto Breakthrough","",false,function(Value)
 end)
 
 FarmingTab.newLabel("Auto Farming Items + Auto Farming Bosses / Mobs   💫");
+FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
+    pcall(function()
+        if not getgenv().AutoFarmingExplanation == true then getgenv().AutoFarmingExplanation = true
+            BoredLibrary.prompt("Sakura Hub 🌸","Open F9 Console",1.5);
+            warn("---------------[Auto Farming]---------------");
+            print("This script allows u to get levels and items faster than usual.");
+            print("You can one shot mobs by grabbing them (Shinra Only)");
+            print("Why shinra only? Because the spec has 3 grab moves with short cooldown");
+            print("I dont want you to get banned so pls dont use ps edition in a public server.");
+            print("Why do I need to select title before autofarming? This will keep u safe from the game forcing u to change title.");
+            warn("--------------[Best Settings]--------------");
+            print("The best spec to use the autofarm with: (Shinra Kusakabe).");
+            print("The best title to use the autofarm with: (The Intelligent).");
+            print("I recommend you to use Auto Upgrade Mastery and Auto Breakthrough along with Auto Sell Any Item.");
+        end
+    end)
+end)
+
 FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(Value)
     getgenv().AutoPublicGrinding = Value
 
