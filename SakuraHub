@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2993) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2994) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -96,6 +96,7 @@ getgenv().Configurations = function()
         getgenv().AutoSellingArrow = false;
         getgenv().AutoBreakthrough = false;
         getgenv().AutoPickingItems = false;
+        getgenv().AutoSpawningToji = false;
         getgenv().AutoSellingMochi = false;
         getgenv().AutoSellingBari = false;
         getgenv().AutoKillingDeku = false;
@@ -108,6 +109,8 @@ getgenv().Configurations = function()
         getgenv().AutoSellingBari = false;
         getgenv().AutoRolandTheme = false;
         getgenv().AutoSukunaTheme = false;
+        getgenv().AutoSpawningDuo = false;
+        getgenv().AutoSpawningDio = false;
         getgenv().AutoMainFarming = false;
         getgenv().AutoRollDeaths = false;
         getgenv().AutoRollArcade = false;
@@ -124,6 +127,12 @@ getgenv().Configurations = function()
         getgenv().AutoSelling = false;
         getgenv().AutoRaining = false;
         getgenv().AutoCloudy = false;
+
+        -- [Exchange Scripts]
+        getgenv().AutoB4T = false;
+        getgenv().AutoB4P = false;
+        getgenv().AutoB4S = false;
+        getgenv().AutoB4C = false;
 
         -- [Quest Scripts]
         getgenv().AutoParryingDamage = false;
@@ -561,7 +570,7 @@ HomeTab.newToggle("Esp Items","",false,function(Value)
     end
 end)
 
-HomeTab.newLabel("Weather Scripts   ☁️");
+HomeTab.newLabel("Weather Scripts   🌧️");
 HomeTab.newToggle("Monotone","",false,function(Value)
     getgenv().AutoMonotone = Value
 
@@ -1046,7 +1055,7 @@ HomeTab.newToggle("Auto Dash Players / Mobs (Overpowered)","",false,function(Val
     end)
 end)
 
-HomeTab.newToggle("Auto Dodge Players / Mobs (Use In Open Areas)","",false,function(Value)
+HomeTab.newToggle("Auto Dodge Players / Mobs  🌌 (Use In Open Areas)","",false,function(Value)
     getgenv().AutoDodging = Value
 
     -- // Taken from private script of mine
@@ -1260,7 +1269,7 @@ HomeTab.newInput("Report Bugs / Feedback","Type here anything you want me to kno
     end)
 end)
 
-HomeTab.newButton("Hide your username from me (Optional When Writing)","",function()
+HomeTab.newButton("Hide your username from me (Use Before Typing)","",function()
     getgenv().PrivacyMode = true;
     BoredLibrary.prompt("Sakura Hub   🌸","Hided Your Name   ✅",1.5);
 end)
@@ -1975,7 +1984,7 @@ end)
 
 local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?id=12334656615");
 
-FarmingTab.newLabel("Equip Farming Spec   📌");
+FarmingTab.newLabel("Equip Best Farming Spec   🛠️");
 FarmingTab.newDropdown("","",{"Shinra Kusakabe"},function(Value)
     pcall(function()
         if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
@@ -2002,7 +2011,7 @@ FarmingTab.newDropdown("","",{"Shinra Kusakabe"},function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Equip Farming Title   📌");
+FarmingTab.newLabel("Equip Your Title   📌");
 local Table = {}
 local Intelligent = false;
 
@@ -2040,7 +2049,7 @@ FarmingTab.newToggle("Auto Equip Selected Title","",false,function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Statistics   📊");
+FarmingTab.newLabel("Statistics GUI   📊");
 FarmingTab.newToggle("Show / Hide Statistics GUI","",false,function(Value)
     getgenv().ToggleStatisticsGUI = Value
     game:GetService("CoreGui").StatisticsGUI.Enabled = getgenv().ToggleStatisticsGUI;
@@ -2103,7 +2112,7 @@ FarmingTab.newToggle("Auto Breakthrough","",false,function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Auto Farming Items + Auto Farming Bosses / Mobs   💫");
+FarmingTab.newLabel("Auto Farming Items + Auto Farming Bosses / Mobs   💤");
 FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
     pcall(function()
         if not getgenv().AutoFarmingExplanation == true then getgenv().AutoFarmingExplanation = true
@@ -2237,7 +2246,7 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
             if not getgenv().SelectedTitle then
                 BoredLibrary.prompt("Sakura Hub   🌸","You didn't select any title yet...",1.5);
             else
-                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip title yet...",1.5);
+                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip the title yet...",1.5);
             end
         end 
     end
@@ -2416,7 +2425,7 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
             if not getgenv().SelectedTitle then
                 BoredLibrary.prompt("Sakura Hub   🌸","You didn't select any title yet...",1.5);
             else
-                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip title yet...",1.5);
+                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip the title yet...",1.5);
             end
         end 
     end
@@ -2442,7 +2451,7 @@ FarmingTab.newToggle("Auto Sell Everything","",false,function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Auto Alt Exp Farming   🔥");
+FarmingTab.newLabel("Auto Alt Exp Farming   🔥 [Private Servers Only]");
 FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
     pcall(function()
         if not getgenv().AutoAltFarmingExplanation == true then getgenv().AutoAltFarmingExplanation = true
@@ -2658,14 +2667,14 @@ FarmingTab.newToggle("Auto Safe Zone (Optional)","",false,function(Value)
 end)
 
 FarmingTab.newLabel("Auto Boss Killer   🔪  (Doesnt go with Autofarm)");
-FarmingTab.newToggle("Auto set bosses Health To 0 (Use Grab Moves)","",false,function(Value)
+FarmingTab.newToggle("Auto set Bosses / Mobs Health To 0 (Use Grab Moves First)","",false,function(Value)
     getgenv().AutoOneShotting = Value
-    getgenv().ListOfBosses = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas"}
+    getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
     task.spawn(function()
         while getgenv().AutoOneShotting == true do
             pcall(function()
-                for _,v in ipairs(getgenv().ListOfBosses) do
+                for _,v in ipairs(getgenv().ListOfNpcs) do
                     local Boss = game:GetService("Workspace"):FindFirstChild("Living"):FindFirstChild(v);
                     if Boss and Boss:FindFirstChild("Humanoid") then
                         if Boss.Humanoid and Boss.Humanoid.Health ~= Boss.Humanoid.MaxHealth then
@@ -2784,6 +2793,67 @@ FarmingTab.newToggle("Auto kill Izuku Midoriya","",false,function(Value)
     end)
 end)
 
+FarmingTab.newLabel("Auto Boss Spawner   🪄 (Doesnt go with Autofarm)");
+FarmingTab.newToggle("Auto Spawn Izuku Midoriya + Roland (Requires One For All)","",false,function(Value)
+    getgenv().AutoSpawningDuo = Value
+
+    task.spawn(function()
+        while getgenv().AutoSpawningDuo == true do
+            pcall(function()
+                if not workspace.Living:FindFirstChild("Deku") or not workspace.Living:FindFirstChild("Roland") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7150.1806640625,-32.022640228271484,1294.813720703125);
+                    for i,v in pairs(game:GetService("Workspace").Map.RuinedCity:GetDescendants()) do
+                        if v:IsA("ProximityPrompt") then
+                            v.HoldDuration = 0;v:InputHoldBegin();v:InputHoldEnd();
+                        end
+                    end
+                end
+            end)
+            task.wait(1.45);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Spawn Toji Fushiguro (Close menu quickly after using)","",false,function(Value)
+    getgenv().AutoSpawningToji = Value
+
+    task.spawn(function()
+        while getgenv().AutoSpawningToji == true do
+            pcall(function()
+                if not workspace.Living:FindFirstChild("Toji") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.14151763916016,-28.00986671447754,1697.3336181640625);
+                    for i,v in pairs(game:GetService("Workspace").Map.Decor["Park Rock Group"]["Park Rocks"]:GetDescendants()) do
+                        if v:IsA("ProximityPrompt") then
+                            v.HoldDuration = 0;v:InputHoldBegin();v:InputHoldEnd();
+                        end
+                    end for i = 1,5 do task.wait(0.15);
+                        local ConfirmWithCash = game:GetService("Players").LocalPlayer.PlayerGui.TojiConfirmation.Outer.Cash;
+                
+                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(ConfirmWithCash.AbsolutePosition.X+ConfirmWithCash.AbsoluteSize.X/5,ConfirmWithCash.AbsolutePosition.Y+50,0,true,ConfirmWithCash,5);
+                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(ConfirmWithCash.AbsolutePosition.X+ConfirmWithCash.AbsoluteSize.X/5,ConfirmWithCash.AbsolutePosition.Y+50,0,false,ConfirmWithCash,5);
+                    end
+                end
+            end)
+            task.wait(1.45);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Spawn Dio Brando (Requires Kujo Hat)","",false,function(Value)
+    getgenv().AutoSpawningDio = Value
+
+    task.spawn(function()
+        while getgenv().AutoSpawningDio == true do
+            pcall(function()
+                if not workspace.Living:FindFirstChild("Dio") then
+                    BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
+                end
+            end)
+            task.wait(1.45);
+        end
+    end)
+end)
+
 FarmingTab.newLabel("Auto Rerolls   🌀")
 FarmingTab.newDropdown("Type Of Rolls","Banners",{"Multi","Single"},function(Value)
     pcall(function()
@@ -2839,7 +2909,7 @@ FarmingTab.newToggle("Auto Roll Death Animations Banner","",false,function(Value
     end)
 end)
 
-FarmingTab.newToggle("Auto Roll Arcade Banner","",false,function(Value)
+FarmingTab.newToggle("Auto Roll Arcade Banner (Uses Cash)","",false,function(Value)
     getgenv().AutoRollArcade = Value
 
     task.spawn(function()
@@ -2849,6 +2919,63 @@ FarmingTab.newToggle("Auto Roll Arcade Banner","",false,function(Value)
                 game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ArcadePurchase"):FireServer(unpack(args));             
             end)
             task.wait(1.25);
+        end
+    end)
+end)
+
+FarmingTab.newLabel("Auto Spend Breakthrough Points   ⚠️");
+FarmingTab.newToggle("Breakthrough Point 4 Token","",false,function(Value)
+    getgenv().AutoB4T = Value
+
+    task.spawn(function()
+        while getgenv().AutoB4T == true do
+            pcall(function()
+                local args = {[1] = "B4T"};
+                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("TokenExchange"):FireServer(unpack(args));
+            end)
+            task.wait(0.75);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Breakthrough Point 4 Storage","",false,function(Value)
+    getgenv().AutoB4S = Value
+
+    task.spawn(function()
+        while getgenv().AutoB4S == true do
+            pcall(function()
+                local args = {[1] = "Storage"};
+                game:GetService("ReplicatedStorage"):WaitForChild("BPPurchase"):WaitForChild("Purchase"):FireServer(unpack(args));              
+            end)
+            task.wait(0.75);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Breakthrough Point 4 Present","",false,function(Value)
+    getgenv().AutoB4P = Value
+
+    task.spawn(function()
+        while getgenv().AutoB4T == true do
+            pcall(function()
+                local args = {[1] = "Present"};
+                game:GetService("ReplicatedStorage"):WaitForChild("BPPurchase"):WaitForChild("Purchase"):FireServer(unpack(args));
+            end)
+            task.wait(0.75);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Breakthrough Point 4 Capacity","",false,function(Value)
+    getgenv().AutoB4C = Value
+
+    task.spawn(function()
+        while getgenv().AutoB4C == true do
+            pcall(function()
+                local args = {[1] = "Cash"};
+                game:GetService("ReplicatedStorage"):WaitForChild("BPPurchase"):WaitForChild("Purchase"):FireServer(unpack(args));              
+            end)
+            task.wait(0.75);
         end
     end)
 end)
@@ -2966,7 +3093,7 @@ getgenv().PlaySound = function()
     Sound.Volume = 5;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
 end
 
-AreasTab.newLabel("Teleports   📌  (You can Teleport people with you, Just grab them)");
+AreasTab.newLabel("Map Teleports   🗺️  (You can Teleport people with you, Just grab them first)");
 AreasTab.newButton("Shop","",function()
     pcall(function()
         getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-375.9766845703125,-31.704181671142578,1810.9178466796875);
@@ -2976,6 +3103,24 @@ end)
 AreasTab.newButton("Cafe","",function()
     pcall(function()
         getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-237.51318359375,-32.0684814453125,1452.0396728515625);
+    end)
+end)
+
+AreasTab.newButton("Main Park","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-537.5374145507812,-32.051334381103516,1419.20361328125);
+    end)
+end)
+
+AreasTab.newButton("Side Park","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-73.15850830078125,-32.01318359375,1636.9390869140625);
+    end)
+end)
+
+AreasTab.newButton("Hueco Mundo","",function()
+    pcall(function()
+        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9330.2342364238,428.23523576,1725.2305236759535);
     end)
 end)
 
@@ -3013,27 +3158,9 @@ AreasTab.newButton("The Forest","",function()
     end)
 end)
 
-AreasTab.newButton("Hueco Mundo","",function()
-    pcall(function()
-        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9330.2342364238,428.23523576,1725.2305236759535);
-    end)
-end)
-
 AreasTab.newButton("Battle Field","",function()
     pcall(function()
         getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-520.662841796875,-31.358125686645508,1584.3505859375);
-    end)
-end)
-
-AreasTab.newButton("Side Park","",function()
-    pcall(function()
-        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-73.15850830078125,-32.01318359375,1636.9390869140625);
-    end)
-end)
-
-AreasTab.newButton("Main Park","",function()
-    pcall(function()
-        getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-537.5374145507812,-32.051334381103516,1419.20361328125);
     end)
 end)
 
@@ -3133,7 +3260,7 @@ AreasTab.newButton("Highest Peak","",function()
     end)
 end)
 
-AreasTab.newLabel("Teleports + Interactions   📌");
+AreasTab.newLabel("NPC Teleports + Interactions   📌");
 local SelectedNpc = nil
 
 local Table = {}
