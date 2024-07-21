@@ -1215,7 +1215,7 @@ end)
 
 HomeTab.newLabel("Sakura Hub Stuff   🌸");
 HomeTab.newButton("Official Discord Server (Clipboard)","",function()
-    setclipboard("https://discord.com/invite/XcUFRW4DWH");
+    setclipboard("https://discord.gg/XcUFRW4DWH");
     BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
 end)
 
