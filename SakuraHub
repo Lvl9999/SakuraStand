@@ -2767,7 +2767,7 @@ FarmingTab.newToggle("Auto kill Izuku Midoriya","",false,function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Auto Boss Spawner   🪄 (Doesnt go with Autofarm)");
+FarmingTab.newLabel("Auto Boss Spawner   🗿  (Doesnt go with Autofarm)");
 FarmingTab.newToggle("Auto Spawn Izuku Midoriya + Roland (Requires One For All)","",false,function(Value)
     getgenv().AutoSpawningDuo = Value
 
