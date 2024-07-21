@@ -1,6 +1,8 @@
 # Sakura Hub 🌸
 ### A Script hub exclusively for Sakura Stand!
 
+### Join the discord for Updates and Giveaways: [Here](https://discord.gg/XcUFRW4DWH)
+
 ## Sakura Hub's Loadstring:
 ##### Tip: You should use Shinra Kusakabe because he works the best with the autofarm!
 ```lua
@@ -14,7 +16,7 @@ end)
 ##### Warning: Some features might get you banned from being reported by players.
 
 - #### I also made a script for The Strongest Battlegrounds. I recommend you to check it out! [Here](https://github.com/Lvl9999/TheStrongestBattlegrounds)
-
+  
 ## Credits:
 
 #### Script Made by: ThroughTheFireAndFlames#9925
