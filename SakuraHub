@@ -66,18 +66,6 @@ task.spawn(function()
     end
 end)
 
---[[
-task.spawn(function()
-    if not getgenv().CheckedForSakuraHubUser == true then getgenv().CheckedForSakuraHubUser = true
-        pcall(function()
-            local Identify = Instance.new("BoolValue");
-            Identify.Name = "Sakura Hub User";
-            Identify.Parent = game.Players.LocalPlayer;
-        end)
-    end
-end)
---]]
-
 -- // Settings Manager \\ --
 getgenv().Configurations = function()
     pcall(function()
@@ -1227,20 +1215,6 @@ HomeTab.newButton("Official Discord Server (Clipboard)","",function()
     setclipboard("https://discord.gg/XcUFRW4DWH");
     BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
 end)
-
---[[
-HomeTab.newButton("Check for Sakura Hub Users (In Game)","",function()
-    pcall(function()BoredLibrary.prompt("Sakura Hub   🌸","Checking for users...",3);task.wait(3);
-        for _,v in ipairs(game.Players:GetPlayers()) do
-            if v:FindFirstChild("Sakura Hub User"):IsA("BoolValue") and v ~= game.Players.LocalPlayer then
-                BoredLibrary.prompt("Sakura Hub   🌸",v.Name.." Is using Sakura Hub.",3.5);
-            else
-                BoredLibrary.prompt("Sakura Hub   🌸","Couldn't find users...",1.5);
-            end
-        end
-    end)
-end)
---]]
 
 HomeTab.newButton("Reload Sakura Hub","",function()
     getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
