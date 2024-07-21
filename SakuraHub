@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2992) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2993) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -86,6 +86,7 @@ getgenv().Configurations = function()
         getgenv().AutoPrivateGrinding = false;
         getgenv().AutoPublicGrinding = false;
         getgenv().AutoSellingRokaka = false;
+        getgenv().AutoRollCidBanner = false;
         getgenv().AutoKillingJotaro = false;
         getgenv().AutoSellingBarrel = false;
         getgenv().AutoSellingCamera = false;
@@ -108,6 +109,9 @@ getgenv().Configurations = function()
         getgenv().AutoRolandTheme = false;
         getgenv().AutoSukunaTheme = false;
         getgenv().AutoMainFarming = false;
+        getgenv().AutoRollDeaths = false;
+        getgenv().AutoRollArcade = false;
+        getgenv().AutoRollBanner = false;
         getgenv().AutoBinahTheme = false;
         getgenv().AutoKillingDio = false;
         getgenv().AutoAltFarming = false;
@@ -1157,25 +1161,35 @@ HomeTab.newToggle("Auto Bug Players / Mobs (Requires Grab Moves)","",false,funct
     end)
 end)
 
-HomeTab.newLabel("Available Working Codes");
-HomeTab.newButton('Use Code: "ArrivalOfTheSkaFilmShirt1"','',function()
-    BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
+HomeTab.newLabel("Available Working Codes (Report to me if stopped working)");
+local Code1 = "ArrivalOfTheSkaFilmShirt1";
+local Code2 = "SuddenShutdown";
+local Code3 = "theSTARRK";
+local Code4 = "batheski";
+local Code4 = "2monthsdelay";
+
+HomeTab.newButton('Use Code: "'..Code1..'"','',function()
+    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code1,1.5);
+    local args = {Code1};
+    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
-HomeTab.newButton('Use Code: "SuddenShutdown"','',function()
-    BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
+HomeTab.newButton('Use Code: "'..Code2..'"','',function()
+    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code2,1.5);
+    local args = {Code2};
+    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
-HomeTab.newButton('Use Code: "theSTARRK"','',function()
-    BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
+HomeTab.newButton('Use Code: "'..Code3..'"','',function()
+    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code3,1.5);
+    local args = {Code3};
+    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
-HomeTab.newButton('Use Code: "batheski"','',function()
-    BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
-end)
-
-HomeTab.newButton('Use Code: "2monthsdelay"','',function()
-    BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
+HomeTab.newButton('Use Code: "'..Code4..'"','',function()
+    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code4,1.5);
+    local args = {Code4};
+    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
 HomeTab.newLabel("Quick Scripts   🚀");
@@ -2766,6 +2780,75 @@ FarmingTab.newToggle("Auto kill Izuku Midoriya","",false,function(Value)
                 end
             end)
             task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newLabel("Auto Rerolls   🌀")
+FarmingTab.newDropdown("Type Of Rolls","Banners",{"Multi","Single"},function(Value)
+    pcall(function()
+        getgenv().WhichType = Value;
+    end)
+end)
+
+FarmingTab.newToggle("Auto Roll Arrow Of Novae Banner","",false,function(Value)
+    getgenv().AutoRollBanner = Value
+
+    task.spawn(function()
+        while getgenv().AutoRollBanner == true do
+            pcall(function()
+                local args = {getgenv().WhichType,"ArrowOfNovae"};
+                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("BannerPull"):FireServer(unpack(args));
+            end)
+            task.wait(1.25);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Roll Cid Banner","",false,function(Value)
+    getgenv().AutoRollCidBanner = Value
+
+    task.spawn(function()
+        while getgenv().AutoRollCidBanner == true do
+            pcall(function()
+                local args = {getgenv().WhichType,"TheShadowGarden"};
+                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("BannerPull"):FireServer(unpack(args));
+            end)
+            task.wait(1.25);
+        end
+    end)
+end)
+
+FarmingTab.newDropdown("Types Of Payments","Death Animations",{"Cash","Token"},function(Value)
+    pcall(function()
+        getgenv().WhichTypez = Value;
+    end)
+end)
+
+FarmingTab.newToggle("Auto Roll Death Animations Banner","",false,function(Value)
+    getgenv().AutoRollDeaths = Value
+
+    task.spawn(function()
+        while getgenv().AutoRollDeaths == true do
+            pcall(function()
+                local args = {[1] = getgenv().WhichTypez};
+                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("PurchaseDeathAnim"):FireServer(unpack(args)); 
+            end)
+            task.wait(0.45);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto Roll Arcade Banner","",false,function(Value)
+    getgenv().AutoRollArcade = Value
+
+    task.spawn(function()
+        while getgenv().AutoRollArcade == true do
+            pcall(function()
+                local args = {[1] = false,[2] = true};
+                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ArcadePurchase"):FireServer(unpack(args));             
+            end)
+            task.wait(1.25);
         end
     end)
 end)
