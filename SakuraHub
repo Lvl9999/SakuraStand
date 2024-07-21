@@ -2451,7 +2451,7 @@ FarmingTab.newToggle("Auto Sell Everything","",false,function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Auto Alt Exp Farming   🔥 [Private Servers Only]");
+FarmingTab.newLabel("Auto Alt Exp Farming   🔥  [Private Servers Only]");
 FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
     pcall(function()
         if not getgenv().AutoAltFarmingExplanation == true then getgenv().AutoAltFarmingExplanation = true
