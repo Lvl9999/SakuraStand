@@ -1055,7 +1055,7 @@ HomeTab.newToggle("Auto Dash Players / Mobs (Overpowered)","",false,function(Val
     end)
 end)
 
-HomeTab.newToggle("Auto Dodge Players / Mobs  🌌 (Use In Open Areas)","",false,function(Value)
+HomeTab.newToggle("Auto Dodge Players / Mobs  🔥 (Use In Open Areas)","",false,function(Value)
     getgenv().AutoDodging = Value
 
     -- // Taken from private script of mine
@@ -3093,7 +3093,7 @@ getgenv().PlaySound = function()
     Sound.Volume = 5;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
 end
 
-AreasTab.newLabel("Map Teleports   🗺️  (You can Teleport people with you, Just grab them first)");
+AreasTab.newLabel("Teleports   🗺️  (You can Teleport people with you, Just grab them first)");
 AreasTab.newButton("Shop","",function()
     pcall(function()
         getgenv().PlaySound();game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-375.9766845703125,-31.704181671142578,1810.9178466796875);
