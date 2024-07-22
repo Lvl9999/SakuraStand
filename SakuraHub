@@ -2213,7 +2213,7 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
             if not getgenv().SelectedTitle then
                 BoredLibrary.prompt("Sakura Hub   🌸","You didn't select any title yet...",1.5);
             else
-                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip selected title yet...",1.5);
+                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop selected title yet...",1.5);
             end
         end 
     end
@@ -2386,7 +2386,7 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
             if not getgenv().SelectedTitle then
                 BoredLibrary.prompt("Sakura Hub   🌸","You didn't select any title yet...",1.5);
             else
-                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip selected title yet...",1.5);
+                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop selected title yet...",1.5);
             end
         end 
     end
