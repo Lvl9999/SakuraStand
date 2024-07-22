@@ -1958,29 +1958,22 @@ end)
 
 local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?id=12334656615");
 
-FarmingTab.newLabel("Equip Best Farming Spec   🛠️");
-FarmingTab.newDropdown("","",{"Shinra Kusakabe"},function(Value)
+FarmingTab.newLabel("Equip Best Farming Spec   📌");
+FarmingTab.newButton("Equip Shinra Kusakabe (Best for Private Server Autofarm)","",function()
     pcall(function()
-        if game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
-            BoredLibrary.prompt("Sakura Hub   🌸","You are Combat Marked...",0.75);task.wait(0.15);BoredLibrary.prompt("Sakura Hub   🌸","Reseting Character...",0.75);
-            local args = {[1] = "kill"};
-            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
-        else
-            if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= Value then
-                task.spawn(function()BoredLibrary.prompt("Sakura Hub   🌸","Changing Spec...",0.5);end);
-                for i = 1,100 do
-                    if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == Value then
-                        local args = {"Slot"..i};
-                        if i <= 6 then
-                            game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
-                        else
-                            game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
-                        end
+        if game:GetService("Players").LocalPlayer.Data.StandName.Value ~= "Shinra Kusakabe" then
+            for i = 1,100 do
+                if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "Shinra Kusakabe" then
+                    local args = {"Slot"..i};
+                    if i <= 6 then
+                        game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
+                    else
+                        game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
                     end
                 end
-            else
-                task.spawn(function()BoredLibrary.prompt("Sakura Hub   🌸","You are Already "..Value,0.5);end);
             end
+        else
+            task.spawn(function()BoredLibrary.prompt("Sakura Hub   🌸","You are Already Shinra Kusakabe",0.5);end);
         end
     end)
 end)
@@ -2634,7 +2627,7 @@ FarmingTab.newToggle("Auto Safe Zone (Optional)","",false,function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Auto Boss Killer   🔪  (Doesnt go with Autofarm)");
+FarmingTab.newLabel("Auto Boss / Mob Killer   🔪  (Doesnt go with Autofarm)");
 FarmingTab.newToggle("Auto set Bosses / Mobs Health To 0 (Use Grab Moves First)","",false,function(Value)
     getgenv().AutoOneShotting = Value
     getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
@@ -2761,7 +2754,7 @@ FarmingTab.newToggle("Auto kill Izuku Midoriya","",false,function(Value)
     end)
 end)
 
-FarmingTab.newLabel("Auto Boss Spawner   🗿  (Doesnt go with Autofarm)");
+FarmingTab.newLabel("Auto Boss Spawner   🌟  (Doesnt go with Autofarm)");
 FarmingTab.newToggle("Auto Spawn Izuku Midoriya + Roland (Requires One For All)","",false,function(Value)
     getgenv().AutoSpawningDuo = Value
 
@@ -2897,7 +2890,7 @@ FarmingTab.newToggle("Auto Roll Arcade Banner (Uses Cash)","",false,function(Val
 end)
 
 FarmingTab.newLabel("Auto Use Breakthrough Points   🧬");
-FarmingTab.newToggle("Breakthrough for Tokens","",false,function(Value)
+FarmingTab.newToggle("Convert Breakthrough for Tokens","",false,function(Value)
     getgenv().AutoB4T = Value
 
     task.spawn(function()
@@ -2911,7 +2904,7 @@ FarmingTab.newToggle("Breakthrough for Tokens","",false,function(Value)
     end)
 end)
 
-FarmingTab.newToggle("Breakthrough for Storage Capacity","",false,function(Value)
+FarmingTab.newToggle("Convert Breakthrough for Storage Capacity","",false,function(Value)
     getgenv().AutoB4S = Value
 
     task.spawn(function()
@@ -2925,7 +2918,7 @@ FarmingTab.newToggle("Breakthrough for Storage Capacity","",false,function(Value
     end)
 end)
 
-FarmingTab.newToggle("Breakthrough for 5 Bags Of Present","",false,function(Value)
+FarmingTab.newToggle("Convert Breakthrough for 5 Bags Of Presents","",false,function(Value)
     getgenv().AutoB4P = Value
 
     task.spawn(function()
@@ -2939,7 +2932,7 @@ FarmingTab.newToggle("Breakthrough for 5 Bags Of Present","",false,function(Valu
     end)
 end)
 
-FarmingTab.newToggle("Breakthrough for Cash Capacity","",false,function(Value)
+FarmingTab.newToggle("Convert Breakthrough for Cash Capacity","",false,function(Value)
     getgenv().AutoB4C = Value
 
     task.spawn(function()
