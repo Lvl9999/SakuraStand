@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2994) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2995) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -2093,7 +2093,7 @@ FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
             BoredLibrary.prompt("Sakura Hub 🌸","Open F9 Console",1.5);
             warn("---------------[Auto Farming]---------------");
             print("This script allows u to get levels and items faster than usual.");
-            print("You can one shot mobs by grabbing them (Shinra Only)");
+            print("You can one shot mobs by grabbing them.");
             print("Why shinra only? Because the spec has 3 grab moves with short cooldown");
             print("I dont want you to get banned so pls dont use ps edition in a public server.");
             print("Why do I need to select title before autofarming? This will keep u safe from the game forcing u to change title.");
@@ -2220,7 +2220,7 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
             if not getgenv().SelectedTitle then
                 BoredLibrary.prompt("Sakura Hub   🌸","You didn't select any title yet...",1.5);
             else
-                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip the title yet...",1.5);
+                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip selected title yet...",1.5);
             end
         end 
     end
@@ -2230,176 +2230,170 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
     getgenv().AutoPrivateGrinding = Value
     getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
-    if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
+    if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         getgenv().Distance = -5.5;
-    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
-        getgenv().Distance = -7;
+    else
+        getgenv().Distance = -6.5;
     end
 
     if getgenv().AutoSelectTitle == true then
-        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" then
-            task.spawn(function()
-                while getgenv().AutoPrivateGrinding == true and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle do
+        task.spawn(function()
+            while getgenv().AutoPrivateGrinding == true and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle do
+                pcall(function()
+                    getgenv().Target = nil getgenv().FoundAnything = false
+                    for i,v in ipairs(getgenv().ListOfNpcs) do
+                        if workspace.Living:FindFirstChild(v) and workspace.Living:FindFirstChild(v):FindFirstChild("Head") then
+                            local NPC = workspace.Living:FindFirstChild(v);
+                            if NPC then
+                                getgenv().Target = NPC getgenv().FoundAnything = true;
+                                break
+                            end
+                        end
+                    end
+                end)
+                task.wait(3.5);
+            end
+        end)
+
+        task.spawn(function()
+            while getgenv().AutoPrivateGrinding == true do
+                pcall(function()
+                    local SakuraMap = Vector3.new(-537.9830932617188,-31.18596839904785,1648.037109375);
+                    local HuecoMap = Vector3.new(-9311.4697265625,409.4530334472656,1565.1409912109375);
+                    local PlrPos = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
+                    if (PlrPos - SakuraMap).Magnitude > 1000 and (PlrPos - HuecoMap).Magnitude > 500 then
+                        local args = {[1] = "kill"};
+                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
+                    end
+                end)
+                task.wait(0.35);
+            end
+        end)
+
+        task.spawn(function()
+            while getgenv().AutoPrivateGrinding == true do
+                pcall(function()
+                    if getgenv().Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
+                        if getgenv().Target:FindFirstChild("Participated") and getgenv().Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) then
+                            getgenv().Target.Humanoid.Health = 0;
+                        end
+
+                        if not getgenv().Target.CDValues:FindFirstChild("OnCooldown") and not getgenv().Target.CDValues:FindFirstChild("Grabbed") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Dashing") then
+                            task.spawn(function()
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position - getgenv().Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,getgenv().Target.HumanoidRootPart.Position);task.wait(0.35);
+                            end)getgenv().Attacking();
+                        end
+                    else
+                        task.wait(2.5);
+                    end
+                end)
+                task.wait(0.15);
+            end
+        end)
+    
+        task.spawn(function()
+            while getgenv().AutoPrivateGrinding == true do
+                pcall(function()
+                    if getgenv().FoundAnything == false and game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
+                        local args = {[1] = "kill"};
+                        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
+                    end            
+                end)
+                task.wait(3.5);
+            end
+        end)
+
+        task.spawn(function()
+            while getgenv().AutoPrivateGrinding == true do
                     pcall(function()
-                        getgenv().Target = nil getgenv().FoundAnything = false
-                        for i,v in ipairs(getgenv().ListOfNpcs) do
-                            if workspace.Living:FindFirstChild(v) and workspace.Living:FindFirstChild(v):FindFirstChild("Head") then
-                                local NPC = workspace.Living:FindFirstChild(v);
-                                if NPC then
-                                    getgenv().Target = NPC getgenv().FoundAnything = true;
+                        if getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
+                            local RespawnNeeded = false;
+
+                            for _,k in pairs(game.Workspace.Item:GetChildren()) do
+                                if ((k.Name == "Box" and k:FindFirstChild("Outline")) and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125)) or k.Name == "Barrel" or k.Name == "Chest" and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chest Key") then
+                                    RespawnNeeded = true;
                                     break
                                 end
                             end
-                        end
-                    end)
-                    task.wait(3.5);
-                end
-            end)
 
-            task.spawn(function()
-                while getgenv().AutoPrivateGrinding == true do
-                    pcall(function()
-                        local SakuraMap = Vector3.new(-537.9830932617188,-31.18596839904785,1648.037109375);
-                        local HuecoMap = Vector3.new(-9311.4697265625,409.4530334472656,1565.1409912109375);
-                        local PlrPos = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
-                        if (PlrPos - SakuraMap).Magnitude > 1000 and (PlrPos - HuecoMap).Magnitude > 500 then
-                            local args = {[1] = "kill"};
-                            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
+                            if RespawnNeeded and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and getgenv().AutoLevelingUp == false then
+                                local args = {[1] = "Exploiter"};
+                                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));task.wait(4.5);
+                            end
                         end
                     end)
-                    task.wait(0.35);
-                end
-            end)
-    
-            task.spawn(function()
-                while getgenv().AutoPrivateGrinding == true do
-                    pcall(function()
-                        if getgenv().Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
-                            if getgenv().Target:FindFirstChild("Participated") and getgenv().Target.Participated:FindFirstChild(game.Players.LocalPlayer.Name) then
-                                getgenv().Target.Humanoid.Health = 0;
-                            end
-    
-                            if not getgenv().Target.CDValues:FindFirstChild("OnCooldown") and not getgenv().Target.CDValues:FindFirstChild("Grabbed") and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Dashing") then
-                                task.spawn(function()
-                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(getgenv().Target.HumanoidRootPart.Position - getgenv().Target.HumanoidRootPart.CFrame.lookVector * getgenv().Distance,getgenv().Target.HumanoidRootPart.Position);task.wait(0.35);
-                                end)getgenv().Attacking();
-                            end
-                        else
-                            task.wait(2.5);
-                        end
-                    end)
-                    task.wait(0.15);
-                end
-            end)
-        
-            task.spawn(function()
-                while getgenv().AutoPrivateGrinding == true do
-                    pcall(function()
-                        if getgenv().FoundAnything == false and game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
-                            local args = {[1] = "kill"};
-                            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
-                        end            
-                    end)
-                    task.wait(3.5);
-                end
-            end)
-    
-            task.spawn(function()
-                while getgenv().AutoPrivateGrinding == true do
-                        pcall(function()
-                            if getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
-                                local RespawnNeeded = false;
-    
-                                for _,k in pairs(game.Workspace.Item:GetChildren()) do
-                                    if ((k.Name == "Box" and k:FindFirstChild("Outline")) and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125)) or k.Name == "Barrel" or k.Name == "Chest" and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chest Key") then
-                                        RespawnNeeded = true;
-                                        break
-                                    end
-                                end
-    
-                                if RespawnNeeded and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and getgenv().AutoLevelingUp == false then
-                                    local args = {[1] = "Exploiter"};
-                                    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("ApplyAchievement"):FireServer(unpack(args));task.wait(4.5);
-                                end
-                            end
-                        end)
-                    task.wait(0.45);
-                end
-            end)
-    
-            task.spawn(function()
-                while getgenv().AutoPrivateGrinding == true do
-                    pcall(function()
-                        if getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
-                            local Lplayer = game:GetService("Players").LocalPlayer
-                            local Folder = {workspace.Item,workspace.Item2};
-                            
-                            local NormalParts = {}
-                            local UniqueParts = {}
-                            
-                            for _,k in ipairs(Folder) do
-                                for _,k in ipairs(k:GetChildren()) do
-                                    if k:IsA("BasePart") and k.Name ~= "SoulSpawn" and k.Name ~= "PerceptionMask" and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125) then
-                                        if ((k.Name:sub(1,2) == "Bo" or k.Name:sub(1,3) == "Sec") and k:FindFirstChild("Outline")) or ((k.Name:sub(1,2) ~= "Bo" and k.Name:sub(1,3) ~= "Sec") and not k:FindFirstChild("Outline")) then
-                                            if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "SukunaFinger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "HogyokuFragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
-                                                if (k.Name ~= "Box" and k.Name ~= "Barrel" and k.Name ~= "Chest") then
-                                                    table.insert(UniqueParts,k);
-                                                end
-                                                if Lplayer.Backpack:FindFirstChild("Chest Key") and workspace.Item:FindFirstChild("Chest") and k.Name == "Chest" then
-                                                    table.insert(NormalParts,k);
-                                                elseif not Lplayer.Backpack:FindFirstChild("Chest Key") and workspace.Item:FindFirstChild("Chest") and k.Name ~= "Chest" then
-                                                    table.insert(NormalParts,k);
-                                                elseif not workspace.Item:FindFirstChild("Chest") then
-                                                    table.insert(NormalParts,k);
-                                                end
+                task.wait(0.45);
+            end
+        end)
+
+        task.spawn(function()
+            while getgenv().AutoPrivateGrinding == true do
+                pcall(function()
+                    if getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
+                        local Lplayer = game:GetService("Players").LocalPlayer
+                        local Folder = {workspace.Item,workspace.Item2};
+                        
+                        local NormalParts = {}
+                        local UniqueParts = {}
+                        
+                        for _,k in ipairs(Folder) do
+                            for _,k in ipairs(k:GetChildren()) do
+                                if k:IsA("BasePart") and k.Name ~= "SoulSpawn" and k.Name ~= "PerceptionMask" and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125) then
+                                    if ((k.Name:sub(1,2) == "Bo" or k.Name:sub(1,3) == "Sec") and k:FindFirstChild("Outline")) or ((k.Name:sub(1,2) ~= "Bo" and k.Name:sub(1,3) ~= "Sec") and not k:FindFirstChild("Outline")) then
+                                        if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "SukunaFinger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "HogyokuFragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
+                                            if (k.Name ~= "Box" and k.Name ~= "Barrel" and k.Name ~= "Chest") then
+                                                table.insert(UniqueParts,k);
+                                            end
+                                            if Lplayer.Backpack:FindFirstChild("Chest Key") and workspace.Item:FindFirstChild("Chest") and k.Name == "Chest" then
+                                                table.insert(NormalParts,k);
+                                            elseif not Lplayer.Backpack:FindFirstChild("Chest Key") and workspace.Item:FindFirstChild("Chest") and k.Name ~= "Chest" then
+                                                table.insert(NormalParts,k);
+                                            elseif not workspace.Item:FindFirstChild("Chest") then
+                                                table.insert(NormalParts,k);
                                             end
                                         end
                                     end
                                 end
                             end
-                            
-                            local function TeleportTo(Parts)
-                                if #Parts > 0 then
-                                    local Selected = Parts[math.random(1,#Parts)];
-                                    local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
-                            
-                                    if Selected and Prompt then
-                                        Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.25);
-                                        Prompt.HoldDuration = 0;Prompt:InputHoldBegin();Prompt:InputHoldEnd();
-                                    end
+                        end
+                        
+                        local function TeleportTo(Parts)
+                            if #Parts > 0 then
+                                local Selected = Parts[math.random(1,#Parts)];
+                                local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
+                        
+                                if Selected and Prompt then
+                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.25);
+                                    Prompt.HoldDuration = 0;Prompt:InputHoldBegin();Prompt:InputHoldEnd();
                                 end
                             end
-                            
-                            if math.random() <= 0.75 and #UniqueParts > 0 then
-                                TeleportTo(UniqueParts);
-                            elseif #NormalParts > 0 then
-                                TeleportTo(NormalParts);
-                            end
                         end
-                    end)
-                    task.wait(0.25);
-                end
-            end)
-    
-            task.spawn(function()
-                while getgenv().AutoPrivateGrinding == true do
-                    pcall(function()
-                        workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Animate").idle.Animation1.AnimationId = "rbxassetid://12512421480";
-                    end)
-                    task.wait(0.35);
-                end
-            end)
-        else
-            if getgenv().AutoPrivateGrinding == true then
-                BoredLibrary.prompt("Sakura Hub   🌸","You don't have the required spec...",1.5);
-            end 
-        end
+                        
+                        if math.random() <= 0.75 and #UniqueParts > 0 then
+                            TeleportTo(UniqueParts);
+                        elseif #NormalParts > 0 then
+                            TeleportTo(NormalParts);
+                        end
+                    end
+                end)
+                task.wait(0.25);
+            end
+        end)
+
+        task.spawn(function()
+            while getgenv().AutoPrivateGrinding == true do
+                pcall(function()
+                    workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Animate").idle.Animation1.AnimationId = "rbxassetid://12512421480";
+                end)
+                task.wait(0.35);
+            end
+        end)
     else
-        if getgenv().AutoPublicGrinding == true then
+        if getgenv().AutoPrivateGrinding == true then
             if not getgenv().SelectedTitle then
                 BoredLibrary.prompt("Sakura Hub   🌸","You didn't select any title yet...",1.5);
             else
-                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip the title yet...",1.5);
+                BoredLibrary.prompt("Sakura Hub   🌸","You didn't loop equip selected title yet...",1.5);
             end
         end 
     end
@@ -2902,8 +2896,8 @@ FarmingTab.newToggle("Auto Roll Arcade Banner (Uses Cash)","",false,function(Val
     end)
 end)
 
-FarmingTab.newLabel("Auto Spend Breakthrough Points   ⚠️");
-FarmingTab.newToggle("Breakthrough Point 4 Token","",false,function(Value)
+FarmingTab.newLabel("Auto Use Breakthrough Points   🧬");
+FarmingTab.newToggle("Breakthrough for Tokens","",false,function(Value)
     getgenv().AutoB4T = Value
 
     task.spawn(function()
@@ -2917,7 +2911,7 @@ FarmingTab.newToggle("Breakthrough Point 4 Token","",false,function(Value)
     end)
 end)
 
-FarmingTab.newToggle("Breakthrough Point 4 Storage","",false,function(Value)
+FarmingTab.newToggle("Breakthrough for Storage Capacity","",false,function(Value)
     getgenv().AutoB4S = Value
 
     task.spawn(function()
@@ -2931,7 +2925,7 @@ FarmingTab.newToggle("Breakthrough Point 4 Storage","",false,function(Value)
     end)
 end)
 
-FarmingTab.newToggle("Breakthrough Point 4 Present","",false,function(Value)
+FarmingTab.newToggle("Breakthrough for 5 Bags Of Present","",false,function(Value)
     getgenv().AutoB4P = Value
 
     task.spawn(function()
@@ -2945,7 +2939,7 @@ FarmingTab.newToggle("Breakthrough Point 4 Present","",false,function(Value)
     end)
 end)
 
-FarmingTab.newToggle("Breakthrough Point 4 Capacity","",false,function(Value)
+FarmingTab.newToggle("Breakthrough for Cash Capacity","",false,function(Value)
     getgenv().AutoB4C = Value
 
     task.spawn(function()
