@@ -2081,6 +2081,12 @@ FarmingTab.newToggle("Auto Breakthrough","",false,function(Value)
 end)
 
 FarmingTab.newLabel("Auto Farming Items + Auto Farming Bosses / Mobs   💤");
+FarmingTab.newButton("Open F9 Console","",function()
+    pcall(function()
+        game.VirtualInputManager:SendKeyEvent(true,"F9",false,game);
+    end)
+end)
+
 FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
     pcall(function()
         if not getgenv().AutoFarmingExplanation == true then getgenv().AutoFarmingExplanation = true
@@ -2414,6 +2420,12 @@ FarmingTab.newToggle("Auto Sell Everything","",false,function(Value)
 end)
 
 FarmingTab.newLabel("Auto Alt Exp Farming   🔥  [Private Servers Only]");
+FarmingTab.newButton("Open F9 Console","",function()
+    pcall(function()
+        game.VirtualInputManager:SendKeyEvent(true,"F9",false,game);
+    end)
+end)
+
 FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
     pcall(function()
         if not getgenv().AutoAltFarmingExplanation == true then getgenv().AutoAltFarmingExplanation = true
