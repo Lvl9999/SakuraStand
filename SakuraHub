@@ -1067,6 +1067,7 @@ HomeTab.newToggle("Auto Dodge Players / Mobs  🔥 (Use In Open Areas)","",false
         local EntranceTheme = "http://www.roblox.com/asset/?id=1216343787";
         local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = EntranceTheme
         Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+        workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Animate").idle.Animation1.AnimationId = "rbxassetid://12512421480";
         Aura();SoundON();
     else
         Unaura();SoundOFF();
@@ -1075,10 +1076,9 @@ HomeTab.newToggle("Auto Dodge Players / Mobs  🔥 (Use In Open Areas)","",false
     local Connec
     Connec = game.Players.LocalPlayer.CharacterAdded:Connect(function()task.wait(3);
         if getgenv().AutoDodging == true then
-            Aura();
+            Aura();workspace.Living[game.Players.LocalPlayer.Name]:FindFirstChild("Animate").idle.Animation1.AnimationId = "rbxassetid://12512421480";
         else
-            Unaura();
-            Con:Disconnect();
+            Unaura();SoundOFF();Con:Disconnect();
         end
     end)
     
