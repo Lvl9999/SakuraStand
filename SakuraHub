@@ -2820,7 +2820,12 @@ FarmingTab.newToggle("Auto Spawn Dio Brando (Requires Kujo Hat)","",false,functi
         while getgenv().AutoSpawningDio == true do
             pcall(function()
                 if not workspace.Living:FindFirstChild("Dio") then
-                    BoredLibrary.prompt("Sakura Hub   🌸","Coming Soon...",1.5);
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(7471.7529296875,-426.8631286621094,-4019.5693359375);
+                    for i,v in pairs(game:GetService("Workspace").Map.Depth.Spawn:GetDescendants()) do
+                        if v:IsA("ProximityPrompt") then
+                            v.HoldDuration = 0;v:InputHoldBegin();v:InputHoldEnd();
+                        end
+                    end
                 end
             end)
             task.wait(1.45);
