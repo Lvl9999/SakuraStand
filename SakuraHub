@@ -1958,6 +1958,7 @@ end)
 
 local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?id=12334656615");
 
+FarmingTab.newLabel("❗ Use one Teleportation script at a time.");
 FarmingTab.newLabel("Equip Best Farming Spec   📌");
 FarmingTab.newButton("Equip Shinra Kusakabe (Best for Private Server Autofarm)","",function()
     pcall(function()
