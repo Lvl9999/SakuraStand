@@ -88,9 +88,12 @@ getgenv().Configurations = function()
         getgenv().AutoOneShottingBypass = false;
         getgenv().AutoPrivateGrinding = false;
         getgenv().AutoPublicGrinding = false;
+        getgenv().AutoKillingArbiter = false;
         getgenv().AutoSellingRokaka = false;
         getgenv().AutoRollCidBanner = false;
+        getgenv().AutoKillingBosses = false;
         getgenv().AutoKillingJotaro = false;
+        getgenv().AutoKillingSukuna = false;
         getgenv().AutoSellingBarrel = false;
         getgenv().AutoSellingCamera = false;
         getgenv().AutoStealingItems = false;
@@ -145,6 +148,7 @@ getgenv().Configurations = function()
         getgenv().AutoDyingDamage = false;
 
         -- [Storage Scripts]
+        getgenv().StoringSingularity = false;
         getgenv().StoringNikyuNikyu = false;
         getgenv().StoringDiosDiary = false;
         getgenv().StoringInverted = false;
@@ -1232,6 +1236,59 @@ HomeTab.newButton("Official Discord Server (Clipboard)","",function()
     BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
 end)
 
+HomeTab.newButton("Sakura Hub Changelogs GUI","",function()
+    task.spawn(function()BoredLibrary.prompt("Sakura Hub   🌸","Loading Changelogs...",0.75);end)
+    getgenv().CurrentVersion = "1.2996";
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/Changelogs"))();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.2989)");
+    getgenv().ChangelogLabel("[+] Added credits for Chillz and Bored (Ui lib makers).");
+    getgenv().ChangelogLabel("[+] Added meme sound effects for credit buttons.");
+    getgenv().ChangelogLabel("[+] Added anti fall script to prevent you from falling (In testing).");
+    getgenv().ChangelogLabel("[+] Increased the width of the baseplate under map.");
+    getgenv().ChangelogLabel("[+] Made its transparency 0.5");
+    getgenv().AddLine();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.2990)");
+    getgenv().ChangelogLabel("[+] Removed the laggy antifall, Made something else instead.");
+    getgenv().ChangelogLabel("[+] Added ultra instinct aura and sounds to auto dodge.");
+    getgenv().AddLine();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.2991)");
+    getgenv().ChangelogLabel("[+] Added new method of farming (Alt Farming).");
+    getgenv().AddLine();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.2992)");
+    getgenv().ChangelogLabel("[+] Removed auto bully nearest (It was useless).");
+    getgenv().ChangelogLabel("[+] Added Sound scripts section.");
+    getgenv().ChangelogLabel("[+] Added Weather scripts section.");
+    getgenv().ChangelogLabel("[+] Added More teleport buttons in the section.");
+    getgenv().AddLine();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.2993)");
+    getgenv().ChangelogLabel("[+] Added Remotes for the Codes (You can now claim them).");
+    getgenv().ChangelogLabel("[+] Added Auto Rerolls Section (For gamblers).");
+    getgenv().ChangelogLabel("[+] Added Explanation for Autofarm.");
+    getgenv().AddLine();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.2994)");
+    getgenv().ChangelogLabel("[+] Changed a bit teleport buttons position.");
+    getgenv().ChangelogLabel("[+] Added Auto Spend Breakthrough section.");
+    getgenv().ChangelogLabel("[+] Added Auto Spawn Bosses section (Someone Requested).");
+    getgenv().ChangelogLabel("[+] Customized the hub to make it a bit more appealing.");
+    getgenv().AddLine();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.2995)");
+    getgenv().ChangelogLabel("[+] Finnaly made auto spawn for dio brando.");
+    getgenv().ChangelogLabel("[+] Now you can use autofarm with any spec, Mark my words Shinra Kusakabe is the best spec for autofarm.");
+    getgenv().ChangelogLabel("[+] Fixed notif not showing on private server edition autofarm.");
+    getgenv().ChangelogLabel("[+] Retexted breakthrough point section cause I didnt like it.");
+    getgenv().ChangelogLabel("[+] Removed Equip best farming spec dropdown instead its a button.");
+    getgenv().ChangelogLabel("[+] Added Drago idle animation to auto dodge cus cool i think.");
+    getgenv().AddLine();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.2996)");
+    getgenv().ChangelogLabel("[+] Added auto store feature for Binah's item (The secret spec).");
+    getgenv().ChangelogLabel("[+] Retexted some stuff a lil to my liking.");
+    getgenv().ChangelogLabel("[+] Added even faster skip menu script.");
+    getgenv().ChangelogLabel("[+] Added npcs Sukuna and Arbiter to the farming list including admin bosses.");
+    getgenv().ChangelogLabel("[+] Also Added them to the one shot bosses and mobs feature");
+    ----------------------------------------------------------------------------------------------------
+end)
+
 HomeTab.newButton("Reload Sakura Hub","",function()
     task.spawn(function()BoredLibrary.prompt("Sakura Hub   🌸","Reloading Hub...",0.75);end)
     getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
@@ -1260,13 +1317,11 @@ HomeTab.newInput("Report Bugs / Feedback","Type here anything you want me to kno
     end)
 end)
 
-HomeTab.newButton("Hide your username from me (Use Before Typing)","",function()
-    getgenv().PrivacyMode = true;
-    BoredLibrary.prompt("Sakura Hub   🌸","Hided Your Name   ✅",1.5);
-end)
-
-HomeTab.newButton("Sakura Hub Changelogs UI","",function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/Changelogs"))();
+HomeTab.newButton("Hide your username (Use Before Typing, Optional)","",function()
+    if not getgenv().HidedName == true then getgenv().HidedName = true
+        getgenv().PrivacyMode = true;
+        BoredLibrary.prompt("Sakura Hub   🌸","Hided Your Name   ✅",1.5);
+    end
 end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","http://www.roblox.com/asset/?id=6870729295");
@@ -1293,6 +1348,32 @@ StorageTab.newToggle("Auto Store Nikyu Nikyu Devil Fruit","",false,function(Valu
 
     task.spawn(function()
         while getgenv().StoringNikyuNikyu == true do
+            pcall(function()
+                for i,v in ipairs(ItemSlots) do
+                    if game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Inner.Inner[v].Text.Text == "None" then
+                        for _,x in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+                            if x.Name:lower():find(ItemToStore:lower()) then
+                                game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(x);
+                                local args = {tonumber(v:sub(5))};
+                                game:GetService("ReplicatedStorage"):WaitForChild("ItemStorageRemote"):WaitForChild("UseItemStorage"):FireServer(unpack(args));
+                            end
+                        end
+                    end
+                end
+            end)
+            task.wait(1.75);
+        end
+    end)
+end)
+
+StorageTab.newToggle("Auto Store Singularity Essence","",false,function(Value)
+    getgenv().StoringSingularity = Value
+
+    local ItemToStore = "Singu"
+    local ItemSlots = {"Slot1","Slot2","Slot3","Slot4","Slot5","Slot6"};
+
+    task.spawn(function()
+        while getgenv().StoringSingularity == true do
             pcall(function()
                 for i,v in ipairs(ItemSlots) do
                     if game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Outer.Inner.Inner[v].Text.Text == "None" then
@@ -2243,7 +2324,7 @@ end)
 
 FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function(Value)
     getgenv().AutoPrivateGrinding = Value
-    getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+    getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
     if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         getgenv().Distance = -5.5;
@@ -2651,9 +2732,9 @@ FarmingTab.newToggle("Auto Safe Zone (Optional)","",false,function(Value)
 end)
 
 FarmingTab.newLabel("Auto Boss / Mob Killer   🔪  (Doesnt go with Autofarm)");
-FarmingTab.newToggle("Auto set Bosses / Mobs Health To 0 (Use Grab Moves First)","",false,function(Value)
+FarmingTab.newToggle("Auto set all Bosses / Mobs Health To 0 (Use Grab Moves First)","",false,function(Value)
     getgenv().AutoOneShotting = Value
-    getgenv().ListOfNpcs = {"Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+    getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
     task.spawn(function()
         while getgenv().AutoOneShotting == true do
@@ -2670,6 +2751,73 @@ FarmingTab.newToggle("Auto set Bosses / Mobs Health To 0 (Use Grab Moves First)"
             task.wait(0.15);
         end
     end)    
+end)
+
+FarmingTab.newToggle("Auto kill Secret + Admin Bosses (If They Spawn)","",false,function(Value)
+    getgenv().AutoKillingBosses = Value
+    getgenv().ListOfSecretBosses = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight"};
+    
+    task.spawn(function()
+        while getgenv().AutoKillingBosses == true do
+            pcall(function()
+                for _,x in ipairs(getgenv().ListOfSecretBosses) do
+                    if game:GetService("Workspace").Living:FindFirstChild(x) and game:GetService("Workspace").Living:FindFirstChild(x):FindFirstChild("HumanoidRootPart") and game:GetService("Workspace").Living:FindFirstChild(x):FindFirstChild("Head") then
+                        local SecretBosses = game:GetService("Workspace").Living:FindFirstChild(x):FindFirstChild("HumanoidRootPart");
+                        if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(SecretBosses.Position - SecretBosses.CFrame.lookVector * 7,SecretBosses.Position);
+                            getgenv().Attacking();
+                        else
+                            task.wait(2.5);
+                        end
+                        break
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto kill The Arbiter Binah","",false,function(Value)
+    getgenv().AutoKillingArbiter = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingArbiter == true do
+            pcall(function()
+                local ArbiterBoss = game:GetService("Workspace").Living:FindFirstChild("Arbiter"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Arbiter") and workspace.Living:FindFirstChild("Arbiter"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(ArbiterBoss.Position - ArbiterBoss.CFrame.lookVector * 7,ArbiterBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
+end)
+
+FarmingTab.newToggle("Auto kill Ryomen Sukuna","",false,function(Value)
+    getgenv().AutoKillingSukuna = Value
+
+    task.spawn(function()
+        while getgenv().AutoKillingSukuna == true do
+            pcall(function()
+                local SukunaBoss = game:GetService("Workspace").Living:FindFirstChild("Sukuna"):FindFirstChild("HumanoidRootPart");
+                if workspace.Living:FindFirstChild("Sukuna") and workspace.Living:FindFirstChild("Sukuna"):FindFirstChild("Head") then
+                    if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(SukunaBoss.Position - SukunaBoss.CFrame.lookVector * 5,SukunaBoss.Position);
+                        getgenv().Attacking();
+                    else
+                        task.wait(2.5);
+                    end
+                end
+            end)
+            task.wait(0.15);
+        end
+    end)
 end)
 
 FarmingTab.newToggle("Auto kill Toji Fushiguro","",false,function(Value)
