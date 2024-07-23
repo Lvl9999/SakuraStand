@@ -1285,7 +1285,7 @@ HomeTab.newButton("Sakura Hub Changelogs GUI","",function()
     getgenv().ChangelogLabel("[+] Retexted some stuff a lil to my liking.");
     getgenv().ChangelogLabel("[+] Added even faster skip menu script.");
     getgenv().ChangelogLabel("[+] Added npcs Sukuna and Arbiter to the farming list including admin bosses.");
-    getgenv().ChangelogLabel("[+] Also Added them to the one shot bosses and mobs feature");
+    getgenv().ChangelogLabel("[+] Also Added them to the one shot bosses and mobs feature.");
     ----------------------------------------------------------------------------------------------------
 end)
 
