@@ -2369,7 +2369,7 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
                                 local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                         
                                 if Selected and Prompt then
-                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.25);
+                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.35);
                                     Prompt.HoldDuration = 0;Prompt:InputHoldBegin();Prompt:InputHoldEnd();
                                 end
                             end
