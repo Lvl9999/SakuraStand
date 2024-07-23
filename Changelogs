@@ -1,133 +1,88 @@
-task.spawn(function()
-    if not getgenv().ExecutedChangelogs then getgenv().ExecutedChangelogs = true
-        getgenv().CurrentVersion = "1.2995"
+-- // Changelogs GUI
+local ScreenGui = Instance.new("ScreenGui");
+ScreenGui.Name = "ChangelogsGUI";
+ScreenGui.Parent = game:GetService("CoreGui");
 
-        local ScreenGui = Instance.new("ScreenGui");
-        ScreenGui.Name = "ChangelogsGUI";
-        ScreenGui.Parent = game:GetService("CoreGui");
+local Main = Instance.new("Frame");
+Main.Size = UDim2.new(0.6,0,0.7,0);
+Main.Position = UDim2.new(0.5,0,0.5,0);
+Main.AnchorPoint = Vector2.new(0.5,0.5);
+Main.BackgroundColor3 = Color3.new(0.05,0.05,0.05);
+Main.BorderSizePixel = 0;
+Main.Parent = ScreenGui
 
-        local Main = Instance.new("Frame");
-        Main.Size = UDim2.new(0.6,0,0.7,0);
-        Main.Position = UDim2.new(0.5,0,0.5,0);
-        Main.AnchorPoint = Vector2.new(0.5,0.5);
-        Main.BackgroundColor3 = Color3.new(0.05,0.05,0.05);
-        Main.BorderSizePixel = 0;
-        Main.Parent = ScreenGui
+local UiCorner = Instance.new("UICorner");
+UiCorner.CornerRadius = UDim.new(0,10);
+UiCorner.Parent = Main
 
-        local UiCorner = Instance.new("UICorner");
-        UiCorner.CornerRadius = UDim.new(0,10);
-        UiCorner.Parent = Main
+local ScrollingGUI = Instance.new("ScrollingFrame")
+ScrollingGUI.Size = UDim2.new(1,-20,1,-70);
+ScrollingGUI.Position = UDim2.new(0,10,0,60);
+ScrollingGUI.BackgroundTransparency = 1;
+ScrollingGUI.ScrollBarThickness = 8;
+ScrollingGUI.Parent = Main
 
-        local ScrollingGUI = Instance.new("ScrollingFrame")
-        ScrollingGUI.Size = UDim2.new(1,-20,1,-70);
-        ScrollingGUI.Position = UDim2.new(0,10,0,60);
-        ScrollingGUI.BackgroundTransparency = 1;
-        ScrollingGUI.ScrollBarThickness = 8;
-        ScrollingGUI.Parent = Main
+local UiListLayout = Instance.new("UIListLayout")
+UiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UiListLayout.Padding = UDim.new(0, 5)
+UiListLayout.Parent = ScrollingGUI
 
-        local UiListLayout = Instance.new("UIListLayout")
-        UiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-        UiListLayout.Padding = UDim.new(0, 5)
-        UiListLayout.Parent = ScrollingGUI
+local TitleLabel = Instance.new("TextLabel");
+TitleLabel.Size = UDim2.new(1,-50,0,40);
+TitleLabel.Position = UDim2.new(0,0,0,0);
+TitleLabel.BackgroundTransparency = 1;
+TitleLabel.Text = "Sakura Hub Changelogs | (Current Version "..getgenv().CurrentVersion..")";
+TitleLabel.TextColor3 = Color3.new(1,1,1);
+TitleLabel.TextSize = 24;
+TitleLabel.Font = Enum.Font.SourceSansBold;
+TitleLabel.Parent = Main
 
-        local TitleLabel = Instance.new("TextLabel");
-        TitleLabel.Size = UDim2.new(1,-50,0,40);
-        TitleLabel.Position = UDim2.new(0,0,0,0);
-        TitleLabel.BackgroundTransparency = 1;
-        TitleLabel.Text = "Sakura Hub Changelogs | (Current Version "..getgenv().CurrentVersion..")";
-        TitleLabel.TextColor3 = Color3.new(1,1,1);
-        TitleLabel.TextSize = 24;
-        TitleLabel.Font = Enum.Font.SourceSansBold;
-        TitleLabel.Parent = Main
+local TitleLine = Instance.new("Frame");
+TitleLine.Size = UDim2.new(1,-20,0,1);
+TitleLine.Position = UDim2.new(0,10,0,45);
+TitleLine.BackgroundColor3 = Color3.new(1,1,1);
+TitleLine.BorderSizePixel = 0;
+TitleLine.Parent = Main
 
-        local TitleLine = Instance.new("Frame");
-        TitleLine.Size = UDim2.new(1,-20,0,1);
-        TitleLine.Position = UDim2.new(0,10,0,45);
-        TitleLine.BackgroundColor3 = Color3.new(1,1,1);
-        TitleLine.BorderSizePixel = 0;
-        TitleLine.Parent = Main
+local CloseButton = Instance.new("TextButton");
+CloseButton.Size = UDim2.new(0,30,0,30);
+CloseButton.Position = UDim2.new(1,-35,0,5);
+CloseButton.Text = "X";
+CloseButton.TextColor3 = Color3.new(1,1,1);
+CloseButton.BackgroundColor3 = Color3.new(1,0,0);
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.TextSize = 20;
+CloseButton.Parent = Main
 
-        local CloseButton = Instance.new("TextButton");
-        CloseButton.Size = UDim2.new(0,30,0,30);
-        CloseButton.Position = UDim2.new(1,-35,0,5);
-        CloseButton.Text = "X";
-        CloseButton.TextColor3 = Color3.new(1,1,1);
-        CloseButton.BackgroundColor3 = Color3.new(1,0,0);
-        CloseButton.Font = Enum.Font.SourceSansBold
-        CloseButton.TextSize = 20;
-        CloseButton.Parent = Main
+local CloseButtonCorner = Instance.new("UICorner");
+CloseButtonCorner.CornerRadius = UDim.new(0,5);
+CloseButtonCorner.Parent = CloseButton
 
-        local CloseButtonCorner = Instance.new("UICorner");
-        CloseButtonCorner.CornerRadius = UDim.new(0,5);
-        CloseButtonCorner.Parent = CloseButton
-
-        CloseButton.MouseButton1Click:Connect(function()
-            ScreenGui:Destroy();
-        end)
-
-        function AddLine()
-            local separator = Instance.new("Frame");
-            separator.Size = UDim2.new(1,0,0,1);
-            separator.BackgroundColor3 = Color3.new(0.5,0.5,0.5);
-            separator.Parent = ScrollingGUI
-
-            ScrollingGUI.CanvasSize = UDim2.new(0,0,0,UiListLayout.AbsoluteContentSize.Y);
-        end
-
-        function ChangelogLabel(v)
-            local Label = Instance.new("TextLabel");
-            Label.Size = UDim2.new(1,0,0,0);
-            Label.AutomaticSize = Enum.AutomaticSize.Y;
-            Label.Text = v
-            Label.TextColor3 = Color3.new(1,1,1);
-            Label.BackgroundTransparency = 1;
-            Label.TextSize = 16;
-            Label.TextWrapped = true;
-            Label.TextXAlignment = Enum.TextXAlignment.Left;
-            Label.TextYAlignment = Enum.TextYAlignment.Top;
-            Label.Parent = ScrollingGUI
-
-            ScrollingGUI.CanvasSize = UDim2.new(0,0,0,UiListLayout.AbsoluteContentSize.Y);
-        end
-
-        ChangelogLabel("Recent Changes: (Version 1.2989)");
-        ChangelogLabel("[+] Added credits for Chillz and Bored (Ui lib makers).");
-        ChangelogLabel("[+] Added meme sound effects for credit buttons.");
-        ChangelogLabel("[+] Added anti fall script to prevent you from falling (In testing).");
-        ChangelogLabel("[+] Increased the width of the baseplate under map.");
-        ChangelogLabel("[+] Made its transparency 0.5 ");
-        AddLine();
-        ChangelogLabel("Recent Changes: (Version 1.2990)");
-        ChangelogLabel("[+] Removed the laggy antifall, Made something else instead.");
-        ChangelogLabel("[+] Added ultra instinct aura and sounds to auto dodge.");
-        AddLine();
-        ChangelogLabel("Recent Changes: (Version 1.2991)");
-        ChangelogLabel("[+] Added new method of farming (Alt Farming).");
-        AddLine();
-        ChangelogLabel("Recent Changes: (Version 1.2992)");
-        ChangelogLabel("[+] Removed auto bully nearest (It was useless).");
-        ChangelogLabel("[+] Added Sound scripts section.");
-        ChangelogLabel("[+] Added Weather scripts section.");
-        ChangelogLabel("[+] Added More teleport buttons in the section.");
-        AddLine();
-        ChangelogLabel("Recent Changes: (Version 1.2993)");
-        ChangelogLabel("[+] Added Remotes for the Codes (You can now claim them).");
-        ChangelogLabel("[+] Added Auto Rerolls Section (For gamblers).");
-        ChangelogLabel("[+] Added Explanation for Autofarm.");
-        AddLine();
-        ChangelogLabel("Recent Changes: (Version 1.2994)");
-        ChangelogLabel("[+] Changed a bit teleport buttons position.");
-        ChangelogLabel("[+] Added Auto Spend Breakthrough section.");
-        ChangelogLabel("[+] Added Auto Spawn Bosses section (Someone Requested).");
-        ChangelogLabel("[+] Customized the hub to make it a bit more appealing.");
-        AddLine();
-        ChangelogLabel("Recent Changes: (Version 1.2995)");
-        ChangelogLabel("[+] Finnaly made auto spawn for dio brando.");
-        ChangelogLabel("[+] Now you can use autofarm with any spec, Mark my words Shinra Kusakabe is the best spec for autofarm.");
-        ChangelogLabel("[+] Fixed notif not showing on private server edition autofarm.");
-        ChangelogLabel("[+] Retexted breakthrough point section cause I didnt like it.");
-        ChangelogLabel("[+] Removed Equip best farming spec dropdown instead its a button.");
-        ChangelogLabel("[+] Added Drago idle animation to auto dodge cus cool i think.");
-        AddLine();
-    end
+CloseButton.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy();
 end)
+
+getgenv().AddLine = function()
+	local Separator = Instance.new("Frame");
+	Separator.Size = UDim2.new(1,0,0,1);
+	Separator.BackgroundColor3 = Color3.new(0.5,0.5,0.5);
+	Separator.Parent = ScrollingGUI
+
+	ScrollingGUI.CanvasSize = UDim2.new(0,0,0,UiListLayout.AbsoluteContentSize.Y);
+end
+
+getgenv().ChangelogLabel = function(v)
+	local Label = Instance.new("TextLabel");
+	Label.Size = UDim2.new(1,0,0,0);
+	Label.AutomaticSize = Enum.AutomaticSize.Y;
+	Label.Text = v
+	Label.TextColor3 = Color3.new(1,1,1);
+	Label.BackgroundTransparency = 1;
+	Label.TextSize = 16;
+	Label.TextWrapped = true;
+	Label.TextXAlignment = Enum.TextXAlignment.Left;
+	Label.TextYAlignment = Enum.TextYAlignment.Top;
+	Label.Parent = ScrollingGUI
+
+	ScrollingGUI.CanvasSize = UDim2.new(0,0,0,UiListLayout.AbsoluteContentSize.Y);
+end
