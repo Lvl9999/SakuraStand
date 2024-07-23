@@ -32,7 +32,7 @@ end)
 -- // Auto Fix Camera \\ --
 task.spawn(function()
     pcall(function()if not getgenv().FixedCamera == true then getgenv().FixedCamera = true;
-            repeat task.wait(2.45) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
+            repeat task.wait(1.45) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
             game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
             game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList,true);
             workspace.CurrentCamera:remove();task.wait(0.15);
@@ -41,6 +41,7 @@ task.spawn(function()
             game.Players.LocalPlayer.CameraMinZoomDistance = 0.5;game.Players.LocalPlayer.CameraMaxZoomDistance = 400;
             game.Players.LocalPlayer.CameraMode = "Classic";game.Players.LocalPlayer.Character.Head.Anchored = false;
             game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Enabled = true;
+            getgenv().CanLoad = true
         end
     end)
 end)
@@ -179,7 +180,7 @@ getgenv().Configurations = function()
 end
 
 getgenv().Configurations();
-repeat task.wait(0.5) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
+repeat task.wait(0.5) until getgenv().CanLoad == true;
 -----------------------------------[[ Main Ui Libs ]]------------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
