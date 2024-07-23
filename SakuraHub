@@ -12,7 +12,7 @@
 ]]-----------------------------------------------------------------------------------------------------
 
 -- // Auto Loader \\ --
-repeat task.wait(1) until game:IsLoaded();task.wait(1);
+repeat task.wait(0.1) until game:IsLoaded();
 
 -- // Auto Skip Loading Menu \\ --
 task.spawn(function()
@@ -1217,7 +1217,6 @@ HomeTab.newButton("Official Discord Server (Clipboard)","",function()
 end)
 
 HomeTab.newButton("Reload Sakura Hub","",function()
-    task.spawn(function()BoredLibrary.prompt("Sakura Hub   🌸","Reloading Hub...",0.75);end)
     getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
     pcall(function()
