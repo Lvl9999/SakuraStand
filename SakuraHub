@@ -12,25 +12,23 @@
 ]]-----------------------------------------------------------------------------------------------------
 
 -- // Auto Loader \\ --
-repeat task.wait(0.1) until game:IsLoaded();task.spawn(function()pcall(function() if game:GetService("CoreGui"):FindFirstChild("DrRay") then game:GetService("CoreGui"):FindFirstChild("DrRay"):Destroy();end end)
-    shared.LoaderTitle = "Sakura Hub 🌸 [Loader]"
-    shared.LoaderKeyFrames = {
-       [1] = {1,250},
-       [2] = {1,1},
-    }
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Loady/main/Backup"))();
-end)
+repeat task.wait(0.1) until game:IsLoaded();task.spawn(function() pcall(function() if game:GetService("CoreGui"):FindFirstChild("DrRay") then game:GetService("CoreGui").DrRay:Destroy() end end) end)
 
 -- // Auto Skip Loading Menu \\ --
 task.spawn(function()
     pcall(function()if not getgenv().SkippedMenu == true then getgenv().SkippedMenu = true;
-        repeat task.wait(0.1) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Loading");
+        repeat task.wait(0.1) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Loading") or game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("MainMenu");
         game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
-        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();
-        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
-        for i = 1,45 do task.wait(0.15);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
-            game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,true,PlayButton,1);
-            game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,false,PlayButton,1);end
+            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();workspace.scene:Destroy();
+            for i,v in ipairs(game:GetService("Lighting"):GetChildren()) do
+                if v.Name == "ONSTARTMENUYEAH" then
+                    v:Destroy();
+                end
+            end
+            for i = 1,45 do task.wait(0.15);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,true,PlayButton,1);
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,false,PlayButton,1);
+            end
         end
     end)
 end)
@@ -38,7 +36,8 @@ end)
 -- // Auto Fix Camera \\ --
 task.spawn(function()
     pcall(function()if not getgenv().FixedCamera == true then getgenv().FixedCamera = true;
-            repeat task.wait(4.45) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
+            repeat task.wait(0.15) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
+            game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
             workspace.CurrentCamera:remove();task.wait(0.15);
             workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid");
             workspace.CurrentCamera.CameraType = "Custom";game:GetService("Players").LocalPlayer.PlayerGui.MainMenu:Destroy();
@@ -47,20 +46,6 @@ task.spawn(function()
             game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Enabled = true;
         end
     end)
-end)
-
--- // Fixed Darkness \\ --
-task.spawn(function()
-    if not getgenv().FixedDarkness == true then getgenv().FixedDarkness = true;
-        pcall(function()
-            repeat task.wait(5.45) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
-            for i,v in ipairs(game:GetService("Lighting"):GetChildren()) do
-                if v.Name == "ONSTARTMENUYEAH" then
-                    v:Destroy();
-                end
-            end
-        end)
-    end
 end)
 
 -- // Anti Fall Fixer \\ --
@@ -197,7 +182,7 @@ getgenv().Configurations = function()
 end
 
 getgenv().Configurations();
-repeat task.wait(2.5) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
+repeat task.wait(0.5) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
 -----------------------------------[[ Main Ui Libs ]]------------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
