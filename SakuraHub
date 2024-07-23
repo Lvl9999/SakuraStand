@@ -32,7 +32,7 @@ end)
 -- // Auto Fix Camera \\ --
 task.spawn(function()
     pcall(function()if not getgenv().FixedCamera == true then getgenv().FixedCamera = true;
-            repeat task.wait(1.45) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
+            repeat task.wait(2.45) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
             game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
             game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList,true);
             workspace.CurrentCamera:remove();task.wait(0.15);
