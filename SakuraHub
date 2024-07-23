@@ -34,6 +34,7 @@ task.spawn(function()
     pcall(function()if not getgenv().FixedCamera == true then getgenv().FixedCamera = true;
             repeat task.wait(0.15) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
             game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+            game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList,true);
             workspace.CurrentCamera:remove();task.wait(0.15);
             workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid");
             workspace.CurrentCamera.CameraType = "Custom";game:GetService("Players").LocalPlayer.PlayerGui.MainMenu:Destroy();
