@@ -12,7 +12,7 @@
 ]]-----------------------------------------------------------------------------------------------------
 
 -- // Auto Loader \\ --
-repeat task.wait(0.25) until game:IsLoaded();task.wait(1.15);
+repeat task.wait(0.45) until game:IsLoaded();task.wait(2.15);
 
 -- // Auto Skip Loading Menu \\ --
 task.spawn(function()
