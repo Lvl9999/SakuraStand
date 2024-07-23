@@ -12,17 +12,25 @@
 ]]-----------------------------------------------------------------------------------------------------
 
 -- // Auto Loader \\ --
-repeat task.wait(0.1) until game:IsLoaded();
+repeat task.wait(0.1) until game:IsLoaded();task.spawn(function()pcall(function() if game:GetService("CoreGui"):FindFirstChild("DrRay") then game:GetService("CoreGui"):FindFirstChild("DrRay"):Destroy();end end)
+    shared.LoaderTitle = "Sakura Hub 🌸 [Loader]"
+    shared.LoaderKeyFrames = {
+       [1] = {1,250},
+       [2] = {1,1},
+    }
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Loady/main/Backup"))();
+end)
 
 -- // Auto Skip Loading Menu \\ --
 task.spawn(function()
     pcall(function()if not getgenv().SkippedMenu == true then getgenv().SkippedMenu = true;
-            game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
-            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();
-            for i = 1,45 do task.wait(0.15);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
-                game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,true,PlayButton,1);
-                game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,false,PlayButton,1);
-            end
+        repeat task.wait(0.1) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Loading");
+        game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
+        game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+        for i = 1,45 do task.wait(0.15);local PlayButton = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play;
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,true,PlayButton,1);
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(PlayButton.AbsolutePosition.X + PlayButton.AbsoluteSize.X/2,PlayButton.AbsolutePosition.Y + PlayButton.AbsoluteSize.Y/2 + 50,0,false,PlayButton,1);end
         end
     end)
 end)
@@ -30,14 +38,29 @@ end)
 -- // Auto Fix Camera \\ --
 task.spawn(function()
     pcall(function()if not getgenv().FixedCamera == true then getgenv().FixedCamera = true;
-            repeat task.wait() until game.Players.LocalPlayer.Character and game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled == false;
+            repeat task.wait(4.45) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
             workspace.CurrentCamera:remove();task.wait(0.15);
             workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid");
             workspace.CurrentCamera.CameraType = "Custom";game:GetService("Players").LocalPlayer.PlayerGui.MainMenu:Destroy();
             game.Players.LocalPlayer.CameraMinZoomDistance = 0.5;game.Players.LocalPlayer.CameraMaxZoomDistance = 400;
             game.Players.LocalPlayer.CameraMode = "Classic";game.Players.LocalPlayer.Character.Head.Anchored = false;
+            game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Enabled = true;
         end
     end)
+end)
+
+-- // Fixed Darkness \\ --
+task.spawn(function()
+    if not getgenv().FixedDarkness == true then getgenv().FixedDarkness = true;
+        pcall(function()
+            repeat task.wait(5.45) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
+            for i,v in ipairs(game:GetService("Lighting"):GetChildren()) do
+                if v.Name == "ONSTARTMENUYEAH" then
+                    v:Destroy();
+                end
+            end
+        end)
+    end
 end)
 
 -- // Anti Fall Fixer \\ --
@@ -174,6 +197,7 @@ getgenv().Configurations = function()
 end
 
 getgenv().Configurations();
+repeat task.wait(2.5) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Stats");
 -----------------------------------[[ Main Ui Libs ]]------------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
@@ -1217,10 +1241,11 @@ HomeTab.newButton("Official Discord Server (Clipboard)","",function()
 end)
 
 HomeTab.newButton("Reload Sakura Hub","",function()
+    task.spawn(function()BoredLibrary.prompt("Sakura Hub   🌸","Reloading Hub...",0.75);end)
     getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
     pcall(function()
-        getgenv().Configurations();game:GetService("CoreGui").DrRay:Destroy();loadstring(game:HttpGet(getgenv().SakuraHub))();
+        getgenv().Configurations();loadstring(game:HttpGet(getgenv().SakuraHub))();
     end)
 end)
 
@@ -1246,6 +1271,10 @@ end)
 HomeTab.newButton("Hide your username from me (Use Before Typing)","",function()
     getgenv().PrivacyMode = true;
     BoredLibrary.prompt("Sakura Hub   🌸","Hided Your Name   ✅",1.5);
+end)
+
+HomeTab.newButton("Sakura Hub Changelogs UI","",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/Changelogs"))();
 end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","http://www.roblox.com/asset/?id=6870729295");
