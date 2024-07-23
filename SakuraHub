@@ -20,8 +20,17 @@ task.spawn(function()
         repeat task.wait(0.1) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Loading") or game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("MainMenu");
             game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
             for i,v in ipairs(game:GetService("Lighting"):GetChildren()) do
-                if v.Name == "ONSTARTMENUYEAH" then
-                    v:Destroy();
+                if v.Name == "ONSTARTMENUYEAH" then v:Destroy();
+                    game.Lighting.Ambient = Color3.fromRGB(255,255,255);
+                    game.Lighting.Brightness = 0.5;
+                    game.Lighting.ColorShift_Bottom = Color3.fromRGB(255,255,255);
+                    game.Lighting.ColorShift_Top = Color3.fromRGB(255,255,255);
+                    game.Lighting.ExposureCompensation = 0;
+                    game.Lighting.FogColor = Color3.fromRGB(255,255,255);
+                    game.Lighting.FogEnd = 999999999;
+                    game.Lighting.GeographicLatitude = 41.733;
+                    game.Lighting.OutdoorAmbient = Color3.fromRGB(255,255,255);
+                    game.Lighting.GlobalShadows = true;
                 end
             end
             game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();workspace.scene:Destroy();
