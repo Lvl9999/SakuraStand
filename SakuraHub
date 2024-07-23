@@ -18,13 +18,13 @@ repeat task.wait(0.1) until game:IsLoaded();task.spawn(function() pcall(function
 task.spawn(function()
     pcall(function()if not getgenv().SkippedMenu == true then getgenv().SkippedMenu = true;
         repeat task.wait(0.1) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Loading") or game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("MainMenu");
-        game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
-            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();workspace.scene:Destroy();
+            game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
             for i,v in ipairs(game:GetService("Lighting"):GetChildren()) do
                 if v.Name == "ONSTARTMENUYEAH" then
                     v:Destroy();
                 end
             end
+            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();workspace.scene:Destroy();
         end
     end)
 end)
