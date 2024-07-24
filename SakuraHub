@@ -2080,7 +2080,7 @@ FarmingTab.newButton("Equip Shinra Kusakabe (Best for Private Server Autofarm)",
     end)
 end)
 
-FarmingTab.newLabel("Equip Your Title   📌");
+FarmingTab.newLabel("Select Your Title   📌");
 local Table = {}
 local Intelligent = false;
 
