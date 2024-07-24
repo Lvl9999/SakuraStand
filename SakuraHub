@@ -50,7 +50,7 @@ task.spawn(function()
             game.Players.LocalPlayer.CameraMinZoomDistance = 0.5;game.Players.LocalPlayer.CameraMaxZoomDistance = 400;
             game.Players.LocalPlayer.CameraMode = "Classic";game.Players.LocalPlayer.Character.Head.Anchored = false;
             game:GetService("Players").LocalPlayer.PlayerGui.ItemStorage.Enabled = true;
-            getgenv().CanLoad = true
+            getgenv().CanLoadIntoSakuraStand = true;
         end
     end)
 end)
@@ -193,7 +193,7 @@ getgenv().Configurations = function()
 end
 
 getgenv().Configurations();
-repeat task.wait(0.5) until getgenv().CanLoad == true;
+repeat task.wait(0.75) until getgenv().CanLoadIntoSakuraStand == true or game.PlaceId == 15552367548;
 -----------------------------------[[ Main Ui Libs ]]------------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
@@ -2190,7 +2190,7 @@ FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
             warn("---------------[Auto Farming]---------------");
             print("This script allows u to get levels and items faster than usual.");
             print("You can one shot mobs by grabbing them.");
-            print("Why shinra only? Because the spec has 3 grab moves with short cooldown");
+            print("Why shinra is the best? Because the spec has 3 grab moves with short cooldown.");
             print("I dont want you to get banned so pls dont use ps edition in a public server.");
             print("Why do I need to select title before autofarming? This will keep u safe from the game forcing u to change title.");
             print("Why does it not go after Menos? Because menos has anti grab so its impossible to one shot him.");
@@ -2209,7 +2209,6 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
 
     if getgenv().AutoSelectTitle == true then
         local FloatPart = Instance.new("Part",game.Workspace);
-    
         FloatPart.Name = "FloatPart"
         FloatPart.Size = Vector3.new(6,0.1,6);
         FloatPart.Anchored = true
@@ -2251,7 +2250,7 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
         task.spawn(function()
             while getgenv().AutoPublicGrinding == true do
                 pcall(function()
-                    if getgenv().AutoSelectTitle == true and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
+                    if getgenv().AutoSelectTitle == true and not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("OnCooldown") and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 and game:GetService("Players").LocalPlayer.Data.AppliedACM.Value == getgenv().SelectedTitle then
                         local Lplayer = game:GetService("Players").LocalPlayer
                         local Folder = {workspace.Item,workspace.Item2};
                         
@@ -2285,7 +2284,7 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
                                 local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                         
                                 if Selected and Prompt then
-                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,7,0)));task.wait(0.25);
+                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,7,0)));task.wait(0.01);
                                     Prompt.HoldDuration = 0;Prompt:InputHoldBegin();Prompt:InputHoldEnd();
                                 end
                             end
@@ -2614,7 +2613,6 @@ FarmingTab.newToggle("Auto Steal Any Item  (Doesnt go with Autofarm)","",false,f
     getgenv().AutoStealingItems = Value
 
     local FloatPart = Instance.new("Part",game.Workspace);
-
     FloatPart.Name = "FloatPart"
     FloatPart.Size = Vector3.new(6,0.1,6);
     FloatPart.Anchored = true
@@ -2622,8 +2620,7 @@ FarmingTab.newToggle("Auto Steal Any Item  (Doesnt go with Autofarm)","",false,f
     
     task.spawn(function()
         if getgenv().AutoStealingItems == false then
-            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,-120,0);
-            game.Players.LocalPlayer.Character.Humanoid.Health = 0;
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,50,0);
         end
     end)
     
@@ -2753,7 +2750,7 @@ FarmingTab.newToggle("Auto set all Bosses / Mobs Health To 0 (Use Grab Moves Fir
     end)    
 end)
 
-FarmingTab.newToggle("Auto kill Secret + Admin Bosses (If They Spawn)","",false,function(Value)
+FarmingTab.newToggle("Auto kill Secret + Admin Bosses (If They Spawn, Most likely not)","",false,function(Value)
     getgenv().AutoKillingBosses = Value
     getgenv().ListOfSecretBosses = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight"};
     
