@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2996) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2997) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -10,6 +10,7 @@
         loadstring(game:HttpGet(getgenv().SakuraHub))();
     end)
 ]]-----------------------------------------------------------------------------------------------------
+getgenv().CurrentVersion = "1.2997";
 
 -- // Auto Loader \\ --
 repeat task.wait(0.1) until game:IsLoaded();task.spawn(function() pcall(function() if game:GetService("CoreGui"):FindFirstChild("DrRay") then game:GetService("CoreGui").DrRay:Destroy() end end) end)
@@ -189,6 +190,9 @@ getgenv().Configurations = function()
 
         -- [Statistics GUI]
         game:GetService("CoreGui").StatisticsGUI.Enabled = false;
+
+        -- [Sakura Hub UI Scripts]
+        getgenv().AutoGoingRainbow = false;
     end)
 end
 
@@ -212,7 +216,7 @@ game:GetService("CoreGui").DrRay.TopBar.TopBarClose.BackgroundTransparency = 0.5
 game:GetService("CoreGui").DrRay.TopBar.TopBarClose.idk.Visible = false;
 
 -- // Loaded Notification \\ --
-BoredLibrary.prompt("Sakura Hub   🌸","Successfully Loaded :3",3);
+BoredLibrary.prompt("Sakura Hub 🌸","Current Version: "..getgenv().CurrentVersion,1.5);
 ---------------------------------[[ Main Source Code 💞 ]]------------------------------------------------------------
 HomeTab.newLabel("Script Hub Credits   ✨");
 HomeTab.newButton("Script Made by ThroughTheFireAndFlames#9925","",function()
@@ -1183,7 +1187,8 @@ local Code1 = "ArrivalOfTheSkaFilmShirt1";
 local Code2 = "SuddenShutdown";
 local Code3 = "theSTARRK";
 local Code4 = "batheski";
-local Code4 = "2monthsdelay";
+local Code5 = "2monthsdelay";
+local Code6 = "AnArbiterAwakens";
 
 HomeTab.newButton('Use Code: "'..Code1..'"','',function()
     BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code1,1.5);
@@ -1206,6 +1211,18 @@ end)
 HomeTab.newButton('Use Code: "'..Code4..'"','',function()
     BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code4,1.5);
     local args = {Code4};
+    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
+end)
+
+HomeTab.newButton('Use Code: "'..Code5..'"','',function()
+    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code5,1.5);
+    local args = {Code5};
+    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
+end)
+
+HomeTab.newButton('Use Code: "'..Code6..'"','',function()
+    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code6,1.5);
+    local args = {Code6};
     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
@@ -1236,9 +1253,40 @@ HomeTab.newButton("Official Discord Server (Clipboard)","",function()
     BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
 end)
 
+HomeTab.newToggle("Sakura Hub, Go Rainbow Please","",false,function(Value)
+    getgenv().AutoGoingRainbow = Value
+
+    if getgenv().AutoGoingRainbow == false then
+        game:GetService("CoreGui").DrRay.TopBar.BackgroundColor3 = Color3.new(0,0,0);
+        game:GetService("CoreGui").DrRay.MainBar.BackgroundColor3 = Color3.new(0,0,0);
+        game:GetService("CoreGui").DrRay.TopBar.TopBar.BackgroundColor3 = Color3.new(0,0,0);
+        game:GetService("CoreGui").StatisticsGUI.Frame.BackgroundColor3 = Color3.new(0,0,0);
+    end
+
+    task.spawn(function()
+        while getgenv().AutoGoingRainbow == true do
+            pcall(function()  
+                local TopBar = game:GetService("CoreGui"):WaitForChild("DrRay"):WaitForChild("TopBar");
+                local MainBar = game:GetService("CoreGui"):WaitForChild("DrRay"):WaitForChild("MainBar");
+                local Stats = game:GetService("CoreGui"):WaitForChild("StatisticsGUI"):WaitForChild("Frame");
+
+                local T = tick() % 1
+                local R = math.sin(T * 2 * math.pi) * 0.5 + 0.5
+                local G = math.sin(T * 2 * math.pi + 2 * math.pi / 3) * 0.5 + 0.5
+                local B = math.sin(T * 2 * math.pi + 4 * math.pi / 3) * 0.5 + 0.5
+                
+                TopBar.BackgroundColor3 = Color3.new(R,G,B);
+                MainBar.BackgroundColor3 = Color3.new(R,G,B);
+                TopBar.TopBar.BackgroundColor3 = Color3.new(R,G,B);
+                Stats.BackgroundColor3 = Color3.new(R,G,B);
+            end)
+            task.wait(0.35);
+        end
+    end)
+end)
+
 HomeTab.newButton("Sakura Hub Changelogs GUI","",function()
     task.spawn(function()BoredLibrary.prompt("Sakura Hub   🌸","Loading Changelogs...",0.75);end)
-    getgenv().CurrentVersion = "1.2996";
 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/Changelogs"))();
     getgenv().ChangelogLabel("Recent Changes: (Version 1.2989)");
@@ -1286,6 +1334,13 @@ HomeTab.newButton("Sakura Hub Changelogs GUI","",function()
     getgenv().ChangelogLabel("[+] Added even faster skip menu script.");
     getgenv().ChangelogLabel("[+] Added npcs Sukuna and Arbiter to the farming list including admin bosses.");
     getgenv().ChangelogLabel("[+] Also Added them to the one shot bosses and mobs feature.");
+    getgenv().AddLine();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.2997)");
+    getgenv().ChangelogLabel("[+] Fixed a small issue in autofarm public edition.");
+    getgenv().ChangelogLabel("[+] Added a feature to make hub go rainbow.");
+    getgenv().ChangelogLabel("[+] Changed Statistics ui.");
+    getgenv().ChangelogLabel("[+] Fixed hub not executing in Sukuna's world.");
+    getgenv().ChangelogLabel("[+] Added one more code to Claim Codes section.");
     ----------------------------------------------------------------------------------------------------
 end)
 
@@ -2094,6 +2149,10 @@ end
 
 if Intelligent then
     table.insert(Table,1,"The Intelligent");
+end
+
+if #Table == 0 then
+    table.insert(Table,"Please get a title");
 end
 
 FarmingTab.newDropdown("","",Table,function(Value)
