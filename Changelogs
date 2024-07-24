@@ -1,6 +1,7 @@
 -- // Changelogs GUI
 local ScreenGui = Instance.new("ScreenGui");
 ScreenGui.Name = "ChangelogsGUI";
+ScreenGui.DisplayOrder = 9999;
 ScreenGui.Parent = game:GetService("CoreGui");
 
 local Blocker = Instance.new("Frame");
