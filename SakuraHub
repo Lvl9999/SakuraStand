@@ -2383,6 +2383,8 @@ end)
 FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function(Value)
     getgenv().AutoPrivateGrinding = Value
     getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","AngelicaWeak","Roland","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+    
+    game.Players[game.Players.LocalPlayer.Name].PlayerGui.Chat.Frame.Visible = false;
 
     if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         getgenv().Distance = -5.5;
@@ -2813,6 +2815,12 @@ FarmingTab.newToggle("Auto kill Secret + Admin Bosses (If They Spawn, Most likel
     getgenv().AutoKillingBosses = Value
     getgenv().ListOfSecretBosses = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight"};
     
+    if getgenv().AutoKillingBosses == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
+
     task.spawn(function()
         while getgenv().AutoKillingBosses == true do
             pcall(function()
@@ -2837,6 +2845,12 @@ end)
 FarmingTab.newToggle("Auto kill The Arbiter Binah","",false,function(Value)
     getgenv().AutoKillingArbiter = Value
 
+    if getgenv().AutoKillingArbiter == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
+
     task.spawn(function()
         while getgenv().AutoKillingArbiter == true do
             pcall(function()
@@ -2857,6 +2871,12 @@ end)
 
 FarmingTab.newToggle("Auto kill Ryomen Sukuna","",false,function(Value)
     getgenv().AutoKillingSukuna = Value
+
+    if getgenv().AutoKillingSukuna == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
 
     task.spawn(function()
         while getgenv().AutoKillingSukuna == true do
@@ -2879,6 +2899,12 @@ end)
 FarmingTab.newToggle("Auto kill Toji Fushiguro","",false,function(Value)
     getgenv().AutoKillingToji = Value
 
+    if getgenv().AutoKillingToji == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
+    
     task.spawn(function()
         while getgenv().AutoKillingToji == true do
             pcall(function()
@@ -2899,6 +2925,12 @@ end)
 
 FarmingTab.newToggle("Auto kill Dio Brando","",false,function(Value)
     getgenv().AutoKillingDio = Value
+
+    if getgenv().AutoKillingDio == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
 
     task.spawn(function()
         while getgenv().AutoKillingDio == true do
@@ -2921,6 +2953,12 @@ end)
 FarmingTab.newToggle("Auto kill Roland","",false,function(Value)
     getgenv().AutoKillingRoland = Value
 
+    if getgenv().AutoKillingRoland == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
+
     task.spawn(function()
         while getgenv().AutoKillingRoland == true do
             pcall(function()
@@ -2942,6 +2980,12 @@ end)
 FarmingTab.newToggle("Auto kill Jotaro Kujo","",false,function(Value)
     getgenv().AutoKillingJotaro = Value
 
+    if getgenv().AutoKillingJotaro == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
+
     task.spawn(function()
         while getgenv().AutoKillingJotaro == true do
             pcall(function()
@@ -2962,6 +3006,12 @@ end)
 
 FarmingTab.newToggle("Auto kill Izuku Midoriya","",false,function(Value)
     getgenv().AutoKillingDeku = Value
+
+    if getgenv().AutoKillingDeku == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
 
     task.spawn(function()
         while getgenv().AutoKillingDeku == true do
@@ -3177,6 +3227,12 @@ FarmingTab.newLabel("Auto Quests  📋");
 FarmingTab.newToggle("Auto Parry Damage","",false,function(Value)
     getgenv().AutoParryingDamage = Value
 
+    if getgenv().AutoParryingDamage == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
+
     task.spawn(function()local Blocking = false;
         while getgenv().AutoParryingDamage == true do
             pcall(function()
@@ -3201,6 +3257,12 @@ end)
 
 FarmingTab.newToggle("Auto Block Damage","",false,function(Value)
     getgenv().AutoBlockingDamage = Value
+    
+    if getgenv().AutoBlockingDamage == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
 
     task.spawn(function()local Blocking = false;
         while getgenv().AutoBlockingDamage == true do
@@ -3242,6 +3304,12 @@ end)
 FarmingTab.newToggle("Auto Take Damage","",false,function(Value)
     getgenv().AutoTakingDamage = Value
 
+    if getgenv().AutoTakingDamage == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
+
     task.spawn(function()
         while getgenv().AutoTakingDamage == true do
             pcall(function()
@@ -3260,6 +3328,12 @@ end)
 
 FarmingTab.newToggle("Auto Deal Damage","",false,function(Value)
     getgenv().AutoDealingDamage = Value
+
+    if getgenv().AutoDealingDamage == true then
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);
+    else
+        game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);
+    end
 
     task.spawn(function()
         while getgenv().AutoDealingDamage == true do
