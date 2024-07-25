@@ -121,6 +121,7 @@ getgenv().Configurations = function()
         getgenv().AutoMainFarming = false;
         getgenv().AutoRollDeaths = false;
         getgenv().AutoRollArcade = false;
+        getgenv().AutoSavingCash = false;
         getgenv().AutoRollBanner = false;
         getgenv().AutoBinahTheme = false;
         getgenv().AutoKillingDio = false;
@@ -2205,6 +2206,37 @@ FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka (Use At 2x Weekend)","",fals
                     getgenv().HidePurchasePrompt();
                 end
             end)
+        end    
+    end)
+end)
+
+FarmingTab.newToggle("Auto Buy + Auto Sell Rokakaka (When Cash Capacity Full)","",false,function(Value)
+    getgenv().AutoSavingCash = Value
+
+    task.spawn(function()
+        while getgenv().AutoSavingCash == true do
+            pcall(function()
+                local Cash1 = game:GetService("Players").LocalPlayer.Data.Cash;
+                local Cash2 = game:GetService("Players").LocalPlayer.PlayerGui.Menu.Currencies.Cash.Background.Inner.TextLabel;
+                
+                if Cash1.Value == tonumber(string.match(Cash2.Text,"%d+ / (%d+)")) then 
+                    if game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
+                        if game:GetService("Players").LocalPlayer.Data.Cash.Value > 75 then
+                            local args = {[1] = "15"};
+                            game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Rokakaka"):FireServer(unpack(args));
+                        end
+                
+                        for i,v in ipairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+                            if table.find({"Arrow","Barrel","Rokakaka","Stop Sign","Mysterious Camera","Haunted Sword","Spin Manual","Hamon Manual","Stone Mask","Bomu Bomu Devil Fruit","Mochi Mochi Devil Fruit","Bari Bari Devil Fruit"},v.Name) then
+                                game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SellItem"):FireServer(v.Name);
+                            end
+                        end
+                
+                        getgenv().HidePurchasePrompt();
+                    end
+                end
+            end)
+            task.wait(0.45);
         end    
     end)
 end)
