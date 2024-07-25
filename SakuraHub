@@ -2343,20 +2343,21 @@ FarmingTab.newToggle("Start Farming  [Public Server Edition]","",false,function(
                                 local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                         
                                 if Selected and Prompt then
-                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,7,0)));task.wait(0.01);
+                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,7,0)));
+                                    task.wait(0.15);
                                     Prompt.HoldDuration = 0;Prompt:InputHoldBegin();Prompt:InputHoldEnd();
                                 end
                             end
                         end
                         
-                        if math.random() <= 0.75 and #UniquePartz > 0 then
+                        if math.random() <= 0.90 and #UniquePartz > 0 then
                             TeleportTo(UniquePartz);
                         elseif #NormalPartz > 0 then
                             TeleportTo(NormalPartz);
                         end
                     end
                 end)
-                task.wait(0.25);
+                task.wait(0.35);
             end
         end)
     
@@ -2519,13 +2520,14 @@ FarmingTab.newToggle("Start Farming  [Private Server Edition]","",false,function
                                 local Prompt = Selected:FindFirstChildOfClass("ProximityPrompt");
                         
                                 if Selected and Prompt then
-                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));task.wait(0.35);
+                                    Lplayer.Character:SetPrimaryPartCFrame(CFrame.new(Selected.Position - Vector3.new(0,-2.5,0)));
+                                    task.wait(0.15);
                                     Prompt.HoldDuration = 0;Prompt:InputHoldBegin();Prompt:InputHoldEnd();
                                 end
                             end
                         end
                         
-                        if math.random() <= 0.75 and #UniqueParts > 0 then
+                        if math.random() <= 0.85 and #UniqueParts > 0 then
                             TeleportTo(UniqueParts);
                         elseif #NormalParts > 0 then
                             TeleportTo(NormalParts);
