@@ -3737,7 +3737,7 @@ for _,k in ipairs(Tabs) do
 end
 
 -- // Toggle UI Visibility \\--
-task.spawn(function()
+task.spawn(function()task.wait(2.15);
     if not getgenv().ToggleVisibility == true then
         game:GetService("UserInputService").InputBegan:Connect(function(v,x)
             if not x and v.KeyCode == Enum.KeyCode[getgenv().ToggleUI] then
