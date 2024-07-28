@@ -2160,6 +2160,24 @@ getgenv().StealingAnyItem = function()
     end)
 end
 
+getgenv().StealingAnyItem = function()
+    task.spawn(function()
+        while getgenv().AutoPickingItems == true do
+            pcall(function()
+                local Folders = {workspace.Item,workspace.Item2};
+                for i,v in pairs(Folders) do
+                    for i,v in pairs(v:GetDescendants()) do
+                        if v:IsA("ProximityPrompt") then
+                            v.HoldDuration = 0;v:InputHoldBegin();v:InputHoldEnd();
+                        end
+                    end
+                end
+            end)
+            task.wait(0.25);
+        end
+    end)
+end
+
 getgenv().PickAuraAnyItem = function()
     task.spawn(function()
         while getgenv().AutoPickingItems == true do
@@ -3368,6 +3386,11 @@ end)
 
 FarmingTab.newToggle("Auto Steal Any Item  (Doesnt go with Autofarm)","",getgenv().AutoStealingItems or false,function(Value)
     getgenv().AutoStealingItems = Value
+    getgenv().StealingAnyItem();
+end)
+
+FarmingTab.newToggle("Auto Pick Aura (Any Item)","",false,function(Value)
+    getgenv().AutoPickingItems = Value
     getgenv().PickAuraAnyItem();
 end)
 
