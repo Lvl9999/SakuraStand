@@ -1,91 +1,94 @@
 local LPlayer = game:GetService("Players").LocalPlayer;
 
 task.spawn(function()
-    local ScreenGui = Instance.new("ScreenGui");
-    ScreenGui.Name = "StatisticsGUI";
-    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
-    ScreenGui.DisplayOrder = 9999;
-    ScreenGui.Parent = game:GetService("CoreGui");
-
-    local MainFrame = Instance.new("Frame");
-    MainFrame.Size = UDim2.new(0.51,0,0.175,0);
-    MainFrame.Position = UDim2.new(0.4916,0,0.892,0);
-    MainFrame.AnchorPoint = Vector2.new(0.5,0.5);
-    MainFrame.BackgroundColor3 = Color3.new(0,0,0);
-    MainFrame.BackgroundTransparency = 0.25;
-    MainFrame.BorderSizePixel = 0;
-    MainFrame.Parent = ScreenGui
-
-    local UiCorner = Instance.new("UICorner");
-    UiCorner.CornerRadius = UDim.new(0,10);
-    UiCorner.Parent = MainFrame
-
-    local TitleLabel = Instance.new("TextLabel");
-    TitleLabel.Size = UDim2.new(1,-50,0,40);
-    TitleLabel.Position = UDim2.new(0.01,0,0,0);
-    TitleLabel.BackgroundTransparency = 1;
-    TitleLabel.Text = "Sakura Hub Progress GUI";
-    TitleLabel.TextColor3 = Color3.new(1,1,1);
-    TitleLabel.TextSize = 24;
-    TitleLabel.Font = Enum.Font.SourceSansBold
-    TitleLabel.Parent = MainFrame
-
-    local TitleLine = Instance.new("Frame");
-    TitleLine.Size = UDim2.new(1,-20,0,1);
-    TitleLine.Position = UDim2.new(0,10,0,45);
-    TitleLine.BackgroundColor3 = Color3.new(1,1,1);
-    TitleLine.BorderSizePixel = 0;
-    TitleLine.Parent = MainFrame
-
-    local function CreateStatsLabel(Name,Pos,Txt)
-        local Label = Instance.new("TextLabel");
-        Label.Name = Name;
-        Label.Size = UDim2.new(1,-15,0,42);
-        Label.Position = Pos;
-        Label.BackgroundTransparency = 1;
-        Label.Text = Txt;
-        Label.TextColor3 = Color3.fromRGB(255,255,255);
-        Label.TextSize = 25;
-        Label.Font = Enum.Font.SourceSansBold;
-        Label.TextXAlignment = Enum.TextXAlignment.Left;
-        Label.Parent = MainFrame
-        return Label
+    if not getgenv().ExecutedStatisticsGUI == true then
+		local ScreenGui = Instance.new("ScreenGui");
+		ScreenGui.Name = "StatisticsGUI";
+		ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
+		ScreenGui.DisplayOrder = 9999;
+		ScreenGui.Parent = game:GetService("CoreGui");
+		
+		local MainFrame = Instance.new("Frame");
+		MainFrame.Size = UDim2.new(0.51,0,0.175,0);
+		MainFrame.Position = UDim2.new(0.4916,0,0.892,0);
+		MainFrame.AnchorPoint = Vector2.new(0.5,0.5);
+		MainFrame.BackgroundColor3 = Color3.new(0,0,0);
+		MainFrame.BackgroundTransparency = 0.25;
+		MainFrame.BorderSizePixel = 0;
+		MainFrame.Parent = ScreenGui
+		
+		local UiCorner = Instance.new("UICorner");
+		UiCorner.CornerRadius = UDim.new(0,10);
+		UiCorner.Parent = MainFrame
+		
+		local TitleLabel = Instance.new("TextLabel");
+		TitleLabel.Size = UDim2.new(1,-50,0,40);
+		TitleLabel.Position = UDim2.new(0.01,0,0,0);
+		TitleLabel.BackgroundTransparency = 1;
+		TitleLabel.Text = "Sakura Hub Progress GUI";
+		TitleLabel.TextColor3 = Color3.new(1,1,1);
+		TitleLabel.TextSize = 24;
+		TitleLabel.Font = Enum.Font.SourceSansBold
+		TitleLabel.Parent = MainFrame
+		
+		local TitleLine = Instance.new("Frame");
+		TitleLine.Size = UDim2.new(1,-20,0,1);
+		TitleLine.Position = UDim2.new(0,10,0,45);
+		TitleLine.BackgroundColor3 = Color3.new(1,1,1);
+		TitleLine.BorderSizePixel = 0;
+		TitleLine.Parent = MainFrame
+		
+		local function CreateStatsLabel(Name,Pos,Txt)
+			local Label = Instance.new("TextLabel");
+			Label.Name = Name;
+			Label.Size = UDim2.new(1,-15,0,42);
+			Label.Position = Pos;
+			Label.BackgroundTransparency = 1;
+			Label.Text = Txt;
+			Label.TextColor3 = Color3.fromRGB(255,255,255);
+			Label.TextSize = 25;
+			Label.Font = Enum.Font.SourceSansBold;
+			Label.TextXAlignment = Enum.TextXAlignment.Left;
+			Label.Parent = MainFrame
+			return Label
+		end
+		
+		local MasteryValue = CreateStatsLabel("MasteryValue",UDim2.new(0.40,0,0.25,0),"Mastery Gained: 0");
+		local TokenValue = CreateStatsLabel("TokenValue",UDim2.new(0.40,0,0.5,0),"Token Gained: 0");
+		local CashValue = CreateStatsLabel("CashValue",UDim2.new(0.40,0,0.75,0),"Cash Gained: 0");
+		
+		getgenv().InitialCash = LPlayer:WaitForChild("Data").Cash.Value;
+		getgenv().InitialToken = LPlayer:WaitForChild("Data").Token.Value;
+		getgenv().InitialMastery = LPlayer:WaitForChild("Data").Mastery.Value;
+		
+		getgenv().TotalCashGained = 0;
+		getgenv().TotalTokenGained = 0;
+		getgenv().TotalMasteryGained = 0;
+		
+		local function UpdateLabel(Label,TotalGained,LabelText)
+			Label.Text = LabelText ..tostring(TotalGained);
+		end
+		
+		local function ValueChange(Label,Data,TotalGainedVar,LabelText)
+			local PreviousVal = Data.Value
+			Data:GetPropertyChangedSignal("Value"):Connect(function()
+				local CurrentVal = Data.Value
+				if CurrentVal > PreviousVal then
+					getgenv()[TotalGainedVar] = getgenv()[TotalGainedVar] + (CurrentVal - PreviousVal);
+					UpdateLabel(Label,getgenv()[TotalGainedVar],LabelText);
+				end
+				PreviousVal = CurrentVal
+			end)
+		end
+		
+		ValueChange(CashValue,LPlayer:WaitForChild("Data").Cash,"TotalCashGained","Cash Gained: ");
+		ValueChange(TokenValue,LPlayer:WaitForChild("Data").Token,"TotalTokenGained","Token Gained: ");
+		ValueChange(MasteryValue,LPlayer:WaitForChild("Data").Mastery,"TotalMasteryGained","Mastery Gained: ");
+		
+		UpdateLabel(CashValue,getgenv().TotalCashGained,"Cash Gained: ");
+		UpdateLabel(TokenValue,getgenv().TotalTokenGained,"Token Gained: ");
+		UpdateLabel(MasteryValue,getgenv().TotalMasteryGained,"Mastery Gained: ");
+        game:GetService("CoreGui").StatisticsGUI.Enabled = false;
+        getgenv().ExecutedStatisticsGUI = true;
     end
-
-    local MasteryValue = CreateStatsLabel("MasteryValue",UDim2.new(0.40,0,0.25,0),"Mastery Gained: 0");
-    local TokenValue = CreateStatsLabel("TokenValue",UDim2.new(0.40,0,0.5,0),"Token Gained: 0");
-    local CashValue = CreateStatsLabel("CashValue",UDim2.new(0.40,0,0.75,0),"Cash Gained: 0");
-
-    getgenv().InitialCash = LPlayer:WaitForChild("Data").Cash.Value;
-    getgenv().InitialToken = LPlayer:WaitForChild("Data").Token.Value;
-    getgenv().InitialMastery = LPlayer:WaitForChild("Data").Mastery.Value;
-
-    getgenv().TotalCashGained = 0;
-    getgenv().TotalTokenGained = 0;
-    getgenv().TotalMasteryGained = 0;
-
-    local function UpdateLabel(Label,TotalGained,LabelText)
-        Label.Text = LabelText ..tostring(TotalGained);
-    end
-
-    local function ValueChange(Label,Data,TotalGainedVar,LabelText)
-        local PreviousVal = Data.Value
-        Data:GetPropertyChangedSignal("Value"):Connect(function()
-            local CurrentVal = Data.Value
-            if CurrentVal > PreviousVal then
-                getgenv()[TotalGainedVar] = getgenv()[TotalGainedVar] + (CurrentVal - PreviousVal);
-                UpdateLabel(Label,getgenv()[TotalGainedVar],LabelText);
-            end
-            PreviousVal = CurrentVal
-        end)
-    end
-
-    ValueChange(CashValue,LPlayer:WaitForChild("Data").Cash,"TotalCashGained","Cash Gained: ");
-    ValueChange(TokenValue,LPlayer:WaitForChild("Data").Token,"TotalTokenGained","Token Gained: ");
-    ValueChange(MasteryValue,LPlayer:WaitForChild("Data").Mastery,"TotalMasteryGained","Mastery Gained: ");
-
-    UpdateLabel(CashValue,getgenv().TotalCashGained,"Cash Gained: ");
-    UpdateLabel(TokenValue,getgenv().TotalTokenGained,"Token Gained: ");
-    UpdateLabel(MasteryValue,getgenv().TotalMasteryGained,"Mastery Gained: ");
-    getgenv().ExecutedStatisticsGUI = true;
 end)
