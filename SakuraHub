@@ -10,7 +10,6 @@
         loadstring(game:HttpGet(getgenv().SakuraHub))();
     end)
 ]]-----------------------------------------------------------------------------------------------------
-getgenv().ToggleUI = "J";
 getgenv().CurrentVersion = "1.2998";
 
 -- // Auto Loader \\ --
