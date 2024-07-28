@@ -189,18 +189,6 @@ repeat task.wait(0.75) until getgenv().CanLoadIntoSakuraStand == true or game.Pl
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
 
-task.spawn(function()
-    for i = 1,2 do
-        game:GetService("UserInputService").InputBegan:Connect(function(v, x)
-            if not x and v.KeyCode == Enum.KeyCode[getgenv().ToggleUI] then
-                pcall(function()
-                    game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled;
-                end)
-            end
-        end)
-    end    
-end)
-
 getgenv().StartLoading = function(z)
     return function(x)
         return function()
@@ -3748,4 +3736,16 @@ for _,k in ipairs(Tabs) do
     end
 end
 
-task.spawn(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();end)
+-- // Toggle UI Visibility \\--
+task.spawn(function()
+    if not getgenv().ToggleVisibility == true then
+        game:GetService("UserInputService").InputBegan:Connect(function(v,x)
+            if not x and v.KeyCode == Enum.KeyCode[getgenv().ToggleUI] then
+                pcall(function()
+                    game:GetService("CoreGui").DrRay.Enabled = not game:GetService("CoreGui").DrRay.Enabled;
+                end)
+            end
+        end)
+        getgenv().ToggleVisibility = true;
+    end
+end) task.spawn(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/StatisticsGUI"))();end)
