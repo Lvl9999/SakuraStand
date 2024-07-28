@@ -1829,7 +1829,7 @@ getgenv().PublicServerAutofarm = function()
 end
 
 getgenv().PrivateServerAutofarm = function()
-    getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","Roland","BlackSilence","Angelica","","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+    getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","Roland","BlackSilence","Angelica","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
     game.Players[game.Players.LocalPlayer.Name].PlayerGui.Chat.Frame.Visible = false;
 
@@ -2160,24 +2160,6 @@ getgenv().StealingAnyItem = function()
     end)
 end
 
-getgenv().StealingAnyItem = function()
-    task.spawn(function()
-        while getgenv().AutoPickingItems == true do
-            pcall(function()
-                local Folders = {workspace.Item,workspace.Item2};
-                for i,v in pairs(Folders) do
-                    for i,v in pairs(v:GetDescendants()) do
-                        if v:IsA("ProximityPrompt") then
-                            v.HoldDuration = 0;v:InputHoldBegin();v:InputHoldEnd();
-                        end
-                    end
-                end
-            end)
-            task.wait(0.25);
-        end
-    end)
-end
-
 getgenv().PickAuraAnyItem = function()
     task.spawn(function()
         while getgenv().AutoPickingItems == true do
@@ -2208,7 +2190,7 @@ getgenv().UsingSafeZone = function()
 end
 
 getgenv().OneShotAnyBoss = function()
-    getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","Roland","BlackSilence","Angelica","","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+    getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","Roland","BlackSilence","Angelica","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
     task.spawn(function()
         while getgenv().AutoOneShotting == true do
