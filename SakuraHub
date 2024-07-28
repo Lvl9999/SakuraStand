@@ -1640,6 +1640,7 @@ getgenv().StoreOAs = function()
 end
 
 getgenv().ProgressGUI = function()
+    repeat task.wait() until game:GetService("CoreGui"):FindFirstChild("DrRay");
     game:GetService("CoreGui").StatisticsGUI.Enabled = getgenv().ToggleStatisticsGUI;
 end
 
