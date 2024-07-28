@@ -213,7 +213,7 @@ end
 getgenv().SaveConfigurations = function()
     local Data = "";
     for Key,Val in pairs(getgenv()) do
-        if type(Val) == "boolean" then
+        if type(Val) == "boolean" and Key ~= "ToggleVisibility" and Key ~= "ExecutedStatisticsGUI" then
             Data = Data..Key.."="..tostring(Val).."\n";
         end
     end
