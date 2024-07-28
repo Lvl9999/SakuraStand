@@ -1829,7 +1829,7 @@ getgenv().PublicServerAutofarm = function()
 end
 
 getgenv().PrivateServerAutofarm = function()
-    getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","Roland","BlackSilence","Angelica","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+    getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","Roland","BlackSilence","Angelica","","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
     game.Players[game.Players.LocalPlayer.Name].PlayerGui.Chat.Frame.Visible = false;
 
@@ -2190,7 +2190,7 @@ getgenv().UsingSafeZone = function()
 end
 
 getgenv().OneShotAnyBoss = function()
-    getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","Roland","BlackSilence","Angelica","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
+    getgenv().ListOfNpcs = {"Arbiter","BossPudding","Pillar","Starrk","Bygone","Cid","Sukuna","Mahito","Gojo","Mahoraga","Q3","N4","Midknight","Space Curse","Jotaro Kujo","Toji","Roland","BlackSilence","Angelica","","Dio","Deku","Adjuchas","Contorted Curse","Glutton Curse","Mosquito Curse","Spider Curse","Frog Hollow","Fishbone"};
 
     task.spawn(function()
         while getgenv().AutoOneShotting == true do
@@ -3014,6 +3014,20 @@ HomeTab.newButton("Goodbye Sakura Hub   👋","",function()
     BoredLibrary.prompt("Sakura Hub   🌸","Goodbye :)",0.5);
 end)
 
+HomeTab.newLabel("Sakura Hub Configs   ⚙️");
+HomeTab.newButton("Save Sakura Hub Config","",function()
+    getgenv().SaveConfigurations();
+end)
+
+HomeTab.newButton("Reset Sakura Hub Config","",function()
+    task.spawn(function()getgenv().Configurations();getgenv().ResetConfigurations();end)
+    getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
+
+    pcall(function()
+        getgenv().Configurations();loadstring(game:HttpGet(getgenv().SakuraHub))();
+    end)
+end)
+
 HomeTab.newInput("Report Bugs / Feedback","Type here anything you want me to know :)",function(text)
     getgenv().Message = text
     getgenv().WebHook = "https://discord.com/api/webhooks/1259740370682777670/YmJ7rSmWPKa8cjY_v5fyusXeyQF5x9TjiCDJhHUAtGIzsX_PWacUkSCqEU8x8iXloFiD";
@@ -3033,20 +3047,6 @@ HomeTab.newButton("Hide your username (Use Before Typing, Optional)","",function
         getgenv().PrivacyMode = true;
         BoredLibrary.prompt("Sakura Hub   🌸","Hided Your Name   ✅",1.5);
     end
-end)
-
-HomeTab.newLabel("Sakura Hub Configs   ⚙️");
-HomeTab.newButton("Save Sakura Hub Config","",function()
-    getgenv().SaveConfigurations();
-end)
-
-HomeTab.newButton("Reset Sakura Hub Config","",function()
-    task.spawn(function()getgenv().Configurations();getgenv().ResetConfigurations();end)
-    getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
-
-    pcall(function()
-        getgenv().Configurations();loadstring(game:HttpGet(getgenv().SakuraHub))();
-    end)
 end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","http://www.roblox.com/asset/?id=6870729295");
