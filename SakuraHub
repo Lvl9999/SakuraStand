@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2998) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.2999) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -10,7 +10,7 @@
         loadstring(game:HttpGet(getgenv().SakuraHub))();
     end)
 ]]-----------------------------------------------------------------------------------------------------
-getgenv().CurrentVersion = "1.2998";
+getgenv().CurrentVersion = "1.2999";
 
 -- // Auto Loader \\ --
 repeat task.wait(0.1) until game:IsLoaded();task.spawn(function() pcall(function() if game:GetService("CoreGui"):FindFirstChild("DrRay") then game:GetService("CoreGui").DrRay:Destroy() end end) end)
@@ -96,6 +96,7 @@ getgenv().Configurations = function()
         getgenv().AutoKillingSukuna = false;
         getgenv().AutoStealingItems = false;
         getgenv().AutoKillingRoland = false;
+        getgenv().AutoStoreStageOne = false;
         getgenv().AutoBreakthrough = false;
         getgenv().AutoPickingItems = false;
         getgenv().AutoSpawningToji = false;
@@ -107,6 +108,8 @@ getgenv().Configurations = function()
         getgenv().AutoSpawningDuo = false;
         getgenv().AutoSpawningDio = false;
         getgenv().AutoMainFarming = false;
+        getgenv().AutoResetIchigo = false;
+        getgenv().AutoEquipWeapon = false;
         getgenv().AutoRollDeaths = false;
         getgenv().AutoRollArcade = false;
         getgenv().AutoSavingCash = false;
@@ -175,6 +178,7 @@ getgenv().Configurations = function()
         -- [Esp Scripts]
         getgenv().EspEntities = false;
         getgenv().EspPlayers = false;
+        getgenv().EspNpcs = false;
         getgenv().EspItems = false;
 
         -- [Sakura Hub UI Scripts]
@@ -213,7 +217,7 @@ end
 getgenv().SaveConfigurations = function()
     local Data = "";
     for Key,Val in pairs(getgenv()) do
-        if type(Val) == "boolean" and Key ~= "ToggleVisibility" and Key ~= "ExecutedStatisticsGUI" then
+        if type(Val) == "boolean" and Key ~= "ToggleVisibility" and Key ~= "ExecutedStatisticsGUI" and Key ~= "AutoFarmingExplanation" and Key ~= "AutoAltFarmingExplanation" then
             Data = Data..Key.."="..tostring(Val).."\n";
         end
     end
@@ -237,6 +241,7 @@ getgenv().LoadConfigurations = function()
         task.spawn(getgenv().StartLoading("EspPlayers")("EspOnPlayers"));
         task.spawn(getgenv().StartLoading("EspEntities")("EspOnEntities"));
         task.spawn(getgenv().StartLoading("EspItems")("EspOnItems"));
+        task.spawn(getgenv().StartLoading("EspNpcs")("EspOnNpcs"));
         task.spawn(getgenv().StartLoading("AutoMonotone")("BlackAndWhite"));
         task.spawn(getgenv().StartLoading("AutoRaining")("ItsRaining"));
         task.spawn(getgenv().StartLoading("AutoCloudy")("ItsCloudy"));
@@ -272,7 +277,6 @@ getgenv().LoadConfigurations = function()
         task.spawn(getgenv().StartLoading("StoringHogyoku")("StoreHogyoku"));
         task.spawn(getgenv().StartLoading("StoringGloves")("StoreGloves"));
         task.spawn(getgenv().StartLoading("StoringGrace")("StoreOAs"));
-        task.spawn(getgenv().StartLoading("ToggleStatisticsGUI")("ProgressGUI"));
         task.spawn(getgenv().StartLoading("AutoLevelingUp")("LevelingUp"));
         task.spawn(getgenv().StartLoading("AutoSavingCash")("SavingUpCash"));
         task.spawn(getgenv().StartLoading("AutoRebirth")("Rebirthing"));
@@ -280,6 +284,9 @@ getgenv().LoadConfigurations = function()
         task.spawn(getgenv().StartLoading("AutoPublicGrinding")("PublicServerAutofarm"));
         task.spawn(getgenv().StartLoading("AutoPrivateGrinding")("PrivateServerAutofarm"));
         task.spawn(getgenv().StartLoading("AutoSelling")("SellingAnyItem"));
+        task.spawn(getgenv().StartLoading("AutoEquipWeapon")("WeaponEquipped"));
+        task.spawn(getgenv().StartLoading("AutoResetIchigo")("IchigoResetted"));
+        task.spawn(getgenv().StartLoading("AutoStoreStageOne")("StoredOFA"));
         task.spawn(getgenv().StartLoading("AutoAltFarming")("UsingAltFarming"));
         task.spawn(getgenv().StartLoading("AutoMainFarming")("UsingMainAccountFarming"));
         task.spawn(getgenv().StartLoading("AutoStealingOfa")("StealingOneForAll"));
@@ -637,6 +644,100 @@ getgenv().EspOnItems = function()
             end
         end)
     end
+end
+
+getgenv().EspOnNpcs = function()
+    local Folder = workspace.Map.NPCs
+
+    local function CreateBilboard(X)
+        local Head = X:FindFirstChild("Head");
+        if not Head then return end
+    
+        local BillboardGui = Instance.new("BillboardGui");
+        local TextLabel = Instance.new("TextLabel");
+    
+        BillboardGui.Parent = Head
+        BillboardGui.AlwaysOnTop = true
+        BillboardGui.Size = UDim2.new(0,100,0,50);
+        BillboardGui.StudsOffset = Vector3.new(0,2,0);
+    
+        TextLabel.Parent = BillboardGui
+        TextLabel.BackgroundColor3 = Color3.new(1,1,1);
+        TextLabel.BackgroundTransparency = 1
+        TextLabel.Size = UDim2.new(1,0,1,0);
+        TextLabel.Text = X.Name
+        TextLabel.TextColor3 = Color3.fromRGB(0,255,255);
+        TextLabel.TextScaled = true
+        TextLabel.Font = Enum.Font.GothamBold
+        TextLabel.TextStrokeTransparency = 0
+        TextLabel.TextStrokeColor3 = Color3.fromRGB(0,0,0);
+        TextLabel.Visible = false
+    
+        return BillboardGui,TextLabel
+    end
+    
+    local function UseESP(X)
+        local Head = X:FindFirstChild("Head");
+        if not Head then return end
+    
+        local BillboardGui,TextLabel = CreateBilboard(X)
+        local RenderSteppedCon
+    
+        local function DisconnectCons()
+            if BillboardGui then
+                BillboardGui:Destroy();
+            end
+            if RenderSteppedCon then
+                RenderSteppedCon:Disconnect();
+                RenderSteppedCon = nil
+            end
+        end
+    
+        RenderSteppedCon = game:GetService("RunService").RenderStepped:Connect(function()
+            local HeadPosition,HeadOnScreen = workspace.CurrentCamera:WorldToViewportPoint(Head.Position);
+            if HeadOnScreen then
+                TextLabel.Visible = getgenv().EspNpcs
+            else
+                TextLabel.Visible = false
+            end
+        end)
+    
+        X.AncestryChanged:Connect(function(_,b)
+            if not b then
+                DisconnectCons();
+            end
+        end)
+    end
+    
+    local function isPlayer(X)
+        for _,k in pairs(game.Players:GetPlayers()) do
+            if X.Name == k.Name then
+                return true
+            end
+        end
+        return false
+    end
+    
+    local function XAdded(X)
+        if not isPlayer(X) and X:IsA("Model") and X:FindFirstChild("Head") then
+            UseESP(X);
+        end
+        X.ChildAdded:Connect(function(v)
+            if not isPlayer(v) and v:IsA("Model") and v:FindFirstChild("Head") then
+                UseESP(v);
+            end
+        end)
+    end
+    
+    for _,X in ipairs(Folder:GetChildren()) do
+        if not isPlayer(X) and X:IsA("Model") and X:FindFirstChild("Head") then
+            XAdded(X);
+        end
+    end
+    
+    Folder.ChildAdded:Connect(function(v)
+        task.wait(0.5);XAdded(v);
+    end)
 end
 
 getgenv().BlackAndWhite = function()
@@ -1639,11 +1740,6 @@ getgenv().StoreOAs = function()
     end)
 end
 
-getgenv().ProgressGUI = function()
-    repeat task.wait() until game:GetService("CoreGui"):FindFirstChild("DrRay");
-    game:GetService("CoreGui").StatisticsGUI.Enabled = getgenv().ToggleStatisticsGUI;
-end
-
 getgenv().LevelingUp = function()
     task.spawn(function()
         while getgenv().AutoLevelingUp == true do task.wait(1.5);
@@ -1731,8 +1827,23 @@ getgenv().PublicServerAutofarm = function()
     
     task.spawn(function()
         if getgenv().AutoPublicGrinding == false then
-            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,20,0);
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,8,0);
         end
+    end)
+
+    task.spawn(function()
+        local Connec
+        Connec = game.Players.LocalPlayer.Character.Humanoid.StateChanged:Connect(function(_,z)
+            if getgenv().AutoPublicGrinding == true then
+                game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,false);
+                if z == Enum.HumanoidStateType.FallingDown or z == Enum.HumanoidStateType.Ragdoll then
+                    game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp);
+                end
+            else
+                game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,true);
+                Connec:Disconnect();
+            end
+        end)
     end)
     
     task.spawn(function()
@@ -1813,14 +1924,14 @@ getgenv().PublicServerAutofarm = function()
                     end
                 end
             end)
-            task.wait(0.35);
+            task.wait(0.25);
         end
     end)
 
     task.spawn(function()
         while getgenv().AutoPublicGrinding == true do
             pcall(function()
-                local args = {[1] = "/e sadcat"};
+                local args = {[1] = "/e dance"};
                 game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Chatted"):FireServer(unpack(args));
             end)
             task.wait(0.35);
@@ -1835,6 +1946,8 @@ getgenv().PrivateServerAutofarm = function()
 
     if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shinra Kusakabe" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Shadow The World" then
         getgenv().Distance = -5.5;
+    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Emperor" then
+        getgenv().Distance = 19.5;
     else
         getgenv().Distance = -6.5;
     end
@@ -1873,6 +1986,21 @@ getgenv().PrivateServerAutofarm = function()
     end)
 
     task.spawn(function()
+        local Connec
+        Connec = game.Players.LocalPlayer.Character.Humanoid.StateChanged:Connect(function(_,z)
+            if getgenv().AutoPublicGrinding == true then
+                game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,false);
+                if z == Enum.HumanoidStateType.FallingDown or z == Enum.HumanoidStateType.Ragdoll then
+                    game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp);
+                end
+            else
+                game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,true);
+                Connec:Disconnect();
+            end
+        end)
+    end)
+
+    task.spawn(function()
         while getgenv().AutoPrivateGrinding == true do
             pcall(function()
                 if getgenv().Target and game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
@@ -1886,7 +2014,7 @@ getgenv().PrivateServerAutofarm = function()
                         end)getgenv().Attacking();
                     end
                 else
-                    task.wait(2.5);
+                    task.wait(3.15);
                 end
             end)
             task.wait(0.15);
@@ -2010,6 +2138,56 @@ getgenv().SellingAnyItem = function()
     end)
 end
 
+getgenv().WeaponEquipped = function()
+    task.spawn(function()
+        while getgenv().AutoEquipWeapon == true do
+            pcall(function()
+                if not workspace.Living[game.Players.LocalPlayer.Name].CDValues:FindFirstChild("Summoned") then
+                    game:GetService("VirtualInputManager"):SendKeyEvent(true,"Q",false,game);
+                end
+            end)
+            task.wait(0.35);
+        end
+    end)
+end
+
+getgenv().IchigoResetted = function()
+    task.spawn(function()
+        while getgenv().AutoResetIchigo == true do
+            pcall(function()
+                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Kurosaki Ichigo | Substitute Shinigami" and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and getgenv().FoundAnything == false then
+                    game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Rokakaka"))
+                    game:GetService("ReplicatedStorage"):WaitForChild("UseItem"):WaitForChild("Rokakaka"):FireServer();
+                    game:GetService("Players").LocalPlayer.Character:FindFirstChild("Rokakaka"):Activate();
+                end
+            end)
+            task.wait(0.35);
+        end
+    end)
+end
+
+getgenv().StoredOFA = function()
+    task.spawn(function()
+        while getgenv().AutoStoreStageOne == true do
+            pcall(function()
+                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "OA [Stage 1]" and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
+                    for i = 1,95 do -- Supports up to 95 stand slots :O
+                        if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "Standless" then
+                            local args = {"Slot"..i};
+                            if i <= 6 then
+                                game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
+                            else
+                                game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
+                            end
+                        end
+                    end
+                end
+            end)
+            task.wait(0.45);
+        end
+    end)
+end
+
 getgenv().UsingAltFarming = function()
     task.spawn(function()
         while getgenv().AutoAltFarming == true do
@@ -2085,7 +2263,7 @@ getgenv().StealingAnyItem = function()
     
     task.spawn(function()
         if getgenv().AutoStealingItems == false then
-            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,50,0);
+            game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame = game.Players.LocalPlayer.Character.Humanoid.RootPart.CFrame * CFrame.new(0,8,0);
         end
     end)
     
@@ -2155,7 +2333,7 @@ getgenv().StealingAnyItem = function()
                     TeleportTo(UniquePartss);
                 end
             end)
-            task.wait(0.25);
+            task.wait(0.015);
         end
     end)
 end
@@ -2228,7 +2406,7 @@ getgenv().KillAnySecretBoss = function()
                             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(SecretBosses.Position - SecretBosses.CFrame.lookVector * 7,SecretBosses.Position);
                             getgenv().Attacking();
                         else
-                            task.wait(2.5);
+                            task.wait(3.15);
                         end
                         break
                     end
@@ -2255,7 +2433,7 @@ getgenv().AutofarmArbiter = function()
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(ArbiterBoss.Position - ArbiterBoss.CFrame.lookVector * 7,ArbiterBoss.Position);
                         getgenv().Attacking();
                     else
-                        task.wait(2.5);
+                        task.wait(3.15);
                     end
                 end
             end)
@@ -2280,7 +2458,7 @@ getgenv().AutofarmSukuna = function()
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(SukunaBoss.Position - SukunaBoss.CFrame.lookVector * 5,SukunaBoss.Position);
                         getgenv().Attacking();
                     else
-                        task.wait(2.5);
+                        task.wait(3.15);
                     end
                 end
             end)
@@ -2305,7 +2483,7 @@ getgenv().AutofarmToji = function()
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(TojiBoss.Position - TojiBoss.CFrame.lookVector * 7,TojiBoss.Position);
                         getgenv().Attacking();
                     else
-                        task.wait(2.5);
+                        task.wait(3.15);
                     end
                 end
             end)
@@ -2330,7 +2508,7 @@ getgenv().AutofarmDio = function()
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(DioBoss.Position - DioBoss.CFrame.lookVector * 7,DioBoss.Position);
                         getgenv().Attacking();
                     else
-                        task.wait(2.5);
+                        task.wait(3.15);
                     end
                 end
             end)
@@ -2355,7 +2533,7 @@ getgenv().AutofarmRoland = function()
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(RolandBoss.Position - RolandBoss.CFrame.lookVector * 7,RolandBoss.Position);
                         getgenv().Attacking();
                     else
-                        task.wait(2.5);
+                        task.wait(3.15);
                     end
                 end
             end)
@@ -2380,7 +2558,7 @@ getgenv().AutofarmJotaro = function()
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(JotaroBoss.Position - JotaroBoss.CFrame.lookVector * 7,JotaroBoss.Position);
                         getgenv().Attacking();
                     else
-                        task.wait(2.5);
+                        task.wait(3.15);
                     end
                 end
             end)
@@ -2405,7 +2583,7 @@ getgenv().AutofarmDeku = function()
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(DekuBoss.Position - DekuBoss.CFrame.lookVector * 7,DekuBoss.Position);
                         getgenv().Attacking();
                     else
-                        task.wait(2.5);
+                        task.wait(3.15);
                     end
                 end
             end)
@@ -2655,7 +2833,7 @@ getgenv().QuestTakeDamage = function()
                 if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
                     getgenv().Attacking();
                 else
-                    task.wait(2.5);
+                    task.wait(3.15);
                 end
             end)
             task.wait(0.15);
@@ -2678,7 +2856,7 @@ getgenv().QuestDealDamage = function()
                 if game.Players[game.Players.LocalPlayer.Name].Character.Humanoid.Health ~= 0 then
                     getgenv().Attacking();
                 else
-                    task.wait(2.5);
+                    task.wait(3.15);
                 end
             end)
             task.wait(0.15);
@@ -2758,6 +2936,11 @@ end)
 HomeTab.newToggle("Esp Items","",getgenv().EspItems or false,function(Value)
     getgenv().EspItems = Value
     getgenv().EspOnItems();
+end)
+
+HomeTab.newToggle("Esp Npcs","",getgenv().EspNpcs or false,function(Value)
+    getgenv().EspNpcs = Value
+    getgenv().EspOnNpcs();
 end)
 
 HomeTab.newLabel("Weather Scripts   🌧️");
@@ -2997,6 +3180,14 @@ HomeTab.newButton("Sakura Hub Changelogs GUI","",function()
     getgenv().ChangelogLabel("[+] Added a feature to Reset Config.");
     getgenv().ChangelogLabel("[+] Increased Auto Buy Rokakaka when cash capacity full.");
     getgenv().ChangelogLabel("[+] Removed Auto sell items (They were useless)");
+    getgenv().AddLine();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.2999)");
+    getgenv().ChangelogLabel("[+] Added support for Emperor.");
+    getgenv().ChangelogLabel("[+] Added Auto Equip Weapon (Someone Requested).");
+    getgenv().ChangelogLabel("[+] Added Anti fall scripts on autofarms (Cant fail anymore)");
+    getgenv().ChangelogLabel("[+] Added Auto Reset Ichigo (Someone Requested).");
+    getgenv().ChangelogLabel("[+] Added Auto Store OFA.");
+    getgenv().ChangelogLabel("[+] Added Esp for Npcs.");
     ----------------------------------------------------------------------------------------------------
 end)
 
@@ -3189,6 +3380,16 @@ getgenv().Attacking = function()
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Eye"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Kick"):FireServer();
         game:GetService("ReplicatedStorage"):WaitForChild("STWRemote"):WaitForChild("Punch"):FireServer();
+    elseif game:GetService("Players").LocalPlayer.Data.StandName.Value == "Emperor" then
+        game:GetService("ReplicatedStorage"):WaitForChild("EmperorRemote"):WaitForChild("Punch"):FireServer();
+        local args = {[1] = false};
+        game:GetService("ReplicatedStorage"):WaitForChild("EmperorRemote"):WaitForChild("Consecutive"):FireServer(unpack(args));
+        local args = {[1] = getgenv().Target,[2] = false};
+        game:GetService("ReplicatedStorage"):WaitForChild("EmperorRemote"):WaitForChild("AirShot"):FireServer(unpack(args));
+        local args = {[1] = getgenv().Target,[2] = false};
+        game:GetService("ReplicatedStorage"):WaitForChild("EmperorRemote"):WaitForChild("Curve"):FireServer(unpack(args));
+        local args = {[1] = getgenv().Target,[2] = false};
+        game:GetService("ReplicatedStorage"):WaitForChild("EmperorRemote"):WaitForChild("Homing"):FireServer(unpack(args));
     else game:GetService("VirtualUser"):Button1Down(Vector2.new());
         game.VirtualInputManager:SendKeyEvent(true,"E",false,game);game.VirtualInputManager:SendKeyEvent(true,"G",false,game);game.VirtualInputManager:SendKeyEvent(true,"T",false,game);game.VirtualInputManager:SendKeyEvent(true,"R",false,game);game.VirtualInputManager:SendKeyEvent(false,"Y",false,game);
         game.VirtualInputManager:SendKeyEvent(false,"E",false,game);game.VirtualInputManager:SendKeyEvent(false,"G",false,game);game.VirtualInputManager:SendKeyEvent(false,"T",false,game);game.VirtualInputManager:SendKeyEvent(false,"R",false,game);game.VirtualInputManager:SendKeyEvent(false,"Y",false,game);
@@ -3240,6 +3441,9 @@ end)
 
 local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?id=12334656615");
 
+FarmingTab.newButton("Read This","",function()
+    BoredLibrary.prompt("Sakura Hub   🌸","Use one teleport toggle at a time!",1.5);
+end)
 FarmingTab.newLabel("Equip Best Farming Spec   📌");
 FarmingTab.newButton("Equip Shinra Kusakabe (Best for Private Server Autofarm)","",function()
     pcall(function()
@@ -3261,9 +3465,9 @@ FarmingTab.newButton("Equip Shinra Kusakabe (Best for Private Server Autofarm)",
 end)
 
 FarmingTab.newLabel("Statistics GUI   📊");
-FarmingTab.newToggle("Show / Hide Statistics GUI","",getgenv().ToggleStatisticsGUI or false,function(Value)
+FarmingTab.newToggle("Show / Hide Statistics GUI","",false,function(Value)
     getgenv().ToggleStatisticsGUI = Value
-    getgenv().ProgressGUI();
+    game:GetService("CoreGui").StatisticsGUI.Enabled = getgenv().ToggleStatisticsGUI;
 end)
 
 FarmingTab.newLabel("Auto Leveling  📈");
@@ -3325,6 +3529,22 @@ FarmingTab.newLabel("Auto Selling   💵");
 FarmingTab.newToggle("Auto Sell Everything","",getgenv().AutoSelling or false,function(Value)
     getgenv().AutoSelling = Value
     getgenv().SellingAnyItem();
+end)
+
+FarmingTab.newLabel("Autofarming Miscellaneous   📌");
+FarmingTab.newToggle("Auto Equip Weapon (Requires Unequipped Weapon Specs only)","",getgenv().AutoEquipWeapon or false,function(Value)
+    getgenv().AutoEquipWeapon = Value
+    getgenv().WeaponEquipped();
+end)
+
+FarmingTab.newToggle("Auto Rokakaka Ichigo Stage One (Requires Rokakaka Fruit)","",getgenv().AutoResetIchigo or false,function(Value)
+    getgenv().AutoResetIchigo = Value
+    getgenv().IchigoResetted();
+end)
+
+FarmingTab.newToggle("Auto Store OFA Stage One (Requires Standless slot)","",getgenv().AutoStoreStageOne or false,function(Value)
+    getgenv().AutoStoreStageOne = Value
+    getgenv().StoredOFA();
 end)
 
 FarmingTab.newLabel("Auto Alt Exp Farming   🔥  [Private Servers Only]");
