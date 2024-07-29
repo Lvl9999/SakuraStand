@@ -209,16 +209,16 @@ end
 getgenv().ResetConfigurations = function()
     if isfile("Sakura_Hub_config.txt") then
         delfile("Sakura_Hub_config.txt");
-        BoredLibrary.prompt("Sakura Hub 🌸","Configuration Deleted!",1.5);
+        BoredLibrary.prompt("Sakura Hub 🌸","Configurations Deleted!",1.5);
     else
-        BoredLibrary.prompt("Sakura Hub 🌸","Configurations Not Found...",1.5);
+        BoredLibrary.prompt("Sakura Hub 🌸","Configurations Doesn't Exist...",1.5);
     end
 end
 
 getgenv().SaveConfigurations = function()
     local Data = "";
     for Key,Val in pairs(getgenv()) do
-        if type(Val) == "boolean" and Key ~= "ToggleVisibility" and Key ~= "ExecutedStatisticsGUI" and Key ~= "AutoFarmingExplanation" and Key ~= "AutoAltFarmingExplanation" then
+        if type(Val) == "boolean" and Key ~= "ToggleVisibility" and Key ~= "ExecutedStatisticsGUI" then
             Data = Data..Key.."="..tostring(Val).."\n";
         end
     end
@@ -3152,6 +3152,21 @@ HomeTab.newButton('Use Code: "'..Code6..'"','',function()
     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
+HomeTab.newLabel("Server Hop Scripts   🌐");
+HomeTab.newButton("Auto find The Arbiter   🌟  (Copied to Clipboard)","",function()
+    setclipboard("https://github.com/Lvl9999/TheArbiter/tree/main");
+    BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
+end)
+
+HomeTab.newButton("Auto find Space Curse   ☄️  (Copied to Clipboard)","",function()
+    setclipboard("https://github.com/Lvl9999/SpaceCurse/tree/main");
+    BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
+end)
+
+HomeTab.newButton("Auto Deku Farmer   🦸  (Copied to Clipboard)","",function()
+    BoredLibrary.prompt("Sakura Hub   🌸","Coming soon!",0.5);
+end)
+
 HomeTab.newLabel("Quick Scripts   🚀");
 HomeTab.newButton("Animation Grabber","",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/AnimationGrabber/main/Universal"))();
@@ -3569,23 +3584,21 @@ end)
 FarmingTab.newLabel("Auto Farming Items + Auto Farming Bosses / Mobs   💤");
 FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
     pcall(function()
-        game.VirtualInputManager:SendKeyEvent(true,"F9",false,game);
-        if not getgenv().AutoFarmingExplanation == true then getgenv().AutoFarmingExplanation = true
-            BoredLibrary.prompt("Sakura Hub 🌸","Open F9 Console",1.5);
-            warn("---------------[Auto Farming]---------------");
-            print("This script allows u to get levels and items faster than usual.");
-            print("You can one shot mobs by grabbing them.");
-            print("Why shinra is the best? Because the spec has 3 grab moves with short cooldown.");
-            print("I dont want you to get banned so pls dont use ps edition in a public server.");
-            print("Why do I need to select title before autofarming? This will keep u safe from the game forcing u to change title.");
-            print("Why does it not go after Menos? Because menos has anti grab so its impossible to one shot him.");
-            print("Why does it not go after Paper Curses? Because they are annoying to deal with and its time consuming.");
-            print("Why does it not go after Thugs or Bandits? Because they its not worth time trying to deal with them.");
-            warn("--------------[Best Settings]--------------");
-            print("The best spec to use the autofarm with: (Shinra Kusakabe).");
-            print("The best title to use the autofarm with: (The Intelligent).");
-            print("I recommend you to use Auto Upgrade Mastery and Auto Breakthrough along with Auto Sell Any Item.");
-        end
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,"F9",false,game);
+        BoredLibrary.prompt("Sakura Hub 🌸","Open F9 Console",1.5);
+        warn("---------------[Auto Farming]---------------");
+        print("This script allows u to get levels and items faster than usual.");
+        print("You can one shot mobs by grabbing them.");
+        print("Why shinra is the best? Because the spec has 3 grab moves with short cooldown.");
+        print("I dont want you to get banned so pls dont use ps edition in a public server.");
+        print("Why do I need to select title before autofarming? This will keep u safe from the game forcing u to change title.");
+        print("Why does it not go after Menos? Because menos has anti grab so its impossible to one shot him.");
+        print("Why does it not go after Paper Curses? Because they are annoying to deal with and its time consuming.");
+        print("Why does it not go after Thugs or Bandits? Because they its not worth time trying to deal with them.");
+        warn("--------------[Best Settings]--------------");
+        print("The best spec to use the autofarm with: (Shinra Kusakabe).");
+        print("The best title to use the autofarm with: (The Intelligent).");
+        print("I recommend you to use Auto Upgrade Mastery and Auto Breakthrough along with Auto Sell Any Item.");
     end)
 end)
 
@@ -3624,23 +3637,21 @@ end)
 FarmingTab.newLabel("Auto Alt Exp Farming   🔥  [Private Servers Only]");
 FarmingTab.newButton("Quick Explanation (Open F9 Console)","",function()
     pcall(function()
-        game.VirtualInputManager:SendKeyEvent(true,"F9",false,game);
-        if not getgenv().AutoAltFarmingExplanation == true then getgenv().AutoAltFarmingExplanation = true
-            BoredLibrary.prompt("Sakura Hub 🌸","Open F9 Console",1.5);
-            warn("---------------[Alt Exp Farming]---------------");
-            print("This script is multiple times faster than both autofarm variants (Public / Private).");
-            print("This script allows u to get masteries / fingers / masks really fast.");
-            print("You can help legit players level up really fast too.");
-            print("It basically teleports u to library and resets you once you get hit.");
-            print("Why? because when u reset it counts as a kill and it gives the player who hit u exp.");
-            print("And the more alts u make them use this the better the exp rate.");
-            print("To get this to work you will need executor like wave because it can execute on multi acc.");
-            print("Or you can use Emulator Multiplayer, Another copy of your emulator and join in with a diffrent acc.");
-            warn("--------------[Best Settings]--------------");
-            print("The best spec to use (For the one who gets the exp) is Shadow The World, Why? because his m1 cooldown is short.");
-            print("The best title to use (For the one who gets the exp) is The Intelligent (Obtained by buying from laptop).");
-            print("I recommend you to use Auto Pick Aura from Stealing Stuff section.");
-        end
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,"F9",false,game);
+        BoredLibrary.prompt("Sakura Hub 🌸","Open F9 Console",1.5);
+        warn("---------------[Alt Exp Farming]---------------");
+        print("This script is multiple times faster than both autofarm variants (Public / Private).");
+        print("This script allows u to get masteries / fingers / masks really fast.");
+        print("You can help legit players level up really fast too.");
+        print("It basically teleports u to library and resets you once you get hit.");
+        print("Why? because when u reset it counts as a kill and it gives the player who hit u exp.");
+        print("And the more alts u make them use this the better the exp rate.");
+        print("To get this to work you will need executor like wave because it can execute on multi acc.");
+        print("Or you can use Emulator Multiplayer, Another copy of your emulator and join in with a diffrent acc.");
+        warn("--------------[Best Settings]--------------");
+        print("The best spec to use (For the one who gets the exp) is Shadow The World, Why? because his m1 cooldown is short.");
+        print("The best title to use (For the one who gets the exp) is The Intelligent (Obtained by buying from laptop).");
+        print("I recommend you to use Auto Pick Aura from Stealing Stuff section.");
     end)
 end)
 
