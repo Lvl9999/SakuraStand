@@ -1954,7 +1954,7 @@ getgenv().PublicServerAutofarm = function()
                         for _,k in ipairs(k:GetChildren()) do
                             if k:IsA("BasePart") and k.Name ~= "SoulSpawn" and k.Name ~= "PerceptionMask" and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125) then
                                 if ((k.Name:sub(1,2) == "Bo" or k.Name:sub(1,3) == "Sec") and k:FindFirstChild("Outline")) or ((k.Name:sub(1,2) ~= "Bo" and k.Name:sub(1,3) ~= "Sec") and not k:FindFirstChild("Outline")) then
-                                    if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "SukunaFinger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "HogyokuFragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
+                                    if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "Sukuna Finger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "Hogyoku Fragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
                                         if (k.Name ~= "Box" and k.Name ~= "Barrel" and k.Name ~= "Chest") then
                                             table.insert(UniquePartz,k);
                                         end
@@ -2137,7 +2137,7 @@ getgenv().PrivateServerAutofarm = function()
                         for _,k in ipairs(k:GetChildren()) do
                             if k:IsA("BasePart") and k.Name ~= "SoulSpawn" and k.Name ~= "PerceptionMask" and k.Position ~= Vector3.new(1804.5390625,-298.173583984375,-309.4649658203125) then
                                 if ((k.Name:sub(1,2) == "Bo" or k.Name:sub(1,3) == "Sec") and k:FindFirstChild("Outline")) or ((k.Name:sub(1,2) ~= "Bo" and k.Name:sub(1,3) ~= "Sec") and not k:FindFirstChild("Outline")) then
-                                    if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "SukunaFinger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "HogyokuFragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
+                                    if not ((Lplayer.Data.Mastery.Value == 0 and k.Name == "Sukuna Finger") or (Lplayer.Data.Mastery.Value == 0 and k.Name == "Hogyoku Fragment") or (Lplayer.Data.Mastery.Value == 1 and Lplayer.Data.Mastery.Value == 2 and k.Name == "OA's Grace")) then
                                         if (k.Name ~= "Box" and k.Name ~= "Barrel" and k.Name ~= "Chest") then
                                             table.insert(UniqueParts,k);
                                         end
