@@ -1836,7 +1836,11 @@ getgenv().SavingUpCash = function()
                 if Cash1.Value == tonumber(string.match(Cash2.Text,"%d+ / (%d+)")) then 
                     if game.Players.LocalPlayer.Character.Humanoid.Health ~= 0 then
                         if game:GetService("Players").LocalPlayer.Data.Cash.Value > 75 then
-                            local args = {[1] = "75"};
+                            local args = {[1] = "99"};
+                            game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Rokakaka"):FireServer(unpack(args));
+                            local args = {[1] = "99"};
+                            game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Rokakaka"):FireServer(unpack(args));
+                            local args = {[1] = "99"};
                             game:GetService("ReplicatedStorage"):WaitForChild("BuyItemRemote"):WaitForChild("Rokakaka"):FireServer(unpack(args));
                         end
                 
