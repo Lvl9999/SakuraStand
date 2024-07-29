@@ -3441,7 +3441,7 @@ end)
 
 local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?id=12334656615");
 
-FarmingTab.newButton("Read This","",function()
+FarmingTab.newButton("Read This (Very Important)","",function()
     BoredLibrary.prompt("Sakura Hub   🌸","Use one teleport toggle at a time!",1.5);
 end)
 FarmingTab.newLabel("Equip Best Farming Spec   📌");
