@@ -2155,7 +2155,7 @@ getgenv().IchigoResetted = function()
     task.spawn(function()
         while getgenv().AutoResetIchigo == true do
             pcall(function()
-                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Kurosaki Ichigo | Substitute Shinigami" and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled and getgenv().FoundAnything == false then
+                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Kurosaki Ichigo | Substitute Shinigami" and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled or getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
                     game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Rokakaka"))
                     game:GetService("ReplicatedStorage"):WaitForChild("UseItem"):WaitForChild("Rokakaka"):FireServer();
                     game:GetService("Players").LocalPlayer.Character:FindFirstChild("Rokakaka"):Activate();
@@ -2170,7 +2170,7 @@ getgenv().StoredOFA = function()
     task.spawn(function()
         while getgenv().AutoStoreStageOne == true do
             pcall(function()
-                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "OA [Stage 1]" and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
+                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "OA [Stage 1]" and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled or getgenv().FoundAnything == false and not game:GetService("Players").LocalPlayer.PlayerGui.InCombat.Enabled then
                     for i = 1,95 do -- Supports up to 95 stand slots :O
                         if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "Standless" then
                             local args = {"Slot"..i};
