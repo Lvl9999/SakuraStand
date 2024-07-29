@@ -3309,7 +3309,7 @@ end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","http://www.roblox.com/asset/?id=6870729295");
 
-StorageTab.newLabel("Storage Stuff   📌");
+StorageTab.newLabel("Storage Stuff   📁");
 StorageTab.newButton("Close / Open Stand Storage","",function()
     pcall(function()
         game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled = not game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Enabled;
@@ -3322,7 +3322,7 @@ StorageTab.newButton("Close / Open Item Storage","",function()
     end)
 end)
 
-StorageTab.newLabel("Storing Stuff   📌");
+StorageTab.newLabel("Storing Stuff   📂");
 StorageTab.newToggle("Auto Store Every Item In Here","",getgenv().StoringAnyEverything or false,function(Value)
     getgenv().StoringAnyEverything = Value
     getgenv().StoreEverything();
@@ -3513,9 +3513,11 @@ end)
 
 local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?id=12334656615");
 
+FarmingTab.newLabel("Weekly Reminder   📅");
 FarmingTab.newButton("Read This (Very Important)","",function()
     BoredLibrary.prompt("Sakura Hub   🌸","Use one teleport toggle at a time!",1.5);
 end)
+
 FarmingTab.newLabel("Equip Best Farming Spec   📌");
 FarmingTab.newButton("Equip Shinra Kusakabe (Best for Private Server Autofarm)","",function()
     pcall(function()
