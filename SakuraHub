@@ -13,27 +13,13 @@
 getgenv().CurrentVersion = "1.2999";
 
 -- // Auto Loader \\ --
-repeat task.wait(0.1) until game:IsLoaded();task.spawn(function() pcall(function() if game:GetService("CoreGui"):FindFirstChild("DrRay") then game:GetService("CoreGui").DrRay:Destroy() end end) end)
+repeat task.wait(0.25) until game:IsLoaded();task.spawn(function() pcall(function() if game:GetService("CoreGui"):FindFirstChild("DrRay") then game:GetService("CoreGui").DrRay:Destroy() end end) end)
 
 -- // Auto Skip Loading Menu \\ --
 task.spawn(function()
     pcall(function()if not getgenv().SkippedMenu == true then getgenv().SkippedMenu = true;
         repeat task.wait(0.1) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Loading") or game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("MainMenu");
-            game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = true;
-            for i,v in ipairs(game:GetService("Lighting"):GetChildren()) do
-                if v.Name == "ONSTARTMENUYEAH" then v:Destroy();
-                    game.Lighting.Ambient = Color3.fromRGB(255,255,255);
-                    game.Lighting.Brightness = 0.5;
-                    game.Lighting.ColorShift_Bottom = Color3.fromRGB(255,255,255);
-                    game.Lighting.ColorShift_Top = Color3.fromRGB(255,255,255);
-                    game.Lighting.ExposureCompensation = 0;
-                    game.Lighting.FogColor = Color3.fromRGB(255,255,255);
-                    game.Lighting.FogEnd = 999999999;
-                    game.Lighting.GeographicLatitude = 41.733;
-                    game.Lighting.OutdoorAmbient = Color3.fromRGB(255,255,255);
-                    game.Lighting.GlobalShadows = true;
-                end
-            end
+            game:GetService("Players").LocalPlayer.PlayerGui.Loading:Destroy();game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Enabled = false;
             game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();workspace.scene:Destroy();
         end
     end)
@@ -189,10 +175,21 @@ getgenv().Configurations = function()
 end
 
 getgenv().Configurations();
-repeat task.wait(0.75) until getgenv().CanLoadIntoSakuraStand == true or game.PlaceId == 15552367548;
+repeat task.wait(0.35) until getgenv().CanLoadIntoSakuraStand == true or game.PlaceId == 15552367548;
+for i,v in ipairs(game:GetService("Lighting"):GetChildren()) do 
+    if v.Name == "ONSTARTMENUYEAH" then v:Destroy();
+        game.Lighting.Ambient = Color3.fromRGB(255,255,255);game.Lighting.Brightness = 0.5;
+        game.Lighting.ColorShift_Bottom = Color3.fromRGB(255,255,255);game.Lighting.ColorShift_Top = Color3.fromRGB(255,255,255);
+        game.Lighting.ExposureCompensation = 0;game.Lighting.FogColor = Color3.fromRGB(255,255,255);
+        game.Lighting.FogEnd = 999999999;game.Lighting.GeographicLatitude = 41.733;
+        game.Lighting.OutdoorAmbient = Color3.fromRGB(255,255,255);game.Lighting.GlobalShadows = true;
+    end
+end
+
 -----------------------------------[[ Main Ui Libs ]]------------------------------------------------------------------
 local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/DrRay/main/Backup"))();
 local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
+-----------------------------------[[ Main Ui Libs ]]------------------------------------------------------------------
 
 getgenv().StartLoading = function(z)
     return function(x)
@@ -1899,18 +1896,24 @@ getgenv().PublicServerAutofarm = function()
     end)
 
     task.spawn(function()
-        local Connec
-        Connec = game.Players.LocalPlayer.Character.Humanoid.StateChanged:Connect(function(_,z)
-            if getgenv().AutoPublicGrinding == true then
-                game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,false);
-                if z == Enum.HumanoidStateType.FallingDown or z == Enum.HumanoidStateType.Ragdoll then
-                    game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp);
+        while getgenv().AutoPublicGrinding == true do 
+            local Connec
+            Connec = game.Players.LocalPlayer.Character.Humanoid.StateChanged:Connect(function(_,z)
+                if getgenv().AutoPublicGrinding == true then
+                    game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,false);
+                    if z == Enum.HumanoidStateType.FallingDown or z == Enum.HumanoidStateType.Ragdoll then
+                        game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp);
+                    end
+                else
+                    game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,true);
+                    Connec:Disconnect();
                 end
-            else
-                game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,true);
-                Connec:Disconnect();
+            end)
+           task.wait(0.35);
+            if not getgenv().AutoPublicGrinding == true then
+                break;
             end
-        end)
+        end
     end)
     
     task.spawn(function()
@@ -2053,18 +2056,24 @@ getgenv().PrivateServerAutofarm = function()
     end)
 
     task.spawn(function()
-        local Connec
-        Connec = game.Players.LocalPlayer.Character.Humanoid.StateChanged:Connect(function(_,z)
-            if getgenv().AutoPublicGrinding == true then
-                game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,false);
-                if z == Enum.HumanoidStateType.FallingDown or z == Enum.HumanoidStateType.Ragdoll then
-                    game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp);
+        while getgenv().AutoPrivateGrinding == true do 
+            local Connec
+            Connec = game.Players.LocalPlayer.Character.Humanoid.StateChanged:Connect(function(_,z)
+                if getgenv().AutoPrivateGrinding == true then
+                    game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,false);
+                    if z == Enum.HumanoidStateType.FallingDown or z == Enum.HumanoidStateType.Ragdoll then
+                        game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp);
+                    end
+                else
+                    game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,true);
+                    Connec:Disconnect();
                 end
-            else
-                game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,true);
-                Connec:Disconnect();
+            end)
+           task.wait(0.35);
+            if not getgenv().AutoPrivateGrinding == true then
+                break;
             end
-        end)
+        end
     end)
 
     task.spawn(function()
@@ -2360,6 +2369,27 @@ getgenv().StealingAnyItem = function()
                 end
             end)
             task.wait(0.15);
+        end
+    end)
+
+    task.spawn(function()
+        while getgenv().AutoStealingItems == true do 
+            local Connec
+            Connec = game.Players.LocalPlayer.Character.Humanoid.StateChanged:Connect(function(_,z)
+                if getgenv().AutoStealingItems == true then
+                    game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,false);
+                    if z == Enum.HumanoidStateType.FallingDown or z == Enum.HumanoidStateType.Ragdoll then
+                        game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp);
+                    end
+                else
+                    game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,true);
+                    Connec:Disconnect();
+                end
+            end)
+           task.wait(0.35);
+            if not getgenv().AutoStealingItems == true then
+                break;
+            end
         end
     end)
 
@@ -3163,7 +3193,7 @@ HomeTab.newButton("Auto find Space Curse   ☄️  (Copied to Clipboard)","",fun
     BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
 end)
 
-HomeTab.newButton("Auto Deku Farmer   🦸  (Copied to Clipboard)","",function()
+HomeTab.newButton("Auto One For All Farmer   🦸  (Copied to Clipboard)","",function()
     BoredLibrary.prompt("Sakura Hub   🌸","Coming soon!",0.5);
 end)
 
@@ -3189,7 +3219,7 @@ HomeTab.newButton("Teleport Maker","",function()
 end)
 
 HomeTab.newLabel("Sakura Hub Stuff   🌸");
-HomeTab.newButton("Official Discord Server (Clipboard)","",function()
+HomeTab.newButton("Official Discord Server (Copied to Clipboard)","",function()
     setclipboard("https://discord.gg/XcUFRW4DWH");
     BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
 end)
@@ -3531,6 +3561,45 @@ local FarmingTab = DrRayLibrary.newTab("Farming","http://www.roblox.com/asset/?i
 FarmingTab.newLabel("Weekly Reminder   📅");
 FarmingTab.newButton("Read This (Very Important)","",function()
     BoredLibrary.prompt("Sakura Hub   🌸","Use one teleport toggle at a time!",1.5);
+    task.spawn(function()
+        local Grrr = "http://www.roblox.com/asset/?id=8603227350";
+        local Sound = Instance.new("Sound");
+        Sound.Name = "Sound";
+        Sound.SoundId = Grrr;
+        Sound.Volume = 10;
+        Sound.Looped = false;
+        Sound.Archivable = false;
+        Sound.Parent = game.Workspace
+        Sound:Play();
+    end)BoredLibrary.prompt("Sakura Hub   🌸","Dont ask me about Menos  😡😡😡",2.5);task.wait(1.85);
+    task.spawn(function()
+        local Drip = "http://www.roblox.com/asset/?id=6820466812";
+        local Sound = Instance.new("Sound");
+        Sound.Name = "Sound";
+        Sound.SoundId = Drip;
+        Sound.Volume = 10;
+        Sound.Looped = false;
+        Sound.Archivable = false;
+        Sound.Parent = game.Workspace
+        Sound:Play();
+    end)
+    
+    task.spawn(function()
+        local ScreenGui = Instance.new("ScreenGui");
+        ScreenGui.Name = "DripGoku";
+        ScreenGui.Parent = game.CoreGui;
+        local ImageLabel = Instance.new("ImageLabel");
+        ImageLabel.Parent = ScreenGui
+        ImageLabel.BackgroundColor3 = Color3.fromRGB(255,255,255);
+        ImageLabel.BorderColor3 = Color3.fromRGB(0,0,0);
+        ImageLabel.BorderSizePixel = 0;
+        ImageLabel.Position = UDim2.new(0,0,0,0);
+        ImageLabel.Size = UDim2.new(1,0,1,0);
+        ImageLabel.Image = "http://www.roblox.com/asset/?id=6257756322";
+        ImageLabel.ImageTransparency = 0;
+        task.wait(0.50);
+        ScreenGui:Destroy();
+    end)
 end)
 
 FarmingTab.newLabel("Equip Best Farming Spec   📌");
