@@ -1905,7 +1905,6 @@ getgenv().PublicServerAutofarm = function()
                         game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp);
                     end
                 else
-                    game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,true);
                     Connec:Disconnect();
                 end
             end)
@@ -2065,7 +2064,6 @@ getgenv().PrivateServerAutofarm = function()
                         game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp);
                     end
                 else
-                    game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,true);
                     Connec:Disconnect();
                 end
             end)
@@ -2382,7 +2380,6 @@ getgenv().StealingAnyItem = function()
                         game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp);
                     end
                 else
-                    game:GetService("Players").LocalPlayer.Character.Humanoid:SetStateEnabled(1,true);
                     Connec:Disconnect();
                 end
             end)
