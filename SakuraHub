@@ -1,4 +1,4 @@
--- // Sakura Hub 🌸 \\ -- | (Version 1.2999) [ Made by ThroughTheFireAndFlames#9925 :3 ]
+-- // Sakura Hub 🌸 \\ -- | (Version 1.30) [ Made by ThroughTheFireAndFlames#9925 :3 ]
 
 --[[---------------------------------------------------------------------------------------------------
     This script updates a lot, Use this loadstring to be in the latest version:
@@ -10,7 +10,7 @@
         loadstring(game:HttpGet(getgenv().SakuraHub))();
     end)
 ]]-----------------------------------------------------------------------------------------------------
-getgenv().CurrentVersion = "1.2999";
+getgenv().CurrentVersion = "1.30";
 
 -- // Auto Loader \\ --
 repeat task.wait(0.25) until game:IsLoaded();task.spawn(function() pcall(function() if game:GetService("CoreGui"):FindFirstChild("DrRay") then game:GetService("CoreGui").DrRay:Destroy() end end) end)
@@ -104,6 +104,7 @@ getgenv().Configurations = function()
         getgenv().AutoKillingDio = false;
         getgenv().AutoAltFarming = false;
         getgenv().AutoLevelingUp = false;
+        getgenv().AutoRespawning = false;
         getgenv().AutoDekuTheme = false;
         getgenv().AutoMonotone = false;
         getgenv().AutoCidTheme = false;
@@ -253,6 +254,7 @@ getgenv().LoadConfigurations = function()
         task.spawn(getgenv().StartLoading("AutoFuckingAuddy")("FuckingAuddysBigGyatt"));
         task.spawn(getgenv().StartLoading("AutoFuckingSyrentia")("FuckingSyrentiaMouth"));
         task.spawn(getgenv().StartLoading("AutoTeleportPunching")("TeleportHittingBehind"));
+        task.spawn(getgenv().StartLoading("AutoRespawning")("AutoGodModding"));
         task.spawn(getgenv().StartLoading("AutoDefending")("DefendAgainstM1s"));
         task.spawn(getgenv().StartLoading("AutoDashing")("DodgeFromAttacks"));
         task.spawn(getgenv().StartLoading("AutoDodging")("UsingUltraIstinct"));
@@ -1139,6 +1141,33 @@ getgenv().TeleportHittingBehind = function()
     end)
 end
 
+getgenv().AutoGodModding = function()
+    getgenv().HealthRespawn = 195;
+    getgenv().GuildName = "Szechuan";
+    getgenv().Password = "pepper";
+
+    task.spawn(function()
+        while getgenv().AutoRespawning == true do
+            pcall(function()
+                local Lplayer = game.Players.LocalPlayer
+                if Lplayer.Character:FindFirstChild("Humanoid").Health < getgenv().HealthRespawn then
+                    local Location = Lplayer.Character.HumanoidRootPart.CFrame
+                    local Guild = game:GetService("Workspace").Living:FindFirstChild(Lplayer.Name).Head:FindFirstChild("GuildGUI");
+                    local args = {[1] = Guild and Guild.Text.Text == getgenv().GuildName and "Leave" or "Join",[2] = getgenv().GuildName,[3] = getgenv().Password,[4] = ""};
+                    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SetGuild"):FireServer(unpack(args));
+    
+                    game.Players.LocalPlayer.CharacterAdded:Wait();
+    
+                    repeat task.wait(0.015) until Lplayer.Character:FindFirstChild("HumanoidRootPart");task.wait(0.35);
+    
+                    Lplayer.Character.HumanoidRootPart.CFrame = Location;
+                end
+            end)
+            task.wait(0.0015);
+        end
+    end)
+end
+
 getgenv().DefendAgainstM1s = function()
     task.spawn(function()
         local connection
@@ -1287,14 +1316,14 @@ getgenv().UsingVoidOnOthers = function()
                 
                 if OnCooldown and Dashing and not Teleported then
                     X = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9000,-150,9000);
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9000,-70,9000);
                     Teleported = true;
                 elseif not OnCooldown and not Dashing and Teleported then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = X;
                     Teleported = false;
                 end
             end)
-            task.wait(0.35);
+            task.wait(0.15);
         end
     end)
 end
@@ -2427,7 +2456,7 @@ getgenv().StealingAnyItem = function()
                     TeleportTo(UniquePartss);
                 end
             end)
-            task.wait(0.015);
+            task.wait(0.15);
         end
     end)
 end
@@ -2976,11 +3005,11 @@ game:GetService("CoreGui").DrRay.TopBar.TopBarClose.idk.Visible = false;
 BoredLibrary.prompt("Sakura Hub 🌸","Current Version: "..getgenv().CurrentVersion,1.5);
 ---------------------------------[[ Main Source Code 💞 ]]------------------------------------------------------------
 HomeTab.newLabel("Script Hub Credits   ✨");
-HomeTab.newButton("Script Made by ThroughTheFireAndFlames#9925","",function()
+HomeTab.newButton("Script Made by Flames","",function()
     local Cheers = "http://www.roblox.com/asset/?id=1617624223"
     local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = Cheers
     Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
-    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Mommy Flames <3",3.5);
+    BoredLibrary.prompt("Sakura Hub   🌸","Thank you Mommy Flames <3",1.5);
 end)
 
 HomeTab.newButton("Gui Library Made by Chillz","",function()
@@ -3014,6 +3043,27 @@ HomeTab.newButton("Reset Character (Gets rid of Combat Mark)","",function()
     task.spawn(function()local ReturnAfterDeath = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame game:GetService("Players").LocalPlayer.CharacterAdded:Wait() repeat task.wait(1) until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = ReturnAfterDeath end)
     local args = {[1] = "kill"};
     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SukunaDialogue"):FireServer(unpack(args));
+end)
+
+HomeTab.newButton("Insta Respawn Character (Gets rid of Combat Mark)","",function()
+    getgenv().GuildName = "Szechuan";
+    getgenv().Password = "pepper";
+
+    task.spawn(function()
+        pcall(function()
+            local Lplayer = game.Players.LocalPlayer
+            local Location = Lplayer.Character.HumanoidRootPart.CFrame
+            local Guild = game:GetService("Workspace").Living:FindFirstChild(Lplayer.Name).Head:FindFirstChild("GuildGUI");
+            local args = {[1] = Guild and Guild.Text.Text == getgenv().GuildName and "Leave" or "Join",[2] = getgenv().GuildName,[3] = getgenv().Password,[4] = ""};
+            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("SetGuild"):FireServer(unpack(args));
+
+            game.Players.LocalPlayer.CharacterAdded:Wait();
+
+            repeat task.wait(0.015) until Lplayer.Character:FindFirstChild("HumanoidRootPart");task.wait(0.35);
+
+            Lplayer.Character.HumanoidRootPart.CFrame = Location;
+        end)
+    end)
 end)
 
 HomeTab.newLabel("Visual Scripts   👁️");
@@ -3108,6 +3158,11 @@ HomeTab.newToggle("Auto Ctrl + Click Combo Players / Mobs (Overpowered)","",getg
     getgenv().TeleportHittingBehind();
 end)
 
+HomeTab.newToggle("Auto Respawn When Low Health (Overpowered)","",getgenv().AutoRespawning or false,function(Value)
+    getgenv().AutoRespawning = Value
+    getgenv().AutoGodModding();
+end)
+
 HomeTab.newToggle("Auto Counter Attack Players / Mobs (Use Sdio or Gojo)","",getgenv().AutoDefending or false,function(Value)
     getgenv().AutoDefending = Value
     getgenv().DefendAgainstM1s();
@@ -3144,37 +3199,37 @@ local Code5 = "2monthsdelay";
 local Code6 = "AnArbiterAwakens";
 
 HomeTab.newButton('Use Code: "'..Code1..'"','',function()
-    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code1,1.5);
+    BoredLibrary.prompt("Sakura Hub  🌸","Used: "..Code1,1.5);
     local args = {Code1};
     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
 HomeTab.newButton('Use Code: "'..Code2..'"','',function()
-    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code2,1.5);
+    BoredLibrary.prompt("Sakura Hub   🌸","Used: "..Code2,1.5);
     local args = {Code2};
     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
 HomeTab.newButton('Use Code: "'..Code3..'"','',function()
-    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code3,1.5);
+    BoredLibrary.prompt("Sakura Hub  🌸","Used: "..Code3,1.5);
     local args = {Code3};
     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
 HomeTab.newButton('Use Code: "'..Code4..'"','',function()
-    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code4,1.5);
+    BoredLibrary.prompt("Sakura Hub  🌸","Used: "..Code4,1.5);
     local args = {Code4};
     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
 HomeTab.newButton('Use Code: "'..Code5..'"','',function()
-    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code5,1.5);
+    BoredLibrary.prompt("Sakura Hub  🌸","Used: "..Code5,1.5);
     local args = {Code5};
     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
 
 HomeTab.newButton('Use Code: "'..Code6..'"','',function()
-    BoredLibrary.prompt("Sakura Hub 🌸","Used: "..Code6,1.5);
+    BoredLibrary.prompt("Sakura Hub  🌸","Used: "..Code6,1.5);
     local args = {Code6};
     game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("EnterCode"):FireServer(unpack(args));
 end)
@@ -3182,16 +3237,17 @@ end)
 HomeTab.newLabel("Server Hop Scripts   🌐");
 HomeTab.newButton("Auto find The Arbiter   🌟  (Copied to Clipboard)","",function()
     setclipboard("https://github.com/Lvl9999/TheArbiter/tree/main");
-    BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
+    BoredLibrary.prompt("Sakura Hub  🌸","Copied to clipboard",0.5);
 end)
 
 HomeTab.newButton("Auto find Space Curse   ☄️  (Copied to Clipboard)","",function()
     setclipboard("https://github.com/Lvl9999/SpaceCurse/tree/main");
-    BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
+    BoredLibrary.prompt("Sakura Hub  🌸","Copied to clipboard",0.5);
 end)
 
-HomeTab.newButton("Auto One For All Farmer   🦸  (Copied to Clipboard)","",function()
-    BoredLibrary.prompt("Sakura Hub   🌸","Coming soon!",0.5);
+HomeTab.newButton("Auto One For All Finder   🦸  (Copied to Clipboard)","",function()
+    setclipboard("https://github.com/Lvl9999/OneForAll/tree/main");
+    BoredLibrary.prompt("Sakura Hub  🌸","Copied to clipboard",0.5);
 end)
 
 HomeTab.newLabel("Quick Scripts   🚀");
@@ -3215,10 +3271,10 @@ HomeTab.newButton("Teleport Maker","",function()
     loadstring(game:HttpGet("https://pastebin.com/raw/GSgUCJmq"))();
 end)
 
-HomeTab.newLabel("Sakura Hub Stuff   🌸");
+HomeTab.newLabel("Sakura Hub Stuff  🌸");
 HomeTab.newButton("Official Discord Server (Copied to Clipboard)","",function()
     setclipboard("https://discord.gg/XcUFRW4DWH");
-    BoredLibrary.prompt("Sakura Hub   🌸","Copied to clipboard",0.5);
+    BoredLibrary.prompt("Sakura Hub  🌸","Copied to clipboard",0.5);
 end)
 
 HomeTab.newToggle("Sakura Hub, Go Rainbow Please","",getgenv().AutoGoingRainbow or false,function(Value)
@@ -3227,7 +3283,7 @@ HomeTab.newToggle("Sakura Hub, Go Rainbow Please","",getgenv().AutoGoingRainbow 
 end)
 
 HomeTab.newButton("Sakura Hub Changelogs GUI","",function()
-    task.spawn(function()BoredLibrary.prompt("Sakura Hub   🌸","Loading Changelogs...",0.75);end)
+    task.spawn(function()BoredLibrary.prompt("Sakura Hub  🌸","Loading Changelogs...",0.75);end)
 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/Changelogs"))();
     getgenv().ChangelogLabel("Recent Changes: (Version 1.2989)");
@@ -3297,11 +3353,18 @@ HomeTab.newButton("Sakura Hub Changelogs GUI","",function()
     getgenv().ChangelogLabel("[+] Added Auto Reset Ichigo (Someone Requested).");
     getgenv().ChangelogLabel("[+] Added Auto Store OFA.");
     getgenv().ChangelogLabel("[+] Added Esp for Npcs.");
+    getgenv().AddLine();
+    getgenv().ChangelogLabel("Recent Changes: (Version 1.30)");
+    getgenv().ChangelogLabel("[+] Added One For All Farmer.");
+    getgenv().ChangelogLabel("[+] Fixed a small bug in Anti Fall.");
+    getgenv().ChangelogLabel("[+] Improved Void Tp (Because cid users escaped void).");
+    getgenv().ChangelogLabel("[+] Added My Private Script (Auto Respawn/God Mode).");
+    getgenv().ChangelogLabel("[+] Decreased Steal Item loop rate 0.015 ->> 0.15.");
     ----------------------------------------------------------------------------------------------------
 end)
 
 HomeTab.newButton("Reload Sakura Hub","",function()
-    task.spawn(function()BoredLibrary.prompt("Sakura Hub   🌸","Reloading Hub...",0.75);end)
+    task.spawn(function()BoredLibrary.prompt("Sakura Hub  🌸","Reloading Hub...",0.75);end)
     getgenv().SakuraHub = "https://raw.githubusercontent.com/Lvl9999/SakuraStand/main/SakuraHub";
 
     pcall(function()
@@ -3311,7 +3374,7 @@ end)
 
 HomeTab.newButton("Goodbye Sakura Hub   👋","",function()
     task.spawn(function()pcall(function()getgenv().Configurations();game:GetService("CoreGui").DrRay:Destroy();end);end);
-    BoredLibrary.prompt("Sakura Hub   🌸","Goodbye :)",0.5);
+    BoredLibrary.prompt("Sakura Hub  🌸","Goodbye :)",0.5);
 end)
 
 HomeTab.newLabel("Sakura Hub Configs   ⚙️");
@@ -3337,7 +3400,7 @@ HomeTab.newInput("Report Bugs / Feedback","Type here anything you want me to kno
             local data = {content = "",embeds = {{author = {name = (getgenv().PrivacyMode == true and "Unknown") or game.Players.LocalPlayer.Name,},title = "Reported:",description = getgenv().Message,type = "rich",color = tonumber(0xff0000),footer = {text = string.format("Reported at %s",os.date("%Y-%m-%d %X"))}}}};
             local request = http_request or request or HttpPost or syn.request;
             request({Url = getgenv().WebHook,Body = game:GetService("HttpService"):JSONEncode(data),Method = "POST",Headers = {["content-type"] = "application/json"}});
-            BoredLibrary.prompt("Sakura Hub   🌸","Message Sent   ✅",1.5);
+            BoredLibrary.prompt("Sakura Hub  🌸","Message Sent   ✅",1.5);
         end
     end)
 end)
@@ -3345,8 +3408,50 @@ end)
 HomeTab.newButton("Hide your username (Use Before Typing, Optional)","",function()
     if not getgenv().HidedName == true then getgenv().HidedName = true
         getgenv().PrivacyMode = true;
-        BoredLibrary.prompt("Sakura Hub   🌸","Hided Your Name   ✅",1.5);
+        BoredLibrary.prompt("Sakura Hub  🌸","Hided Your Name   ✅",1.5);
     end
+end)
+
+HomeTab.newButton("Secret ???","",function()
+    BoredLibrary.prompt("Sakura Hub  🌸","You are going to see Flame's tits in 5 seconds...",5);
+    task.wait(1.5);
+    BoredLibrary.prompt("Sakura Hub  🌸","One!",1);
+    task.wait();
+    BoredLibrary.prompt("Sakura Hub  🌸","Two!",1);
+    task.wait();
+    BoredLibrary.prompt("Sakura Hub  🌸","Three!",1);
+    task.wait();
+    BoredLibrary.prompt("Sakura Hub  🌸","Four!",1);
+    task.wait();
+    BoredLibrary.prompt("Sakura Hub  🌸","Five!",1);
+    task.wait(2.35);
+    BoredLibrary.prompt("Sakura Hub  🌸","..........",3);
+    task.spawn(function()task.wait(5);
+        game:GetService("Players").LocalPlayer:Kick("You have been banned from this game, reason: Exploiting (Unappealable)");
+        local ScreenGui = Instance.new("ScreenGui");
+        ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui");
+        local ImageLabel = Instance.new("ImageLabel");
+        ImageLabel.Parent = ScreenGui
+        ImageLabel.BackgroundColor3 = Color3.fromRGB(255,255,255);
+        ImageLabel.BorderColor3 = Color3.fromRGB(0,0,0);
+        ImageLabel.BorderSizePixel = 0;
+        ImageLabel.Position = UDim2.new(0,0,0,0);
+        ImageLabel.Size = UDim2.new(1,0,1,0);
+        ImageLabel.Image = "http://www.roblox.com/asset/?id=7307744965";
+        ImageLabel.ImageTransparency = 0;
+        ImageLabel.DisplayOrder = 999999;
+    end)
+    task.spawn(function()task.wait(5);
+        local Screams = "http://www.roblox.com/asset/?id=6863021504";
+        local Sound = Instance.new("Sound");
+        Sound.Name = "Sound";
+        Sound.SoundId = Screams;
+        Sound.Volume = 10;
+        Sound.Looped = true;
+        Sound.Archivable = false;
+        Sound.Parent = game.Workspace
+        Sound:Play();
+    end)
 end)
 
 local StorageTab = DrRayLibrary.newTab("Storage","http://www.roblox.com/asset/?id=6870729295");
