@@ -3412,48 +3412,6 @@ HomeTab.newButton("Hide your username (Use Before Typing, Optional)","",function
     end
 end)
 
-HomeTab.newButton("Secret ???","",function()
-    BoredLibrary.prompt("Sakura Hub  🌸","You are going to see Flame's tits in 5 seconds...",5);
-    task.wait(1.5);
-    BoredLibrary.prompt("Sakura Hub  🌸","One!",1);
-    task.wait();
-    BoredLibrary.prompt("Sakura Hub  🌸","Two!",1);
-    task.wait();
-    BoredLibrary.prompt("Sakura Hub  🌸","Three!",1);
-    task.wait();
-    BoredLibrary.prompt("Sakura Hub  🌸","Four!",1);
-    task.wait();
-    BoredLibrary.prompt("Sakura Hub  🌸","Five!",1);
-    task.wait(2.35);
-    BoredLibrary.prompt("Sakura Hub  🌸","..........",3);
-    task.spawn(function()task.wait(5);
-        game:GetService("Players").LocalPlayer:Kick("You have been banned from this game, reason: Exploiting (Unappealable)");
-        local ScreenGui = Instance.new("ScreenGui");
-        ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui");
-        local ImageLabel = Instance.new("ImageLabel");
-        ImageLabel.Parent = ScreenGui
-        ImageLabel.BackgroundColor3 = Color3.fromRGB(255,255,255);
-        ImageLabel.BorderColor3 = Color3.fromRGB(0,0,0);
-        ImageLabel.BorderSizePixel = 0;
-        ImageLabel.Position = UDim2.new(0,0,0,0);
-        ImageLabel.Size = UDim2.new(1,0,1,0);
-        ImageLabel.Image = "http://www.roblox.com/asset/?id=7307744965";
-        ImageLabel.ImageTransparency = 0;
-        ImageLabel.DisplayOrder = 999999;
-    end)
-    task.spawn(function()task.wait(5);
-        local Screams = "http://www.roblox.com/asset/?id=6863021504";
-        local Sound = Instance.new("Sound");
-        Sound.Name = "Sound";
-        Sound.SoundId = Screams;
-        Sound.Volume = 10;
-        Sound.Looped = true;
-        Sound.Archivable = false;
-        Sound.Parent = game.Workspace
-        Sound:Play();
-    end)
-end)
-
 local StorageTab = DrRayLibrary.newTab("Storage","http://www.roblox.com/asset/?id=6870729295");
 
 StorageTab.newLabel("Storage Stuff   📁");
