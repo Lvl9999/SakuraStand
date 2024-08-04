@@ -2029,7 +2029,7 @@ getgenv().PublicServerAutofarm = function()
     task.spawn(function()
         while getgenv().AutoPublicGrinding == true do
             pcall(function()
-                local args = {[1] = "/e dance"};
+                local args = {[1] = "/e sadcat"};
                 game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Chatted"):FireServer(unpack(args));
             end)
             task.wait(0.35);
