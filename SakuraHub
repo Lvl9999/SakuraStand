@@ -3805,7 +3805,7 @@ FarmingTab.newToggle("Auto Steal Any Item  (Doesnt go with Autofarm)","",getgenv
     getgenv().StealingAnyItem();
 end)
 
-FarmingTab.newToggle("Auto Pick Aura (Any Item)","",false,function(Value)
+FarmingTab.newToggle("Auto Pick Aura (Any Item)","",getgenv().AutoPickingItems or false,function(Value)
     getgenv().AutoPickingItems = Value
     getgenv().PickAuraAnyItem();
 end)
